@@ -1,0 +1,4 @@
+
+lcgdict_dir ::
+	@echo "----- BEGIN -----"
+	if test ! -d ../dict/${dictionary} ; then mkdir -p ../$(tag)/dict/${dictionary}; fi

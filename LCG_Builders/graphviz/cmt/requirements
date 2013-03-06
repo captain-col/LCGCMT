@@ -1,0 +1,16 @@
+package graphviz
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro graphviz_build_config_version "$(graphviz_config_version)"
+macro graphviz_build_native_version "$(graphviz_build_config_version)"
+set LCG_tarfilename "graphviz-$(graphviz_build_config_version).tar.gz"
+set LCG_graphviz_config_opts " -with-pic -enable-swig=no --with-qt=no "
+
+set_append LCG_graphviz_config_opts   "" \
+    target-i686                       "--build=i686-unknown-linux-gnu"
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/graphviz/$(LCG_package_config_version)
+
+set_append  CPPFLAGS " -O2 "

@@ -1,0 +1,14 @@
+package libsvm
+
+use LCG_BuildPolicy v* LCG_Builders
+use Python v* LCG_Interfaces
+
+macro libsvm_build_config_version "$(libsvm_config_version)"
+macro libsvm_build_native_version "$(libsvm_build_config_version)"
+set LCG_tarfilename "libsvm-$(libsvm_build_config_version).tar.gz"
+set LCG_python_incdir "$(Python_home)/include/python$(Python_config_version_twodigit)"
+set LCG_libsvm_ldflags " -shared " \
+    target-darwin "-bundle -L/afs/cern.ch/sw/lcg/external/Python/2.5/osx105_ia32_gcc401/Library/Frameworks/Python.framework/Versions/2.5/lib/ -lpython"
+
+apply_pattern buildscripts_local 
+

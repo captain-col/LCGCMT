@@ -1,0 +1,34 @@
+package cernlib
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use blas              v* LCG_Interfaces
+use lapack            v* LCG_Interfaces
+
+macro cernlib_native_version "$(cernlib_config_version)"
+
+macro cernlib_base "$(LCG_external)/cernlib/$(cernlib_native_version)"
+macro cernlib_home "$(cernlib_base)/$(LCG_system)"
+
+include_path none
+
+include_dirs $(cernlib_home)/include
+
+macro graflib "-L$(cernlib_home)/lib -lgraflib -lgrafX11 -lpacklib -L/usr/X11R6/lib -lX11 "
+
+macro cernlib_linkopts  " -L$(cernlib_home)/lib -lmathlib -lpacklib_noshift -L/usr/local/lib -lnsl -lcrypt -ldl " \
+      target-win        'dfordll.lib /libpath:"$(cernlib_home)/lib" ix_higz.lib mathmd.lib packmd.lib shiftmd.lib' 
+
+macro_append cernlib_linkopts  "" \
+      target-linux&target-gcc3 " -lg2c" \
+      target-linux             " -lgfortran"
+
+
+path_append MANPATH      "$(cernlib_home)/src/man" \
+            target-win   ""
+
+macro cernlib_fflags " -DCERNLIB_TYPE" \
+      target-linux   " -DCERNLIB_TYPE -DCERNLIB_LINUX"\
+      target-win     '/fpp:"/DCERNLIB_TYPE" /fpp:"/I$(cernlib_home)/include"'
+
+macro cernlib_export_paths "$(cernlib_home)/include $(cernlib_home)/bin $(cernlib_home)/lib"

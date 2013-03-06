@@ -1,0 +1,20 @@
+package HepPDT
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro HepPDT_native_version "$(HepPDT_config_version)"
+    
+macro HepPDT_home "$(LCG_external)/HepPDT/$(HepPDT_native_version)/$(LCG_system)"
+
+include_path none
+
+include_dirs "$(HepPDT_home)/include"
+
+macro HepPDT_linkopts "-L$(HepPDT_home)/lib -lHepPDT -lHepPID " \
+      target-win      " /LIBPATH:$(HepPDT_home)\lib HepPDT.lib HepPID.lib "
+
+apply_pattern set_lib_path
+
+macro HepPDT_export_paths "$(HepPDT_home)/include $(HepPDT_home)/lib"
+

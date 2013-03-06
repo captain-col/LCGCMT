@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Grid">
+    <contact>Oliver Keeble oliver.keeble@cern.ch</contact>
+    <description>. . . . .</description>
+    <homepage>http://glite.web.cern.ch/glite/</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Grid" project="false">
+    <contact>Oliver Keeble oliver.keeble@cern.ch</contact>
+    <description>a grid file access library</description>
+    <homepage>http://grid-deployment.web.cern.ch/grid-deployment/gis/GFAL/gfal.3.html</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

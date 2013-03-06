@@ -1,0 +1,23 @@
+package GSL
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro GSL_native_version "$(GSL_config_version)"
+
+macro GSL_home "$(LCG_external)/GSL/$(GSL_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(GSL_home)/include
+
+macro GSL_linkopts "-L$(GSL_home)/lib -lgsl -lgslcblas " \
+      target-win   "/LIBPATH:$(GSL_home)\lib gsl.lib gslcblas.lib "
+      
+macro_append cppflags "" target-win   " -DGSL_DLL "
+
+apply_pattern set_lib_path
+
+apply_pattern set_ext_man_path mandir="share/man"
+
+macro GSL_export_paths "$(GSL_home)/lib $(GSL_home)/include" 
+

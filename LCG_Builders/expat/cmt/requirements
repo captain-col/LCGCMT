@@ -1,0 +1,12 @@
+package expat
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro expat_build_config_version "$(Expat_config_version)"
+macro expat_build_native_version "$(expat_build_config_version)
+set LCG_tarfilename "expat-$(expat_build_config_version).tar.gz"
+apply_pattern buildscripts_local
+set LCG_expat_compile_options "" \
+    target-darwin&target-mac106&target-i386 "export CXXFLAGS=-m32 CPPFLAGS=-m32 CFLAGS=-m32 LDFLAGS=-m32"
+
+

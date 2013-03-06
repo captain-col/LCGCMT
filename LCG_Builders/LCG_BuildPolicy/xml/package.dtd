@@ -1,0 +1,35 @@
+<?xml encoding="UTF-8" ?>
+
+<!ELEMENT lcg         ( package )>
+
+<!ELEMENT package     ( contact+,description,homepage,license,longDescription*,nonavail*,note* )>
+<!ATTLIST package       language ( 
+                                   Python|Cpp|Java|Perl|
+                                   C|Fortran|Other 
+                                 )                        "Other"
+                        category ( 
+                                   Tool|XML|IO|Graphics|
+                                   Simulation|Database|
+                                   Math|Grid|Other 
+                                 )                        "Other"
+                        project  ( 
+                                   true|false 
+                                 )                        "false"
+>
+
+<!ELEMENT contact         ( #PCDATA )>
+
+<!ELEMENT description     ( #PCDATA )>
+
+<!ELEMENT homepage        ( #PCDATA )>
+
+<!ELEMENT license         ( #PCDATA )>
+
+<!ELEMENT longDescription ( #PCDATA )>
+
+<!ELEMENT nonavail        ( #PCDATA )>
+
+<!ELEMENT note            ( #PCDATA )>
+<!ATTLIST note          date        CDATA                 #REQUIRED 
+                        version     CDATA                 #IMPLIED
+>

@@ -1,0 +1,19 @@
+package herwig
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro herwig_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/herwig/$(herwig_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(herwig_home)/include
+
+macro herwig_linkopts "-L$(herwig_home)/lib \
+                        -lherwig \ 
+                        -lherwig_dummy \
+                        -lherwig_pdfdummy "
+
+macro herwig_name "herwig"
+apply_pattern set_lib_path
+
+macro herwig_export_paths "$(herwig_home)/include $(herwig_home)/lib"

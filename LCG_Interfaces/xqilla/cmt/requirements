@@ -1,0 +1,17 @@
+package xqilla
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use XercesC           v* LCG_Interfaces
+
+macro xqilla_native_version "$(xqilla_config_version)"
+
+macro xqilla_home "$(LCG_external)/xqilla/$(xqilla_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(xqilla_home)/include
+
+macro xqilla_linkopts "-L$(xqilla_home)/lib -lxqilla " \
+      target-win   "/LIBPATH:$(xqilla_home)\lib xqilla.lib "
+
+apply_pattern set_bin_and_lib_path

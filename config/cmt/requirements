@@ -1,0 +1,7 @@
+use QMtest v* LCG_Interfaces
+use Python v* LCG_Interfaces
+use pyLCG v* 
+
+action sync_externals ""
+
+macro_append constituents " sync_externals "

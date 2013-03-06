@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Graphics">
+    <contact>Thomas Kittelmann thomas.kittelmann@cern.ch</contact>
+    <description>A high-level 3D graphics toolkit for OpenGL based visualization</description>
+    <homepage>http://coin3d.org/</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

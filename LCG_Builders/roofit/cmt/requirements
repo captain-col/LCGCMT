@@ -1,0 +1,25 @@
+
+package roofit
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro mathcore_config_version "5.26.00"
+set LCG_mathcore_version "$(mathcore_config_version)"
+
+macro roofit_build_config_version "$(roofit_config_version)"
+macro roofit_build_native_version "$(roofit_build_config_version)_root$(ROOT_config_version)"
+
+set LCG_root_version "$(ROOT_config_version)"
+set LCG_tarfilename "roofit-$(roofit_build_config_version).tar.gz"
+set LCG_ONLY_ROOFIT "NO" ONLY_ROOFIT "YES"
+set LCG_WITH_MATHCORE "NO" WITH_MATHCORE "YES"
+macro LCG_sourcefiles "$(LCG_tarfilename); root_v$(LCG_root_version).source.tar.gz" ONLY_ROOFIT "$(LCG_tarfilename)"
+
+set LCG_ROOT_CONFIG_ARCH       "" \
+    target-linux&target-i686   "linux " \
+    target-linux&target-x86_64 "linuxx8664gcc " \
+    target-darwin              "macosx " \
+    target-winxp               "win32 "
+
+apply_pattern buildscripts_local
+

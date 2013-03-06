@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Vincenzo Innocente Vincenzo.Innocente@cern.ch</contact>
+    <description>an enhanced shell for python</description>
+    <homepage>http://ipython.scipy.org</homepage>
+    <license>BSD</license>
+  </package>
+</lcg>

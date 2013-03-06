@@ -1,0 +1,16 @@
+package pyxml
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python v* LCG_Interfaces
+
+apply_pattern buildscripts_local 
+
+macro pyxml_build_config_version "$(pyxml_config_version)"
+
+set LCG_tarfilename "PyXML-$(pyxml_build_config_version).tar.gz"
+set LCG_Python_config_version_twodigit "$(Python_config_version_twodigit)"
+set_append LCG_pyxml_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CFLAGS=-m32"
+set LCG_pkgdest_pkgname "pytools"
+set LCG_pkgdest_vername "$(pytools_config_version)_python${LCG_Python_config_version_twodigit}"

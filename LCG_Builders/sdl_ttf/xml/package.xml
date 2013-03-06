@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Graphics">
+    <contact>Daniele Kruse Daniele.Francesco.Kruse@cern.ch</contact>
+    <description>true type fonts for sdl</description>
+    <homepage>http://www.libsdl.org/</homepage>
+    <license>LGPL</license>
+  </package>
+</lcg>

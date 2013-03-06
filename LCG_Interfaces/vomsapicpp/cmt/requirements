@@ -1,0 +1,13 @@
+package vomsapicpp
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use globus            v* LCG_Interfaces
+
+macro vomsapicpp_native_version "$(vomsapicpp_config_version)"
+
+macro vomsapicpp_home "$(LCG_external)/Grid/voms-api-cpp/$(vomsapicpp_native_version)/$(LCG_system)"
+
+include_path none
+
+apply_pattern set_ext_lib_path unixdir=$(unixdirname)

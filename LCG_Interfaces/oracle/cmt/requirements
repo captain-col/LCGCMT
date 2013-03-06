@@ -1,0 +1,26 @@
+package oracle
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro oracle_native_version "$(oracle_config_version)"
+
+macro oracle_home "$(LCG_external)/oracle/$(oracle_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(oracle_home)/include/
+
+apply_pattern set_ext_bin_and_lib_path windir=bin unixdir=lib
+           
+macro oracle_export_paths " $(oracle_home)/include $(oracle_home)/lib $(oracle_home)/bin " \
+      target-win          " $(oracle_home)/include $(oracle_home)/bin "
+
+macro oracle_linkopts "-L$(oracle_home)/lib -lclntsh" \
+      target-win      "/LIBPATH:$(oracle_home)/lib oci.lib"
+
+set TNS_ADMIN $(oracle_home)/admin 
+macro_append oracle_export_paths " $(TNS_ADMIN) " ATLAS ""
+
+set ORA_FPU_PRECISION  'EXTENDED'
+set NLS_LANG           'AMERICAN_AMERICA.WE8ISO8859P1'
+

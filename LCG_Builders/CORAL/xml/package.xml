@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="IO" project="true">
+    <contact>Alexander Kalkhof alexander.kalkhof@cern.ch</contact>
+    <contact>Andrea Valassi andrea.valassi@cern.ch</contact>
+    <description>Provides functionality for accessing data in relational databases using a C++ and SQL-free API</description>
+    <homepage>http://pool.cern.ch/coral/</homepage>
+    <license>LCGAA</license>
+  </package>
+</lcg>

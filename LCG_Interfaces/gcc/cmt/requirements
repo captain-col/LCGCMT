@@ -1,0 +1,12 @@
+package gcc
+
+# Note: This interface package is used only for taring up the compiler
+#       it should not be used in other cmt packages. LCG_Settings contains
+#       the proper settings for the compiler setup derived from CMTCONFIG
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro gcc_native_version "$(gcc_config_version)"
+
+macro gcc_home "$(LCG_external)/gcc/$(gcc_native_version)/$(LCG_hostos)"

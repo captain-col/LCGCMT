@@ -1,0 +1,14 @@
+package lcgdmcommon
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro lcgdmcommon_native_version "$(lcgdmcommon_config_version)"
+
+macro lcgdmcommon_home "$(LCG_external)/Grid/lcg-dm-common/$(lcgdmcommon_native_version)/$(LCG_system)"
+
+include_path none
+
+apply_pattern set_ext_lib_path windir=lib unixdir=$(unixdirname)
+
+apply_pattern set_man_path

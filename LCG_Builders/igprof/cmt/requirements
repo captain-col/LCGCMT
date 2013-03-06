@@ -1,0 +1,14 @@
+package igprof
+
+use LCG_BuildPolicy v* LCG_Builders
+use cmake v* LCG_Interfaces
+use libunwind v* LCG_Interfaces
+
+macro igprof_build_config_version "$(igprof_config_version)"
+macro igprof_build_native_version "$(igprof_build_config_version)"
+set LCG_tarfilename "igprof-$(igprof_build_config_version).tar.gz"
+
+set UNWIND_LIBRARY "${libunwind_home}/lib/libunwind.so"
+set UNWIND_INCLUDE_DIR "$(libunwind_home)/include"
+
+apply_pattern buildscripts_local

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Math">
+    <contact>Peter Somogyi peter.somogyi@cern.ch</contact>
+    <description>a library for support vector machines</description>
+    <homepage>http://www.csie.ntu.edu.tw/~cjlin/libsvm/</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

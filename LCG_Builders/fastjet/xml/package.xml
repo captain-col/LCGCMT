@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Math" project="false">
+    <contact>Ivan Belyaev Ivan.Belyaev@cern.ch</contact>
+    <description>a implementation of the longitudinally invariant jet finders</description>
+    <homepage>http://www.lpthe.jussieu.fr/~salam/fastjet/</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

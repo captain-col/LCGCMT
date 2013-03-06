@@ -1,0 +1,19 @@
+package cx_oracle
+
+use LCG_BuildPolicy v* LCG_Builders
+use Python          v* LCG_Interfaces
+use oracle          v* LCG_Interfaces
+
+apply_pattern buildscripts_local
+
+set LCG_pkgdest_pkgname "cx_Oracle"
+macro cx_oracle_build_config_version "$(cx_oracle_config_version)"
+macro cx_oracle_build_native_version "$(cx_oracle_build_config_version)_python$(Python_config_version_twodigit)"
+
+set LCG_tarfilename "cx_Oracle-$(cx_oracle_build_config_version).tar.gz"
+macro LCG_sourcefiles "$(LCG_tarfilename);cx_Oracle-$(cx_oracle_build_config_version).diff"
+set ORACLE_HOME "$(oracle_home)"
+set_append LCG_oracle_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CXXFLAGS=-m32"
+set LCG_pkgdest_pkgname "pytools"
+set LCG_pkgdest_vername "$(pytools_config_version)_python${Python_config_version_twodigit}"

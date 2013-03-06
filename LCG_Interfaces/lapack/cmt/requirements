@@ -1,0 +1,18 @@
+package lapack
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use blas              v* LCG_Interfaces
+
+macro lapack_native_version "$(lapack_config_version)"
+
+macro lapack_home "$(LCG_external)/lapack/$(lapack_native_version)/$(LCG_system)"       
+set   LAPACK "$(LCG_external)/lapack/$(lapack_native_version)/$(LCG_system)"       
+
+include_path none
+
+macro lapack_linkopts " -L$(lapack_home)/lib -lLAPACK " \
+      target-win      " /LIBPATH:$(lapack_home)\lib lapack3.lib "
+
+apply_pattern set_lib_path
+

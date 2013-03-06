@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Grid" project="false">
+    <contact>Oliver Keeble oliver.keeble@cern.ch</contact>
+    <description>a toolkit for building Grid applications</description>
+    <homepage>http://www.globus.org/</homepage>
+    <license>APACHE</license>
+  </package>
+</lcg>

@@ -1,0 +1,22 @@
+package mysql_python
+
+use LCG_BuildPolicy v* LCG_Builders
+use Python v* LCG_Interfaces
+use mysql v* LCG_Interfaces
+use pytools v* LCG_Interfaces
+
+macro mysql_python_build_config_version "$(mysql_python_config_version)"
+macro mysql_python_build_native_version "$(mysql_python_build_config_version)_mysql$(mysql_config_version)_python$(Python_config_version_twodigit)"
+set LCG_tarfilename "MySQL-python-$(mysql_python_build_config_version).tar.gz"
+set LCG_tardiffname "MySQL-python-$(mysql_python_build_config_version).diff"
+set LCG_mysql_config_version "$(mysql_config_version)"
+set LCG_python_config_version_twodigit "$(Python_config_version_twodigit)"
+set LCG_python_config_version "$(Python_config_version)"
+set_append LCG_mysql_python_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CFLAGS=-m32 export CPPFLAGS=-m32 export CXXFLAGS=-m32 export LDFLAGS=-m32"
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local  destdir=$(LCG_extdir)/pytools/$(pytools_config_version)_python${LCG_python_config_version_twodigit}
+#destdir=$(LCG_extdir)/mysql_python/$(LCG_package_config_version)_mysql$(LCG_mysql_config_version)_python$(LCG_python_config_version_twodigit)
+ 
+set LCG_pkgdest_pkgname "pytools"
+set LCG_pkgdest_vername "$(pytools_config_version)_python${LCG_Python_config_version_twodigit}"

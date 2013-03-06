@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool">
+    <contact>Marco Cattaneo Marco.Cattaneo@cern.ch</contact>
+    <description>Developing multi-threaded applications in C++ with templates</description>
+    <homepage>http://code.google.com/p/google-perftools/</homepage>
+    <license>BSD</license>
+  </package>
+</lcg>

@@ -1,0 +1,14 @@
+package hepmc
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro hepmc_build_config_version "$(HepMC_config_version)"
+macro hepmc_build_native_version "$(hepmc_build_config_version)"
+set LCG_tarfilename "HepMC-$(hepmc_build_config_version).tar.gz"
+set LCG_pkgdest_pkgname "HepMC"
+
+set LCG_hepmc_config_options   "" \
+           target-i686          "--build=i686-unknown-linux-gnu"
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/HepMC/$(LCG_package_config_version)

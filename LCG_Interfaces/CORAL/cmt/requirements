@@ -1,0 +1,43 @@
+package CORAL
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use Boost             v* LCG_Interfaces 
+use uuid              v* LCG_Interfaces -no_auto_imports
+
+apply_pattern use_optional pkg=XercesC
+apply_pattern use_optional pkg=lfc
+apply_pattern use_optional pkg=Frontier_Client
+apply_pattern use_optional pkg=Expat
+apply_pattern use_optional pkg=mysql
+apply_pattern use_optional pkg=sqlite
+apply_pattern use_optional pkg=CppUnit
+
+macro CORAL_native_version "$(CORAL_config_version)"
+
+macro CORAL_base "$(LCG_releases)/CORAL/$(CORAL_native_version)"
+
+macro CORAL_home "$(CORAL_base)/$(LCG_platform)"
+
+include_path none
+
+include_dirs "$(CORAL_base)/include"
+
+macro CORAL_libs   '-L$(CORAL_home)/lib -llcg_CoralBase '  \
+      target-win   '/libpath:"$(CORAL_home)/lib" lcg_CoralBase.lib '
+
+macro CORAL_relacc_libs '-llcg_CoralKernel -llcg_RelationalAccess ' \
+      target-win        'lcg_CoralKernel.lib lcg_RelationalAccess.lib '
+
+macro CORAL_linkopts             '' \
+      NEEDS_CORAL_RELATIONAL_ACCESS '$(CORAL_libs) $(CORAL_relacc_libs)' \
+      NEEDS_CORAL_BASE   '$(CORAL_libs)' 
+
+path_remove  PYTHONPATH "/CORAL/"              target-win "\CORAL\"     
+path_prepend PYTHONPATH "$(CORAL_home)/lib"    target-win "$(CORAL_home)\lib"        
+path_prepend PYTHONPATH "$(CORAL_home)/python" target-win "$(CORAL_home)\python"        
+
+apply_pattern set_bin_and_lib_path 
+
+macro CORAL_export_paths " $(CORAL_home)/lib $(CORAL_base)/include $(CORAL_home)/python" 
+

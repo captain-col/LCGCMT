@@ -1,0 +1,13 @@
+package neon
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro neon_native_version "$(neon_config_version)"
+macro neon_home "$(LCG_external)/neon/$(neon_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(neon_home)/include
+      
+apply_pattern set_bin_and_lib_path
+

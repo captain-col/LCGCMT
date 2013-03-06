@@ -1,0 +1,10 @@
+#--- moc fragment begin
+# do not run moc on uic-generated files
+ifeq (,$(findstring _begin_ui_,_begin_$(NAME)))
+$(CONSTITUENT): $(FILEPATH)moc_$(NAME).cpp
+$(FILEPATH)moc_$(NAME).cpp: $(FULLNAME)
+	moc $^ -o $@
+$(CONSTITUENT)clean::
+	$(RM) $(FILEPATH)moc_$(NAME).cpp
+endif
+#--- moc fragment end

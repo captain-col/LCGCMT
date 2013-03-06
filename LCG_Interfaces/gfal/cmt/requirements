@@ -1,0 +1,36 @@
+package gfal
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use lfc               v* LCG_Interfaces
+use gridftp_ifce      v* LCG_Interfaces
+use srm_ifce          v* LCG_Interfaces
+use is_ifce           v* LCG_Interfaces
+use voms              v* LCG_Interfaces
+use libtool           v* LCG_Interfaces
+use Python            v* LCG_Interfaces -no_auto_imports
+
+#dependencies for old versions of gfal -- used by 32bit platforms
+use cgsigsoap         v* LCG_Interfaces
+use globus            v* LCG_Interfaces
+########
+
+use vomsapic          v* LCG_Interfaces
+
+macro gfal_native_version "$(gfal_config_version)"
+
+macro gfal_home $(LCG_external)/Grid/gfal/$(gfal_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(gfal_home)/include
+
+apply_pattern set_man_path
+
+path_remove  PYTHONPATH "/gfal/"
+path_prepend PYTHONPATH "$(gfal_home)/$(unixdirname)/python$(Python_config_version_twodigit):$(gfal_home)/$(unixdirname)/python$(Python_config_version_twodigit)/site-packages" \
+      target-win   ""
+
+apply_pattern set_ext_bin_and_lib_path unixdir=$(unixdirname)
+
+macro gfal_linkopts "-L$(gfal_home)/$(unixdirname) -L$(epel_home)/lib -L$(lfc_home)/$(unixdirname) -lgfal" \
+      target-i686   "-L$(gfal_home)/$(unixdirname) -L$(globus_home)/lib -L$(lfc_home)/$(unixdirname) -L$(cgsigsoap_home)/lib -lgfal"

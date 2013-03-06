@@ -1,0 +1,14 @@
+package minuit
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use pyanalysis v* LCG_Interfaces
+apply_pattern buildscripts_local 
+
+macro minuit_build_config_version "$(minuit_config_version)"
+macro minuit_build_native_version "$(minuit_build_config_version)"
+set LCG_tarfilename "Minuit2-$(minuit_build_config_version).tar.gz"
+
+set_append LCG_minuit_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CXXFLAGS=-m32 export CFLAGS=-m32 export"
+

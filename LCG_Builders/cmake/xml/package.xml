@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool" project="false">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>a cross-platform, open-source make system</description>
+    <homepage>http://www.cmake.org</homepage>
+    <license>CMAKE</license>
+  </package>
+</lcg>

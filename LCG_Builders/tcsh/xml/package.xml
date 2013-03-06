@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>C shell with file name completion and command line editing</description>
+    <homepage>http://www.tcsh.org/Home</homepage>
+    <license>BSD</license>
+  </package>
+</lcg>

@@ -1,0 +1,5 @@
+package lcgdmcommon
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro lcgdmcommon_build_config_version "$(lcgdmcommon_config_version)"

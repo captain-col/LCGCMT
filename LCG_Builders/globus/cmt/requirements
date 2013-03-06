@@ -1,0 +1,5 @@
+package globus
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro globus_build_config_version "$(globus_config_version)"

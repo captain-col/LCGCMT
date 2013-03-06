@@ -1,0 +1,18 @@
+package blas
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro blas_native_version "$(blas_config_version)"
+
+macro blas_home "$(LCG_external)/blas/$(blas_native_version)/$(LCG_system)"     
+set BLAS "$(LCG_external)/blas/$(blas_native_version)/$(LCG_system)"     
+
+include_path none
+
+macro blas_linkopts " -L$(blas_home)/lib -lBLAS " \
+      target-win    " /LIBPATH:$(blas_home)\lib blas.lib "
+
+apply_pattern set_lib_path
+
+

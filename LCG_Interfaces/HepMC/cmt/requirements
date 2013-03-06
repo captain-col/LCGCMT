@@ -1,0 +1,20 @@
+package HepMC
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro HepMC_native_version "$(HepMC_config_version)"
+    
+macro HepMC_home "$(LCG_external)/HepMC/$(HepMC_native_version)/$(LCG_system)"
+
+include_path none
+
+include_dirs "$(HepMC_home)/include"
+
+macro HepMC_linkopts "-L$(HepMC_home)/lib -lHepMC " \
+      target-win     " /LIBPATH:$(HepMC_home)\lib HepMC.lib "
+
+apply_pattern set_lib_path
+
+macro HepMC_export_paths "$(HepMC_home)/include $(HepMC_home)/lib" ATLAS ""
+

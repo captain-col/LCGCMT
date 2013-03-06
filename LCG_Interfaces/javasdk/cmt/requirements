@@ -1,0 +1,30 @@
+package javasdk
+
+author Julius Hrivnac <Julius.Hrivnac@cern.ch@cern.ch>
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+public
+
+macro JDK_ARCH "ia32"           \
+               target-x86_64 "amd64" \
+               target-darwin "Darwin"
+
+macro javasdk_native_version "$(javasdk_config_version)"
+macro javasdk_home "$(LCG_external)/Java/JDK/$(javasdk_native_version)/$(JDK_ARCH)"
+
+set JDK_HOME  "$(javasdk_home)"
+set JAVA_HOME "$(javasdk_home)"
+
+set _JAVA_OPTIONS "-Xms64m -Xmx128m"
+
+include_path none
+
+path_remove PATH "/JDK"
+path_append PATH "$(javasdk_home)/jre/bin"
+path_append PATH "$(javasdk_home)/bin" 
+
+macro javasdk_export_paths   "$(javasdk_home)"
+
+macro javasdk_platform "" PACK "$(JDK_ARCH)"

@@ -1,0 +1,11 @@
+package pythia8
+
+use LCG_BuildPolicy v* LCG_Builders
+use HepMC v* LCG_Interfaces
+
+macro pythia8_build_config_version "$(pythia8_config_version)"
+set LCG_tarfilename "pythia8-$(pythia8_build_config_version)-src.tgz"
+set LCG_hepmchome "${HepMC_home}"
+set LCG_tardir "${LCG_extdir}/MCGenerators/distribution"
+
+apply_pattern buildscripts_local

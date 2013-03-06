@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="IO">
+    <contact>Sebastien Ponce sebastien.ponce@cern.ch</contact>
+    <description>A hierarchical storage management system</description>
+    <homepage>http://castor.web.cern.ch/castor</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

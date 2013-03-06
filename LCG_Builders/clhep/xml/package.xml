@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Math">
+    <contact>Andreas Pfeiffer andreas.pfeiffer@cern.ch</contact>
+    <description>a set of HEP-specific foundation and utility classes such as random generators, physics vectors, geometry and linear algebra</description>
+    <homepage>http://cern.ch/clhep</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

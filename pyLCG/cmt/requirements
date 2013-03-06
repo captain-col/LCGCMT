@@ -1,0 +1,15 @@
+package pyLCG
+
+use pyCMT   v*
+use pytools v* LCG_Interfaces
+use mysql   v* LCG_Interfaces
+
+author Stefan Roiser <stefan.roiser@cern.ch>
+
+path_append PYTHONPATH "$(PYLCGROOT)/python"
+
+
+macro process_sh_m "python ${PYLCGROOT}/python/lcg/aa/spi/processSh.py"
+
+action check_package_xml "python ${PYLCGROOT}/python/lcg/aa/spi/checkPackageXml.py"
+action check_all_package_xml "python ${PYLCGROOT}/python/lcg/aa/spi/checkAllPackageXml.py"

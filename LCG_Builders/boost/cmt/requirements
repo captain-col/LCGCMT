@@ -1,0 +1,34 @@
+package boost
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python    v* LCG_Interfaces
+
+macro boost_build_config_version    "$(Boost_config_version)"
+macro boost_build_native_version    "$(boost_build_config_version)_python$(Python_config_version_twodigit)"
+# Note for 1.34.x the linux tags shall be "linux" only without the platform info at the end
+macro bjam_tag                      "" \
+  target-darwin&target-mac106&target-x86_64 "macosxx86_64"\
+  target-mac106&target-i386 "macosxx86"\
+  target-darwin&target-i386         "macosxx86" \
+  target-linux&target-i686          "linuxx86" \
+  target-linux&target-x86_64        "linuxx86_64" \
+  target-win                        "ntx86"
+set LCG_boost_toolset               "gcc" target-darwin "darwin" target-win "msvc"
+set LCG_package_file_config_version "`echo $(Boost_config_version) | sed s/\\./_/g`"
+set LCG_boost_jam_opts              "-j12 variant=release --layout=versioned "
+
+set LCG_setcpp11                     "no" \
+    target-c11                      "yes"
+
+set_append LCG_boost_compile_options ""\
+     target-darwin&target-mac106&target-i386 ""
+set LCG_python_root                 "$(Python_home)"
+set LCG_python_version_twodigit     "$(Python_config_version_twodigit)"
+set LCG_python_version              "$(Python_config_version)"
+set LCG_tarfilename                 "boost_$(LCG_package_file_config_version).tar.gz"
+set LCG_bjam_bin                    "tools/build/v2/b2"
+
+apply_pattern buildscripts_local
+
+set LCG_pkgdest_pkgname "Boost"

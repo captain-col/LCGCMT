@@ -1,0 +1,16 @@
+package professor
+
+use LCG_Configuration v*
+use LCG_Settings v*
+use rivet        v* LCG_GeneratorsInterfaces
+
+macro professor_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/professor/$(professor_native_version)/$(LCG_system)
+
+include_path none
+include_dirs none
+
+
+macro professor_name "professor"
+apply_pattern set_lib_path
+
+macro professor_export_paths "$(professor_home)/include $(professor_home)/lib"

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="XML">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>XQilla is an XQuery and XPath 2 library and command line utility </description>
+    <homepage>http://xqilla.sourceforge.net/HomePage</homepage>
+    <license>APACHE</license>
+  </package>
+</lcg>

@@ -1,0 +1,17 @@
+package mctester
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro mctester_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/mctester/$(mctester_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(mctester_home)/include
+
+macro mctester_linkopts "-L$(mctester_home)/lib \
+                          -lmctester "
+
+macro mctester_name "mctester"
+apply_pattern set_lib_path
+
+macro mctester_export_paths "$(mctester_home)/include $(mctester_home)/lib"

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Tool" project="true">
+    <contact>Rene Brun rene.brun@cern.ch</contact>
+    <contact>Fons Rademakers fons.rademakers@cern.ch</contact>
+    <description>An object oriented data analysis framework</description>
+    <homepage>http://root.cern.ch</homepage>
+    <license>LGPL</license>
+  </package>
+</lcg>

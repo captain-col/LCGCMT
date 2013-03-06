@@ -1,0 +1,17 @@
+package pyquen
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro pyquen_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/pyquen/$(pyquen_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(pyquen_home)/include
+
+macro pyquen_linkopts "-L$(pyquen_home)/lib \
+                        -lpyquen "
+
+macro pyquen_name "pyquen"
+apply_pattern set_lib_path
+
+macro pyquen_export_paths "$(pyquen_home)/include $(pyquen_home)/lib"

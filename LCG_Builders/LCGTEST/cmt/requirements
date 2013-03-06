@@ -1,0 +1,12 @@
+package LCGTEST
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro LCG_get "cvs"
+macro LCGTEST_build_config_version "$(LCGTEST_config_version)"
+macro LCGTEST_build_native_version "$(LCGTEST_build_config_version)"
+
+set LCG_CVSROOT ":gserver:lcgtest.cvs.cern.ch:/cvs/LCGTEST"
+
+apply_tag IS_LCG_PROJECT
+apply_pattern buildscripts_project_local

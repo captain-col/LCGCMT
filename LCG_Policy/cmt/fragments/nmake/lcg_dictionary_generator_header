@@ -1,0 +1,5 @@
+
+lcgdict_dir ::
+	@echo "----- Dict Begin -----"
+	if not exist ..\$(tag)\dict                mkdir ..\$(tag)\dict
+	if not exist ..\$(tag)\dict\${dictionary}  mkdir ..\$(tag)\dict\${dictionary}

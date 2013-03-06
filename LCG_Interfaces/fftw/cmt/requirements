@@ -1,0 +1,20 @@
+package fftw
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+ 
+macro fftw_native_version "$(fftw_config_version)"
+
+macro fftw_home "$(LCG_external)/fftw3/$(fftw_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(fftw_home)/include
+
+macro fftw_linkopts "-L$(fftw_home)/lib -lfftw3 " \
+      target-win    "/LIBPATH:$(fftw_home)\lib libfftw3-3.lib "
+      
+#macro_append cppflags "" target-win   " -DGSL_DLL "
+
+apply_pattern set_ext_lib_path windir=bin unixdir=lib
+
+macro fftw_export_paths "$(fftw_home)/lib $(fftw_home)/include" ATLAS ""

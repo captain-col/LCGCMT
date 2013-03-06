@@ -1,0 +1,10 @@
+package bz2lib
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro bz2lib_build_config_version "$(bz2lib_config_version)"
+macro bz2lib_build_native_version "$(bz2lib_build_config_version)"
+set LCG_tarfilename "bzip2-$(bz2lib_build_config_version).tar.gz"
+set LCG_bz2lib_make_options " -f Makefile-libbz2_so " Darwin ""
+
+apply_pattern buildscripts_local

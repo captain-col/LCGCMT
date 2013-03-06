@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Other" project="false">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>a regular expression library for windows</description>
+    <homepage>http://prep.ai.mit.edu/old-gnu/rx/</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

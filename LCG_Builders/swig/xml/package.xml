@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>a tool that connects C/C++ programs with high-level programming languages.</description>
+    <homepage>http://www.swig.org/</homepage>
+    <license>APACHE</license>
+  </package>
+</lcg>

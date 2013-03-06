@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Other" category="Other" project="false">
+    <contact>Oliver Keeble oliver.keeble@cern.ch</contact>
+    <description>a grid catalog implementation .</description>
+    <homepage>http://glite.web.cern.ch/glite/</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

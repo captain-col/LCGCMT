@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Fortran" category="Other" project="false">
+    <contact>Ian McLaren ian.mclaren@cern.ch</contact>
+    <description>a collection of general purpose libraries and modules oriented towards the needs of a physics research laboratories</description>
+    <homepage>http://cern.ch/cernlib/</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

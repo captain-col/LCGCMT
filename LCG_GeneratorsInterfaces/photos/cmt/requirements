@@ -1,0 +1,18 @@
+package photos
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro photos_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/photos/$(photos_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(photos_home)/include
+
+macro photos_linkopts "-L$(photos_home)/lib \
+                        -lphotos " \
+         target-winxp "/LIBPATH:$(photos_home)/lib photos.lib "
+
+macro photos_name "photos"
+apply_pattern set_lib_path
+
+macro photos_export_paths "$(photos_home)/include $(photos_home)/lib"

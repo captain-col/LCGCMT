@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Pere Mato pere.mato@cern.ch</contact>
+    <description>a python package which supports spawning of processes through the threading module</description>
+    <homepage>http://pypi.python.org/pypi/multiprocessing</homepage>
+    <license>BSD</license>
+  </package>
+</lcg>

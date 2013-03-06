@@ -1,0 +1,434 @@
+package LCG_Policy
+
+use LCG_Settings
+
+#build_strategy no_prototypes
+#build_strategy with_installarea
+
+include_path none
+
+# global patterns ===========================================================
+
+macro application_suffix "" target-winxp ".exe"
+
+macro cmt_installarea_prefix ".."
+# macros recommended by Christian to overcome the problem that 
+# special installarea prefix simply conflicts with regular expressions (with the dots)
+cmtpath_pattern macro cmt_installarea_prefix ".."
+
+cmtpath_pattern macro <project>_installarea_prefix_remove "[.][.]"
+
+macro cmt_installarea_command "cp " target-winxp "copy "
+
+#coverage macro pointing to gcov archive - must be linked to both libs and applications
+#macro gcov_linkopts "" target-cov " /afs/cern.ch/sw/lcg/external/gcc/4.3/x86_64/lib/gcc/x86_64-unknown-linux-gnu/4.3.2/libgcov.a"
+#for ROOT this lib is set in ROOT's requirements file
+macro gcov_linkopts "" target-cov " ${COMPILER_PATH}/libgcov.a"
+
+# extra link options for icc linking, when compiling icc we need the libstdc++ 
+# library of the gcc version we are using for the external area linked to libs & apps
+macro icc_linkopts "" \
+    target-icc " -L$(gcc_home)/$(unixdirname) -lstdc++ " \
+    target-clang " -L$(gcc_home)/$(unixdirname) -lstdc++ "
+
+pattern -global include_dir_policy \
+  include_path none ; \
+  include_dirs $(<PACKAGE>ROOT)
+  
+pattern -global install_includes  \
+  document install_includes install_includes
+
+pattern -global install_pythonmods  \
+  macro run_install_pythonmods "do_install_pythonmods" ATLAS "dont_install_pythonmods" ; \
+  apply_pattern $(run_install_pythonmods)
+
+pattern do_install_pythonmods \
+  document install_pythonmods install_pythonmods
+
+pattern dont_install_pythonmods 
+
+ignore_pattern include_dir_policy
+ignore_pattern install_includes
+ignore_pattern install_pythonmods
+
+pattern lcg_shared_library_settings \
+  macro <package>_linkopts " -llcg_<package> " target-winxp " lcg_<package>.lib " ; \
+  private ; \
+  macro lcg_<package>_shlibflags "$(libraryshr_linkopts) $(cmt_installarea_linkopts) $(lcg_<package>_use_linkopts) " ; \
+  macro_remove lcg_<package>_use_linkopts "$(<package>_linkopts)" ; \
+  end_private
+  
+pattern lcg_shared_library \
+  library lcg_<package> -no_prototypes  *.cpp ; \
+  apply_pattern lcg_shared_library_settings
+
+pattern lcg_shared_generic_library \
+  library lcg_<package> -no_prototypes  <files> ; \
+  apply_pattern lcg_shared_library_settings
+
+pattern lcg_module_library \
+  library   lcg_<package>  *.cpp ;\
+  private ; \
+  macro lib_<package>_cppflags "" target-winxp "-DPLUGIN_MANAGER_SAMPLE_BUILD_DLL" ;\
+  macro lcg_<package>_shlibflags "$(libraryshr_linkopts) $(use_linkopts) " \
+                   target-darwin "$(libraryshr_linkopts) $(use_linkopts) " ;\
+  macro_remove use_linkopts "$(<package>_linkopts)" ; \
+  end_private
+
+pattern lcg_module_generic_library \
+  library   lcg_<name>  <files> ;\
+  private ; \
+  macro lib_<name>_cppflags "" target-winxp "-DPLUGIN_MANAGER_SAMPLE_BUILD_DLL" ;\
+  macro lcg_<name>_shlibflags "$(libraryshr_linkopts) $(use_linkopts) " ;\
+  macro_remove use_linkopts "$(<package>_linkopts)" ; \
+  end_private
+
+# new patterns to be used for the ROOT / Reflex PluginService
+pattern lcg_plugin_library \
+  library   lcg_<package>  *.cpp ;\
+  private ; \
+  macro lcg_<package>_shlibflags "$(libraryshr_linkopts) $(use_linkopts) " ;\
+  macro_remove use_linkopts "$(<package>_linkopts)" ; \   
+  document genmap lcg_<package>RootMap LIBNAME=lcg_<package> ROOTMAP_DIR=$(CMTINSTALLAREA)/$(CMTCONFIG)/lib ; \
+  macro_append lcg_<package>RootMap_dependencies " lcg_<package> " ; \
+  end_private
+
+pattern lcg_plugin_generic_library \
+  library   lcg_<name>  <files> ;\
+  private ; \
+  macro lcg_<name>_shlibflags "$(libraryshr_linkopts) $(use_linkopts) " ;\
+  macro_remove use_linkopts "$(<name>_linkopts)" ; \
+  document genmap lcg_<name>RootMap LIBNAME=lcg_<name> ROOTMAP_DIR=$(CMTINSTALLAREA)/$(CMTCONFIG)/lib ; \
+  macro_append lcg_<name>RootMap_dependencies " lcg_<name> " ; \
+  end_private
+
+pattern library_path \
+    path_remove LD_LIBRARY_PATH "/<package>/"\
+                target-winxp    "\<package>\" ; \
+    path_append LD_LIBRARY_PATH ""\
+                target-winxp    "${<PACKAGE>ROOT}/${BINDIR}" ; \
+    apply_pattern library_Softlinks library="<library>"
+
+pattern package_library_os \
+    macro <package>_<name>_libs " <unixlib> " target-darwin " <darwinlib> " target-winxp " <winlib> " ;\
+    pattern <package>_use_<name> macro_append <package>_linkopts " $(<package>_<name>_libs) "
+
+pattern package_library \
+    apply_pattern package_library_os name=<name> unixlib="-l<lib>" darwinlib="-l<lib>" winlib="<lib>.lib"
+
+pattern package_library_os_dep \
+    apply_pattern package_library_os name=<name> unixlib=<unixlib> \
+        darwinlib=<darwinlib> winlib=<winlib> ;\
+    apply_pattern <package>_use_<needed>
+
+pattern package_library_dep \
+   apply_pattern package_library name=<name> lib=<lib> ;\
+   apply_pattern <package>_use_<needed>
+
+macro merge_rootmap_cmd $(LCG_Policy_root)/cmt/fragments/merge_files.py
+
+
+#---------- Test/Example patterns----------------------------------------------------
+
+pattern lcg_cond_mkdir \
+  action lcg_mkdir "if [ ! -d <dir> ]; then mkdir -p <dir>; fi" \
+    target-winxp 'if not exist "<dir>" mkdir "<dir>"'
+
+pattern lcg_cond_mkdir_with_dep \
+  apply_pattern lcg_cond_mkdir dir=<dir> ; \
+  macro_append <tstexp>s_constituents "lcg_mkdir " ; \
+  macro <tstexp>_<name>_dependencies "lcg_mkdir" 
+
+pattern lcg_tstexp_application \
+  apply_pattern lcg_cond_mkdir_with_dep dir=$(CMTINSTALLAREA)/$(CMTCONFIG)/<tstexp>s/lib tstexp=<tstexp> name=<name> ;\
+  application <tstexp>_<name> -group=<tstexp>s -suffix=<name> -import=<import> -import=<import2> <files> bindirname="<tstexp>s/bin" ;\
+  macro_append <tstexp>_<name>linkopts " $(<package>_linkopts) -L$(CMTINSTALLAREA)/$(CMTCONFIG)/<tstexp>s/lib $(<package>_<tstexp>linkopts) $(gcov_linkopts) $(icc_linkopts) " \
+                          target-winxp " $(<package>_linkopts) /LIBPATH:$(CMTINSTALLAREA)/$(CMTCONFIG)/<tstexp>s/lib $(<package>_<tstexp>linkopts) " 	
+
+pattern lcg_tstexp_library \
+  apply_pattern lcg_cond_mkdir_with_dep dir=$(CMTINSTALLAREA)/$(CMTCONFIG)/<tstexp>s/lib tstexp=<tstexp> name=<name> ;\
+  library <tstexp>_<name> -group=<tstexp>s -suffix=<name> <files> libdirname="<tstexp>s/lib" ;\
+  macro <tstexp>_<name>_shlibflags "$(libraryshr_linkopts) $(<package>_linkopts) -L$(CMTINSTALLAREA)/$(CMTCONFIG)/<tstexp>s/lib $(use_linkopts) $(gcov_linkopts) $(icc_linkopts) " \
+                      target-winxp "$(libraryshr_linkopts) $(<package>_linkopts) /LIBPATH:$(CMTINSTALLAREA)/$(CMTCONFIG)/<tstexp>s/lib $(use_linkopts) " ;\
+  macro_append <package>_<tstexp>linkopts " -l<tstexp>_<name> " target-winxp " <tstexp>_<name>.lib " 
+  
+pattern lcg_tstexp_module \
+  apply_pattern lcg_cond_mkdir_with_dep dir=$(CMTINSTALLAREA)/$(CMTCONFIG)/<tstexp>s/lib tstexp=<tstexp> name=<name> ;\
+  library   <tstexp>_<name>   -group=<tstexp>s -suffix=<name> <files> libdirname="<tstexp>s/lib" ;\
+  macro lib_<tstexp>_<name>_cppflags "" target-winxp "-DPLUGIN_MANAGER_SAMPLE_BUILD_DLL" ;\
+  macro <tstexp>_<name>_shlibflags "$(libraryshr_linkopts) $(<package>_linkopts) -L$(CMTINSTALLAREA)/$(CMTCONFIG)/<tstexp>s/lib $(<package>_<tstexp>linkopts) $(use_linkopts) " \
+                      target-winxp "$(libraryshr_linkopts) $(<package>_linkopts) /LIBPATH:$(CMTINSTALLAREA)/$(CMTCONFIG)/<tstexp>s/lib $(<package>_<tstexp>linkopts) $(use_linkopts) "
+
+#---------- Test patterns----------------------------------------------------
+pattern lcg_test_application \
+  apply_pattern lcg_tstexp_application tstexp=test import=<import> import2=<import2> files=<files> name=<name> 
+
+pattern lcg_test_library \
+  apply_pattern lcg_tstexp_library tstexp=test files=<files> name=<name> 
+  
+pattern lcg_test_module \
+  apply_pattern lcg_tstexp_module tstexp=test files=<files> name=<name> 
+
+pattern lcg_test_python \
+  action tests "cp ../tests/test_*.py $(<package>_cmtpath)/../$(tag)/tests/bin/. ;\
+                chmod a+x $(<package>_cmtpath)/../$(tag)/tests/bin/test_*.py "    \
+  target-winxp "copy ..\tests\test_*.py $(<package>_cmtpath)\..\$(tag)\tests\bin\*"
+
+#---------- Unit-test patterns----------------------------------------------------
+pattern lcg_unit_test_application \
+  apply_pattern lcg_tstexp_application tstexp=test import=CppUnit import2=<import2> files=<files> name=<name> 
+
+pattern lcg_unit_test_library \
+  apply_pattern lcg_tstexp_library tstexp=test files=<files> name=<name> 
+  
+pattern lcg_unit_test_module \
+  apply_pattern lcg_tstexp_module tstexp=test files=<files> name=<name> 
+
+pattern lcg_test_python \
+  action tests "cp ../tests/test_*.py $(<package>_cmtpath)/../$(tag)/tests/bin/. ;\
+                chmod a+x $(<package>_cmtpath)/../$(tag)/tests/bin/test_*.py "    \
+  target-winxp "copy ..\tests\test_*.py $(<package>_cmtpath)\..\$(tag)\tests\bin\*"
+
+#---------- Example patterns----------------------------------------------------
+pattern lcg_example_application \
+  apply_pattern lcg_tstexp_application tstexp=example files=<files> name=<name> 
+
+pattern lcg_example_library \
+  apply_pattern lcg_tstexp_library tstexp=example files=<files> name=<name> 
+  
+pattern lcg_example_module \
+  apply_pattern lcg_tstexp_module tstexp=example files=<files> name=<name> 
+
+#---------- Setting up the Environment ------------------------------------------
+
+cmtpath_pattern path_prepend PYTHONPATH "" <project>_with_installarea "<path>/$(<project>_installarea_prefix)/$(tag)/python"
+cmtpath_pattern path_prepend PYTHONPATH "" <project>_with_installarea "<path>/$(<project>_installarea_prefix)/$(tag)/lib"
+cmtpath_pattern path_prepend PATH "" <project>_with_installarea       "<path>/$(<project>_installarea_prefix)/$(tag)/tests/bin"
+cmtpath_pattern path_prepend PATH "" <project>_with_installarea       "<path>/$(<project>_installarea_prefix)/$(tag)/examples/bin"
+cmtpath_pattern path_prepend PATH "" <project>_with_installarea&target-winxp "<path>/$(<project>_installarea_prefix)/$(tag)/tests/lib"
+cmtpath_pattern path_prepend PATH "" <project>_with_installarea&target-winxp "<path>/$(<project>_installarea_prefix)/$(tag)/examples/lib"
+cmtpath_pattern path_prepend LD_LIBRARY_PATH "" <project>_with_installarea&target-linux "<path>/$(<project>_installarea_prefix)/$(tag)/examples/lib"
+cmtpath_pattern path_prepend LD_LIBRARY_PATH "" <project>_with_installarea&target-linux "<path>/$(<project>_installarea_prefix)/$(tag)/tests/lib"
+cmtpath_pattern path_prepend DYLD_LIBRARY_PATH "" <project>_with_installarea&target-darwin "<path>/$(<project>_installarea_prefix)/$(tag)/examples/lib"
+cmtpath_pattern path_prepend DYLD_LIBRARY_PATH "" <project>_with_installarea&target-darwin "<path>/$(<project>_installarea_prefix)/$(tag)/tests/lib"
+cmtpath_pattern path_prepend DYLD_LIBRARY_PATH "" <project>_with_installarea&target-darwin "<path>/$(<project>_installarea_prefix)/$(tag)/lib"
+
+#---------- Tag definitions -----------------------------------------------------
+tag_exclude debug optimized
+
+tag windebug            debug
+tag static              UnixStatic
+
+# Fragments =================================================================
+
+# vsnet fragments, which override premature efforts now in CMT v1r14
+make_fragment vcproj_library_header
+make_fragment vcproj_application_header
+make_fragment vcproj_all
+make_fragment vcproj_trailer
+make_fragment vcproj_contents
+make_fragment vcproj_directory_header
+make_fragment vcproj_directory_trailer
+
+make_fragment sln_header
+make_fragment sln_project
+make_fragment sln_trailer
+make_fragment sln_project_config
+make_fragment sln_dependency_project
+
+make_fragment sln_dependency_header
+make_fragment sln_dependency_trailer
+
+make_fragment install_pythonmods -header=install_pythonmods_header
+make_fragment application
+make_fragment library
+
+make_fragment install_includes_header
+
+macro vsCONFIG   "Release"   debug  "Debug"
+macro vsDebug    "2"         debug  "1"
+macro vsOptimize "2"         debug  "0" 
+macro vsVersion  ""   target-vc71  "7.10" target-vc9 "9.00"
+macro package_GUID "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}"
+macro GUID_all "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC955}"
+
+
+# Compilation and Linking flags==============================================
+
+# C++ debug, optimized and profiled options
+macro cppdebugflags    "" \
+      target-dbg       "$(cppdebugflags_s)" \
+      target-opt       "$(cppoptimized_s)"
+
+macro cppdebugflags_s  "-g" \ 
+      target-winxp     "/Od /Z7"
+
+macro cppoptimized_s   "-O2" \
+      target-winxp     "" 
+
+macro cppprofiled_s   "-pg" \
+      target-winxp    "" 
+macro_append cppdebugflags "" \
+      target-prf      " $(cppprofiled_s)"
+      
+# C debug, optimized and profiled options
+macro cdebugflags     "" \
+      target-dbg      "$(cdebugflags_s)"
+
+macro cdebugflags_s   "-g"\
+      target-winxp    '/Od /Z7 /D "_DEBUG" '
+
+
+# Fortran debug, optimized and profiled options 
+macro fdebugflags      "" \
+      target-dbg       "$(fdebugflags_s)"
+macro fdebugflags_s    "-g"\ 
+      target-winxp     "/nopdbfile /debug:full /optimize:0"
+macro foptimized_s     "-O2" \
+      target-winxp     "" 
+macro_append fdebugflags "" \
+      target-opt       " $(foptimized_s)"
+macro fprofiled_s      "-pg" \
+      target-winxp     "" 
+macro_append fdebugflags "" \
+      target-prf       " $(fprofiled_s)"
+
+# Link debug options
+macro linkdebugflags   "" \
+      target-dbg       "$(linkdebugflags_s)"
+macro linkdebugflags_s "" \
+      target-winxp     "/debug /verbose:lib "
+
+macro cppmacros     " -Df2cFortran -fPIC -D_GNU_SOURCE -Dlinux -Dunix " \
+      target-darwin "" \
+      target-winxp  ' -D"WIN32" -D"_MBCS" -D"_WINDOWS" ' 
+
+macro cppflags      " $(cppmacros) -fPIC -pipe -ansi -Wall -W -pthread " \
+      target-mac105 " $(cppmacros) -pipe -ansi -pedantic -W -Wall -Wno-non-virtual-dtor -Wno-long-long -Wno-long-double -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -ftemplate-depth-512 -fmessage-length=0 -g " \
+      target-darwin " $(cppmacros) -pipe -ansi -pedantic -W -Wall -Wno-non-virtual-dtor -Wno-long-long -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -ftemplate-depth-512 -fmessage-length=0 -g " \
+      target-vc71   '$(includes) $(cppmacros) /FD /c /nologo /W3 /GX /MD /GR /Zm500 /GF /GS' \
+      target-vc9    '$(includes) $(cppmacros) /FD /c /nologo /W3 /EHsc /MD /GR /Zm500 /GF /GS '
+
+macro gcov_cppflags "-fprofile-arcs -ftest-coverage"
+
+macro_remove cppflags "-std=c++0x"
+
+macro_append cppflags  "" \
+      RELAX            "" \
+      target-c11       " -std=c++0x "
+
+macro_append cppflags       "" \ 
+      host-x86_64&target-i686&target-icc " -m32 -w1 " \
+      target-icc              " -w1 " \
+      host-x86_64&target-i686 " -m32 " \
+      host-darwin&target-i386 " -m32 " \
+      host-i686&target-x86_64 " -m64 " \
+      target-gcc&target-cov   " $(gcov_cppflags)" 
+macro_remove cppflags "" target-icc "-Wall -W"
+# -fno-default-inline -fkeep-inline-functions"
+
+# ppcmd=-I can be used on Windows as on Linux
+macro ppcmd "-I"
+
+# macro cc       "$(cpp)"
+macro cflags   "$(cppflags)"
+macro_append cflags  "" \
+      host-x86_64&target-i686 " -m32 " \
+      host-darwin&target-i386 " -m32 " \
+      host-i686&target-x86_64 " -m64 " \
+      host-i386&target-x86_64 " -m64 " 
+
+macro_append cflags  "" \
+      RELAX          "" \
+      target-c11     " -std=c1x "
+
+macro fflags       "-O -fno-automatic -fdollar-ok -ff90 -w" \
+      target-winxp '/compile_only /nologo /warn:nofileopt /warn:nouncalled /fpp:"/m" /fpp:"/I.." '
+macro_append fflags  ""  \
+      host-x86_64&target-i686 " -m32 " \
+      host-darwin&target-i386 " -m32 " \
+      host-i686&target-x86_64 " -m64 " \
+      host-i386&target-x86_64 " -m64 " 
+
+macro fcomp        "$(for) -c $(fincludes) $(fdebugflags) $(fflags) $(pp_fflags)" \
+      target-winxp "$(for) $(fdebugflags) $(fflags) $(pp_fflags)"
+
+
+# Link options
+
+# Note that we can't perform strict static linking since some external
+# packages do not provide static libraries. Thus the only possible
+# strategy is to use a dynamic link strategy, but to link against the
+# explicit static libraries (using <path>/lib<pkg>.a) where feasible.
+# The following allows for potential platform-specific overrides of the
+# defaults.
+
+macro makeLinkMap     ""\
+      target-linux    "-Wl,-Map,Linux.map"\
+      target-winxp    "/map"
+
+macro cpplinkflags   " " \
+      target-darwin  " -bind_at_load " \
+      target-linux   " -ldl -fpic -pthread -Wl,-E " \
+      target-winxp   "/nologo /machine:ix86 $(linkdebugflags) $(makeLinkMap) /nodefaultlib kernel32.lib user32.lib ws2_32.lib advapi32.lib dbghelp.lib  msvcprt.lib msvcrt.lib Netapi32.lib oldnames.lib "  
+
+macro_append cpplinkflags       ""\
+      target-slc5&target-x86_64 " -Wl,-z,max-page-size=0x1000 " \
+      UnixStatic                " -ldl "
+
+macro_append cpplinkflags "" \
+      target-prf          " $(cppprofiled_s)"
+
+macro_append cpplinkflags  "" \
+      host-x86_64&target-i686 " -m32 " \
+      host-darwin&target-i386 " -m32 " \
+      host-i686&target-x86_64 " -m64 " \
+      host-i386&target-x86_64 " -m64 " 
+
+macro cpplink         "$(cpplinkname) $(cpplinkflags)" 
+#      target-winxp    "link.exe $(cpplinkflags)"
+
+macro componentshr_linkopts "" \
+      target-linux          " -shared -fPIC -Wl,-s -ldl -pthread " \
+      target-winxp          "/DLL /Export:getFactoryEntries"
+
+macro_append componentshr_linkopts "" \
+      target-slc5&target-x86_64    " -Wl,-z,max-page-size=0x1000 "
+
+macro_append componentshr_linkopts   "" \
+      host-x86_64&target-i686 " -m32 " \
+      host-darwin&target-i386 " -m32 " \
+      host-i686&target-x86_64 " -m64 " \
+      host-i386&target-x86_64 " -m64 " 
+
+macro_remove componentshr_linkopts "" \
+      target-dbg                   "-Wl,-s"
+
+macro libraryshr_linkopts   "" \
+      target-linux          " -shared -fPIC -ldl -pthread " \
+      target-winxp          "/DLL"
+
+macro_append libraryshr_linkopts "" \
+      target-slc5&target-x86_64  " -Wl,-z,max-page-size=0x1000 "
+
+macro_append libraryshr_linkopts "" \
+      target-cov                 $(gcov_linkopts) \
+      target-icc                 $(icc_linkopts)  \
+      target-clang               $(icc_linkopts)
+
+macro_append libraryshr_linkopts   "" \
+      host-x86_64&target-i686 " -m32 " \
+      host-darwin&target-i386 " -m32 " \
+      host-i686&target-x86_64 " -m64 " \
+      host-i386&target-x86_64 " -m64 " 
+
+macro application_linkopts  "" \
+      target-linux          "-Wl,--export-dynamic "
+
+macro shlibsuffix   "so" \
+      target-winxp  "dll"
+
+
+# set defaults for dir of constituents for libs and bins ... tests/examples go somewhere else.
+macro libdirname "lib"
+macro bindirname "bin"

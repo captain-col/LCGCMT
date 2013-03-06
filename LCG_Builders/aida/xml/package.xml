@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Math">
+    <contact>Lorenzo Moneta Lorenzo.Moneta@cern.ch</contact>
+    <description>Abstract interfaces for common physics analysis objects, such as histograms, ntuples, fitters, IO</description>
+    <homepage>http://aida.freehep.org</homepage>
+    <license>LGPL</license>
+  </package>
+</lcg>

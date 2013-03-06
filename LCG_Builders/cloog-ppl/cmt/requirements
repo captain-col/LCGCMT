@@ -1,0 +1,15 @@
+package cloog-ppl
+
+use LCG_BuildPolicy v* LCG_Builders
+use ppl             v* LCG_Interfaces
+use gmp             v* LCG_Interfaces
+
+macro cloog-ppl_build_config_version "$(cloog-ppl_config_version)"
+macro cloog-ppl_build_native_version "$(cloog-ppl_build_config_version)"
+
+set LCG_tarfilename "cloog-ppl-$(cloog-ppl_build_config_version).tar.gz"
+
+set LCG_cloog_config_opts "--with-ppl=$(ppl_home) --with-gmp=$(gmp_home) "
+
+apply_pattern buildscripts_local
+

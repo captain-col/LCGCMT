@@ -1,0 +1,12 @@
+package libpng
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro libpng_native_version "$(libpng_config_version)"
+
+macro libpng_home "$(LCG_external)/libpng/$(libpng_native_version)/$(LCG_system)"
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_ext_man_path mandir="share/man"
+

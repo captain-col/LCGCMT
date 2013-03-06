@@ -1,0 +1,10 @@
+package swig
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro swig_build_config_version "$(swig_config_version)"
+macro swig_build_native_version "$(swig_build_config_version)"
+set LCG_tarfilename "swig-$(swig_build_config_version).tar.gz"
+
+apply_pattern buildscripts_local
+

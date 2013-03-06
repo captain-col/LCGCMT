@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Fortran" category="Math">
+    <contact>Sebastien Binet binet@cern.ch</contact>
+    <description>a library to perform basic linear algebra operations</description>
+    <homepage>http://www.netlib.org/blas/</homepage>
+    <license>BLAS</license>
+  </package>
+</lcg>

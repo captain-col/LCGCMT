@@ -1,0 +1,13 @@
+package doxgyen
+
+use LCG_BuildPolicy v* LCG_Builders
+use graphviz        v* LCG_Interfaces
+
+macro doxygen_build_config_version "$(doxygen_config_version)"
+macro doxygen_build_native_version "$(doxygen_build_config_version)"
+set LCG_tarfilename "doxygen-$(doxygen_build_config_version).src.tar.gz"
+
+apply_pattern buildscripts_local
+
+set LCG_doxygen_pre_config_step "" \
+    target-i686                 "patch -p0 -i ${LCG_tardir}/doxygen-${LCG_package_config_version}_32bit.patch"

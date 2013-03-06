@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Graphics" project="false">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>a set of Python bindings for Qt</description>
+    <homepage>http://www.riverbankcomputing.co.uk/pyqt</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

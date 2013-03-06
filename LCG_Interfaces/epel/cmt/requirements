@@ -1,0 +1,14 @@
+package epel
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro epel_native_version "$(epel_config_version)"
+
+macro epel_home "$(LCG_external)/Grid/epel/$(epel_native_version)/$(LCG_system)"
+
+apply_pattern set_man_path
+
+include_path none
+
+apply_pattern set_ext_bin_and_lib_path unixdir=$(unixdirname)

@@ -1,0 +1,13 @@
+package libpng
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro libpng_build_config_version "$(libpng_config_version)"
+macro libpng_build_native_version "$(libpng_build_config_version)"
+set LCG_tarfilename "libpng-$(libpng_build_config_version).tar.gz"
+macro libpng_config_opts ""
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/libpng/$(libpng_build_config_version)
+
+
+

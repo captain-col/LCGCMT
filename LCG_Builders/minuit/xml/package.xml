@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Lorenzo Moneta Lorenzo.Moneta@cern.ch</contact>
+    <description>Physics analysis tool for function minimization</description>
+    <homepage>http://seal.web.cern.ch/seal/snapshot/work-packages/mathlibs/minuit/release/download.html</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>
+

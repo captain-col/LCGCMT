@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Database" project="false">
+    <contact>Andrea Valassi andrea.valassi@cern.ch</contact>
+    <description>a Python extension module that allows access to Oracle databases</description>
+    <homepage>http://www.python.net/crew/atuining/cx_Oracle/</homepage>
+    <license>CXORACLE</license>
+  </package>
+</lcg>

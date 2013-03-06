@@ -1,0 +1,12 @@
+package libpfm
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro libpfm_native_version "$(libpfm_config_version)"
+
+macro libpfm_home "$(LCG_external)/libpfm/$(libpfm_native_version)/$(LCG_system)"
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_ext_man_path mandir="share/man"
+

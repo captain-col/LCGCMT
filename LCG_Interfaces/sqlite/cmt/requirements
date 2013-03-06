@@ -1,0 +1,19 @@
+package sqlite
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro sqlite_native_version "$(sqlite_config_version)"
+
+macro sqlite_home "$(LCG_external)/sqlite/$(sqlite_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(sqlite_home)/include
+
+apply_pattern set_bin_and_lib_path
+
+macro sqlite_export_paths " $(sqlite_home)/include $(sqlite_home)/lib $(sqlite_home)/bin "
+
+macro sqlite_linkopts "-L$(sqlite_home)/lib -lsqlite3" \
+      target-win      "/LIBPATH:$(sqlite_home)/lib  sqlite3.lib "
+

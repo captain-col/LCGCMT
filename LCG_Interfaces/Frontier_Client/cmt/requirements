@@ -1,0 +1,24 @@
+package Frontier_Client
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use Expat             v* LCG_Interfaces -no_auto_imports
+
+macro Frontier_Client_native_version "$(Frontier_Client_config_version)"
+    
+macro Frontier_Client_home "$(LCG_external)/frontier_client/$(Frontier_Client_native_version)/$(LCG_system)"
+
+include_path none
+
+include_dirs "$(Frontier_Client_home)/include"
+
+macro Frontier_Client_linkopts "-L$(Frontier_Client_home)/lib -lfrontier_client" \
+      target-win               "/LIBPATH:$(Frontier_Client_home)/lib libfrontier_client.lib"
+
+macro Frontier_Client_name "frontier_client"
+
+apply_pattern set_bin_and_lib_path
+
+macro Frontier_Client_export_paths "$(Frontier_Client_home)/bin $(Frontier_Client_home)/lib $(Frontier_Client_home)/include"
+
+

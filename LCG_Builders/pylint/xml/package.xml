@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Sylvain Thenault sylvain.thenault@logilab.fr</contact>
+    <description>python code static checker</description>
+    <homepage>http://www.logilab.org/project/pylint</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

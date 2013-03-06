@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Nigel Small nasmall@gmail.com</contact>
+    <description>access to the graph database Neo4j via REST</description>
+    <homepage>http://py2neo.org/</homepage>
+    <license>APACHE</license>
+  </package>
+</lcg>

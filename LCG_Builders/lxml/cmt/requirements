@@ -1,0 +1,17 @@
+package lxml
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python v* LCG_Interfaces
+
+
+apply_pattern buildscripts_local 
+
+macro lxml_build_config_version "$(lxml_config_version)"
+macro lxml_build_native_version "$(lxml_build_config_version)"
+set LCG_tarfilename "lxml-$(lxml_build_config_version).tar.gz"
+set LCG_Python_config_version_twodigit "$(Python_config_version_twodigit)"
+set LCG_pkgdest_vername "$(pytools_config_version)_python$(Python_config_version_twodigit)"
+set LCG_pkgdest_pkgname "pytools"
+set_append LCG_genshi_compile_version ""\
+	   target-darwin&target-mac106-target-i386 "export CFLAGS=-m32 export CXXFLAGS=-m32"

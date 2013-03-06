@@ -1,0 +1,18 @@
+package GCCXML
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro GCCXML_native_version "$(GCCXML_config_version)"
+
+macro GCCXML_home $(LCG_external)/gccxml/$(GCCXML_native_version)/$(LCG_system)
+
+include_path none
+
+macro GCCXML_name "gccxml"
+apply_pattern clean_path
+apply_pattern set_bin_path
+apply_pattern set_ext_man_path mandir="share/man"
+
+macro GCCXML_export_paths "$(GCCXML_home)/bin $(GCCXML_home)/share "
+

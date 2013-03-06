@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>a tool for building dynamic analysis tools (e.g. memory management, threading)</description>
+    <homepage>http://www.valgrind.org</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

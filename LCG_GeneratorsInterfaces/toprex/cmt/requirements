@@ -1,0 +1,17 @@
+package toprex
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro toprex_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/toprex/$(toprex_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(toprex_home)/include
+
+macro toprex_linkopts "-L$(toprex_home)/lib \
+                        -ltoprex "
+
+macro toprex_name "toprex"
+apply_pattern set_lib_path
+
+macro toprex_export_paths "$(toprex_home)/include $(toprex_home)/lib"

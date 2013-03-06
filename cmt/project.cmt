@@ -1,0 +1,11 @@
+project LCGCMT
+
+macro lcgcmt_installarea "without_installarea" \
+      WIN32              "without_installarea" \
+      LHCb               "without_installarea" \
+      ATLAS              "with_installarea" 
+
+build_strategy $(lcgcmt_installarea)
+
+setup_strategy no_root no_config
+

@@ -1,0 +1,20 @@
+package srm_ifce
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use lcgdmcommon       v* LCG_Interfaces
+use epel              v* LCG_Interfaces
+use Python            v* LCG_Interfaces -no_autoimports
+
+macro srm_ifce_native_version "$(srm_ifce_config_version)"
+
+macro srm_ifce_home "$(LCG_external)/Grid/srm-ifce/$(srm_ifce_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(srm_ifce_home)/include/srm-ifce
+
+apply_pattern set_ext_bin_and_lib_path windir=lib unixdir=$(unixdirname)
+
+macro srm_ifce_linkopts "-L$(srm_ifce_home)/$(unixdirname) -lsrm-ifce " \
+      target-win   ""
+

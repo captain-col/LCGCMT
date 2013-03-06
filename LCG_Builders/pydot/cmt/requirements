@@ -1,0 +1,17 @@
+package pydot
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python v* LCG_Interfaces
+use pygraphics v* LCG_Interfaces
+
+apply_pattern buildscripts_local 
+
+macro pydot_build_config_version "$(pydot_config_version)"
+macro pydot_build_native_version "$(pydot_build_config_version)"
+set LCG_tarfilename "pydot-$(pydot_build_config_version).tar.gz"
+set LCG_Python_config_version_twodigit "$(Python_config_version_twodigit)"
+set LCG_pkgdest_vername "$(pygraphics_config_version)_python$(Python_config_version_twodigit)"
+set LCG_pkgdest_pkgname "pygraphics"
+set_append LCG_pydot_compile_version ""\
+	   target-darwin&target-mac106-target-i386 "export CFLAGS=-m32 export CXXFLAGS=-m32"

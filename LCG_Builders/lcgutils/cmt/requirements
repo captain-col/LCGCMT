@@ -1,0 +1,5 @@
+package lcgutils
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro lcgutils_build_config_version "$(lcgutils_config_version)"

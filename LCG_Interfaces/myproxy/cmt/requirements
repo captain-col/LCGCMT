@@ -1,0 +1,18 @@
+package myproxy
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use globus            v* LCG_Interfaces
+
+macro myproxy_native_version "$(myproxy_config_version)"
+
+macro myproxy_home "$(LCG_external)/Grid/myproxy/$(myproxy_native_version)/$(LCG_system)/globus"
+
+include_path none
+include_dirs "$(myproxy_home)/include"
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_man_path
+
+set MYPROXY_SERVER myproxy.cern.ch
+set MYPROXY_TCP_PORT_RANGE 20000,25000

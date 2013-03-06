@@ -1,0 +1,14 @@
+package sdl_ttf
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro sdl_ttf_build_config_version "$(sdl_ttf_config_version)"
+macro sdl_ttf_build_native_version "$(sdl_ttf_build_config_version)"
+set LCG_tarfilename "SDL_ttf-$(sdl_ttf_build_config_version).tar.gz"
+macro sdl_config_opts ""
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/sdl/sdl$(sdl_config_version)_ttf$(sdl_ttf_build_config_version)
+
+
+
+

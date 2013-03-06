@@ -1,0 +1,17 @@
+package rivet
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro rivet_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/rivet/$(rivet_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(rivet_home)/include
+
+macro rivet_linkopts "-L$(rivet_home)/lib \
+                        -lRivet " 
+
+macro rivet_name "rivet"
+apply_pattern set_lib_path
+
+macro rivet_export_paths "$(rivet_home)/include $(rivet_home)/lib"

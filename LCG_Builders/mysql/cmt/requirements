@@ -1,0 +1,12 @@
+package mysql
+
+use LCG_BuildPolicy v* LCG_Builders
+use cmake v* LCG_Interfaces
+
+macro mysql_build_config_version "$(mysql_config_version)"
+macro mysql_build_native_version "$(mysql_build_config_version)"
+set LCG_tarfilename "mysql-$(mysql_build_config_version).tar.gz"
+
+apply_pattern buildscripts_local
+set_append LCG_mysql_compile_options "" \
+	   target-darwin&target-mac106&target-i386 "export CPPFLAGS=-m32 CXXFLAGS=-m32 CFLAGS=-m32"

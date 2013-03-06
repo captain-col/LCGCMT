@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool" project="false">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>a python binding generator for C/C++</description>
+    <homepage>http://www.riverbankcomputing.co.uk/sip/</homepage>
+    <license>UNKNOWN</license>
+
+    <note date="2007-06-21" version="4.6">
+    For the installation of sip on macosx we need the "framework" version of the package, which 
+    is not produced by default. For this reason the system installation of python will be taken
+    </note>
+
+  </package>
+</lcg>

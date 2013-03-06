@@ -1,0 +1,22 @@
+package numpy
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python v* LCG_Interfaces
+use pyanalysis v* LCG_Interfaces
+apply_pattern buildscripts_local 
+
+macro numpy_build_config_version "$(numpy_config_version)"
+macro numpy_build_native_version "$(numpy_build_config_version)"
+set LCG_tarfilename "numpy-$(numpy_build_config_version).tar.gz"
+set_append LCG_numpy_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CXXFLAGS=-m32 export CFLAGS=-m32 export"
+
+set LCG_Python_config_version_twodigit "$(Python_config_version_twodigit)"
+set LCG_pkgdest_pkgname "pyanalysis"
+set LCG_pkgdest_vername "$(pyanalysis_config_version)_python${LCG_Python_config_version_twodigit}"
+
+set CC "${cc_name} ${CFLAGS}"
+set LDFLAGS ""
+set CFLAGS ""
+

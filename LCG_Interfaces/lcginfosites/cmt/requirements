@@ -1,0 +1,12 @@
+package lcginfosites
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro lcginfosites_native_version "$(lcginfosites_config_version)"
+
+macro lcginfosites_home "$(LCG_external)/Grid/lcg-infosites/$(lcginfosites_native_version)/$(LCG_system)"
+
+include_path none
+
+apply_pattern set_bin_path

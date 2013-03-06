@@ -1,0 +1,13 @@
+package libelf
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro libelf_build_config_version "$(libelf_config_version)"
+macro libelf_build_native_version "$(libelf_build_config_version)"
+
+set LCG_tarfilename "libelf-$(libelf_build_config_version).tar.gz"
+
+apply_pattern buildscripts_local
+
+set CC "gcc" \
+    host-x86_64&target-i686              "gcc -m32"

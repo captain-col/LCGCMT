@@ -1,0 +1,12 @@
+package gmp
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro gmp_build_config_version "$(gmp_config_version)"
+macro gmp_build_native_version "$(gmp_build_config_version)"
+set LCG_tarfilename "gmp-$(gmp_build_config_version).tar.gz"
+
+set ABI "" \
+    host-x86_64&target-i686      "32"
+
+apply_pattern buildscripts_local

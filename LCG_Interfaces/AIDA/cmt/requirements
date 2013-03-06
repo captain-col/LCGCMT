@@ -1,0 +1,14 @@
+package AIDA
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro AIDA_native_version "$(AIDA_config_version)"
+
+macro AIDA_home $(LCG_external)/AIDA/$(AIDA_native_version)/share
+
+include_path none
+include_dirs $(AIDA_home)/src/cpp
+
+macro AIDA_export_paths "${AIDA_home}/src/cpp"
+

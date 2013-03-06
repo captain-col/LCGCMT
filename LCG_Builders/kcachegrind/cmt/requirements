@@ -1,0 +1,11 @@
+package kcachegrind
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro kcachegrind_build_config_version "$(kcachegrind_config_version)"
+macro kcachegrind_build_native_version "$(kcachegrind_build_config_version)"
+set LCG_tarfilename "kcachegrind-$(kcachegrind_build_config_version).tar.gz"
+set LCG_kcachegrind_config_extra_opts "" \
+    target-x86_64                     " --with-qt-dir=/usr/lib64/qt-3.3 --with-qt-libraries=/usr/lib64/qt-3.3/lib --with-qt-includes=/usr/lib64/qt-3.3/include --enable-libsuffix=64 "
+
+apply_pattern buildscripts_local

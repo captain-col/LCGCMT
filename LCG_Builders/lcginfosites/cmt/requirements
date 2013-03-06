@@ -1,0 +1,5 @@
+package lcginfosites
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro lcginfosites_build_config_version "$(lcginfosites_config_version)"

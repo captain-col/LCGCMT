@@ -1,0 +1,112 @@
+package LCG_BuildPolicy
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use pyCMT             v*
+
+# how to retrieve s/w from LCG, options are
+# 'cp', 'scp', 'http'
+macro LCG_get                        'cp'
+macro LCG_cvsdir                     "$(<package>_build_config_version)"
+
+set LCG_CMTCONFIG                    "${CMTCONFIG}"
+set LCG_BUILDPOLICYROOT_DIR          "$(LCG_BUILDPOLICYROOT)"
+
+
+set LCG_reldir                       "${LCG_releases}"
+set LCG_extdir                       "${LCG_external}"
+set LCG_tardir                       "${LCG_extdir}/tarFiles"
+set LCG_distdir                      "${LCG_extdir}/distribution"
+set LCG_tarurl                       "http://service-spi.web.cern.ch/service-spi/external/tarFiles"
+
+set LCG_builddir                     "${LCG_releases}"
+
+#code coverage 
+#gcov tool is on the PATH
+set GCOV_TOOL	""\
+	target-cov "gcov"
+set LCG_coverage_result_dir	""\
+	target-cov "${LCG_reldir}/www/"
+
+#profiling platform
+set IGPROF_TEST_RES ""\
+	target-pro "${LCG_releases}/../nightlies/www/${LCG_CMTCONFIG}/${LCG_NGT_SLT_NAME}.${LCG_NGT_DAY_NAME}_${LCG_package_config_version}-${LCG_CMTCONFIG}"
+set IGPROF_REF_RES ""\
+	target-pro "${LCG_releases}/../nightlies/www/${LCG_CMTCONFIG}/${LCG_NGT_SLT_NAME}.${LCG_package_config_version}-${LCG_CMTCONFIG}_reference"
+
+action pkg_config                    "echo No action specified for pkg_config"
+action pkg_make                      "echo No action specified for pkg_make"
+action pkg_install                   "echo No action specified for pkg_install"
+action pkg_test                      "echo No action specified for pkg_test"
+	
+action pkg_doxygen_config            "echo No action specified for pkg_doxygen_config" \
+        target-win                   "echo Please use linux/mac platforms for generation of documentation"
+action pkg_doxygen_make              "echo No action specified for pkg_doxygen_make" \
+        target-win                   "echo Please use linux/mac platforms for generation of documentation"
+action pkg_doxygen_install           "echo No action specified for pkg_doxygen_install" \
+        target-win                   "echo Please use linux/mac platforms for generation of documentation"
+
+action pkg_afsconfig                 "python ${LCG_BUILDPOLICYROOT}/python/pkg_afsconfig.py"
+action pkg_get                       "mkdir -p logs; python ${LCG_BUILDPOLICYROOT}/scripts/pkg_get.py 2>&1 | tee logs/$(package)_$(CMTCONFIG)_get.log" \
+       target-win                    "( if not exist logs mkdir logs ) && python ${LCG_BUILDPOLICYROOT}\scripts\pkg_get.py"
+action pkg_loginstall                "rsync -avz logs $(LCG_destdir)"
+action pkg_tar                       "python ${LCG_BUILDPOLICYROOT}/python/pkg_tar.py"
+action pkg_build                     "sh ${LCG_BUILDPOLICYROOT}/scripts/pkg_build.sh"
+
+macro pkg_config_dependencies        " pkg_get "
+macro pkg_make_dependencies          " pkg_config "
+macro pkg_install_dependencies       " pkg_make "
+
+pattern buildscripts_package_doc \ 
+    set LCG_PKG_SRC_DIR              "$(LCG_builddir)/$(LCG_package)/$(LCG_package_config_version)/src" ;\
+    set LCG_PKG_DEST_DIR             "$(LCG_basedir)/$(LCG_package)/$(LCG_package_config_version)/src" ;\
+    set LCG_DOXY_CFG_DIR             "$(LCG_PKG_SRC_DIR)/config/doxygen" ;\
+    set LCG_DOXY_WORK_DIR            "$(LCG_PKG_SRC_DIR)/doc/doxygen" ;\
+    action pkg_doxygen_config        "sh -x $(<PACKAGE>ROOT)/scripts/<package>_doxygen_config.sh 2>&1 | tee logs/<package>_$(LCG_CMTCONFIG)_doxygen_config.log" ;\
+    action pkg_doxygen_make          "sh -x $(<PACKAGE>ROOT)/scripts/<package>_doxygen_make.sh 2>&1 | tee logs/<package>_$(LCG_CMTCONFIG)_doxygen_make.log" ;\
+    action pkg_doxygen_install       "sh -x $(<PACKAGE>ROOT)/scripts/<package>_doxygen_install.sh 2>&1 | tee logs/<package>_$(LCG_CMTCONFIG)_doxygen_install.log"
+
+pattern buildscripts_local \
+    set LCG_package                  "<package>" ;\
+    set LCG_<package>_compile_options "" ;\
+    set LCG_<package>_config_version "$(<package>_build_config_version)" ;\
+    set LCG_package_config_version   "${LCG_<package>_config_version}" ;\
+    set LCG_<package>_native_version "$(<package>_build_native_version)" ;\
+    set LCG_package_native_version   "$(LCG_<package>_native_version)" ;\
+    set LCG_package_root             "$(<package>_root)" ;\
+    set LCG_pkgdest_vername          "$(LCG_package_native_version") ;\
+    set LCG_pkgdest_pkgname          "$(package)" ;\
+    set LCG_basedir                  "$(LCG_extdir)" IS_LCG_PROJECT "$(LCG_reldir)" ;\
+    set LCG_destdir                  "$(LCG_basedir)/$(LCG_pkgdest_pkgname)/$(LCG_pkgdest_vername)" \
+        LOCAL_DESTDIR                "<destdir>" ;\
+    set LCG_destbindir               "$(LCG_destdir)/$(LCG_CMTCONFIG)" ;\
+    action pkg_config                "mkdir -p logs; \
+                                      . $(LCG_SETTINGSROOT)/scripts/icc_setup.sh $(intelplat) $(intel_home) $(icc_c_home) $(icc_f_home) ; \
+                                      sh -x ${<PACKAGE>ROOT}/scripts/<package>_config.sh 2>&1 | tee logs/<package>_$(LCG_CMTCONFIG)_config.log" ;\
+    action pkg_make                  "mkdir -p logs; \
+                                      . $(LCG_SETTINGSROOT)/scripts/icc_setup.sh $(intelplat) $(intel_home) $(icc_c_home) $(icc_f_home) ; \
+                                      sh -x ${LCG_BUILDPOLICYROOT}/scripts/check_afs_sanity.sh 2>&1 | tee logs/<package>_$(LCG_CMTCONFIG)_make.log; \
+                                      sh -x ${<PACKAGE>ROOT}/scripts/<package>_make.sh $(cmt_args) 2>&1 | tee -a logs/<package>_$(LCG_CMTCONFIG)_make.log" ;\
+    action pkg_install               "mkdir -p logs; \
+                                      . $(LCG_SETTINGSROOT)/scripts/icc_setup.sh $(intelplat) $(intel_home) $(icc_c_home) $(icc_f_home) ; \
+                                      sh -x ${LCG_BUILDPOLICYROOT}/scripts/check_afs_sanity.sh 2>&1 | tee logs/<package>_$(LCG_CMTCONFIG)_install.log; \
+                                      sh -x ${<PACKAGE>ROOT}/scripts/<package>_install.sh 2>&1 | tee -a logs/<package>_$(LCG_CMTCONFIG)_install.log"
+
+pattern buildscripts_test \
+    action pkg_test                  ". $(LCG_SETTINGSROOT)/scripts/icc_setup.sh $(intelplat) $(intel_home) $(icc_c_home) $(icc_f_home) ; \
+                                      sh -x $(<PACKAGE>ROOT)/scripts/<package>_test.sh 2>&1 | tee logs/<package>_$(LCG_CMTCONFIG)_test.log"
+
+pattern buildscripts_local_with_test \
+    apply_pattern buildscripts_local destdir=<destdir> ;\
+    apply_pattern buildscripts_test
+
+pattern buildscripts_project_local \
+    apply_pattern buildscripts_local_with_test destdir=<destdir> ;\
+    apply_pattern buildscripts_package_doc 
+
+pattern set_coral_auth_pathes                                    \
+    macro coral_auth_path     ""                                 \
+        target-unix           "/afs/cern.ch/sw/lcg/app/pool/db/" \
+        target-darwin         "/Users/lcgnight/private"         ;\
+    set CORAL_AUTH_PATH       "$(coral_auth_path)"              ;\
+    set CORAL_DBLOOKUP_PATH   "$(coral_auth_path)"

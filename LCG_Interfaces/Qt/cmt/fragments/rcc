@@ -1,0 +1,7 @@
+#--- rcc fragment begin
+$(CONSTITUENT): $(FILEPATH)rcc_$(NAME).cpp
+$(FILEPATH)rcc_$(NAME).cpp: $(FULLNAME)
+	rcc $^ -o $@
+$(CONSTITUENT)clean::
+	$(RM) $(FILEPATH)rcc_$(NAME).cpp
+#--- rcc fragment end

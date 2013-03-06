@@ -1,0 +1,9 @@
+package libelf
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro libelf_native_version "$(libelf_config_version)"
+macro libelf_home "$(LCG_external)/libelf/$(libelf_native_version)/$(LCG_system)"
+
+apply_pattern set_lib_path

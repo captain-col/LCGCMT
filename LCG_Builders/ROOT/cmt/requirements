@@ -1,0 +1,292 @@
+package ROOT
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python          v* LCG_Interfaces
+use GSL             v* LCG_Interfaces
+use fftw            v* LCG_Interfaces
+use GCCXML          v* LCG_Interfaces
+use globus          v* LCG_Interfaces
+use gfal            v* LCG_Interfaces
+use CASTOR          v* LCG_Interfaces
+use dcache_client   v* LCG_Interfaces
+use oracle          v* LCG_Interfaces
+use mysql           v* LCG_Interfaces
+use Qt              v* LCG_Interfaces
+use cmake           v* LCG_Interfaces
+use CppUnit         v* LCG_Interfaces
+use xrootd          v* LCG_Interfaces
+use doxygen         v* LCG_Interfaces
+use pythia8         v* LCG_GeneratorsInterfaces
+
+#use Cygwin          v* LCG_Interfaces
+
+# Set variables to make cmake aware of cppunit
+set CMAKE_INCLUDE_PATH "$(CppUnit_home)/include"
+set CMAKE_LIBRARY_PATH "$(CppUnit_home)/lib"
+
+# Version numbers not included in LCG_Configuration
+macro pythia8_native_version "160"
+
+# GENERAL BUILD INFO
+macro ROOT_build_config_version "$(ROOT_config_version)"
+macro ROOT_build_native_version "$(ROOT_build_config_version)"
+
+set LCG_tarfilename "root_v$(ROOT_build_config_version).source.tar.gz"
+
+set LCG_CheckoutDir "$(ROOT_build_config_version)/$(LCG_platform)"
+macro LCG_get "root"
+
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_project_local destdir="$(LCG_reldir)/$(package)/$(LCG_package_config_version)"
+
+set LCG_PKG_SRC_DIR "${LCG_builddir}/${LCG_package}/${LCG_package_config_version}/${LCG_CMTCONFIG}/root"
+
+# ARCHITECTURE 
+# ============
+
+set LCG_ROOT_CONFIG_ARCH       "" \
+    target-icc&target-i686     "linuxicc" \
+    target-icc&target-x86_64   "linuxx8664icc" \
+    target-linux&target-i686   "linux " \
+    target-linux&target-x86_64 "linuxx8664gcc " \
+    target-darwin&target-x86_64 "macosx64" \
+    target-darwin&target-i386  "macosx " \
+    target-winxp               "win32 "
+
+
+# CONFIGURATION TAGS
+# ==================
+
+# PYTHON
+apply_tag lcg_root_enable_python
+
+# MATH
+#apply_tag lcg_root_enable_mathcore
+apply_tag lcg_root_enable_mathmore
+apply_tag lcg_root_enable_minuit2
+apply_tag lcg_root_enable_roofit
+apply_tag lcg_root_enable_unuran
+apply_tag lcg_root_enable_gsl
+apply_tag lcg_root_enable_fftw3
+
+# MC GENERATORS
+#apply_tag lcg_root_enable_pythia8
+
+# REFLEX / CINTEX / GCCXML
+apply_tag lcg_root_enable_reflex
+apply_tag lcg_root_enable_cintex
+
+# GRID
+#apply_tag lcg_root_enable_globus
+apply_tag lcg_root_enable_gfal
+
+# STORAGE
+apply_tag lcg_root_enable_rfio 
+apply_tag lcg_root_enable_castor
+apply_tag lcg_root_enable_dcache
+apply_tag lcg_root_enable_xrootd
+
+# GRAPHICS
+apply_tag lcg_root_enable_qt
+apply_tag lcg_root_enable_qtgsi
+apply_tag lcg_root_enable_builtin_freetype
+
+# DATABASE
+apply_tag lcg_root_enable_oracle
+apply_tag lcg_root_enable_mysql
+
+# OTHER
+apply_tag lcg_root_enable_builtin_pcre
+apply_tag lcg_root_enable_table
+apply_tag lcg_root_enable_explicitlink
+#apply_tag lcg_root_enable_genvector
+tag target-slc lcg_root_fail_on_missing
+
+# CINT
+apply_tag lcg_root_increase_cint_values
+
+# CONFIGURATION OPTIONS
+# =====================
+
+set LCG_ROOT_CONFIG_OPTIONS ""
+
+# CROSS COMPILATION
+set_append LCG_ROOT_CONFIG_OPTIONS "" \
+           host-slc5&target-gcc34 '--with-cc=gcc34 --with-cxx=g++34 ' \
+           target-icc             '--with-ld="icpc" ' \
+           target-llvm            '--with-clang '
+
+# DEBUG
+set_append LCG_ROOT_CONFIG_OPTIONS "" target-dbg "--build=debug "
+# on windows we always want to link the non debug runtime libs
+set_append LCG_ROOT_CONFIG_OPTIONS "" target-winxp "--disable-winrtdebug "
+
+
+# PYTHON
+macro pylibdir "lib" target-winxp "libs"
+set_append LCG_ROOT_CONFIG_OPTIONS             "--disable-python "                                  \
+           lcg_root_enable_python              "--enable-python "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                                   \
+           lcg_root_enable_python&target-winxp '--with-python-incdir="$(Python_inc)" '              \
+           lcg_root_enable_python              "--with-python-incdir=$(Python_inc) "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                                   \
+           lcg_root_enable_python&target-winxp '--with-python-libdir="$(Python_home)/$(pylibdir)" ' \
+           lcg_root_enable_python              "--with-python-libdir=$(Python_home)/$(pylibdir) "
+
+# MATH
+set_append LCG_ROOT_CONFIG_OPTIONS            ""                                            \
+           lcg_root_enable_mathcore           "--enable-mathcore "
+set_append LCG_ROOT_CONFIG_OPTIONS            "--disable-mathmore "                         \
+           lcg_root_enable_mathmore           "--enable-mathmore "
+set_append LCG_ROOT_CONFIG_OPTIONS            "--disable-minuit2 "                          \
+           lcg_root_enable_minuit2            "--enable-minuit2 "
+set_append LCG_ROOT_CONFIG_OPTIONS            "--disable-roofit "                           \
+           lcg_root_enable_roofit             "--enable-roofit "
+set_append LCG_ROOT_CONFIG_OPTIONS            "--disable-unuran "                           \
+           lcg_root_enable_unuran             "--enable-unuran "
+set_append LCG_ROOT_CONFIG_OPTIONS            ""                                            \
+           lcg_root_enable_gsl&target-winxp   '--with-gsl-incdir="$(GSL_home)/include" '    \
+           lcg_root_enable_gsl                "--with-gsl-incdir=$(GSL_home)/include "
+set_append LCG_ROOT_CONFIG_OPTIONS            ""                                            \
+           lcg_root_enable_gsl&target-winxp   '--with-gsl-libdir="$(GSL_home)/lib" '        \
+           lcg_root_enable_gsl                "--with-gsl-libdir=$(GSL_home)/lib "
+set_append LCG_ROOT_CONFIG_OPTIONS            "--disable-fftw3 "                            \
+           lcg_root_enable_fftw3              "--enable-fftw3 "
+set_append LCG_ROOT_CONFIG_OPTIONS            ""                                            \
+           lcg_root_enable_fftw3&target-winxp '--with-fftw3-incdir="$(fftw_home)/include" ' \
+           lcg_root_enable_fftw3              "--with-fftw3-incdir=$(fftw_home)/include "
+set_append LCG_ROOT_CONFIG_OPTIONS            ""                                            \
+           lcg_root_enable_fftw3&target-winxp '--with-fftw3-libdir="$(fftw_home)/lib" '     \
+           lcg_root_enable_fftw3              "--with-fftw3-libdir=$(fftw_home)/lib "
+
+# MC Generators
+set_append LCG_ROOT_CONFIG_OPTIONS              "--disable-pythia8 " \
+           lcg_root_enable_pythia8              "--enable-pythia8 "
+set_append LCG_ROOT_CONFIG_OPTIONS              "" \
+           lcg_root_enable_pythia8&target-winxp '--with-pythia8-incdir="$(pythia8_home)/include" ' \
+           lcg_root_enable_pythia8              "--with-pythia8-incdir=$(pythia8_home)/include "
+set_append LCG_ROOT_CONFIG_OPTIONS              "" \
+           lcg_root_enable_pythia8&target-winxp '--with-pythia8-libdir="$(pythia8_home)" ' \
+           lcg_root_enable_pythia8              "--with-pythia8-libdir=$(pythia8_home) " 
+
+# REFLEX / CINTEX / GCCXML
+set_append LCG_ROOT_CONFIG_OPTIONS             "--disable-reflex "                   \
+           lcg_root_enable_reflex              "--enable-reflex "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                    \
+           lcg_root_enable_reflex&target-winxp '--with-gccxml="$(GCCXML_home)/bin" ' \
+           lcg_root_enable_reflex              "--with-gccxml=$(GCCXML_home)/bin "
+set_append LCG_ROOT_CONFIG_OPTIONS             "--disable-cintex "                   \
+           lcg_root_enable_cintex              "--enable-cintex "
+
+# GRID 
+set_append LCG_ROOT_CONFIG_OPTIONS "--disable-globus "                            \
+           lcg_root_enable_globus  "--enable-globus "
+set_append LCG_ROOT_CONFIG_OPTIONS ""                 
+#          lcg_root_enable_globus  "--with-globus-incdir=$(globus_home)/include "
+set_append LCG_ROOT_CONFIG_OPTIONS ""                 
+#          lcg_root_enable_globus  "--with-globus-libdir=$(globus_home)/lib "
+set_append LCG_ROOT_CONFIG_OPTIONS "--disable-gfal "                              \
+           lcg_root_enable_gfal    "--enable-gfal "
+set_append LCG_ROOT_CONFIG_OPTIONS ""                                             \
+           lcg_root_enable_gfal    "--with-gfal-libdir=$(gfal_home)/$(unixdirname) "
+set_append LCG_ROOT_CONFIG_OPTIONS ""                                             \
+           lcg_root_enable_gfal    "--with-gfal-incdir=$(gfal_home)/include --with-srm-ifce-incdir=$(srm_ifce_home)/include "
+
+# STORAGE
+set_append LCG_ROOT_CONFIG_OPTIONS             "--disable-rfio "                                         \
+           lcg_root_enable_rfio                "--enable-rfio "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                                        \
+           lcg_root_enable_rfio&target-winxp   '--with-rfio-incdir="$(LCG_external)/Castor/include/shift" '      \
+           lcg_root_enable_rfio                "--with-rfio-incdir=$(CASTOR_home)/include/shift "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                                        \
+           lcg_root_enable_rfio&target-winxp   '--with-rfio-libdir="$(LCG_external)/Castor/$(unixdirname)" '   \
+           lcg_root_enable_rfio                "--with-rfio-libdir=$(CASTOR_home)/$(unixdirname) " 
+set_append LCG_ROOT_CONFIG_OPTIONS             "--disable-castor "                                       \
+           lcg_root_enable_castor              "--enable-castor "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                                        \
+           lcg_root_enable_castor&target-winxp '--with-castor-incdir="$(LCG_external)/Castor/include/shift" '    \
+           lcg_root_enable_castor              "--with-castor-incdir=$(CASTOR_home)/include/shift "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                                        \
+           lcg_root_enable_castor&target-winxp '--with-castor-libdir="$(LCG_external)/Castor/$(unixdirname)" ' \
+           lcg_root_enable_castor              "--with-castor-libdir=$(CASTOR_home)/$(unixdirname) "
+set_append LCG_ROOT_CONFIG_OPTIONS             "--disable-dcache "                                       \
+           lcg_root_enable_dcache              "--enable-dcache "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                                        \
+           lcg_root_enable_dcache&target-winxp '--with-dcap-libdir="$(dcache_client_home)/dcap/lib" '         \
+           lcg_root_enable_dcache              "--with-dcap-libdir=$(dcache_client_home)/dcap/lib " 
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                                        \
+           lcg_root_enable_dcache&target-winxp '--with-dcap-incdir="$(dcache_client_home)/dcap/include" '     \
+           lcg_root_enable_dcache              "--with-dcap-incdir=$(dcache_client_home)/dcap/include "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""  \
+           lcg_root_enable_xrootd&target-winxp ""  \
+           lcg_root_enable_xrootd              '--with-xrootd="$(xrootd_home)" '
+
+
+# GRAPHICS
+set_append LCG_ROOT_CONFIG_OPTIONS                 "--disable-qt "                          \
+           lcg_root_enable_qt                     "--enable-qt " target-winxp ""
+			
+set_append LCG_ROOT_CONFIG_OPTIONS                 ""                                       \
+           lcg_root_enable_qt&target-winxp         ''					    \
+           lcg_root_enable_qt                      "--with-qt-incdir=$(Qt_home)/include "
+set_append LCG_ROOT_CONFIG_OPTIONS                 ""                                       \
+           lcg_root_enable_qt&target-winxp         ''     				    \
+           lcg_root_enable_qt                      "--with-qt-libdir=$(Qt_home)/lib "
+set_append LCG_ROOT_CONFIG_OPTIONS                 "--disable-qtgsi "                       \
+           lcg_root_enable_qtgsi                   "--enable-qtgsi " target-winxp ""
+set_append LCG_ROOT_CONFIG_OPTIONS                 "--disable-builtin-freetype "            \
+           lcg_root_enable_builtin_freetype        "--enable-builtin-freetype "
+
+# DATABASE
+set_append LCG_ROOT_CONFIG_OPTIONS             "--disable-oracle "                              \
+           lcg_root_enable_oracle              "--enable-oracle "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                               \
+           lcg_root_enable_oracle&target-winxp '--with-oracle-incdir="$(oracle_home)/include" ' \
+           lcg_root_enable_oracle              "--with-oracle-incdir=$(oracle_home)/include "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                               \
+           lcg_root_enable_oracle&target-winxp '--with-oracle-libdir="$(oracle_home)/lib" '     \
+           lcg_root_enable_oracle              "--with-oracle-libdir=$(oracle_home)/lib "
+set_append LCG_ROOT_CONFIG_OPTIONS             "--disable-mysql "                               \
+           lcg_root_enable_mysql               "--enable-mysql "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                               \
+           lcg_root_enable_mysql&target-winxp  '--with-mysql-incdir="$(mysql_home)/include" '   \
+           lcg_root_enable_mysql               "--with-mysql-incdir=$(mysql_home)/include "
+set_append LCG_ROOT_CONFIG_OPTIONS             ""                                               \
+           lcg_root_enable_mysql&target-winxp  '--with-mysql-libdir="$(mysql_home)/lib" '       \
+           lcg_root_enable_mysql               "--with-mysql-libdir=$(mysql_home)/lib "
+
+# OTHER
+set_append LCG_ROOT_CONFIG_OPTIONS      "--disable-builtin-pcre " \
+           lcg_root_enable_builtin_pcre "--enable-builtin-pcre "
+set_append LCG_ROOT_CONFIG_OPTIONS      "--disable-table "        \
+           lcg_root_enable_table        "--enable-table "
+set_append LCG_ROOT_CONFIG_OPTIONS      "--disable_explicitlink " \
+           lcg_root_enable_explicitlink "--enable-explicitlink "
+set_append LCG_ROOT_CONFIG_OPTIONS      ""                        \
+           lcg_root_enable_genvector    "--enable-genvector "
+set_append LCG_ROOT_CONFIG_OPTIONS      ""                        \
+           lcg_root_fail_on_missing     "--fail-on-missing "
+# CINT
+set_append LCG_ROOT_CONFIG_OPTIONS          ""                        \
+           lcg_root_increase_cint_values    "--with-cint-maxstruct=36000 --with-cint-maxtypedef=36000 --with-cint-longline=4096 "
+
+set_append LCG_ROOT_CONFIG_OPTIONS           "--enable-gdml"
+
+
+macro ROOT_native_version "$(ROOT_config_version)"
+macro ROOT_base "$(LCG_releases)/ROOT/$(ROOT_native_version)" 
+macro ROOT_home "$(ROOT_base)/$(LCG_platform)/root"
+
+
+set ROOTSYS $(ROOT_home)
+
+macro ROOT_name "root"
+
+apply_pattern set_lib_path
+
+apply_pattern set_bin_path
+
+path_remove  PYTHONPATH "/root/"            WIN32 "\root\"     
+path_prepend PYTHONPATH "$(ROOT_home)/lib"  WIN32 "$(ROOT_home)\bin"        

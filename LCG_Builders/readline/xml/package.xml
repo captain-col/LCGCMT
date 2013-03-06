@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Stefan Roiser stefan.roiser@cern.chk</contact>
+    <description>the readline implementation for Python, missing on osx</description>
+    <homepage>http://pypi.python.org/pypi/readline/</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

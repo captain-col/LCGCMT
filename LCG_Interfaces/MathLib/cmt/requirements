@@ -1,0 +1,19 @@
+package MathLib
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro MathLib_native_version "$(MathLib_config_version)"
+
+macro MathLib_home  "$(LCG_external)/mathlib/$(MathLib_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs "$(MathLib_home)/include" 
+
+macro MathLib_linkopts "-L$(MathLib_home)/lib -lMathCore -lGenVector " \
+      target-win       "/LIBPATH:$(MathLib_home)/lib libMathCore.lib libGenVector.lib "
+
+
+path_remove  PATH "" target-win   "\mathlib\"
+path_prepend PATH "" target-win   "$(MathLib_home)/lib"
+

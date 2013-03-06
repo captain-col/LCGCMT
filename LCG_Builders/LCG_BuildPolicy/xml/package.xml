@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Other" category="Other" project="false">
+    <contact></contact>
+    <description></description>
+    <homepage></homepage>
+    <license></license>
+  </package>
+</lcg>

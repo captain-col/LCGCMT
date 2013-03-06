@@ -1,0 +1,23 @@
+package matploblib
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python v* LCG_Interfaces
+use pyanalysis v* LCG_Interfaces
+apply_pattern buildscripts_local 
+
+macro matplotlib_build_config_version "$(matplotlib_config_version)"
+macro matplotlib_build_native_version "$(matplotlib_build_config_version)"
+set LCG_tarfilename "matplotlib-$(matplotlib_build_config_version).tar.gz"
+set_append LCG_matplotlib_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CXXFLAGS=-m32 export CFLAGS=-m32 export"
+
+set LCG_Python_config_version_twodigit "$(Python_config_version_twodigit)"
+set LCG_pkgdest_pkgname "pyanalysis"
+set LCG_pkgdest_vername "$(pyanalysis_config_version)_python${LCG_Python_config_version_twodigit}"
+
+set LCG_matplotlib_compile_cmd "python setup.py build" \
+           target-darwin "make -f make.osx PYVERSION=${LCG_Python_config_version_twodigit} PREFIX=${LCG_destbindir} fetch deps mpl_build"
+
+set LCG_matplotlib_install_cmd "python setup.py install --prefix ${LCG_destbindir}" \
+           target-darwin "make -f make.osx PYVERSION=${LCG_Python_config_version_twodigit} PREFIX=${LCG_destbindir} mpl_install"

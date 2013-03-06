@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="XML">
+    <contact>Thomas Doherty t.doherty@physics.gla.ac.uk</contact>
+    <description>a collection of libraries to process XML with Python</description>
+    <homepage>http://pyxml.sourceforge.net</homepage>
+    <license>CNRI</license>
+  </package>
+</lcg>

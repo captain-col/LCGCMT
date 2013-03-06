@@ -1,0 +1,13 @@
+package python_static
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro python_static_build_config_version "$(Python_config_version)"
+macro python_static_build_native_version "$(python_static_build_config_version)"
+set LCG_tarfilename "Python-$(python_static_build_config_version).tgz"
+
+set LCG_python_config_post_opts "" \
+    target-darwin               " MACOSX_DEPLOYMENT_TARGET=10.5"
+
+apply_pattern buildscripts_local
+

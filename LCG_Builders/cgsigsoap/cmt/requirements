@@ -1,0 +1,5 @@
+package cgsigsoap
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro cgsigsoap_build_config_version "$(cgsigsoap_config_version)"

@@ -1,0 +1,20 @@
+package sip
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python v* LCG_Interfaces
+
+apply_pattern buildscripts_local
+macro sip_build_config_version "$(sip_config_version)"
+macro sip_build_native_version "$(sip_build_config_version)_python$(Python_config_version_twodigit)"
+set LCG_tarfilename            "sip-$(sip_build_config_version).tar.gz"
+set LCG_python_config_version_twodigit  "$(Python_config_version_twodigit)"
+set LCG_pkgdest_pkgname "pygraphics"
+set LCG_pkgdest_vername "$(pygraphics_config_version)_python${LCG_python_config_version_twodigit}"
+set_append LCG_sip_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "-p darwin-g++ CFLAGS=-m32 CXXFLAGS=-m32 CC=gcc CXX=g++ LINK=g++"\
+	   target-darwin&target-mac106&target-x86_64 "--arch=x86_64"\
+	   target-slc&target-x86_64 "-p linux-g++-64"\
+	   target-slc&target-i686 "-p linux-g++-32"
+
+tag target-darwin python_framework

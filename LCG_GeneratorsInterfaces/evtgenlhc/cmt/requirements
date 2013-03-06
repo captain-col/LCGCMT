@@ -1,0 +1,17 @@
+package evtgenlhc
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro evtgenlhc_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/evtgenlhc/$(evtgenlhc_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(evtgenlhc_home)
+
+macro evtgenlhc_linkopts "-L$(evtgenlhc_home)/lib \
+                        -levtgenlhc "
+
+macro evtgenlhc_name "evtgenlhc"
+apply_pattern set_lib_path
+
+macro evtgenlhc_export_paths "$(evtgenlhc_home) $(evtgenlhc_home)/lib"

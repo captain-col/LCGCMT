@@ -1,0 +1,19 @@
+package 4suite
+
+use LCG_BuildPolicy v* LCG_Builders
+use pytools v* LCG_Interfaces
+
+set LCG_Python_home "$(Python_home)"
+macro 4suite_build_config_version "$(4suite_config_version)"
+macro 4suite_build_native_version "$(4suite_build_config_version)_python$(Python_config_version_twodigit)"
+
+set LCG_tarfilename "4Suite-XML-$(4suite_build_config_version).tar.gz"
+
+set LCG_python_libdir "$(Python_home)/lib"
+set LCG_Python_config_version_twodigit "$(Python_config_version_twodigit)"
+set LCG_4suite_compile_options "" \
+	target target-darwin&target-i386&target-mac106&target-gcc42 "CFLAGS=-m32"
+
+apply_pattern buildscripts_local
+set LCG_pkgdest_pkgname "pytools"
+set LCG_pkgdest_vername "$(pytools_config_version)_python${LCG_Python_config_version_twodigit}"

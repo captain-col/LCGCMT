@@ -1,0 +1,22 @@
+package qwt
+
+use LCG_Settings v*
+
+use Qt v* LCG_Interfaces -no_auto_imports
+
+use LCG_Configuration 
+
+macro qwt_native_version "$(qwt_config_version)_qt$(qt_config_version)"
+macro qwt_home           "$(LCG_external)/qwt/$(qwt_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(qwt_home)/include
+
+macro qwt_linkopts "-L$(qwt_home)/lib -lqwt "
+
+apply_pattern set_lib_path
+
+macro qwt_export_paths "$(qwt_home)" 
+
+
+

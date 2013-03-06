@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="XML">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>Generates an XML description of a C++ program from GCC's internal representation</description>
+    <homepage>http://www.gccxml.org/HTML/Index.html</homepage>
+    <license>GCCXML</license>
+  </package>
+</lcg>

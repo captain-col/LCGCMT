@@ -1,0 +1,17 @@
+package bz2lib
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro bz2lib_native_version "$(bz2lib_config_version)"
+
+macro bz2lib_home "$(LCG_external)/bz2lib/$(bz2lib_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(bz2lib_home)
+
+apply_pattern set_man_path
+
+macro bz2lib_linkopts "-L$(bz2lib_home) -lbz2" \
+      target-win    "/LIBPATH:$(bz2lib_home) libbz2.lib"
+

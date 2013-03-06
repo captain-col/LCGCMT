@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Other" category="Tool" project="true">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>provides integration tests for LCG/AA and additional nightly build steps</description>
+    <homepage>http://lcgapp.cern.ch</homepage>
+    <license>LCGAA</license>
+  </package>
+</lcg>

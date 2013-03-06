@@ -1,0 +1,244 @@
+package geant4
+
+#use Cygwin          v* LCG_Interfaces
+use LCG_BuildPolicy v* LCG_Builders
+use CLHEP           v* LCG_Interfaces
+use XercesC         v* LCG_Interfaces
+use QMtest          v* LCG_Interfaces
+use Qt              v* LCG_Interfaces
+use ROOT	    v* LCG_Interfaces
+
+
+#macro use_cmake "" lcg_ngt_slt_g4tags "use cmake v* LCG_Interfaces"
+#use "$(use_cmake)"
+
+macro LCG_get "svn_geant4" 
+
+# use root from LCG_home ( /afs/.../lcg)
+macro ROOT_base "$(LCG_home)/app/releases/ROOT/5.32.03" 
+
+macro ROOT_home "$(ROOT_base)/$(LCG_platform)/root"  \
+      target-slc5&target-gcc41  "" \
+      target-slc5&target-gcc46  "" \
+      target-winxp              ""
+
+
+
+#   lcg_ngt_slt_geant4 "svn_geant4"
+
+# Uncomment next two lines to test for a tar file. To specify the version, overwrite the macro
+# geant4_config_version to the desired version (Follow the standard geant4 version nomenclature)
+#
+#macro LCG_get "cp"
+#macro geant4_config_version "geant4.9.2.p01"
+
+set LCG_tarfilename                 "$(geant4_config_version).tar.gz"
+
+macro geant4_build_config_version "$(geant4_config_version)"
+macro geant4_build_native_version "$(geant4_build_config_version)"
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_project_local destdir=${LCG_reldir}/${LCG_package_config_version}
+
+set G4TEST_LARGE_N "Sun"
+
+#  set geant4_pre_make_step "wget -q http://geant4.cern.ch/cgi-bin/bonsai/nightly/gettaglist.cgi -O -" \
+#      Darwin "lwp-request http://geant4.cern.ch/cgi-bin/bonsai/nightly/gettaglist.cgi" 
+
+set geant4_pre_make_step "" \
+   target-icc   "sh -x ${LCG_package_root}/scripts/geant4_pre_make_icc.sh"
+
+set geant4_post_make_step "" 
+
+set geant4_tagsdb "g4tags"
+#   lcg_ngt_slt_geant4_1 "bonsai"
+    
+set G4SYSTEM "" \
+   target-icc    "Linux-icc" \
+   target-slc4   "Linux-g++" \
+   target-slc5   "Linux-g++" \
+   target-slc6   "Linux-g++" \
+   target-darwin "Darwin-g++" \
+   target-winxp  "WIN32-VC"
+    
+# debug build  
+set G4DEBUG "" target-dbg "1"
+
+#  slc5/32 slwo hardware, not building debug, .... 
+set G4OPTDEBUG "" \
+   target-opt&target-i686&target-slc5 "1"
+   
+set CMAKE_BUILD_TYPE "TestRelease" \
+	  target-dbg "Debug"
+
+# Checking floating point exceptions on linux, except icc,  and Mac in debug mode. 
+set G4FPE_DEBUG "" \
+   target-icc   "" \
+   target-slc "1" \
+   target-darwin&target-dbg "1"
+
+# turn on optionl E/p checks in Hadronics, and slot geant4_2 fails tests on E/p 
+set G4Hadronic_epReportLevel 3  \
+   lcg_ngt_slt_geant4_2 "-3"
+   
+set G4LIB_BUILD_SHARED "1" \
+   target-winxp ""
+
+set G4INSTALL "${LCG_reldir}/$(LCG_package)/${LCG_package_config_version}"
+set G4WORKDIR "${LCG_reldir}/$(LCG_package)/${LCG_CMTCONFIG}_${LCG_package_config_version}"
+set G4LIB     "${G4WORKDIR}/lib"
+set G4BIN     "${G4WORKDIR}/bin"
+set G4TMP     "${G4WORKDIR}/tmp"
+
+set SEP "\n" \
+   target-darwin "\r" \
+   target-winxp "\r\n"
+
+set QMTESTEXE "qmtest" \
+    target-winxp "qmtest.bat"
+
+set QMTEST_CLASS_PATH "${G4INSTALL}/tests/tools/qmtest"
+
+#
+# use special testsuites depending on slot/arch
+#
+# Win cannot build some tests
+# Build with internal clhep cannot do tests using e.g. matrix
+# maybe - cmake does not compile fortran...yet?
+#
+set QMTESTSUITE  "testall_linux" \
+    target-winxp "testall_windows" \
+    lcg_ngt_slt_geant4_2               "testall_linux_internalCLHEP" \
+    lcg_ngt_slt_geant4_2&target-winxp "testall_windows_internalCLHEP"
+
+#set geant4_benchmarks "benchmarks-V09-03-01"
+# as of 9.4.ref10: V09-04-02, before cand0 -03
+set geant4_benchmarks "benchmarks-V09-04-03"
+
+macro CLHEP_native_version "2.1.2.3" \
+    target-winxp "2.1.2.3"
+
+#    CLHEP, ... in geant4_2 ( E/p checking ), also use internal CLHEP
+set CLHEP_BASE_DIR "${CLHEP_home}" \
+    lcg_ngt_slt_geant4_2 "" 
+
+macro XercesC_native_version "3.1.0" 
+     
+macro_remove  XercesC_linkopts  "" \
+     target-slc5    "-lxerces-depdom" \   
+     target-slc6    "-lxerces-depdom" \   
+     target-slc4    "-lxerces-depdom" \  
+     target-mac105  "-lxerces-depdom"   
+
+set VARXERCESCROOT ${XercesC_home}
+
+set GDMLLIBS ${XercesC_linkopts}
+
+set G4LIB_BUILD_G3TOG4 "1" \
+   target-darwin "1" \
+   target-winxp "1"
+
+set G4USE_G3TOG4 1 \
+   target-darwin "" \
+   target-winxp ""
+
+set G4LIB_BUILD_GDML "1"
+
+set G4LIB_USE_GDML "1"
+
+set G4VIS_BUILD_VRML_DRIVER "1"
+
+# ---- system specific 
+set G4VIS_BUILD_OPENGLX_DRIVER "1" \
+   target-darwin "" \
+   target-winxp ""
+
+set G4VIS_USE_OPENGLX "1" \
+   target-darwin "" \
+   target-winxp ""
+    
+set G4VIS_BUILD_OPENGLWIN32_DRIVER "" \
+     target-winxp "1"
+
+set G4VIS_BUILD_DAWN_DRIVER "1" \
+   target-winxp ""
+
+set G4VIS_BUILD_RAYTRACERX_DRIVER "1" \
+   target-winxp ""
+
+#   if Inventor installed :  
+set G4VIS_BUILD_OIWIN32_DRIVER "" \
+     target-winxp "1"
+
+#   if Qt installed:
+set QTHOME "${Qt_home}"
+
+#   for Mac, set QTLIBS and GLQTLIBS, G4 only know about framework install
+set QTLIBS "" \
+   target-darwin "-L${Qt_home}/lib -lQtCore -lQtGui"
+
+set GLQTLIBS "" \
+   target-darwin "-L${Qt_home}/lib -lQtCore -lQtGui -lQtOpenGL"
+
+
+set G4VIS_BUILD_OPENGLQT_DRIVER "1" \
+     target-slc5&target-gcc41  "" \
+     target-slc5&target-icc  "" \
+     target-winxp ""
+     
+set G4UI_BUILD_QT_SESSION "1" \
+     target-slc5&target-gcc41  "" \
+     target-slc5&target-icc  "" \
+     target-winxp ""
+
+set  G4UI_BUILD_XAW_SESSION "1" \
+     target-slc5&target-gcc41  "" \
+     target-slc5&target-icc  "" \
+     target-winxp ""  
+
+#For building applications WIN32 possible
+# G4VIS_USE_OPENGLWIN32
+# G4VIS_USE_OIWIN32  (if Inventor installed)
+# G4VIS_USE_QT and G4UI_USE_QT  (if Qt installed)
+
+
+
+set G4VIS_BUILD_OIWIN32_DRIVER "" \
+   target-winxp ""
+
+ set G4LIB_BUILD_ZLIB "" \
+   target-winxp "1"
+
+#*-- access to data files is via these variables
+
+
+set G4NEUTRONHPDATA	${SITEROOT}/sw/geant4/releases/share/data/G4NDL4.0
+#set G4NEUTRONHPDATA	/afs/cern.ch/sw/geant4/dev/data/G4NDL3.16 \
+#	target-darwin "/Users/stesting/private/sw/geant4/dev/data/G4NDL3.16" \
+#	target-winxp "${SITEROOT}/sw/geant4/releases/share/data/G4NDL3.16"
+	
+#		9.4patch\	lcg_ngt_slt_geant4_1 ${SITEROOT}/sw/geant4/releases/share/data/G4NDL3.13
+set G4NEUTRONXSDATA	${SITEROOT}/sw/geant4/releases/share/data/G4NEUTRONXS1.0
+set G4LEVELGAMMADATA	${SITEROOT}/sw/geant4/releases/share/data/PhotonEvaporation2.2
+#		9.4patch\	lcg_ngt_slt_geant4_1 ${SITEROOT}/sw/geant4/releases/share/data/PhotonEvaporation2.0
+# until 9.4 ref-09 set G4LEDATA		${SITEROOT}/sw/geant4/releases/share/data/G4EMLOW6.22
+# 24-Jan-12 set G4LEDATA		${SITEROOT}/sw/geant4/releases/share/data/G4EMLOW6.23
+# 05-Apr-12 set G4LEDATA		${SITEROOT}/sw/geant4/releases/share/data/G4EMLOW6.24
+# until 4-June 2012 set G4LEDATA		${SITEROOT}/sw/geant4/releases/share/data/G4EMLOW6.26
+set G4LEDATA		${SITEROOT}/sw/geant4/releases/share/data/G4EMLOW6.27
+#		9.4patch\	lcg_ngt_slt_geant4_1 ${SITEROOT}/sw/geant4/releases/share/data/G4EMLOW6.19
+set G4RADIOACTIVEDATA	${SITEROOT}/sw/geant4/releases/share/data/RadioactiveDecay3.4
+set G4ABLADATA		${SITEROOT}/sw/geant4/releases/share/data/G4ABLA3.0
+set G4REALSURFACEDATA	${SITEROOT}/sw/geant4/releases/share/data/RealSurface1.0
+set G4PIIDATA		${SITEROOT}/sw/geant4/releases/share/data/G4PII1.3
+
+#*-- needed for linking on a slc4_amd64 bit system
+
+set X11LIBS  "" \
+   target-linux&target-x86_64 "-L/usr/X11R6/lib64/ -lXmu -lXt -lXext -lX11 -lSM -lICE" 
+
+#*-- needed at run-time
+
+#set LD_LIBRARY_PATH /afs/cern.ch/sw/geant4/dev/XercesC/2.8.0/slc4_x86_64_gcc346/lib
+
+path_append LD_LIBRARY_PATH $(G4LIB)/$(G4SYSTEM)

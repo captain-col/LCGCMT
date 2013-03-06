@@ -1,0 +1,27 @@
+package uuid
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro uuid_native_version "$(uuid_config_version)"
+
+macro uuid_home    "$(LCG_external)/uuid/$(uuid_native_version)/$(LCG_system)" \
+      target-slc6  "/usr"
+
+include_path none
+
+macro uuid_includes "$(uuid_home)/include" \
+      target-slc6   "." #hack to avoid "-I' '" on compilation time, -I. is harmless
+
+include_dirs $(uuid_includes)
+
+macro uuid_linkopts "-L$(uuid_home)/lib -luuid" \
+      target-slc6   "-luuid" \
+      target-win    "/LIBPATH:$(uuid_home)/lib uuid.lib"
+
+apply_pattern set_lib_path
+
+apply_pattern set_man_path
+
+macro uuid_export_paths " $(uuid_home)/include $(uuid_home)/lib" \
+      target-slc6       " "

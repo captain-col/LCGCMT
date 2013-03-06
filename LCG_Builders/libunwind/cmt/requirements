@@ -1,0 +1,14 @@
+package libunwind
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro libunwind_build_config_version "$(libunwind_config_version)"
+macro libunwind_build_native_version "$(libunwind_build_config_version)"
+set LCG_tarfilename "libunwind-$(libunwind_build_config_version).tar.gz"
+
+set LCG_libunwind_config_opts ""\
+          target-i686         "--build=i686-unknown-linux-gnu"
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/libunwind/$(LCG_package_config_version)
+

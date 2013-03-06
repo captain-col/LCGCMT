@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool">
+    <contact>Libtool Support libtool@gnu.org</contact>
+    <description>GNU libtool is a generic library support script</description>
+    <homepage>http://www.gnu.org/software/libtool/</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

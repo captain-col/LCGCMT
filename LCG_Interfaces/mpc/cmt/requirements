@@ -1,0 +1,9 @@
+package mpc
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro mpc_native_version "$(mpc_config_version)"
+macro mpc_home "$(LCG_external)/mpc/$(mpc_native_version)/$(LCG_system)"
+
+apply_pattern set_lib_path

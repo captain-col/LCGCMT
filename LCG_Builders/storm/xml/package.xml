@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Juan Palacios juan.palacios@cern.ch</contact>
+    <description>Object-relational mapper (ORM) for Python developed at Canonical</description>
+    <homepage>https://storm.canonical.com/</homepage>
+    <license>LGPL</license>
+  </package>
+</lcg>

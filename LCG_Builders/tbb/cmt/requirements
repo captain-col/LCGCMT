@@ -1,0 +1,12 @@
+package tbb
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro tbb_build_config_version "$(tbb_config_version)"
+macro tbb_build_native_version "$(tbb_build_config_version)"
+
+set LCG_tarfilename             "tbb$(tbb_build_config_version)oss_src.tgz"
+
+apply_pattern buildscripts_local
+
+#set LCG_destdir                 "${LCG_extdir}/${LCG_package}/$(tbb_build_config_version)/${CMTCONFIG}"

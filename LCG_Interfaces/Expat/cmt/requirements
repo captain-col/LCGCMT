@@ -1,0 +1,22 @@
+package Expat
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro Expat_native_version "$(Expat_config_version)"
+
+macro Expat_home "$(LCG_external)/expat/$(Expat_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(Expat_home)/include
+
+macro Expat_linkopts "-L$(Expat_home)/lib -lexpat" \
+      target-win     "/LIBPATH:$(Expat_home)/Libs libexpat.lib"
+
+macro Expat_name "expat"
+apply_pattern set_ext_lib_path windir=Libs unixdir=lib
+
+macro Expat_export_paths "$(Expat_home)/lib $(Expat_home)/include"
+
+apply_pattern set_man_path
+

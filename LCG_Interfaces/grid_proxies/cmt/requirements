@@ -1,0 +1,7 @@
+package grid_proxies
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use globus            v* LCG_Interfaces
+use myproxy           v* LCG_Interfaces
+use vomsclients       v* LCG_Interfaces

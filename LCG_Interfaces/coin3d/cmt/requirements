@@ -1,0 +1,20 @@
+package coin3d
+
+use LCG_Settings v*
+
+use LCG_Configuration 
+
+macro coin3d_native_version "$(coin3d_config_version)"
+macro coin3d_home           "$(LCG_external)/coin3d/$(coin3d_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(coin3d_home)/include
+
+macro coin3d_linkopts "-L$(coin3d_home)/lib -lCoin "
+macro coin3d_coin-config_script "$(coin3d_home)/bin/coin-config"
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_man_path
+
+macro coin3d_export_paths "$(coin3d_home)" 
+

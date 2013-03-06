@@ -1,0 +1,16 @@
+package vomsclients
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use vomsapicpp        v* LCG_Interfaces
+use vomsapic          v* LCG_Interfaces
+use globus            v* LCG_Interfaces
+
+macro vomsclients_native_version "$(vomsclients_config_version)"
+
+macro vomsclients_home "$(LCG_external)/Grid/voms-clients/$(vomsclients_native_version)/$(LCG_system)"
+
+include_path none
+
+apply_pattern set_bin_path
+apply_pattern set_ext_man_path mandir="share/man"

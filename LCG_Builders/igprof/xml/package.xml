@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C++" category="Tool" project="false">
+    <contact>Lassi Tuura Lassi.Tuura@cern.ch</contact>
+    <description>Profiler</description>
+    <homepage>http://igprof.sourceforge.net/</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

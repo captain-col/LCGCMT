@@ -1,0 +1,25 @@
+package fastjet
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use fastjet v* LCG_Interfaces
+
+macro fastjet_build_config_version "$(fastjet_config_version)"
+macro fastjet_build_native_version "$(fastjet_build_config_version)"
+
+set LCG_tarfilename "fastjet-$(fastjet_build_config_version).tar.gz"
+set LCG_fastjet_FastPrune_plugin          "FastPrune-0.4.3.tar.gz"
+set LCG_fastjet_VRPlugins_plugin          "VRPlugins.tar.gz"
+set LCG_fastjet_trimming_plugin           "TrimmingPlugin.tar.gz"
+set LCG_fastjet_tools                     "Filtering-Finding-Fastjet.p1.tar.gz"
+
+apply_pattern buildscripts_local
+
+set_append LCG_fastjet_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CXXFLAGS=-m32"
+
+macro_append LCG_sourcefiles "${LCG_tarfilename};"
+macro_append LCG_sourcefiles "${LCG_fastjet_FastPrune_plugin};"
+macro_append LCG_sourcefiles "${LCG_fastjet_VRPlugins_plugin};"
+macro_append LCG_sourcefiles "${LCG_fastjet_trimming_plugin};"
+macro_append LCG_sourcefiles "${LCG_fastjet_tools}"

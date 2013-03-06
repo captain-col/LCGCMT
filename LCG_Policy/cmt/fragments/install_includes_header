@@ -1,0 +1,65 @@
+#-- start of install_includes_header ------
+
+#
+#  We want to install all header files that follow the standard convention
+#
+#    ../<package>
+#
+#  This document generator needs no parameterization, since it simply expects
+#  the standard convention.
+#
+
+installarea = ${CMTINSTALLAREA}
+install_include_dir = $(installarea)/include
+
+${CONSTITUENT} :: ${CONSTITUENT}install
+
+install :: ${CONSTITUENT}install
+
+${CONSTITUENT}install :: $(install_include_dir)
+	@if test ! "$(installarea)" = ""; then\
+	  echo "installation done"; \
+	fi
+
+$(install_include_dir) ::
+	@if test "$(installarea)" = ""; then \
+	  echo "Cannot install header files, no installation directory specified"; \
+	else \
+	  if test -d ../${package}; then \
+	    echo "Installing files from standard ../${package} to $(install_include_dir)"; \
+	    if test ! -d $(install_include_dir) ; then mkdir -p $(install_include_dir); fi; \
+	    if test ! -L $(install_include_dir)/$(package); then \
+	      (cd ../${package}; \
+	       here=`/bin/pwd`; \
+               eval '(cd ..; tar cf - ${package} | (cd $(install_include_dir)/ ; tar xf - ) ) '; \
+	       /bin/rm -f $(install_include_dir)/$(package).cmtref; \
+               echo $${here} >$(install_include_dir)/$(package).cmtref); \
+            fi; \
+	  else \
+	    echo "No standard include file area"; \
+	  fi; \
+	fi
+
+##${CONSTITUENT}clean :: ${CONSTITUENT}uninstall
+
+uninstall :: ${CONSTITUENT}uninstall
+
+${CONSTITUENT}uninstall ::
+	@if test "$(installarea)" = ""; then \
+	  echo "Cannot uninstall header files, no installation directory specified"; \
+	else \
+	  if test -d $(install_include_dir)/$(package) ; then \
+	    echo "Uninstalling files from $(install_include_dir)/$(package)"; \
+	    eval rm -Rf $(install_include_dir)/$(package) ; \
+	  elif test -L $(install_include_dir)/$(package) ; then \
+	    echo "Uninstalling files from $(install_include_dir)/$(package)"; \
+	    eval rm -f $(install_include_dir)/$(package) ; \
+	  fi ; \
+	  if test -f $(install_include_dir)/$(package).cmtref ; then \
+	    echo "Uninstalling files from $(install_include_dir)/$(package).cmtref"; \
+	    eval rm -f $(install_include_dir)/$(package).cmtref ; \
+	  fi; \
+	fi
+
+
+#-- end of install_includes_header ------

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Database" project="false">
+    <contact>Andrea Valassi andrea.valassi@cern.ch</contact>
+    <description>a database management system .</description>
+    <homepage>http://www.oracle.com/index.html</homepage>
+    <license>ORACLE</license>
+  </package>
+</lcg>

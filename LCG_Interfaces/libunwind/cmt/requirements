@@ -1,0 +1,23 @@
+package libunwind
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro libunwind_native_version "$(libunwind_config_version)"
+
+macro libunwind_home "$(LCG_external)/libunwind/$(libunwind_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(libunwind_home)/include
+
+macro libunwind_linkopts "-L$(libunwind_home)/lib -lunwind -lunwind-x86" \
+      target-x86_64      "-L$(libunwind_home)/lib -lunwind -lunwind-x86_64"
+
+macro libunwind_cppflags "-I $(libunwind_home)/include"
+
+apply_pattern set_lib_path
+apply_pattern set_man_path
+
+macro libunwind_export_paths " $(libunwind_home)/include $(libunwind_home)/lib "
+
+

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Grid" project="false">
+    <contact>Oliver Keeble oliver.keeble@cern.ch</contact>
+    <description>common interfaces Cthread, serrno, Castor_limits</description>
+    <homepage>http://glite.web.cern.ch/glite/</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

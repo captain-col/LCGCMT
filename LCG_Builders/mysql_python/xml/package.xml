@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Database" project="false">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>a python binding to mysql</description>
+    <homepage>http://sourceforge.net/projects/mysql-python</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

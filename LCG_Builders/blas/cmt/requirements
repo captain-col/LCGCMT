@@ -1,0 +1,15 @@
+package blas
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro blas_build_config_version "$(blas_config_version)"
+macro blas_build_native_version "$(blas_build_config_version)"
+set LCG_tarfilename "blas-$(blas_build_config_version).tgz"
+
+set LCG_BLAS_FORTRAN     "$(for)"
+
+set LCG_BLAS_SHCOPTS    " ${CFLAGS} -O3 -fPIC "
+
+set LCG_BLAS_SHLIBFLAGS " ${CFLAGS} -O3 -shared -o"
+
+apply_pattern buildscripts_local 

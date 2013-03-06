@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>A dynamic, object oriented multi platform scripting language.</description>
+    <homepage>http://www.python.org/</homepage>
+    <license>PYTHON</license>
+  </package>
+</lcg>

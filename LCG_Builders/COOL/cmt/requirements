@@ -1,0 +1,16 @@
+package COOL
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro COOL_build_config_version "$(COOL_config_version)"
+macro COOL_build_native_version "$(COOL_build_config_version)"
+
+set LCG_tarfilename "$(COOL_build_config_version)__LCG_src.tar.gz"
+macro LCG_get	"cvs"
+#set LCG_CVSROOT ":pserver:anonymous@cool.cvs.cern.ch:/cvs/COOL"
+set LCG_CVSROOT ":pserver:anonymous@isscvs.cern.ch:/local/reps/COOL"
+macro LCG_cvsdir "$(COOL_config_version)/src" \
+	WIN32 "$(COOL_config_version)/src";
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_project_local destdir=$(LCG_reldir)/COOL/$(LCG_package_config_version)

@@ -1,0 +1,14 @@
+package ipython
+
+use LCG_BuildPolicy v* LCG_Builders
+use Python          v* LCG_Interfaces
+
+macro ipython_build_config_version "$(ipython_config_version)"
+macro ipython_build_native_version "$(ipython_build_config_version)_python$(Python_config_version_twodigit)"
+set LCG_tarfilename "ipython-$(ipython_build_config_version).tar.gz"
+set LCG_Python_config_version_twodigit "$(Python_config_version_twodigit)"
+set_append ipython_compile_options ""\
+	target-mac106&target-i386 "export CFLAGS=-m32 export CXXFLAGS=-m32" 
+apply_pattern buildscripts_local 
+set LCG_pkgdest_pkgname "pytools"
+set LCG_pkgdest_vername "$(pytools_config_version)_python${LCG_Python_config_version_twodigit}"

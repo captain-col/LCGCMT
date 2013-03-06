@@ -1,0 +1,20 @@
+package roofit
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use ROOT              v* LCG_Interfaces
+
+macro roofit_native_version "$(roofit_config_version)_root$(ROOT_config_version)"
+
+macro roofit_home           "$(LCG_external)/roofit/$(roofit_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(roofit_home)/include
+
+macro roofit_linkopts "-L$(roofit_home)/lib -lRooFitCore -lRooFit " \
+      target-win      "/LIBPATH:$(roofit_home)\lib libRooFitCore.lib libRooFit.lib "
+
+apply_pattern set_lib_path
+
+macro roofit_export_paths "$(roofit_home)/lib $(roofit_home)/include" 
+

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Other" project="false">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>a universal unique identifier library</description>
+    <homepage>http://sourceforge.net/projects/e2fsprogs/</homepage>
+    <license>BSD</license>
+  </package>
+</lcg>

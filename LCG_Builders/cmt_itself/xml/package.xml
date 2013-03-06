@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool">
+    <contact>Grigori Rybkine Grigori.Rybkine@cern.ch</contact>
+    <description>a multi platform configuration management environment</description>
+    <homepage>http://www.cmtsite.org/</homepage>
+    <license>CMT</license>
+  </package>
+</lcg>

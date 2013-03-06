@@ -1,0 +1,9 @@
+package ppl
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro ppl_native_version "$(ppl_config_version)"
+macro ppl_home "$(LCG_external)/ppl/$(ppl_native_version)/$(LCG_system)"
+
+apply_pattern set_lib_path

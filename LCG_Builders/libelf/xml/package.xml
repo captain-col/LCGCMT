@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Math">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>A library for reading, modifying and creating elf files</description>
+    <homepage>http://directory.fsf.org/project/libelf/</homepage>
+    <license>LGPL</license>
+  </package>
+</lcg>

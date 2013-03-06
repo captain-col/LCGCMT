@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Juan Palacios juan.palacios@cern.ch</contact>
+    <description>providing tools for scientific computing with Python</description>
+    <homepage>http://numpy.scipy.org/</homepage>
+    <license>BSD</license>
+  </package>
+</lcg>

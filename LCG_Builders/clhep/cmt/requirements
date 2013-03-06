@@ -1,0 +1,16 @@
+package clhep
+
+use LCG_BuildPolicy v* LCG_Builders
+use doxygen v* LCG_Interfaces 
+
+set LCG_clhep_version "$(clhep_build_native_version)" CLHEP2 "CLHEP"
+macro clhep_build_config_version "$(CLHEP_config_version)"
+macro clhep_build_native_version "$(clhep_build_config_version)"
+set LCG_tarfilename "clhep-$(clhep_build_config_version).tgz"
+
+set LCG_clhep_config_default_opts CXXFLAGS=" " 
+set LCG_clhep_config_opts "" \
+    target-slc       LDFLAGS="-Wl,--hash-style=sysv" '
+
+apply_pattern buildscripts_local
+apply_pattern buildscripts_package_doc

@@ -1,0 +1,16 @@
+package tcmalloc
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use libunwind         v* LCG_Interfaces
+
+macro tcmalloc_native_version "$(tcmalloc_config_version)"
+
+macro tcmalloc_home "$(LCG_external)/tcmalloc/$(tcmalloc_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(tcmalloc_home)/include
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_ext_man_path mandir="share/man"
+

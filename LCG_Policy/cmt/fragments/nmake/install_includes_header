@@ -1,0 +1,27 @@
+
+#
+#  We want to install all header files that follow the standard convention
+#
+#    ../<package>
+#
+
+install_dir = $(CMTINSTALLAREA)\include
+
+${CONSTITUENT} :: ${CONSTITUENT}install
+
+install :: ${CONSTITUENT}install
+
+${CONSTITUENT}install :: $(install_dir)
+	@if NOT "$(CMTINSTALLAREA)"=="" echo "installation done"
+
+$(install_dir) ::
+	@if NOT "$(CMTINSTALLAREA)"=="" $(cmt_installdir_action) "$(PACKAGE_ROOT)" "$(package)" "$(install_dir)" "$(cmt_installdir_excludes)"
+
+${CONSTITUENT}clean :: ${CONSTITUENT}uninstall
+
+uninstall :: ${CONSTITUENT}uninstall
+
+${CONSTITUENT}uninstall ::
+	@if NOT "$(CMTINSTALLAREA)"=="" $(cmt_uninstalldir_action) "$(PACKAGE_ROOT)" "$(package)" "$(install_dir)"
+
+

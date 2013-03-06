@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Other" project="false">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>a system for storing and retrieving data, distributed among heterogenous server nodes</description>
+    <homepage>http://www.dcache.org</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Graphics">
+    <contact>Thomas Kittelmann thomas.kittelmann@cern.ch</contact>
+    <description>A graphical widget tool kit for GUI development</description>
+    <homepage>http://www.trolltech.com/products/qt</homepage>
+    <license>GPL</license>
+
+    <note date="2007-06-20">
+    For the compilation of qt version 4.3.0 on slc3_ia32_gcc323 openssl support is disabled
+    </note>
+
+  </package>
+</lcg>

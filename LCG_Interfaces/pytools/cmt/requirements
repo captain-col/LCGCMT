@@ -1,0 +1,23 @@
+package pytools
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use Python            v* LCG_Interfaces
+
+macro pytools_native_version "$(pytools_config_version)_python$(Python_config_version_twodigit)"
+
+macro pytools_home "$(LCG_external)/pytools/$(pytools_native_version)/$(LCG_system)"
+
+apply_pattern composite_package parts="4suite cx_oracle ipython json mock mysql_python processing py pyxml setuptools storm"
+
+include_path none
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_man_path
+
+path_remove  PYTHONPATH   "/pytools/" \
+             target-win   "\pytools\"
+path_prepend PYTHONPATH   "$(pytools_home)/lib/python$(Python_config_version_twodigit)/site-packages" 
+
+macro pytools_export_paths "$(pytools_home)"
+

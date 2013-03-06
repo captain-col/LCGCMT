@@ -1,0 +1,15 @@
+package cmake
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro cmake_build_config_version "$(cmake_config_version)"
+macro cmake_build_native_version "$(cmake_build_config_version)"
+set LCG_tarfilename "cmake-$(cmake_build_config_version).tar.gz"
+
+apply_pattern buildscripts_local 
+
+set LCG_cmake_compile_options "" \
+    host-darwin&target-i386 "export CFLAGS="-m32" ; export CXXFLAGS="-m32"  " \
+    host-x86_64&target-i686 "export CFLAGS="-m32" ; export CXXFLAGS="-m32"  "
+
+set LCG_pkgdest_pkgname "CMake"

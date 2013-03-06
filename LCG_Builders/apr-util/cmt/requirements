@@ -1,0 +1,13 @@
+package apr-util
+
+use LCG_BuildPolicy v* LCG_Builders
+use apr             v* LCG_Interfaces
+
+macro apr-util_build_config_version "$(apr-util_config_version)"
+macro apr-util_build_native_version "$(apr-util_build_config_version)"
+set LCG_tarfilename "apr-util-$(apr-util_build_config_version).tar.gz"
+set LCG_apr_home "$(apr_home)"
+set_append LCG_apr-util_compile_options ""\
+	macro-mac106&macro-i386 "export CFLAGS=-m32 export CPPFLAGS=-m32 export CXXFLAGS=-m32"
+apply_pattern buildscripts_local
+

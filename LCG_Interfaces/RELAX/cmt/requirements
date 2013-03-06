@@ -1,0 +1,21 @@
+package RELAX
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+apply_pattern use_optional pkg=CLHEP
+apply_pattern use_optional pkg=ROOT
+apply_pattern use_optional pkg=HepMC
+
+macro RELAX_native_version "$(RELAX_config_version)"
+
+macro RELAX_base "$(LCG_releases)/RELAX/$(RELAX_native_version)"
+
+macro RELAX_home "$(RELAX_base)/$(LCG_platform)"
+
+include_path none
+
+apply_pattern set_lib_path
+
+macro RELAX_export_paths " $(RELAX_home)/lib  "
+

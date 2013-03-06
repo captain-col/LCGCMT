@@ -1,0 +1,21 @@
+package CORAL
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro CORAL_build_config_version "$(CORAL_config_version)"
+macro CORAL_build_native_version "$(CORAL_build_config_version)"
+
+set LCG_tarfilename "$(CORAL_build_config_version)__LCG_src.tar.gz"
+
+macro LCG_get      "cvs"
+#set LCG_CVSROOT    ":pserver:anonymous@coral.cvs.cern.ch:/cvs/coral"
+set LCG_CVSROOT    ":pserver:anonymous@isscvs.cern.ch:/local/reps/lcgcoral"
+#set LCG_CVSROOT    ":gserver:isscvs.cern.ch:/local/reps/lcgcoral"
+macro LCG_cvsdir   "$(CORAL_config_version)/src" \
+	  target-winxp "$(CORAL_config_version)/src" ;
+
+apply_pattern set_coral_auth_pathes
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_project_local destdir=${LCG_reldir}/CORAL/$(LCG_package_config_version)
+

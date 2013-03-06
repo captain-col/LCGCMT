@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Math">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>the GNU multiple precision library</description>
+    <homepage>http://gmplib.org</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

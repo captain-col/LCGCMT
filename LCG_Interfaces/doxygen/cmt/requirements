@@ -1,0 +1,15 @@
+package doxygen
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use graphviz          v* LCG_Interfaces
+
+macro doxygen_native_version "$(doxygen_config_version)"
+
+macro doxygen_home "$(LCG_external)/doxygen/$(doxygen_native_version)/$(LCG_system)"
+
+include_path none
+
+apply_pattern set_bin_path
+apply_pattern set_man_path
+

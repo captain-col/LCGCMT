@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Graphics">
+    <contact>Benedikt Hegner benedikt.hegner@cern.ch</contact>
+    <description>a package for graph visualization</description>
+    <homepage>http://www.graphviz.org</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

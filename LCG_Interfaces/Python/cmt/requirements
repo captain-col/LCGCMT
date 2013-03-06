@@ -1,0 +1,53 @@
+package Python
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro Python_native_version "$(Python_config_version)"
+
+macro Python_home  "${LCG_external}/Python/$(Python_native_version)/$(LCG_system)" \
+      python_framework "${LCG_external}/Python/$(Python_native_version)/$(LCG_system)/Python.framework/Versions/Current"
+macro Python_inc   "$(Python_home)/include/python$(Python_version)" \
+      target-win   "$(Python_home)/include"
+
+macro Python_version "$(Python_config_version_twodigit)" 
+
+macro Python_libversion_cmd "python -c "'"print '"''"'.join('"'$(Python_config_version)'"'.split('"'.'"')[:2])"'""
+macro Python_libversion     "$(Python_config_version_twodigit)" \
+      target-win            `$(Python_libversion_cmd)`
+
+include_path none
+include_dirs $(Python_inc)
+
+set PYTHONHOME  "" target-darwin "$(Python_home)"
+
+path_remove LD_LIBRARY_PATH "/Python" \
+            target-win      "\Python"
+path_append LD_LIBRARY_PATH "$(Python_home)/lib" \
+            target-darwin   "" \
+            target-win      "" \
+            NO_PYTHON_LIBPATH ""
+
+path_remove DYLD_LIBRARY_PATH "/Python"
+path_append DYLD_LIBRARY_PATH "" \
+            target-darwin     "$(Python_home):$(Python_home)/lib"
+
+path_remove  PATH         "/Python" \
+             target-win   "\Python"
+path_prepend PATH         "$(Python_home)/bin" \
+             target-win   "$(Python_home)"
+
+cmtpath_pattern \
+  macro lcgcmt_pp         "" LCGCMT_with_installarea&target-unix "<path>/$(LCGCMT_installarea_prefix)/$(CMTCONFIG)/lib/python$(Python_config_version_twodigit)/site-packages" ; \
+  path_remove  PYTHONPATH "" LCGCMT_with_installarea&target-unix $(lcgcmt_pp) ; \
+  path_prepend PYTHONPATH "" LCGCMT_with_installarea&target-unix $(lcgcmt_pp)
+
+macro Python_linkopts " -L$(Python_home)/lib -lpython$(Python_libversion) -lutil -lpthread " \
+      target-darwin   " -L$(Python_home)/lib -lpython" \
+      target-win      " $(Python_home)\libs\python$(Python_libversion).lib"
+
+macro Python_export_paths "$(Python_home)"
+
+apply_pattern set_ext_man_path mandir="share/man"
+
+

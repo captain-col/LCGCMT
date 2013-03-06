@@ -1,0 +1,17 @@
+package ppl
+
+use LCG_BuildPolicy v* LCG_Builders
+use gmp             v* LCG_Interfaces
+
+macro ppl_build_config_version "$(ppl_config_version)"
+macro ppl_build_native_version "$(ppl_build_config_version)"
+
+set LCG_tarfilename "ppl-$(ppl_build_config_version).tar.gz"
+
+apply_pattern buildscripts_local
+
+#version 0.10 and before
+set LCG_ppl_config_opts "--with-libgmp-prefix=$(gmp_home) --with-libgmpxx-prefix=$(gmp_home)"
+#version 0.11 and after
+set LCG_ppl_config_opts "--with-gmp-prefix=$(gmp_home)"
+

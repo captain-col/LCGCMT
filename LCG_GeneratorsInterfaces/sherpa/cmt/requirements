@@ -1,0 +1,70 @@
+package sherpa
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro sherpa_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/sherpa/$(sherpa_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(sherpa_home)/include/SHERPA-MC
+
+macro sherpa_linkopts "-L$(sherpa_home)/lib/SHERPA-MC \
+                        -lSherpaMain \
+                        -lSherpaSingleEvents \
+                        -lSherpaSoftPhysics \
+                        -lSherpaPerturbativePhysics \
+			-lSherpaInitialization \
+			-lLundTools \
+			-lSherpaTools \
+			-lObservables \
+			-lAnalysis \
+			-lHadronsPSs \	
+			-lHadronsMEs \
+			-lHadronsMain \
+			-lAmisicModel \
+			-lAmisic \
+			-lAmisicTools \
+			-lApacicMain \
+			-lApacicShowers \	
+			-lString \	
+			-lAmegicPSGen \
+			-lAmplitude \
+			-lZfunctions \
+			-lAmegic \
+			-lExtraXS2_2 \
+			-lExtraXS \	
+			-lModelMain \
+			-lPhasespace \	
+			-lRemnant \
+			-lSudakov \
+			-lGRV \
+			-lBeam \
+			-lPDF \
+			-lToolsOrg \
+			-lToolsPhys \	
+			-lToolsMath \
+			-lAhadicDecays \
+			-lAhadicFormation \
+			-lAhadicMain \
+			-lAhadicTools \
+			-lAnalysisDetector \
+			-lAnalysisTools \
+			-lAnalysisTriggers \
+			-lExtraXSModel \
+			-lHadronsCurrents \
+			-lHelicitiesMain \
+			-lLHAPDFSherpa \
+			-lModelDecays \
+			-lModelInteractions \
+			-lPhotonsMain \
+			-lPhotonsMEs \
+			-lPhotonsTools \ "	
+
+macro sherpa_name "sherpa"
+apply_pattern set_lib_path
+
+# add correct path to $LD_LIBRARY_PATH
+path_remove LD_LIBRARY_PATH "/sherpa/"
+path_prepend LD_LIBRARY_PATH "$(sherpa_home)/lib/SHERPA-MC"
+
+macro sherpa_export_paths "$(sherpa_home)/include/SHERPA-MC $(sherpa_home)/lib/SHERPA-MC"

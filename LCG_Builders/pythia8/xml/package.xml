@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Simulation">
+    <contact>Torbjorn Sjostrand torbjorn@thep.lu.se</contact>
+    <description>Monte Carlo event generator</description>
+    <homepage>http://home.thep.lu.se/~torbjorn/Pythia.html</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

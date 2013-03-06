@@ -1,0 +1,27 @@
+package lfc
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use lcgdmcommon       v* LCG_Interfaces
+use epel              v* LCG_Interfaces
+use Python            v* LCG_Interfaces -no_autoimports
+
+macro lfc_native_version "$(lfc_config_version)"
+
+macro lfc_home "$(LCG_external)/Grid/LFC/$(lfc_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(lfc_home)/include/lfc
+
+apply_pattern set_ext_bin_and_lib_path windir=lib unixdir=$(unixdirname)
+
+path_remove  PYTHONPATH "/LFC/"
+path_prepend PYTHONPATH "$(lfc_home)/$(unixdirname)/python$(Python_config_version_twodigit):$(lfc_home)/$(unixdirname)/python$(Python_config_version_twodigit)/site-packages" \
+      target-win   ""
+
+path_remove MANPATH "/LFC/"
+path_append MANPATH "$(lfc_home)/man"
+
+macro lfc_linkopts "-L$(lfc_home)/$(unixdirname) -llfc " \
+      target-win   ""
+

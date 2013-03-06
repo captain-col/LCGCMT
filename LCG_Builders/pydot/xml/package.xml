@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Graphics">
+    <contact>Benedikt Hegner benedikt.hegner@cern.ch</contact>
+    <description>An interface for creating both directed and non directed graphs from Python</description>
+    <homepage>http://dkbza.org/pydot.html</homepage>
+    <license>MIT</license>
+  </package>
+</lcg>

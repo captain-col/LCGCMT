@@ -1,0 +1,21 @@
+package XercesC
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro XercesC_native_version "$(XercesC_config_version)"
+
+macro XercesC_home "$(LCG_external)/XercesC/$(XercesC_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(XercesC_home)/include
+
+macro XercesC_linkopts "-L$(XercesC_home)/lib -lxerces-c -lpthread" \
+      target-win       "/LIBPATH:$(XercesC_home)/lib xerces-c_3.lib" 
+
+apply_pattern set_bin_and_lib_path
+
+macro XercesC_warnings "" target-linux "-w -Wno-unused"
+macro XercesC_cppflags " -DXERCESC_GE_31 "
+
+macro XercesC_export_paths " $(XercesC_home)/include $(XercesC_home)/lib"

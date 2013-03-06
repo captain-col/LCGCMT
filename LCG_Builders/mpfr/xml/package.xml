@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Math">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>A library for multiple-precision floating-point computations</description>
+    <homepage>http://www.mpfr.org</homepage>
+    <license>LGPL</license>
+  </package>
+</lcg>

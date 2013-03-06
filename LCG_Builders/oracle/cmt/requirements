@@ -1,0 +1,5 @@
+package oracle
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro oracle_build_config_version "$(oracle_config_version)"

@@ -1,0 +1,18 @@
+package cgsigsoap
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro cgsigsoap_native_version "$(cgsigsoap_config_version)"
+
+macro cgsigsoap_home "$(LCG_external)/Grid/cgsi-gsoap/$(cgsigsoap_native_version)/$(LCG_system)"
+
+include_path none
+
+macro cgsigsoap_lib_folder "lib" \
+      target-x86_64        "lib64"
+
+apply_pattern set_ext_lib_path unixdir="$(cgsigsoap_lib_folder)"
+
+macro cgsigsoap_linkopts " -L$(cgsigsoap_home)/lib -lcgsi_plugin_gsoap_2.6 " \
+      target-win         ""

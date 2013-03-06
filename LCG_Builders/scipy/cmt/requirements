@@ -1,0 +1,22 @@
+package scipy
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python v* LCG_Interfaces
+use pyanalysis v* LCG_Interfaces
+apply_pattern buildscripts_local 
+
+macro scipy_build_config_version "$(scipy_config_version)"
+macro scipy_build_native_version "$(scipy_build_config_version)"
+set LCG_tarfilename "scipy-$(scipy_build_config_version).tar.gz"
+set_append LCG_scipy_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CXXFLAGS=-m32 export CFLAGS=-m32 export LDFLAGS=-arch x86_64 FFLAGS=-arch x86_64"\
+	   target-darwin&target-mac106&target-x86_64 "export FFLAGS=-m64 -O3  export CXXFLAGS=-m64 export CFLAGS=-m64"
+
+
+set LCG_Python_config_version_twodigit "$(Python_config_version_twodigit)"
+set LCG_pkgdest_pkgname "pyanalysis"
+set LCG_pkgdest_vername "$(pyanalysis_config_version)_python${LCG_Python_config_version_twodigit}"
+
+set LDFLAGS ""
+set CFLAGS  ""

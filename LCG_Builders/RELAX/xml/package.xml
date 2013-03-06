@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Tool" project="true">
+    <contact>Benedikt Hegner benedikt.hegner@cern.ch</contact>
+    <description>A set of Reflex libraries for the most common used general data types in LCG</description>
+    <homepage>https://twiki.cern.ch/twiki/bin/view/LCG/RELAX</homepage>
+    <license>LCGAA</license>
+  </package>
+</lcg>

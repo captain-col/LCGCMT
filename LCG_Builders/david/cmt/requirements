@@ -1,0 +1,10 @@
+package david
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro david_build_config_version "$(david_config_version)"
+macro david_build_native_version "$(david_build_config_version)"
+set LCG_tarfilename "david_$(david_build_config_version).tz"
+
+apply_pattern buildscripts_local
+

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Tool">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>A visualization tool for callgrind generated profiling data.</description>
+    <homepage>http://kcachegrind.sourceforge.net/cgi-bin/show.cgi</homepage>
+    <license>UNKNOWN</license>
+    <note date="2007/06/03">
+    System dependencies for this tool to kde libs and includes. E.g. kdelibs. For x86_64 also the .i386 libs have to be installed.
+    </note>
+  </package>
+</lcg>

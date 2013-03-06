@@ -1,0 +1,24 @@
+package uuid
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro uuid_build_config_version "$(uuid_config_version)"
+macro uuid_build_native_version "$(uuid_build_config_version)"
+set LCG_tarfilename "e2fsprogs-$(uuid_build_config_version).tar.gz"
+set LCG_tardiffname ""\
+   target-mac106&target-i386 "uuidMac106.patch.tar.gz"
+macro LCG_sourcefiles "$(LCG_tarfilename);uuid1.38p1.diff;$(LCG_tardiffname)"
+set_append LCG_uuid_config_options '--enable-elf-shlibs ' \
+   target-darwin&target-x86_64     '--enable-bsd-shlibs --build=x86_64-apple-darwin10.8.0 ' \
+   target-darwin                   '--enable-bsd-shlibs --build=i386-apple-darwin10.8.0 ' 
+
+set LDFLAGS "" \
+   target-i686&target-slc "-m32 -Wl,--hash-style=sysv" \
+   target-slc             "-Wl,--hash-style=sysv" \
+   target-i386            "-m32"
+   
+set gcc_link "${gcc_home}/bin"
+  
+set LCG_uuid_compile_options ""\
+    target-mac106&target-i386 "export CXXFLAGS=-m32 CFLAGS=-m32 LDFLAGS=-m32 CPPFLAGS=-m32"		
+apply_pattern buildscripts_local

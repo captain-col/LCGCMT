@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>provides numerical abstractions for analysis and verification of complex systems</description>
+    <homepage>http://www.cs.unipr.it/ppl/</homepage>
+    <license>LGPL</license>
+  </package>
+</lcg>

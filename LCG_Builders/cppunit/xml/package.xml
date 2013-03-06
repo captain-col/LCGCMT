@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Tool">
+    <contact>Manuel Gallas manuel.gallas@cern.ch</contact>
+    <description>a C++ unit testing framework</description>
+    <homepage>http://cppunit.sourceforge.net/cppunit-wiki</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

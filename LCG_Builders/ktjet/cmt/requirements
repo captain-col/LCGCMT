@@ -1,0 +1,12 @@
+package ktjet
+
+use LCG_BuildPolicy v* LCG_Builders
+use CLHEP v* LCG_Interfaces
+
+macro ktjet_build_config_version "$(ktjet_config_version)"
+macro ktjet_build_native_version "$(ktjet_build_config_version)"
+set LCG_tarfilename "KtJet-$(ktjet_build_config_version).tar.gz"
+set LCG_clhep_root "${CLHEP_home}"
+set_append LCG_ktjet_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CPPFLAGS=-m32 export LDFLAGS=-m32"
+apply_pattern buildscripts_local

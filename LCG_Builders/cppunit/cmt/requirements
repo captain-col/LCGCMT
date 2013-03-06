@@ -1,0 +1,13 @@
+package cppunit
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro cppunit_build_config_version "$(CppUnit_config_version)"
+macro cppunit_build_native_version "$(cppunit_build_config_version)"
+set LCG_cppunit_version "1.12.1"
+set LCG_tarfilename "cppunit-$(LCG_cppunit_version).tar.gz"
+macro LCG_sourcefiles "$(LCG_tarfilename);cppunit-$(cppunit_build_config_version).tar.gz"
+set_append LCG_cppunit_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CXXFLAGS=-m32 LDFLAGS=-m32"
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/CppUnit/$(LCG_package_config_version)

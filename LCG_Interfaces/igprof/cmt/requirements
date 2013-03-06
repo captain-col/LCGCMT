@@ -1,0 +1,23 @@
+package igprof
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use libunwind         v* LCG_Interfaces
+
+macro igprof_native_version "$(igprof_config_version)"
+
+macro igprof_home "$(LCG_external)/igprof/$(igprof_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(igprof_home)/include
+
+macro igprof_linkopts "-L$(igprof_home)/lib -ligprof" \
+
+macro igprof_cppflags "-I $(ifprof_home)/include"
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_man_path
+
+macro igprof_export_paths " $(igprof_home)/include $(igprof_home)/lib "
+
+

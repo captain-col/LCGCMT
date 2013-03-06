@@ -1,0 +1,20 @@
+package pylint
+
+use LCG_BuildPolicy v* LCG_Builders
+use Python          v* LCG_Interfaces
+use pytools         v* LCG_Interfaces
+
+macro pylint_build_config_version "$(pylint_config_version)"
+macro pylint_build_native_version "$(pylint_build_config_version)_python$(Python_config_version_twodigit)"
+
+set logilab_common_config_version "0.58.0"
+set logilab_astng_config_version  "0.23.1"
+
+set LCG_tarfilename "pylint-$(pylint_build_config_version).tar.gz"
+macro LCG_sourcefiles "$(LCG_tarfilename);logilab-astng-${logilab_astng_config_version}.tar.gz;logilab-common-${logilab_common_config_version}.tar.gz"
+
+set LCG_Python_config_version_twodigit "$(Python_config_version_twodigit)"
+
+apply_pattern buildscripts_local 
+set LCG_pkgdest_pkgname "pytools"
+set LCG_pkgdest_vername "$(pytools_config_version)_python${LCG_Python_config_version_twodigit}"

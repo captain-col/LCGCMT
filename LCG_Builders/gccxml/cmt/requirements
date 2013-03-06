@@ -1,0 +1,18 @@
+package gccxml
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use cmake v* LCG_Interfaces
+
+macro gccxml_build_config_version "$(GCCXML_config_version)"
+macro gccxml_build_native_version "$(gccxml_build_config_version)"
+macro LCG_sourcefiles "gccxml-$(gccxml_build_config_version).tar.gz"
+set LCG_tarfilename "gccxml-$(gccxml_build_config_version).tar.gz"
+set LCG_gccxml_version_twodigit "`echo $(gccxml_build_native_version) | cut -c1,2,3`"
+set_append LCG_gccxml_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CMAKE_OSX_ARCHITECTURES=i386"
+# Flags for cross architecture compiling (e.g. mac 64bit) - to put in the gccxml_config.sh
+# -DCMAKE_C_FLAGS:STRING="-m64" -DCMAKE_CXX_FLAGS:STRING="-m64"
+
+apply_pattern buildscripts_local
+

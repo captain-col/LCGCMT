@@ -1,0 +1,33 @@
+package python
+
+apply_tag NOPYXML
+apply_tag NOMYSQLPYTHON
+use LCG_BuildPolicy v* LCG_Builders
+use sqlite          v* LCG_Interfaces
+
+macro python_build_config_version "$(Python_config_version)"
+macro python_build_native_version "$(python_build_config_version)"
+
+set LCG_tarfilename "Python-$(python_build_config_version).tgz"
+set LCG_python_config_version_twodigit "$(Python_config_version_twodigit)"
+
+set LCG_python_config_static_options " --prefix=$(LCG_extdir)/Python/$(Python_config_version)/$(LCG_CMTCONFIG) --enable-unicode=ucs4 " 
+set LCG_python_config_shared_options " --enable-shared --prefix=$(LCG_extdir)/Python/$(Python_config_version)/$(LCG_CMTCONFIG) --enable-unicode=ucs4 " 
+
+set_append  CPPFLAGS " -I$(sqlite_home)/include"
+set EXTRA_CFLAGS "" \
+    target-i686  "-m32"
+
+set LCG_python_config_framework_options "" \
+    target-darwin " --prefix=$(LCG_extdir)/Python/$(Python_config_version)/$(LCG_CMTCONFIG) DYNLOADFILE=dynload_shlib.o --enable-framework=$(LCG_extdir)/Python/$(Python_config_version)/$(LCG_CMTCONFIG) --exec-prefix=$(LCG_extdir)/Python/$(Python_config_version)/$(LCG_CMTCONFIG)/Python.framework/Versions/Current --enable-unicode=ucs4"
+
+set_append LCG_python_config_framework_options "" \
+    target-mac106 " MACOSX_DEPLOYMENT_TARGET=10.6 " \
+    target-mac107 " MACOSX_DEPLOYMENT_TARGET=10.7 "
+
+set LCG_python_compile_options ""\
+    target-darwin&target-i386&target-mac106 " export CFLAGS=-m32 export CPPFLAGS=-m32 export CXXFLAGS=-m32 export LDFLAGS=-m32"
+
+apply_pattern buildscripts_local
+
+set LCG_pkgdest_pkgname "Python"

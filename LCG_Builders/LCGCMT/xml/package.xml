@@ -1,0 +1,301 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Other" category="Tool" project="true">
+    <contact>Benedikt Hegner benedikt.hegner@cern.ch</contact>
+    <description>the configuration database for LCG/AA projects and external software.</description>
+    <homepage>https://twiki.cern.ch/twiki/bin/view/SPI/LcgConfigurations</homepage>
+    <license>LGPL</license>
+
+    <note version="64d" date="2013-02-15">
+      ROOT compatible with castor 2.1.13-6
+      Updated Grid externals to EMI-2 stack
+      Libtool added to the externals stack
+    </note>
+
+    <note version="64c" date="2013-01-18">
+      Removed zlib dependency from LCG_Release
+      Updated castor to version 2.1.13-6
+    </note>
+
+    <note version="64b" date="2012-11-23">
+      Updates to ROOT 5.34.03, CORAL_2_3_24, COOL_2_8_15, RELAX_1_3_0i
+      Updated fastjet, oracle client, xrootd
+    </note>
+
+    <note version="64a" date="2012-09-12">
+      fixed pytools and pygraphics
+      patched valgrind, tcmalloc and frontier client
+      removed zlib from stack
+    </note>
+
+    <note version="64" date="2012-06-20">
+      Change on LCGCMT interface. 
+      Removed LCG_home and SITEROOT macros. 
+      LOCAL tag not needed.
+    </note>
+
+    <note version="63" date="2012-06-12">
+      Upgrades to ROOT 5.34.00, CORAL_2_3_23, COOL_2_8_14, RELAX_1_3_0h
+      First release with slc6
+      Major update in many externals including Qt, lapack, blas, pytools and others
+    </note>
+
+    <note version="62b" date="2012-03-27">
+      Upgrades to ROOT 5.32.02, CORAL_2_3_22, COOL_2_8_13, RELAX_1_3_0f
+      Updated uuid to 1.42
+      Updated neurobayes to 3.7.0
+    </note>
+
+    <note version="62a" date="2011-12-18">
+      Upgrades to frontier_client 2.8.5
+      Fix problem in install release procedure used by ATLAS
+    </note>
+
+    <note version="62" date="2011-12-11">
+      Upgrades to ROOT 5.32.00, CORAL_2_3_20, COOL_2_8_12, RELAX_1_3_0c, boost 1.48
+      Removed POOL
+    </note>
+
+    <note version="61e" date="2012-03-28">
+      Reverted to ROOT 5.30.05
+      Upgrades to CORAL_2_3_20c, COOL_2_8_12c, POOL_2_9_20a, RELAX_1_3_0g
+      Upgrade to frontier_client 2.8.5
+    </note>
+
+    <note version="61d" date="2012-03-20">
+      Upgrades to ROOT 5.30.06, CORAL_2_3_20b, COOL_2_8_12b, POOL_2_9_20, RELAX_1_3_0e
+      Upgrade uuid to 1.42
+    </note>
+
+    <note version="61c" date="2011-12-12">
+      Upgrades to ROOT 5.30.05, CORAL_2_3_20a, COOL_2_8_12a, POOL_2_9_19, RELAX_1_3_0d
+    </note>
+
+    <note version="61b" date="2011-11-09">
+      Upgrades to ROOT 5.30.04, CORAL_2_3_19, COOL_2_8_11a, POOL_2_9_18, RELAX_1_3_0b
+    </note>
+
+    <note version="61a" date="2011-10-11">
+      Upgrades to ROOT 5.30.02, CORAL_2_3_18, COOL_2_8_11, POOL_2_9_17, RELAX_1_3_0a
+    </note>
+
+    <note version="61" date="2011-08-28">
+      Upgrades to ROOT 5.30.00, CORAL_2_3_16a, COOL_2_8_10a, POOL_2_9_15, RELAX_1_3_0
+      Upgrades of pytools modules
+    </note>
+
+    <note version="60e" date="2011-11-23">
+      Upgrades to ROOT 5.28.00h, RELAX_1_2_2e, CORAL_2_3_17a, COOL_2_8_10c, POOL_2_9_16a
+    </note>
+
+    <note version="60d" date="2011-09-15">
+      Upgrades to ROOT 5.28.00g, CORAL_2_3_17, COOL_2_8_10b, POOL_2_9_16
+      Upgrade of external package expat and frontier client
+    </note>
+
+    <note version="60c" date="2011-07-05">
+      Upgrades to ROOT 5.28.00e, CORAL_2_3_16, COOL_2_8_10, POOL_2_9_14, RELAX_1_2_2c
+      Upgrade of external package oracle
+    </note>
+
+    <note version="60b" date="2011-03-15">
+      Upgrades to ROOT 5.28.00b, CORAL_2_3_15, COOL_2_8_9a, POOL_2_9_13
+      Upgrade of external package Qt
+    </note>
+
+    <note version="60a" date="2011-02-23">
+      Upgrades to ROOT 5.28.00a, CORAL_2_3_14b, COOL_2_8_9, POOL_2_9_12
+      Upgrade of external packages, lcov, frontier client, valgrind
+    </note>
+
+    <note version="60" date="2011-01-28">
+      Upgrades to ROOT 5.28.00, CORAL_2_3_14a, COOL_2_8_8a, POOL_2_9_11a
+      Upgrade of external packages, boost, coin3d, dpm, fastjet, neurobayes, Qt, soqt, xqilla, neurobayes
+    </note>
+
+    <note version="59c" date="2011-09-29">
+      Upgrades to ROOT 5.26.00g, RELAX_1_2_1i
+    </note>
+
+    <note version="59b" date="2011-01-18">
+      Upgrades to ROOT 5.26.00e, CORAL_2_3_14, COOL_2_8_8, POOL_2_9_11 
+      Upgrade of external packages, boost, coin3d, dpm, fastjet, neurobayes, Qt, soqt, xqilla, neurobayes
+    </note>
+
+    <note version="59a" date="2010-08-27">
+      New COOL 2.8.7, patches to all other AA projects
+      Upgrade to neurobayes 10.8, new package xqilla
+      Upgrades to all grid middleware packages
+    </note>
+
+    <note version="59" date="2010-07-28">
+      Move to Python 2.6
+      Patches to all AA projects
+      Upgrades to CLHEP 1.9.4.7, QMtest 2.4.1
+      New package multiprocessing, sqlalchemy
+    </note>
+
+    <note version="58f" date="2010-09-20">
+      New package xqilla
+      Update neurobayes to version 10.8
+    </note>
+
+    <note version="58e" date="2010-07-28">
+      Patching Xerces 3.1.1 because of duplicate symbols with glite
+    </note>
+
+    <note version="58d" date="2010-07-20">
+      Bugfixes for all AA projects
+      Upgrade to Xerces 3.1.1 and Qt 4.6.5
+    </note>
+
+    <note version="58c" date="2010-03-22">
+      Bug fix for LFC plugin library of CORAL
+      Upgrade or oracle client libraries
+      Full release of python module groups - pyanalysis, pytools, pygraphics
+    </note>
+
+    <note version="58b" date="2010-03-18">
+      Split Reflex dictionary source generation and building
+      Upgrades of external packages - tcmalloc, dcache, fastjet
+      Adding castor client version for Mac OSX
+    </note>
+
+    <note version="58a" date="2010-02-18">
+      Fix for dcache client package in ROOT
+      Other projects: CORAL_2_3_7, POOL_2_9_6
+      Upgrades: Boost 1.42, gccxml 0.9.0_20100114, sqlite 3.6.22
+    </note>
+
+    <note version="58" date="2010-01-20">
+      Upgrades to ROOT 5.26.00a, RELAX_1_2_1, CORAL_2_3_6, COOL_2_8_5, POOL_2_9_5
+      Upgrades of external packages, CLHEP, Frontier, graphviz, HepPDT,
+      Removal of pcre
+    </note>
+
+    <note version="57a" date="2009-11-10">
+      CORAL bug fix (Savannah #56900)
+      Upgrade to cx_Oracle 5.0.1
+    </note>
+
+    <note version="57" date="2009-10-19">
+      Upgrades of all AA projects
+      including move to ROOT 5.24.00b
+      Upgrades of several external packages 
+      mostly grid middleware, Python 2.5.4p2 and oracle 11.2
+    </note>
+
+    <note version="56f" date="2010-03-31">
+      Bug fix in POOL Collections
+      Minor fixes in COOL, CORAL, ROOT
+      Upgrades of dcache and fastjet
+    </note>
+
+    <note version="56e" date="2010-01-18">
+      Bug fix for xrootd in ROOT
+      Revert to oracle 10.2.0.4 
+      Changes in POOL/Collections
+      Removal of PCRE
+    </note>
+
+    <note version="56d" date="2009-12-07">
+      Bug fixes in ROOT, POOL, COOL and CORAL
+      Move to new oracle version 11.2.0.1.0 (for linux) 
+      Fixes to external packages (Python 2.5.4p2, uuid 1.38p1, zlib 1.2.3p1, pyxml 0.8.4p1)
+      External package upgrades (CLHEP 1.9.4.4, cx_oracle 5.0.1, doxygen 1.5.9, graphviz 2.24.0, HepPDT 2.06.00, java 1.6.0)
+    </note>
+
+    <note version="56c" date="2009-07-28">
+      Bug fixed in ROOT, POOL, COOL and CORAL
+      Move to new oracle version 10.2.0.4p1-full 
+      Upgrades of other Grid packages and HepMC
+    </note>
+
+    <note version="56b" date="2009-06-29">
+      Bug fixes in ROOT, POOL, COOL and CORAL
+      Upgrades of external packages - gccxml, frontier, dcache, cmake, fastjet
+      New external packages - graphviz, pydot, pyparsing, tcmalloc, tcsh
+    </note>
+
+    <note version="56a" date="2009-05-19">
+      Bugfix releases for ROOT, POOL, CORAL and COOL
+      Upgrades of external packages - Boost 1.39, QMTest 2.4p1
+      Integration of new external packages for Java and Visualization
+    </note>
+
+    <note version="56" date="2008-02-13">
+      Move to new platforms/compilers (slc5, gcc 4.3, VC9)
+      New versions of all LCG/AA projects
+      Several upgrades of external packages (e.g. Boost 1.38, Python 2.5.4)
+      Apply new tag naming policy for slc5 and vc9 (e.g. i686-slc5-gcc43-dbg)
+    </note>
+
+    <note version="55b" date="2008-11-10">
+      New interface packages for Grid software
+      Changes in POOL collections
+      Minor changes in CORAL and COOL
+      ROOT bug fix release
+      Version upgrades of several grid and other "external" packages
+      roofit 2.91 compiled against ROOT 5.18 
+    </note>
+
+    <note version="55a" date="2008-07-21">
+      Move to HepMC 2.03.09
+      New RELAX dictionary for HepMC
+    </note>
+
+    <note version="55" date="2008-06-12">
+      de-sealing of LCG/AA projects
+    </note>
+
+    <note version="54h" date="2008-10-21">
+      fixes in POOL collections
+      minor bug fixes in COOL and CORAL
+    </note>
+
+    <note version="54g" date="2008-05-30">
+      Bugfixes in ROOT and CORAL 
+      Upgrade of fastjet to version 2.3.3
+      New package libsvm 2.86
+    </note>
+
+    <note version="54f" date="2008-04-30">
+      Bugfixes in POOL and CORAL
+      Upgrades of several external packages
+    </note>
+
+    <note version="54e" date="2008-04-22">
+      Fixing dcache_client software package (using different sets of rpms for deployment).
+    </note>
+
+    <note version="54d" date="2008-04-04">
+      Fixing link problems on osx for POOL and bug fixes in Collections    
+    </note>
+
+    <note version="54c" date="2008-03-03">
+      Bug fix in POOL/ObjectionRelationalAccess     
+    </note>
+
+    <note version="54b" date="2008-02-29">
+      New features in COOL requested by Atlas
+      Bug fix in CORAL     
+    </note>
+
+    <note version="54a" date="2008-02-21">
+      Fix problem with python interaction to ROOT (https://savannah.cern.ch/bugs/?32867);
+      Performance improvements in COOL;
+      Bug fixes in POOL (Schema evolution);
+      rebuilt of Boost 1.34.1 for python 2.5;
+      new valgrind version 3.3.0 with patches to support big applications 
+    </note>
+
+    <note version="54" date="2008-01-21">
+      Move to new ROOT version 5.18.00;
+      Checking and possible upgrade of external s/w packages 
+    </note>
+
+
+  </package>
+</lcg>

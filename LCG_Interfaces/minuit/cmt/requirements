@@ -1,0 +1,17 @@
+package minuit
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro minuit_native_version "$(minuit_config_version)"
+
+macro minuit_home "$(LCG_external)/minuit/$(minuit_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(minuit_home)/include
+
+apply_pattern set_lib_path
+
+apply_pattern set_man_path
+
+macro minuit_export_paths " $(minuit_home)/include $(minuit_home)/lib"

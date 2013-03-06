@@ -1,0 +1,67 @@
+package Reflex
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use ROOT              v* LCG_Interfaces -no_auto_imports
+
+include_path none
+include_dirs $(ROOT_home)/include
+
+macro Reflex_linkopts $(ROOT_Reflex_linkopts)
+
+#----------------------Patterns for dictionary generation---------------------------------------------
+#  (Note that the actual fragments are in the ROOT package)
+#-----------------------------------------------------------------------------------------------------
+macro genreflex_cmd "$(ROOT_home)/bin/genreflex" \
+      target-win    "$(ROOT_home)/bin/genreflex.bat"
+
+# WARNING: all the macros below which use the tag ROOT_GE_5_15 could disappear at any time we move away from ROOT < 5.15
+
+macro gccxmloptsval "--gccxml-compiler $(cpp_name) " \
+  target-clang      "--gccxml-compiler gcc"
+
+macro_append gccxmloptsval "" \ 
+  host-x86_64&target-i686  "--gccxml-cxxflags -m32 " \
+  host-darwin&target-i386  "--gccxml-cxxflags -m32 " \
+  host-i686&target-x86_64  "--gccxml-cxxflags -m64 " \
+  host-darwin&target-x86_64  "--gccxml-cxxflags -m64 " \ 
+  target-gccmax            "--gccxml-cxxflags -D__STRICT_ANSI__ "
+
+macro gccxmlopts "--gccxmlopt='$(gccxmloptsval)'" \
+  target-win     '--gccxmlopt="$(gccxmloptsval)"'
+
+macro gccxml_cppflags "" \
+      target-win      " -DNDEBUG $(cppmacros) "
+
+pattern reflex_dictionary_src \
+  private ;\
+  document reflex_dictionary_generator <dictionary>Gen <headerfiles> dictionary=<dictionary> libdirname=lib ; \
+  macro <dictionary>_reflex_selection_file " <selectionfile> " ; \ 
+  macro <dictionary>_rootmap       $(<PACKAGE>ROOT)/$(tag)/<dictionary>Dict.rootmap \
+        <project>_with_installarea $(CMTINSTALLAREA)/$(tag)/lib/<project>Dict.rootmap ;\
+  macro <dictionary>_reflex_options " <options> $(gccxmlopts) --select=<selectionfile>  --gccxmlpath=$(GCCXML_home)/bin" ; \
+  end_private
+
+pattern reflex_dictionary_lib \
+  private ;\
+  library <dictionary>Dict -import=<imports> -import=Reflex -s=../$(tag)/dict/<dictionary> -x=classdef *.cpp ; \
+  macro <dictionary>Dict_dependencies "$(<package>_linker_library) <dictionary>Gen" ;\
+  macro <dictionary>Dict_shlibflags "$(libraryshr_linkopts) $(cmt_installarea_linkopts) $(<package>_linkopts) $(<dictionary>Dict_use_linkopts) " ;\
+  end_private
+
+pattern reflex_dictionary \
+  apply_pattern reflex_dictionary_src dictionary=<dictionary> headerfiles=<headerfiles> selectionfile=<selectionfile> options=<options> ;\
+  apply_pattern reflex_dictionary_lib dictionary=<dictionary> imports=<imports> 
+
+
+pattern reflex_test_dictionary \
+  private ;\
+  document reflex_dictionary_generator test_<dictionary>Gen -group=tests <headerfiles> dictionary=test_<dictionary> libdirname=tests/lib ; \
+  library test_<dictionary>Dict -group=tests -suffix=<dictionary> -import=Reflex -import=<imports> -s=../$(tag)/dict/test_<dictionary> *.cpp libdirname="tests/lib" ; \
+  macro test_<dictionary>_rootmap       $(<PACKAGE>ROOT)/$(tag)/<dictionary>Dict.rootmap \
+        <project>_with_installarea $(CMTINSTALLAREA)/$(tag)/tests/lib/<project>Dict.rootmap ;\
+  macro test_<dictionary>_reflex_selection_file " <selectionfile> " ; \ 
+  macro test_<dictionary>_reflex_options " <options> $(gccxmlopts) --select=<selectionfile> --gccxmlpath=$(GCCXML_home)/bin" ; \
+  macro test_<dictionary>Dict_dependencies "$(<package>_linker_library) test_<dictionary>Gen" ;\
+  macro test_<dictionary>Dict_shlibflags "$(libraryshr_linkopts) $(cmt_installarea_linkopts) $(test_<dictionary>Dict_use_linkopts) $(<package>_testlinkopts) " ;\
+  end_private

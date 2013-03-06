@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Benedikt Hegner benedikt.hegner@cern.ch</contact>
+    <description>is a general parsing module for Python</description>
+    <homepage>http://sourceforge.net/projects/pyparsing/</homepage>
+    <license>MIT</license>
+  </package>
+</lcg>

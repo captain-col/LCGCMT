@@ -1,0 +1,15 @@
+package valgrind
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro valgrind_native_version "$(valgrind_config_version)"
+macro valgrind_home "$(LCG_external)/valgrind/$(valgrind_native_version)/$(LCG_system)"
+
+include_path none
+
+path_remove  PATH "/valgrind/"
+path_append  PATH "$(valgrind_home)/bin"
+
+
+

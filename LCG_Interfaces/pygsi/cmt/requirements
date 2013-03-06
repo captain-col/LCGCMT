@@ -1,0 +1,20 @@
+package pygsi
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use Python            v* LCG_Interfaces
+
+macro pygsi_native_version "$(pygsi_config_version)_python$(Python_config_version_twodigit)"
+
+macro pygsi_home "$(LCG_external)/pygsi/$(pygsi_native_version)/$(LCG_system)"
+
+include_path none
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_man_path
+
+path_remove  PYTHONPATH   "/pygsi/" \
+              target-win   "\pygsi\"
+path_prepend PYTHONPATH "$(pygsi_home)/lib/python$(Python_config_version_twodigit)/site-packages"
+
+macro pygsi_export_paths "$(pygsi_home)"

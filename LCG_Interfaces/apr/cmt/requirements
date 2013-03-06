@@ -1,0 +1,13 @@
+package apr
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro apr_native_version "$(apr_config_version)"
+macro apr_home "$(LCG_external)/apr/$(apr_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(apr_home)/include
+      
+apply_pattern set_bin_and_lib_path
+

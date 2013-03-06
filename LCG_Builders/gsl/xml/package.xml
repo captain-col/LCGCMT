@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Math">
+    <contact>Lorenzo Moneta lorenzo.moneta@cern.ch</contact>
+    <description>A numerical library for C and C++</description>
+    <homepage>http://www.gnu.org/software/gsl/</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

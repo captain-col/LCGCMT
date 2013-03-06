@@ -1,0 +1,14 @@
+package xqilla
+
+use LCG_BuildPolicy v* LCG_Builders
+use XercesC         v* LCG_Interfaces
+macro xqilla_build_config_version "$(xqilla_config_version)"
+macro xqilla_build_native_version "$(XQilla_build_config_version)"
+set LCG_xercesc_config_version "$(XercesC_config_version)"
+set LCG_tarfilename "XQilla-$(xqilla_build_config_version).tar.gz"
+set LCG_XQilla_compile_options ""\
+    target-darwin&target-mac106&target-i386 "export CFLAGS=-m32 export CXXFLAGS=-m32"
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/xqilla/$(xqilla_build_config_version)
+set LCG_pkgdest_pkgname xqilla
+

@@ -1,0 +1,24 @@
+package soqt
+
+use LCG_Settings v*
+
+use Qt v* LCG_Interfaces -no_auto_imports
+use coin3d v* LCG_Interfaces -no_auto_imports
+
+use LCG_Configuration 
+
+macro soqt_native_version "$(soqt_config_version)_qt$(qt_config_version)_coin3d$(coin3d_config_version)"
+macro soqt_home           "$(LCG_external)/soqt/$(soqt_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(soqt_home)/include
+
+macro soqt_linkopts "-L$(soqt_home)/lib -lSoQt "
+macro soqt_soqt-config_script "$(soqt_home)/bin/soqt-config"
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_man_path
+
+macro soqt_export_paths "$(soqt_home)" 
+
+

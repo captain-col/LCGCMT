@@ -1,0 +1,18 @@
+package pyminuit
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python v* LCG_Interfaces
+use pyanalysis v* LCG_Interfaces
+use minuit v* LCG_Interfaces
+apply_pattern buildscripts_local 
+
+macro pyminuit_build_config_version "$(pyminuit_config_version)"
+macro pyminuit_build_native_version "$(pyminuit_build_config_version)"
+set LCG_tarfilename "pyminuit2-$(pyminuit_build_config_version).tar.gz"
+macro_append LCG_sourcefiles "pyminuit2.diff; ${LCG_tarfilename}"
+set_append LCG_pyminuit_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CXXFLAGS=-m32 export CFLAGS=-m32 export"
+set LCG_Python_config_version_twodigit "$(Python_config_version_twodigit)"
+set LCG_pkgdest_pkgname "pyanalysis"
+set LCG_pkgdest_vername "$(pyanalysis_config_version)_python${LCG_Python_config_version_twodigit}"

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Jason Pellerin jpellerin.nose@gmail.com</contact>
+    <description>testing for python</description>
+    <homepage>http://readthedocs.org/docs/nose</homepage>
+    <license>LGPL</license>
+  </package>
+</lcg>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>A loop generator for scanning Z-polyhedra</description>
+    <homepage>http://www.cloog.org/</homepage>
+    <license>LGPL</license>
+  </package>
+</lcg>

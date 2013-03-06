@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="SQL">
+    <contact></contact>
+    <description>Pythonic binding for the libxml2 and libxslt libraries</description>
+    <homepage>http://codespeak.net/lxml/</homepage>
+    <license></license>
+  </package>
+</lcg>

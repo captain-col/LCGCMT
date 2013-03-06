@@ -1,0 +1,5 @@
+package gfal
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro gfal_build_config_version "$(gfal_config_version)"

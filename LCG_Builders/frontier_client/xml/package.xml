@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Other" category="IO">
+    <contact>Andreas Pfeiffer andreas.pfeiffer@cern.ch</contact>
+    <description>a database access toolkit comprising web technologies</description>
+    <homepage>http://frontier.cern.ch</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

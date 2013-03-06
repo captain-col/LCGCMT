@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Simulation">
+    <contact>Gabriele Cosmo gabriele.cosmo@cern.ch</contact>
+    <description>a renderer, which reads 3D geometrical data and visualize them</description>
+    <homepage>http://www.gnu.org/software/gsl/</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

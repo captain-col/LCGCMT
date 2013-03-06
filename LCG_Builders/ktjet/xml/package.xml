@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Math" project="false">
+    <contact>Ivan Belyaev Ivan.Belyaev@cern.ch</contact>
+    <description>a C++ implementation of the Kt jet algorithm</description>
+    <homepage>http://projects.hepforge.org/ktjet/</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

@@ -1,0 +1,12 @@
+package sdl_ttf
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use sdl            v* LCG_Interfaces -no_auto_imports
+macro sdl_ttf_native_version "$(sdl_ttf_config_version)"
+
+macro sdl_ttf_home "$(LCG_external)/sdl/sdl$(sdl_native_version)_sdl_ttf$(sdl_ttf_native_version)$(LCG_system)"
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_ext_man_path mandir="share/man"
+

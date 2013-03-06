@@ -1,0 +1,32 @@
+package CASTOR
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro CASTOR_native_version "$(CASTOR_config_version)"
+
+macro CASTOR_name  "castor" \
+      target-win   "Castor"
+macro CASTOR_home  "$(LCG_external)/$(CASTOR_name)/$(CASTOR_native_version)/$(LCG_system)/usr" \
+      target-win   "C:\Program Files\CERN\$(CASTOR_name)"
+
+include_path none
+
+macro CASTOR_linkopts "-L$(CASTOR_home)/$(unixdirname) -lshift " \
+      target-win      "/LIBPATH:$(CASTOR_home)\lib shift.lib "
+
+# Rely on the version of libshift.so in /usr/lib or /usr/lib64 at run-time
+
+path_remove  LD_LIBRARY_PATH "/$(CASTOR_name)/"
+path_prepend LD_LIBRARY_PATH $(CASTOR_home)/$(unixdirname) \
+             target-win   "" \
+             noCASTOR     ""
+
+path_remove  PATH "/$(CASTOR_name)/"   target-win "\$(CASTOR_name)\"
+path_prepend PATH "$(CASTOR_home)/bin" target-win $(CASTOR_home)\$(unixdirname)
+              
+macro CASTOR_export_paths "$(CASTOR_home)/include $(CASTOR_home)/$(unixdirname)"
+
+path_append MANPATH "$(CASTOR_home)/share/man" target-win ""
+
+

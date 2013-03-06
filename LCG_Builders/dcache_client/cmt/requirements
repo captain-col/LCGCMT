@@ -1,0 +1,20 @@
+
+package dcache_client
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro dcache_client_build_config_version "$(dcache_client_config_version)"
+macro dcache_client_build_native_version "$(dcache_client_build_config_version)"
+
+set LCG_dcache_srm_version "$(dcache_srm_config_version)"
+set LCG_dcache_dcap_version "$(dcache_client_config_version)"
+set LCG_dcache_arch            "" \
+    target-slc5&target-x86_64 ".x86_64" \
+    target-slc5&target-i686   ".i386"   \
+    target-slc6&target-x86_64 ".el6.x86_64" \
+    target-slc6&target-i686   ".el6.i386" 
+
+macro LCG_sourcefiles "dcache-srmclient-$(LCG_dcache_srm_version).noarch.rpm;dcap-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;dcap-libs-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;dcap-devel-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;dcap-tunnel-gsi-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;dcap-tunnel-krb-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;dcap-tunnel-ssl-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;dcap-tunnel-telnet-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm" \
+    target-slc5 "dcache-srmclient-$(LCG_dcache_srm_version).noarch.rpm;dcap-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;dcap-tests-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;libdcap-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;libdcap-devel-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;libdcap-tunnel-telnet-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;libdcap-tunnel-krb-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;libdcap-tunnel-ssl-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm;libdcap-tunnel-gsi-$(LCG_dcache_dcap_version)$(LCG_dcache_arch).rpm"
+
+apply_pattern buildscripts_local

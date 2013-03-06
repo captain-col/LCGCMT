@@ -1,0 +1,24 @@
+package lapack
+
+use LCG_BuildPolicy v* LCG_Builders
+use blas v* LCG_Interfaces
+
+macro lapack_build_config_version "$(lapack_config_version)"
+macro lapack_build_native_version "$(lapack_build_config_version)"
+set LCG_tarfilename "lapack-$(lapack_build_config_version).tgz"
+
+set LCG_lapack_for "$(for) ${CFLAGS}"
+
+set LCG_lapack_static_opts        "-funroll-all-loops -O3 -fPIC"
+set LCG_lapack_static_blaslib     "$(blas_home)/lib/libBLAS.a"
+set LCG_lapack_static_archflags   "cr $(LCG_lapack_blaslib_static)"
+set LCG_lapack_static_lib         "libLAPACK.a"
+set LCG_lapack_static_noopt       "-fPIC"
+
+set LCG_lapack_opts               "-funroll-all-loops -O3 -fPIC"
+set LCG_lapack_blaslib            "-L$(blas_home)/lib -lBLAS"
+set LCG_lapack_archflags          "-shared $(LCG_lapack_blaslib) -o"
+set LCG_lapack_lib                "libLAPACK.so"
+set LCG_lapack_noopt              "-fPIC"
+
+apply_pattern buildscripts_local 

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Math">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>A library for the arithmetic of high precision complex numbers</description>
+    <homepage>http://www.multiprecision.org/</homepage>
+    <license>LGPL</license>
+  </package>
+</lcg>

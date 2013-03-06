@@ -1,0 +1,31 @@
+package dpm
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use lcgdmcommon       v* LCG_Interfaces
+use Python            v* LCG_Interfaces -no_auto_imports
+
+macro dpm_native_version "$(dpm_config_version)"
+macro dpm_path           "Grid/DPM"
+
+macro dpm_home "$(LCG_external)/$(dpm_path)/$(dpm_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(dpm_home)/include
+
+apply_pattern set_bin_path
+
+path_remove  LD_LIBRARY_PATH "/$(dpm_path)/"
+path_prepend LD_LIBRARY_PATH "$(dpm_home)/$(unixdirname)" \
+             target-win      "" \
+             noDPM           ""
+
+path_remove  PYTHONPATH "/$(dpm_path)/"
+path_prepend PYTHONPATH "$(dpm_home)/$(unixdirname)/python$(Python_config_version_twodigit)"
+
+apply_pattern set_man_path
+
+macro dpm_linkopts " -L$(dpm_home)/$(unixdirname) -ldpm " \
+      target-win   ""
+
+macro dpm_export_paths "$(dpm_home)/include $(dpm_home)/bin $(dpm_home)/$(unixdirname)"

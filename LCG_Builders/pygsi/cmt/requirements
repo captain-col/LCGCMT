@@ -1,0 +1,16 @@
+package pygsi
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python v* LCG_Interfaces
+use pytools v* LCG_Interfaces
+
+apply_pattern buildscripts_local 
+
+macro pygsi_build_config_version "$(pygsi_config_version)"
+macro pygsi_build_native_version "$(pygsi_build_config_version)_python$(Python_config_version_twodigit)"
+
+set INSTALLPATH "${LCG_destbindir}/lib/python$(Python_config_version_twodigit)/site-packages"
+path_append PYTHONPATH "${LCG_destbindir}/lib/python$(Python_config_version_twodigit)/site-packages"
+
+set LCG_tarfilename "${LCG_package}-${LCG_package_config_version}.tar.gz"

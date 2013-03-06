@@ -1,0 +1,13 @@
+package gsl
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro gsl_build_config_version "$(GSL_config_version)"
+set LCG_tarfilename "gsl-$(gsl_build_config_version).tar.gz"
+set LCG_gsl_config_opts "" \
+    target-x86_64       " -with-pic " \
+	target-slc          " -with-pic "
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/GSL/$(LCG_package_config_version)
+

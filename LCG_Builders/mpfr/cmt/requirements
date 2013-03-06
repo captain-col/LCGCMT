@@ -1,0 +1,14 @@
+package mpfr
+
+use LCG_BuildPolicy v* LCG_Builders
+use gmp             v* LCG_Interfaces
+
+macro mpfr_build_config_version "$(mpfr_config_version)"
+macro mpfr_build_native_version "$(mpfr_build_config_version)"
+
+set LCG_tarfilename "mpfr-$(mpfr_build_config_version).tar.gz"
+
+set LCG_mpfr_config_opts " --with-gmp=$(gmp_home) "
+
+apply_pattern buildscripts_local
+

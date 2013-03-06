@@ -1,0 +1,11 @@
+package readline
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python v* LCG_Interfaces
+
+apply_pattern buildscripts_local 
+
+macro readline_build_config_version "$(readline_config_version)"
+macro readline_build_native_version "$(readline_build_config_version)"
+set LCG_tarfilename "readline-$(readline_build_config_version).tar.gz"

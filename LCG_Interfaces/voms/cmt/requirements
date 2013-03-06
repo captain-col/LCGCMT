@@ -1,0 +1,12 @@
+package voms
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro voms_native_version "$(voms_config_version)"
+
+macro voms_home "$(LCG_external)/Grid/voms/$(voms_native_version)/$(LCG_system)"
+
+include_path none
+
+apply_pattern set_ext_bin_and_lib_path unixdir=$(unixdirname)

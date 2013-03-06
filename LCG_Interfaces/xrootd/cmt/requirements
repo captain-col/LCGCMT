@@ -1,0 +1,16 @@
+package xrootd
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro xrootd_native_version "$(xrootd_config_version)"
+macro xrootd_home "$(LCG_external)/xrootd/$(xrootd_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(xrootd_home)/include
+
+macro xrootd_linkopts "-L$(xrootd_home)/$(unixdirname) " \
+      target-mac      "-L$(xrootd_home)/lib "
+macro xrootd_export_paths " $(xrootd_home)/bin $(xrootd_home)/include $(xrootd_home)/$(unixdirname)   $(xrootd_home)/share" 
+
+apply_pattern set_ext_bin_and_lib_path unixdir=$(unixdirname)

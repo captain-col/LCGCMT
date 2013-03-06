@@ -1,0 +1,26 @@
+package QMtest
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use Python            v* LCG_Interfaces
+use CppUnit           v* LCG_Interfaces
+
+macro QMtest_native_version "$(QMtest_config_version)_python$(Python_config_version_twodigit)"
+
+macro QMtest_home $(LCG_external)/QMtest/$(QMtest_native_version)/$(LCG_system)
+
+set QM_home "$(QMtest_home)"
+
+include_path none
+
+path_remove  PATH         "/QMtest/" \
+             target-win   "\QMtest\" 
+path_prepend PATH         "" \
+             target-win   "$(QMtest_home)\Scripts;$(QMtest_home)\Lib\site-packages\pywin32_system32"
+path_prepend PATH         "$(QMtest_home)/bin" \
+             target-win   ""
+
+path_prepend PYTHONPATH   "$(QMtest_home)/lib/python$(Python_config_version_twodigit)/site-packages" \
+             target-win   "$(QMtest_home)\Lib\site-packages"
+
+macro QMtest_export_paths "$(QMtest_home)"

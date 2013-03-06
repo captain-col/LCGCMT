@@ -1,0 +1,15 @@
+package neurobayes
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro neurobayes_native_version "$(neurobayes_config_version)"
+
+macro neurobayes_home "$(LCG_external)/neurobayes/$(neurobayes_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(neurobayes_home)/include
+
+macro neurobayes_linkopts "-L$(neurobayes_home)/lib "
+      
+apply_pattern set_lib_path

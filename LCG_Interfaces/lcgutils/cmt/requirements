@@ -1,0 +1,23 @@
+package lcgutils
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use gfal              v* LCG_Interfaces
+use Python            v* LCG_Interfaces -no_auto_imports
+
+macro lcgutils_native_version "$(lcgutils_config_version)"
+
+macro lcgutils_home "$(LCG_external)/Grid/dm-util/$(lcgutils_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(lcgutils_home)/include
+
+apply_pattern set_ext_bin_and_lib_path unixdir=$(unixdirname)
+
+path_remove  PYTHONPATH "/dm-util/"
+path_prepend PYTHONPATH "$(lcgutils_home)/$(unixdirname)/python$(Python_config_version_twodigit):$(lcgutils_home)/$(unixdirname)/python$(Python_config_version_twodigit)/site-packages"
+
+apply_pattern set_ext_man_path mandir="share/man"
+
+macro lcgutils_linkopts " -L$(lcgutils_home)/$(unixdirname) -L$(gfal_home)/$(unixdirname) -L$(epel_home)/lib -L$(lfc_home)/$(unixdirname) -llcg_util " \
+      target-win        ""

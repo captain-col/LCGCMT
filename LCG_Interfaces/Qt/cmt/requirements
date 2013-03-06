@@ -1,0 +1,48 @@
+package Qt
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro Qt_native_version "$(qt_config_version)"
+
+macro Qt_home           "$(LCG_external)/qt/$(Qt_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(Qt_home)/include
+
+make_fragment moc -header=moc_header
+make_fragment uic -header=uic_header
+make_fragment rcc -header=rcc_header
+
+macro Qt_cflags    "-DQT_THREAD_SUPPORT"
+macro Qt_cppflags  "$(Qt_cflags)"
+macro Qt_linkopts  "-L$(Qt_home)/lib -lQtCore -lQtGui" \
+      target-win   ""
+
+macro Qt_name "qt"
+
+apply_pattern set_bin_and_lib_path
+
+set QTDIR "$(Qt_home)"
+
+macro Qt_export_paths "$(Qt_home)/lib $(Qt_home)/include" ATLAS ""
+
+macro Qt_header_ext h
+macro Qt_src_ext cpp
+
+pattern QtLibrary \
+	document moc <library>_moc -s=<src_dir> *.$(Qt_header_ext) ; \
+	document uic <library>_uic -s=<src_dir> *.ui ; \
+	document rcc <library>_rcc -s=<src_dir> *.qrc ; \
+	library <library> -import=Qt -no_static -s=<src_dir> *.$(Qt_src_ext) ; \
+	macro_append <library>_dependencies " <library>_moc <library>_rcc " ; \
+	macro_append <library>_moc_dependencies " <library>_uic " ; \
+	macro_append <package>_linkopts " -l<library> "
+
+pattern QtApplication \
+	document moc <application>_moc -s=<src_dir> *.$(Qt_header_ext) ; \
+	document uic <application>_uic -s=<src_dir> *.ui ; \
+	document rcc <application>_rcc -s=<src_dir> *.qrc ; \
+	application <application> -import=Qt -no_static -s=<src_dir> *.$(Qt_src_ext) ; \
+	macro_append <application>_dependencies " <application>_moc <application>_rcc " ; \
+	macro_append <application>_moc_dependencies " <application>_uic "

@@ -1,0 +1,13 @@
+package libpfm
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro libpfm_build_config_version "$(libpfm_config_version)"
+macro libpfm_build_native_version "$(libpfm_build_config_version)"
+set LCG_tarfilename "libpfm-$(libpfm_build_config_version).tar.gz"
+macro libpfm_config_opts ""
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/libpfm/$(libpfm_build_config_version)
+
+
+

@@ -1,0 +1,23 @@
+
+package mathlib
+
+use LCG_BuildPolicy v* LCG_Builders
+use GSL             v* LCG_Interfaces
+
+macro mathlib_build_config_version "$(mathlib_config_version)"
+macro mathlib_build_native_version "$(mathlib_build_config_version)_root$(ROOT_config_version)"
+
+set LCG_root_version "$(ROOT_config_version)"
+set LCG_tarfilename "mathlib-$(mathlib_build_config_version).tar.gz"
+macro LCG_sourcefiles "$(LCG_tarfilename); root_v$(LCG_root_version).source.tar.gz"
+
+set LCG_GSLROOT "$(GSL_home)"
+
+set LCG_ROOT_CONFIG_ARCH       "" \
+    target-linux&target-i686   "linux " \
+    target-linux&target-x86_64 "linuxx8664gcc " \
+    target-darwin              "macosx " \
+    target-win                 "win32 "
+
+apply_pattern buildscripts_local
+

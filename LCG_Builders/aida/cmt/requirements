@@ -1,0 +1,12 @@
+package aida
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro aida_build_config_version "$(AIDA_config_version)"
+macro aida_build_native_version "$(aida_build_config_version)"
+
+set LCG_tarfilename "aida-$(aida_build_config_version)-src.tar.gz"
+
+
+apply_pattern buildscripts_local 
+set LCG_pkgdest_pkgname "AIDA"

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Other" category="Other" project="false">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>a library for data compression</description>
+    <homepage>http://www.bzip.org/</homepage>
+    <license>BZ2LIB</license>
+  </package>
+</lcg>

@@ -1,0 +1,43 @@
+#-- start of install_includes_header ------
+
+#
+#  We want to install all header files that follow the standard convention
+#
+#    ../<package>
+#
+#  This document generator needs no parameterization, since it simply expects
+#  the standard convention.
+#
+
+installarea = ${CMTINSTALLAREA}
+install_python_dir = $(installarea)/$(tag)/python
+
+${CONSTITUENT} :: ${CONSTITUENT}install
+
+install :: ${CONSTITUENT}install
+
+${CONSTITUENT}install :: $(install_python_dir)
+	@if test ! "$(installarea)" = ""; then\
+	  echo "installation done"; \
+	fi
+
+$(install_python_dir) ::
+	@if test "$(installarea)" = ""; then \
+	  echo "Cannot install header files, no installation directory specified"; \
+	else \
+	  if test -d ../python; then \
+	    echo "Installing files from standard ../python to $(install_python_dir)"; \
+	    if test ! -d $(install_python_dir) ; then mkdir -p $(install_python_dir); fi; \
+	    if test ! -L $(install_python_dir); then \
+	      (cd ../python; \
+	       here=`pwd`; \
+               eval cp -r $${here}/. $(install_python_dir)); \
+            fi; \
+	  else \
+	    echo "No standard python area"; \
+	  fi; \
+	fi
+
+
+
+

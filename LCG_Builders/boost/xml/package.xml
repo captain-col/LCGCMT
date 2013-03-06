@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Tool">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>A collection of libraries for different purposes such as I/O, Math, meta programming, etc.</description>
+    <homepage>http://www.boost.org</homepage>
+    <license>BOOST</license>
+  </package>
+</lcg>

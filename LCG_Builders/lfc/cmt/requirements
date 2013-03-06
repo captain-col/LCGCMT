@@ -1,0 +1,5 @@
+package lfc
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro lfc_build_config_version "$(lfc_config_version)"

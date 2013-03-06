@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Simulation">
+    <contact>Gabriele Cosmo gabriele.cosmo@cern.ch</contact>
+    <description>a visual tool to investigate polygon intersection of shapes</description>
+    <homepage>http://geant4.kek.jp/~tanaka/DAWN/</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

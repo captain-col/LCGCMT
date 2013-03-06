@@ -1,0 +1,16 @@
+package pyparsing
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Python v* LCG_Interfaces
+
+apply_pattern buildscripts_local 
+
+macro pyparsing_build_config_version "$(pyparsing_config_version)"
+macro pyparsing_build_native_version "$(pyparsing_build_config_version)"
+set LCG_tarfilename "pyparsing-$(pyparsing_build_config_version).tar.gz"
+set LCG_Python_config_version_twodigit "$(Python_config_version_twodigit)"
+set LCG_pkgdest_vername "$(pygraphics_config_version)_python${LCG_Python_config_version_twodigit}"
+set LCG_pkgdest_pkgname "pygraphics"
+set_append LCG_pyparsing_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CFLAGS=-m32 export CXXFLAGS=-m32"

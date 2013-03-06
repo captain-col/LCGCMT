@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Ned Batchelder ned@nedbatchelder.com</contact>
+    <description>code coverage on Python</description>
+    <homepage>http://nedbatchelder.com/code/coverage/</homepage>
+    <license>BSD</license>
+  </package>
+</lcg>

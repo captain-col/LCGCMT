@@ -1,0 +1,11 @@
+package tcsh
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro tcsh_build_config_version "$(tcsh_config_version)"
+set LCG_tarfilename "tcsh-$(tcsh_build_config_version).tar.gz"
+macro LCG_tcsh_config_opts ""
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/tcsh/$(LCG_package_config_version)
+

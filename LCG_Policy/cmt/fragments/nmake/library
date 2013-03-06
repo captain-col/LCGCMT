@@ -1,0 +1,77 @@
+
+${CONSTITUENT}LIB :: $(${CONSTITUENT}shstamp)
+	@echo "------> ${CONSTITUENT} : library ok"
+
+$(${CONSTITUENT}arc) :: ${OBJS}
+	$(lib_echo) library
+	$(lib_silent) $(ar) /out:$(bin)${CONSTITUENT}.arc @<<
+${OBJS}
+<<
+	echo "" >$(${CONSTITUENT}stamp)
+
+$(${CONSTITUENT}shstamp) :: $(${CONSTITUENT}arc) requirements $(use_requirements) $(${CONSTITUENT}stamps)
+	$(make_shlib) $(tag) ${CONSTITUENT} $(cpplinkflags) $(${CONSTITUENT}_shlibflags)
+	if exist $(bin)${CONSTITUENT}.dll echo "" >$(${CONSTITUENT}shstamp)
+
+${CONSTITUENT}clean ::
+	$(cleanup_echo) #objects
+	$(cleanup_silent) for %f in (${OBJS}) do if exist %f del %f
+	$(cleanup_silent) if exist $(bin)${CONSTITUENT}.arc del $(bin)${CONSTITUENT}.arc
+	$(cleanup_silent) if exist $(bin)${CONSTITUENT}.lib del $(bin)${CONSTITUENT}.lib
+	$(cleanup_silent) if exist $(bin)${CONSTITUENT}.def del $(bin)${CONSTITUENT}.def
+	$(cleanup_silent) if exist $(bin)${CONSTITUENT}.exp del $(bin)${CONSTITUENT}.exp
+	$(cleanup_silent) if exist $(bin)${CONSTITUENT}.dll del $(bin)${CONSTITUENT}.dll
+!IF "$(_NMAKE_VER)" < "9.00"
+	$(cleanup_silent) if exist $(bin)${CONSTITUENT}.pdb del $(bin)${CONSTITUENT}.pdb
+!ELSE
+	$(cleanup_silent) if exist $(bin)${CONSTITUENT}.dll.manifest del $(bin)${CONSTITUENT}.dll.manifest
+!ENDIF
+
+install_dir = $(CMTINSTALLAREA)\$(tag)\$(libdirname)
+${CONSTITUENT}installlibname = $(library_prefix)${CONSTITUENT}$(library_suffix).lib
+${CONSTITUENT}installdllname = $(library_prefix)${CONSTITUENT}$(library_suffix).dll
+!IF "$(_NMAKE_VER)" < "9.00"
+${CONSTITUENT}installpdbname = $(library_prefix)${CONSTITUENT}$(library_suffix).pdb
+!ELSE
+${CONSTITUENT}installdllmanifestname = $(library_prefix)${CONSTITUENT}$(library_suffix).dll.manifest
+!ENDIF
+
+${CONSTITUENT} :: ${CONSTITUENT}install
+
+install :: ${CONSTITUENT}install
+
+!IF "$(_NMAKE_VER)" < "9.00"
+${CONSTITUENT}install :: $(${CONSTITUENT}shstamp) $(install_dir)\$(${CONSTITUENT}installlibname) $(install_dir)\$(${CONSTITUENT}installdllname) $(install_dir)\$(${CONSTITUENT}installpdbname)
+	@if NOT "$(CMTINSTALLAREA)"=="" echo "installation done"
+
+!ELSE
+
+${CONSTITUENT}install :: $(${CONSTITUENT}shstamp) $(install_dir)\$(${CONSTITUENT}installlibname) $(install_dir)\$(${CONSTITUENT}installdllname) $(install_dir)\$(${CONSTITUENT}installdllmanifestname)
+	@if NOT "$(CMTINSTALLAREA)"=="" echo "installation done"
+!ENDIF
+
+$(install_dir)\$(${CONSTITUENT}installlibname) :: $(bin)$(${CONSTITUENT}installlibname)
+	@if NOT "$(CMTINSTALLAREA)"=="" $(cmt_install_action) "$(PACKAGE_ROOT)\$(tag)" "$(${CONSTITUENT}installlibname)" "$(install_dir)"
+
+$(install_dir)\$(${CONSTITUENT}installdllname) :: $(bin)$(${CONSTITUENT}installdllname)
+	@if NOT "$(CMTINSTALLAREA)"=="" $(cmt_install_action) "$(PACKAGE_ROOT)\$(tag)" "$(${CONSTITUENT}installdllname)" "$(install_dir)"
+
+!IF "$(_NMAKE_VER)" < "9.00"
+$(install_dir)\$(${CONSTITUENT}installpdbname) :: $(bin)$(${CONSTITUENT}installpdbname)
+	@if NOT "$(CMTINSTALLAREA)"=="" $(cmt_install_action) "$(PACKAGE_ROOT)\$(tag)" "$(${CONSTITUENT}installpdbname)" "$(install_dir)"
+!ELSE
+$(install_dir)\$(${CONSTITUENT}installdllmanifestname) :: $(bin)$(${CONSTITUENT}installdllname)
+	@if NOT "$(CMTINSTALLAREA)"=="" $(cmt_install_action) "$(PACKAGE_ROOT)\$(tag)" "$(${CONSTITUENT}installdllmanifestname)" "$(install_dir)"
+!ENDIF
+
+${CONSTITUENT}clean :: ${CONSTITUENT}uninstall
+
+uninstall :: ${CONSTITUENT}uninstall
+
+${CONSTITUENT}uninstall ::
+	@if NOT "$(CMTINSTALLAREA)"=="" $(cmt_uninstall_action) "$(PACKAGE_ROOT)\$(tag)" "$(${CONSTITUENT}installlibname)" "$(install_dir)"
+	@if NOT "$(CMTINSTALLAREA)"=="" $(cmt_uninstall_action) "$(PACKAGE_ROOT)\$(tag)" "$(${CONSTITUENT}installdllname)" "$(install_dir)"
+
+
+
+

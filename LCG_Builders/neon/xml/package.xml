@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>a HTTP and WebDAV client library, with a C interface</description>
+    <homepage>http://www.webdav.org/neon/</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

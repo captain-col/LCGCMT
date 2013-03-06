@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Database" project="false">
+    <contact>Alexander Kalkhof alexander.kalkhof@cern.ch</contact>
+    <description>a SQL database management system</description>
+    <homepage>http://www.mysql.com/</homepage>
+    <license>MYSQL</license>
+  </package>
+</lcg>

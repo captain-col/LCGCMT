@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Simulation">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>An object oriented event record written in C++ for High Energy Physics Monte Carlo Generators</description>
+    <homepage>http://lcgapp.cern.ch/project/simu/HepMC/</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

@@ -1,0 +1,23 @@
+package CppUnit
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro CppUnit_native_version "$(CppUnit_config_version)"
+
+macro CppUnit_home $(LCG_external)/CppUnit/$(CppUnit_native_version)/$(LCG_system) 
+
+include_path none
+include_dirs $(CppUnit_home)/include
+
+macro CppUnit_linkopts "-L$(CppUnit_home)/lib -lcppunit -ldl" \
+      target-win       "/LIBPATH:$(CppUnit_home)/lib cppunit_dll.lib"
+
+apply_pattern set_lib_path
+apply_pattern set_ext_man_path mandir="share/man"
+
+macro CppUnit_export_paths "$(CppUnit_home)/include \
+$(CppUnit_home)/bin \
+$(CppUnit_home)/lib"
+
+ 

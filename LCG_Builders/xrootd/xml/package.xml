@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C++" category="IO" project="false">
+    <contact>Gerardo Ganis gerardo.ganis@cern.ch</contact>
+    <description>IO Library</description>
+    <homepage>http://xrootd.slac.stanford.edu/</homepage>
+    <license>custom</license>
+  </package>
+</lcg>

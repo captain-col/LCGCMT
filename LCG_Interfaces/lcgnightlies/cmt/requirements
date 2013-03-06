@@ -1,0 +1,12 @@
+package lcgnightlies
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro lcgnightlies_home "$(LCG_releases)/../nightlies/scripts" 
+
+path_remove  PATH "$(lcgnightlies_home)"
+path_prepend PATH "$(lcgnightlies_home)"
+
+path_remove  PYTHONPATH "$(lcgnightlies_home)"
+path_prepend PYTHONPATH "$(lcgnightlies_home)"

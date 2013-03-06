@@ -1,0 +1,1046 @@
+2009-10-24 Grigori Rybkine
+	* LCG_Settings/python/lcg_InstallArea.py: Add an option to create symlinks to
+	libraries, executables, or both file types
+	* LCG_Settings/cmt/requirements: Making use of the added option, incorporate
+	pattern symlink_extern into both set_ext_lib_path and set_bin_path patterns
+	so that "cmt br make" run in LCG_Release/cmt creates the same symbolic links as
+	"cmt do python-build"
+
+2009-10-24 Grigori Rybkine
+	* LCG_Release/python/lcg_InstallArea.py: Move to LCG_Settings/python so
+	that it can be used by any package in LCG_Interfaces
+	* LCG_Settings/python/lcg_InstallArea.py: Add the functionality to allow
+	for its use for separate packages from LCG_Interfaces no matter whether the
+	packages are used within the LCGCMT project or elsewhere
+	* LCG_Settings/cmt/requirements: Making use of the added functionality of
+	lcg_InstallArea.py, introduce pattern symlink_extern to create symbolic links to
+	external libraries and executables in InstallArea, replace
+	declare_installed_libraries in set_ext_lib_path with the new pattern.
+	* LCG_Release/cmt/requirements: Use lcg_InstallArea.py from the new location,
+	do not run it here for for the default target (all)
+	NOTE: Now "cmt br make" run in LCG_Release/cmt creates the same symbolic links as
+	"cmt do python-build" except for the executables from the packages
+	4suite, GCCXML, pyxml, pyqt, scons because they apply_pattern set_bin_path
+	which does not apply pattern symlink_extern. This should be fixed when patterns
+	set_ext_lib_path and set_bin_path are merged
+	* LCG_Interfaces/cx_oracle/cmt/requirements: Add apply_pattern symlink_extern
+	
+2008-10-04 David Quarrie
+	* LCG_Settings/scripts/list_files.sh: Remove debug output
+
+2008-05-13 David Quarrie
+	* LCG_Settings: Add ATLAS Mac Leopard tags
+
+2008-05-13 David Quarrie
+	* LCG_Interfaces/Boost: Setup CMT dependency optimization macros
+	* LCG_Interfaces/ROOT: Setup CMT dependency optimization macros
+
+2008-04-30 David Quarrie
+	* LCG_Interfaces: Tweak several of the glue packages with ATLAS-specific overrides (protected by an ATLAS CMT tag) and to add missing directories for the export_paths macros
+
+2007-11-06 Stefan Roiser
+	* LCG_Settings, LCG_Interfaces: setting man pathes in several interface packages (thx Hubert Degaudenzi)
+
+2007-10-29 Stefan Roiser
+	* LCG_Configuration: move to ROOT 5.14.00i
+	* LCG_Interfaces/Boost: add info for serialization module
+
+2007-10-26 Stefan Roiser
+	* LCG_Interfaces: add interface packages for ktjet and fastjet (thx Vanya Belyaev)
+
+2007-09-19 Piotr Kolet
+	* LCG_Configuration: moving to LCG 53d, with COOL_2_2_1, SEAL_1_9_3 and RELAX_1_1_10
+
+2007-09-12 David Quarrie
+	* LCG_Settings: Drop support for slc3_ia32_gcc323_dbg by mapping it onto slc3_ia32_gcc323  
+
+2007-09-12 Stefan Roiser
+	* LCG_Configuration: move to gccml 0.6.0_patch4 and clhep 1.9.3.1
+
+2007-09-08 Stefan Roiser
+	* LCG_Configuration: preparation for LCG 53b i.e. ROOT 5.14.00h, POOL 2_6_1
+
+2007-09-06 David Quarrie
+	* LCG_Interfaces/POOL/cmt/requirements: Extend the POOL_Collections_libset to include liblcg_CollectionBase.so
+
+2007-09-04 David Quarrie
+	* LCG_Release: Add dependency against dpm
+	* LCG_Interfaces/lfc/cmt/requirements: Cleanup slc4-amd64 handling and export_paths
+	* LCG_Interfaces/lcgdmcommon/cmt/requirements: Add export_paths
+	* LCG_Interfaces/globus/cmt/requirements: Add export_paths
+	* LCG_Interfaces/gfal/cmt/requirements: Add export_paths
+	* LCG_Interfaces/dpm/cmt/requirements: Cleanup and add export_paths
+	* LCG_Interfaces/dcache_client/cmt/requirements: Remove dcap unless needed
+	* LCG_Interfaces/CASTOR/cmt/requirements: Add noCASTOR tag
+
+2007-08-22 Stefan Roiser, Chris Jones, Sajan Easo
+	* added new LCG_Interface package for fftw provided by Chris Jones and Sajan Easo
+
+2007-08-21 Stefan Roiser
+	* LCG_Configuration: move to cgsi_gsoap 1.1.17 (including two gsoap libs 2.6 and 2.7)
+
+2007-08-20 Stefan Roiser
+	* LCG_Configuration: move to gfal 1.10.0 and lcgutils 1.6.0
+
+2007-08-16 Stefan Roiser
+	* LCG_Interfaces/Python: New value for Python_home on osx/ia32
+          due to framwork build of Python on this platform. Setting of
+          DYLD_LIBRARY_PATH
+
+2007-07-30 David Quarrie
+	* LCG_Settings: Add support for ATLAS-specific slc4/gcc41 tags
+	* LCG_Release: Update build_links.sh to handle MacOSX & slc4/gcc41
+
+2007-07-09 Stefan Roiser
+	* LCG_Configuration: Move of project versions for LCG_53
+	  COOL  -> 2_2_0
+	  CORAL -> 1_9_0
+	  POOL  -> 2_6_0
+	  ROOT  -> 5.14.00g
+
+2007-07-05 Stefan Roiser
+	* LCG_Configuration: move to oracle version 10.2.0.3-full which
+ 	  contains the extra character-set library
+
+2007-07-04 Stefan Roiser
+	* LCG_Interfaces added/changed Grid packages
+	 * new: dpm globus lcgdmcommon lcginfosites lcgutils vomsapic
+         * changes: cgsigsoap gfal lfc
+        * Versions changes
+          cgsigsoap 1.1.15
+          lcgdmcommon 1.6.5
+          dpm 1.6.5
+          gfal 1.9.2
+          globus 4.0.3-VDT-1.6.0
+          lcginfosites 2.6.2
+          lfc 1.6.5
+          vomsapic 1.7.16
+
+2007-07-03 Stefan Roiser
+	- from Witek
+	* LCG_Generators/lhapdf: fix typo in path
+
+2007-07-02 Stefan Roiser
+	* LCG_Configuration: move to new dcache_client 1.7.0.35
+	*                    move to frontier_client 2.7.4
+	*                    move to sqlite 3.4.0
+	*                    set oracle version for Darwin to "10.1.0.3-1"
+
+2007-06-28 Stefan Roiser
+	* LCG_Settings: removed internal guessing of cmt of platforms (e.g. slc45 -> slc4)
+	                added tags platf-arch -> plat arch (e.g. slc4-ia32 -> slc4 ia32)
+
+2007-05-31 Stefan Roiser
+	* LCG_Configuration: move to RELAX_1_1_9
+	* LCG_Settings: add slcX tags for the relevant CMTCONFIG tags
+	* LCG_Policy: add changes by Marco Cl. for rootmap merge to port to windows
+
+2007-05-30 Stefan Roiser
+	* LCG_Settings: add tag slc45 to slc4
+	* LCG_Interfaces/Reflex,ROOT: invert tag ROOT_LT_5_15 to ROOT_GE_5_15
+
+2007-05-29 Stefan Roiser
+	* LCG_Configuration: move to ROOT 5.14.00f
+
+2007-05-23 David Quarrie
+	* cmt/project.cmt: Setup "with_installarea" if the ATLAS tag is set
+
+2007-05-23 Stefan Roiser
+	* LCG_Release: added use gfal (req by David)
+
+2007-05-15 Pere Mato
+	* LCG_Policy: Added merger pyhton script for rootmap files
+	* LCG_Interfaces/ROOT:Changed reflex_dictionary_generator fragment(s) to merge rootmap files as a different make step
+	  using the python command in LCG_Policy
+	* LCG_Intercaces/Reflex: Adapted reflex_dictionary pattern to make use of fragment in LCG_Policy
+
+2007-05-07 Stefan Roiser
+	* LCG_Configuration: move to POOL_2_5_3
+
+2007-04-30 Stefan Roiser
+	* LCG_Interfaces/bzlib: adding interface package (replacing bz2lib which is not allowed because of digit in the name)
+	* pyLCG: adding new package 
+	* pyCMT: adding new package (aka CMTpy)
+	* LCG_Interfaces/pyqt: added new interface package
+
+2007-04-17 Stefan Roiser
+	* LCG_Configuration: move to oracle 10.2.0.3, dcache_client 1.7.0.31, frontier_client 2.7.2
+     
+2007-04-04 Stefan Roiser
+	* Fixes for slc3_ia32_gcc323_gcov tag (thx Marco Cl.)
+
+2007-03-29 Stefan Roiser
+	* LCG_Interfaces/CORAL: setup PYTHONPATH to lib and python dir
+
+2007-03-28 Stefan Roiser
+	* LCG_Interfaces/HepPDT: added HepPID to linkopts (found by S. Binet)
+	* LCG_Configuration: move to COOL 2.1.0
+
+2007-03-21 Stefan Roiser
+	* LCG_Policy: Change to lcg_module_register fragment. Install example / test modules 
+                      $(tag)/tests|examples/lib/modules dir instead of the $(tag)/lib/modules
+
+2007-03-15 Stefan Roiser
+	* LCG_Settings: remove duplicate tags for slc4_amd64_gcc34(_dbg)
+
+2007-03-13 Stefan Roiser
+	* LCG_Interfaces/Xerces: add xerces-depdom to the linkopts (thx Ioannis)
+
+2007-03-12 Stefan Roiser
+	* LCG_Configuration: move to LCGCMT_50b
+
+2007-03-07 Stefan Roiser
+	* LCG_Interfaces/Reflex: follow up of a change of the genreflex wrapper script in ROOT, removing escape sequences
+
+2007-03-05 Stefan Roiser
+	* LCG_Configuration: added package name and "include_dirs none" to avoid include of src (found by Markus)
+	* LCG_Policy: new patterns for library structuring (from Marco Cl.) 
+
+2007-02-28 Stefan Roiser
+	* LCG_Interfaces/COOL: add CoolKernel, conditional include of CoolApplication (from Marco Cl.)
+	* LCG_Interfaces/Root: add RIO to ROOT linkopts (from Hubert)
+
+2007-02-27: Stefan Roiser
+	* LCG_Interfaces/SEAL: make use of rx platform dependent (provided by Florence)
+	* LCG_Interfaces/lfc: prepend of PYTHONPATH instead of append (found by Philippe Charpentier)
+
+2007-02-22: Stefan Roiser
+	* LCG_Interfaces/oracle, mysql: add apply_pattern set_bin_path to use their bin dirs
+
+2007-02-21: Stefan Roiser
+	* LCG_Interfaces/Reflex: change libprefix to library_prefix for reflex dictinary patterns (Thx Ioannis)
+
+2007-02-21: Pere Mato
+        * LCG_Policy: Added -m32 flag for compilation and linking
+
+2007-02-20: Stefan Roiser
+        * Reflex: changed pattern reflex_test_dictionary
+
+2007-02-19: Andreas Pfeiffer
+        * LCG_Policy: added lib directory to pythonpath to pick up shared libs as well
+	* LCG_Configuration: updated to latest root dev release
+
+2007-02-06: Andreas Pfeiffer
+        * LCG_Interfaces/COOL: changed macro_append to _prepend for PYTHONPATH
+        * LCG_Interfaces/lfc: added statement for python (thanks to Hubert D.)
+
+2007-02-02: Pere Mato
+        * LCG_Policy: added a bunch of "cmtpath_pattern path_prepend ..." to setup the environment for 
+          developers of AA packages.  
+
+2007-01-29: Andreas Pfeiffer
+	* updated SEAL to version 1.9.2
+	retagged as LCG_50
+
+2007-01-24: Andreas Pfeiffer
+	* mysql: changed to use threadsafe version of lib for linux (req by Rado)
+	retagged as LCGCMT_preview
+
+2007-01-24 Pere Mato
+	* QMtest: updated PATH environment for windows
+	* LCG_Policy: added pattern  "lcg_shared_library_settings" to be used by the other library patterns.
+	  It allows to fine control the "library" statement with extra options like "-import"
+	  Added macro ppcmd "-I"
+	* nmake/library: changed fragment to take into account the $(libdirname)
+
+2007-01-23 Pere Mato
+	* rx: undone the exporting of paths (was not really working on windows)
+	* SEAL: added "use -no_auto_imports" of rx to export this dependency properly
+	* LCG_policy: reverted pattern lcg_unit_test_application (was breaking SEAL) 
+	 retagged as LCGCMT_preview
+
+2007-01-19 Andreas Pfeiffer
+	* LCG_Configuration: updated for latest version of frontier_client (2.7.0)
+	* rx: added exporting of paths
+	* SEAL: added "use" of rx to export this dependency properly 
+	retagged as LCGCMT_preview
+	
+2007-01-17 Andreas Pfeiffer
+	* LCG_Configuration: updated for latest bug fix version of root (5.14.00b)
+	* lfc: added linkopts
+	retagged as LCG_49
+
+2007-01-10 David Quarrie
+	* LCG_Interfaces/CASTOR: Add support for running in 32-bit mode on a 64-bit
+	SLC4 machine
+
+2007-01-12 Andreas Pfeiffer
+	* LCG_Configuration: updated for latest bug fix version of root (5.14.00a),
+	fixed version for dcache_client (now 1.7.0.16 (release)), removed redundant
+	pcre entry (PCRE is needed)
+	* retagged as LCG_49
+	
+2007-01-10 David Quarrie
+	* LCG_Interfaces/Boost: Add trailing spaces to Darwin macro definitions
+
+2006-12-20 Andreas Pfeiffer
+	* LCG_Configuration: updated for latest versions of POOL (2.4.9) and Relax (1.1.6)
+	* retagged as LCG_49
+	
+2006-12-20 Andreas Pfeiffer
+	* LCG_GeneratorsInterfaces: added new files from Witek
+
+2006-12-19 Pere Mato
+        * LCG_Interfaces/ROOT: added $(pp_cppflags) to reflex_dictionary pattern
+
+2006-12-15 Andreas Pfeiffer
+	* LCG_Policy: added DavidQs flags for shared libs on Darwin, changed "cp -a "
+	in install_includes_header to tar-pipe as -a is an unknown option on Mac
+	re-tagged LCGCMT_preview
+
+2006-12-15 Andreas Pfeiffer
+	* LCG_Configuration: updated versions for LCG_49 tag
+	tagged LCG_49
+
+2006-12-12 David Quarrie
+	* LCG_Interfaces/Boost: Fix typo in Darwin Boost_linkopts_program_options definition
+	
+2006-12-07 Andreas Pfeiffer
+	* LCG_Interfaces/Boost, LCG_Configuration: moved Boost_file_version to 
+	Configuration to allow builds on windows
+	* LCG_Interfaces/oracle: replaced apply_pattern with more specifc version 
+	Thanks to Marco Clemencic for finding these!
+
+2006-12-06 Andreas Pfeiffer
+	* LCG_Policy removed make_header framgment, no longer special (also from requirements)
+	fixed brackets in application for nmake.
+	
+2006-12-05 Andreas Pfeiffer
+	* added new interfaces for MCGenerators
+	
+2006-11-23 Andreas Pfeiffer
+	* LCG_Interfaces/globusrls fixed include path (added missing gcc32pthr/ )
+	
+2006-11-23 David Quarrie
+	* LCG_Settings: Add initial attempt at support for ATLAS CMTCONFIG tags
+	
+2006-11-22 Andreas Pfeiffer
+	* LCG_Policy: added declaration of make_fragment for install_includes_header
+	(to change symlinks to copies)
+	
+2006-11-20 Andreas Pfeiffer
+	* LCG_Interfaces/CORAL: fixed wrong name of libs (no _coral_ in name)
+	* LCG_Interfaces/mysqlpp: added include path
+	* LCG_Interfaces/globusrls: added include path
+
+2006-11-17 Andreas Pfeiffer
+	* LCG_Policy: added the fixes from Marco Clemencic concerning tests on Windows
+	(move tests now to tests/(bin|lib)), trying to install includes now with "cp -a"
+	instead of "ln -s" (copied also the nmake equivalents from CMT main)
+	added -single_module for Darwin
+	
+2006-11-16 Andreas Pfeiffer
+	* LCG_Interfaces/CORAL: added RelationalAccess to libs (recommended by Ioannis)
+	* LCG_Interfaces/ROOT: fixed wrong case in Root_base macro
+	* LCG_Policy: added patterns for unit-tests
+	
+2006-11-15 Andreas Pfeiffer
+	* LCG_policy: needed to add lib/bin-dirname to policy as cmt does
+	not leave it empty if not set. Added the application fragment to
+	incorporate the bindirname.
+	* LCG_Settings: some cosmetics (to see more clearly what tags exist)
+	
+2006-11-14 Andreas Pfeiffer
+	* LCG_Policy: added lib/bin-dirname for applications and libs to 
+	allow the tests to go in tests/lib and tests/bin as required by
+	the LCG AA policies
+	
+2006-11-10 David Quarrie
+	* LCG_Interfaces/CASTOR: Setup explicit LD_LIBRARY_PATH entries
+	unless the "systemCASTOR" tag is set, in which case the system
+	default in /usr/lib is used.
+
+2006-11-03 Andreas Pfeiffer
+	* root config version now to only number (not with ROOT_ prefix)
+
+	
+2006-11-02 Andreas Pfeiffer
+	* removed use of POOL relational in cool 
+	retagged LCG_48 (on LCG_48-branch)
+	
+2006-11-02 David Quarrie
+	* LCG_Interfaces/CASTOR: Don't setup symlinks or LD_LIBRARY_PATH
+	entries for run-time. Thus the version of libshift.so used at
+	run-time is taken from /usr/lib (or /usr/lib64)
+
+2006-11-01 Andreas Pfeiffer
+	* updated HepMC back to 1.26.02 after discussion with Pere and Witek.
+	retagged LCG_48 (on LCG_48-branch)
+	
+2006-10-31 Andreas Pfeiffer
+	* changed  LOCAL&Linux to LOCAL&Unix  to also allow this for mac 
+	thanks to Stefan Roiser for suggesting this
+	
+2006-10-30 Grigori Rybkine <Grigori.Rybkine@cern.ch>
+        * LCG_Interfaces/Expat/cmt: Add a missing header file to the
+	Expat_export_paths macro
+        * LCG_Interfaces/CORAL/cmt: Remove non-existent $(CORAL_home)/include
+	from the CORAL_export_paths macro
+        * LCG_Interfaces/SEAL/cmt: Remove non-existent $(SEAL_base)/src/Scripting
+	from the SEAL_export_paths macro
+	* LCG_Release/cmt/build_links.sh: Remove obsolete CMTCONFIG settings
+	for SLC4
+
+2006-10-30 Andreas Pfeiffer
+	* added LCG_Configuration for externals.
+	
+2006-10-25 Andreas Pfeiffer
+	* added LCG_Configuration with all the versions. Modified the project
+	requirements files (cool, coral, pool, relax, root, seal) to use this.
+	Removed -shared from default (linux) cppflags, added this to the shlib part
+	added -ftemplate-depth-512 to Darwin cppflags 
+	Added osx104_*_gcc401 tags 
+
+2006-10-23 Andreas Pfeiffer
+	* updated root to 5.13.04b and castor to 2.1.1.4,
+	prepared for LCG_47d, retagged 48
+	
+2006-10-23 Andreas Pfeiffer
+	* updated POOL to version 2.4.7b
+	prepared for LCG_47c
+	
+2006-10-18 Andreas Pfeiffer
+	* updated macro for remove to use [.][.] instead of .. in LCG_Policy/cmt/requirements 
+	retagged as LCG_48 
+	
+2006-10-18 Andreas Pfeiffer
+	* updated root to bug fix versinon 5.13.04a, retagged as LCG_47b and LCG_48
+
+2006-10-17 Andreas Pfeiffer
+	* updated to proposed values for new releases. tagged as LCG_48
+
+2006-10-16 Andreas Pfeiffer
+	* updated ROOT/Reflex to 5.13.04, RELAX to 1.1.4, cool, pool as
+	rebuild releases. tagged as LCG_47b
+
+2006-10-16 Andreas Pfeiffer
+	* updated RELAX to 1.1.3, tagged as LCG_47a
+
+2006-10-10  Florence RANJARD  <ranjard@pcphsft13.cern.ch>
+
+	* LCG_Interfaces/HepPDT/cmt/requirements: replace HEPPDT with HepPDT
+
+	* LCG_Settings/cmt/requirements: introduce a new pattern clean_path
+	  this pattern is called in set_ext_lib_path instead of the 
+	  path_remove statments.
+	  the set_bin_path pattern does not contain any path_remove statments
+          most of the interface packages call only set_lib_path so for them 
+	  it works as before.
+	  packages which apply set_lib_path and set_bin_path MUST 
+	  apply set_lib_path before set_bin_path to clean the paths first
+	  packages which only apply set_bin_path MUST apply clean_path before
+	  set_bin_path to clean the paths first
+	  Those changes have been made in:
+	  GCCXML,scons,sqlite - apply clean_path
+          HippoDraw,POOL,ROOT,SEAL,XercesC - apply set_lib_path before set_bin_path
+
+	* LCG_Release/cmt/requirements: set macros base, release, platform for Linux only
+	  dirname and basemame are not known on WIN32
+	
+2006-10-02 Andreas Pfeiffer
+	* removed PI, unixodbc, myodbc and dcap as these are no longer used
+	
+2006-09-22 Andreas Pfeiffer
+	* updated to root 5.13.02, castor 2.1.1-1, frontier_client 2.6.0_cms, 
+	* hepmc 1.27.02, dcache 1.7.0.7 (pre!), 
+	* pool 2.4.7 and coral 1.6.0, cool 1.3.3a
+	* clhep stays as 1.9.2.3 (w/o -aa) as the corresponding libs are not used anyway
+	* tagged as LCG_47
+
+2006-09-22 Andreas Pfeiffer
+	* updated to cool 1.3.3
+	* tagged as LCG_46f
+	
+2006-09-05 Pere Mato
+        * move to new LFC version 1.5.8
+        * move to new Castor version 2.1.0-8
+        * Not tagged yet !!!
+
+2006-09-04 David Quarrie <David.Quarrie@cern.ch>
+
+	* LCG_Settings/cmt/requirements: Setup new SLC4 compiler tags
+	* LCG_Intefaces/CLHEP/cmt/requiremens: replace macro_prepend by
+	macro_append for optional linkops
+
+2006-08-24 Andreas Pfeiffer & Stefan Roiser
+	* move to new ROOT version 5.13.00
+	* tagged as LCG_47
+	
+2006-08-24 Andreas Pfeiffer
+	* updated to root 5.12.00c, castor 2.1.0-7, frontier_client 2.5.1_cms, 
+	* pool 2.4.6 and coral 1.5.3
+	* tagged as LCG_46e
+	
+2006-08-15 Andreas Pfeiffer
+	* fixes for oracle and additional cx_oracle from Markus Frank
+	
+2006-08-07 Andreas Pfeiffer
+        * Updated root to 5.12.00a
+          Tagged as LCG_46c
+
+2006-07-26 David Quarrie <David.Quarrie@cern.ch>
+
+	* LCG_Release/cmt/requirements: Add dcap & dcache_client; remove dCache
+
+2006-07-26 David Quarrie <David.Quarrie@cern.ch>
+	* LCG_Settings/cmt/requirements: Change set_ext_lib_path pattern to
+	take two arguments (winlib, unixlib). Change the set_lib_path
+	pattern to supply these two arguments defaulted to "lib". Invert 
+	the sequence of the slc4-ia32&gcc-3.4.5 and slc4-amd64&gcc-3.4.5
+	tags in the setup of LCG_system to support running 32-bit
+	applications on a 64-bit machine
+	* LCG_Interfaces/CASTOR/cmt/requirements: Use lib64 as the
+	location of the 64-bit liraries instead of lib
+	* LCG_Interfaces/Expat/cmt/requirements: Supply required unixlib
+	argument to set_ext_lib_path pattern
+	* LCG_Interfaces/zlib/cmt/requirements: Supply required unixlib
+	argument to set_ext_lib_path pattern
+
+2006-07-24 Pere Mato
+        * Changed version of Castor to 2.1.0-5 (requested by Castor team)
+          Tagged as LCG_46b
+
+2006-07-20  Florence RANJARD  <ranjard@pcphsft13.cern.ch>
+	* keep path /globus/ in globusrls, it is required by GRID software
+
+2006-07-19 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* removed dCache and added dcap and dcache_client from Hubert
+	tagged LCG_46a
+
+2006-07-19  Florence RANJARD  <ranjard@pcphsft13.cern.ch>
+
+	* LCG_Interfaces/gfal/cmt/requirements: gfal does exist on WIN32
+
+	* LCG_Settings/cmt/requirements: replace path_append with path_prepend in patterns set_lib_path and set_bin_path
+
+2006-07-13 Pere Mato
+        * LCG_Interfaces/cernlib/cmt: changed to use packlib_noshift and removed shift library from the 
+          linkopts. Changes tested by Grigori Rybkine in the context of Gaudi/HbookCnv
+
+2006-07-12 Florence Ranjard
+	* LCG_Settings/cmt: remove package_namr global pattern
+	                    add a path_remove "/<package>/" in set_lib_path 
+	                    and set_bin_path. 
+		
+2006-07-12 Florence Ranjard
+        * LCG_Settings/cmt: fix package_name pattern
+	
+2006-07-11 Pere Mato
+    * updated GSL interface for windows using DLL
+    
+2006-07-11 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated root to 5.12.00, relax to 1.1.2, pool to 2.4.5, coral to 1.5.1 
+	and cool to 1.3.2c for LCG_46. Tagged LCG_46.
+
+2006-07-10 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated head version for Castor to 2.1.0.4
+
+2006-07-07 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated head versions to pre-versions for LCG_46, added
+	new GFAL package from Hubert 
+
+2006-06-23 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated various versions of packages
+
+2006-06-15 David Quarrie <David.Quarrie@cern.ch>	
+	* LCG_Interfaces/dCache/cmt: Adopt set_lib_path pattern
+	
+2006-06-15 David Quarrie <David.Quarrie@cern.ch>
+	* LCG_Settings/cmt: Introduce set_ext_lib_path patern to deal with non-default
+	WIN32 library locations. Modify set_lib_path to use set_ext_lib_path
+	* LCG_Interfaces/<package>/cmt: Apply set_ext_lib_path pattern to packages
+	CASTOR, Expat and zlib
+	
+2006-06-12 Florence Ranjard <florence.ranjard@cern.ch>
+	* LCG_Settings/cmt: modify the pattern declare_external_libraries to introduce
+	  private and end_private
+	  apply_pattern declare_external_libraries in pattern set_lib_path
+	
+2006-06-09 Florence Ranjard <florence.ranjard@cern.ch>
+        * LCG_Releases/cmt : call the installib setup_script to fill the 
+	  InstallArea on Unix. this is commented for the moment.
+	* LCG_Releases/cmt : add installarea.csh, .sh, .bat scripts
+	  which call lcg_InstallArea.py
+	* LCG_Releases/python : add lcg_InstallArea.py which creates an 
+	  InstallArea for /lib and /bin for the packages which apply 
+	  set_lib_path and/or set_bin_path pattern
+	* LCG_Settings/cmt : add the following patterns
+	  - declare_external_libraries
+	  - package_name (global)
+	  - set_lib_path
+	  - set_bin_path
+	  set_lib_path and set_bin_path patterns require CMT > v1r18p20060505
+	  (CMT/HEAD from June 05 2006) to work with installarea
+	* LCG_Settings/scripts : add list_files.sh which returns a list of 
+	  files with a given extension in a given directory
+        * LCG_Interfaces/<package>/cmt: the following packages apply 
+	  set_lib_path or/and set_bin_path
+	  XercesC, uuid, unixodbc, sqlite, SEAL, ROOT, RELAX, Qt, POOL, PCRE,
+	  oracle, mysqlpp,mysql,myodbc, lfc, HippoDraw, HepPDT, HepMC, GSL,
+	  Frontier_Client, EDGRLS, CppUnit, CORAL, COOL, CLHEP, cgsigsoap, Boost
+	
+2006-05-31 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated castor requirements file according to changes from DavidQ
+	* re-tagged as LCG_44
+	
+2006-05-28 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* fixed cool version to 1.3.2a (bug reported by Marco)
+	* re-tagged as LCG_44
+	
+2006-05-19 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated cernlib to 2005 version to add SLC4
+	* re-tagged as LCG_44
+	
+2006-05-11 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated COOL to 1.3.1a
+	* re-tagged as LCG_44
+	
+2006-05-04 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated root to 5.11.02, RELAX 1.1.1, POOL to 2.4.2, COOL to 1.3.1b
+	* tagged as LCG_44
+	
+2006-05-04 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated CORAL to 1.4.2, COOL to 1.3.1
+	* tagged as LCG_43a
+	
+2006-04-07 Pere Mato
+	* LCG_Interfaces/HepMC: changes provided by Florence
+
+2006-04-04 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated pool to 2.4.1
+	* re-tagged LCG_43
+	
+2006-04-03 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated relax to 1.1.0
+	* re-tagged LCG_43
+	
+2006-03-31 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated versions for root (5.10.00c), coral (1.4.0), pool (2.5.0) and cool (1.3.0)
+	* tagged LCG_43
+	
+2006-03-31 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated versions for root (5.10.00c)
+	* tagged LCG_42b
+
+2006-03-02 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated versions for root (5.10.00b), relax (1.0.1), coral (1.3.1)
+	* tagged LCG_42a
+
+2006-03-02 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* udpated versions for pool and coral
+	* retagged LCG_42
+
+2006-03-02 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>	
+	* removed setup.* in LCG_release/cmt/ according to mail from Christian/Vincent
+	* update for new round of releases 
+	* tagged LCG_42
+
+2006-02-24 Pere Mato
+	* LCG_Interfaces/Reflex: replaced --capablities for --rootmap option in dictionaty pattern
+	* LCG_Settings: added new tags for SCL4 
+
+2006-01-24 Pere Mato
+	* LCG_Interfaces/Boost: added macro Boost_linkopts_program_options to use program_options library
+	* re-tagged as LCG_41
+
+2006-01-18 Pere Mato
+	* re-tagged ROOT with LCG_41 including minor corrections in the dictionary generation patterns
+	* added new package Reflex to use only the needed part from ROOT. Moved dictionary
+	  patterns to the new package
+
+2005-12-15 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* update for new round of releases: root 5.08.00, python 2.4.2, boost 1.32.0_python242,
+	seal 1.7.8, coral 1.2.0, pi 1.3.11, pool 2.2.6 and cool 1.2.7 (was not build for last release)
+	* tagged LCG_40
+
+2005-11-30 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* update for new round of releases: CLHEP 1.9.2.2, gccxml 0.6.0_patch3, seal 1.7.7,
+	coral 1.0.0, pi 1.3.10, pool 2.2.5 and cool 1.2.7
+	* tagged LCG_39
+
+2005-10-28 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* added EDGRLS (to remove problems related with EDG-RLS name reported by Atlas)
+
+2005-10-21 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated for new round of (bugfix) releases (seal 1.7.5, pool 2.2.3, cool 1.2.5 and pi 1.3.8)
+	* removed lcg_MultiCollection.lib from pool for windows
+	* tagged LCG_37d
+	
+2005-10-10 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated for new round of (bugfix) releases (seal 1.7.4, pool 2.2.2, cool 1.2.5 and pi 1.3.7)
+	* tagged LCG_37c
+	
+2005-10-05 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* tagged LCG_37b for LHCb
+
+2005-09-30 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* LCG_Interfaces/SEAL/cmt/requirements: added fix for lcg_dictionary from Hubert D.
+
+2005-09-27 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* LCG_Interfaces/POOL/cmt/requirements: updated POOL version to 2.2.1 for build of cool 124
+	* tagged as LCG_37a
+
+2005-09-22 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* LCG_Policy/cmt/fragments/install_pythonmods_header: fixed a bug reported by Marco Clemencic
+
+2005-09-21 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* updated POOL version to 2.2.0 instead of 2.2.1
+	* retagged (this file only !) as LCG_37
+
+2005-09-13 Pere Mato
+	* LCG_Interfaces/SEAL: added dependencies in the dictionary generation
+	                       added lcg_Reflex library in the linkopts macro
+
+2005-07-27 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* root version 4.04.2g, updated LCG-AA projects
+	* tagged as LCG_37
+	
+2005-07-27 Andreas Pfeiffer <andreas.pfeiffer@cern.ch>
+	* added fix for SEAL from Hubert, additional python stuff for COOL 
+	* from Marco Clemencic
+	* tagged as LCG_36b
+
+2005-07-29  Christian Arnault  <arnault@lal.in2p3.fr>
+
+	* LCG_Interfaces/CLHEP/cmt/requirements: Conditional addition of HepPDT library using the tag HAS_HEPPDT
+
+	* LCG_Interfaces/CLHEP/cmt/requirements.36_1: Factor out the version suffix of all libraries.
+	* LCG_Release/cmt/requirements: Update interface list
+	* LCG_Interfaces/cgsigsoap/cmt/requirements: New introduction of the cgsigsoap package at version 2.6-1.1.9
+	* LCG_Settings/cmt/requirements: Added tag equivalence to slc305
+	* LCG_Interfaces/vdt/cmt/requirements: New intoduction of the vdt package at version 1.2.3_globusrls215b
+	* LCG_Interfaces/lfc/cmt/requirements: New introduction of the lfc package at version 1.3.4
+	* LCG_Interfaces/sqlite/cmt/requirements: using 3.2.1
+	
+2005-07-27 Andreas Pfeiffer	
+	* added MathLib from Hubert
+	* retagged LCG_36_1
+
+2005-07-26 Andreas Pfeiffer	
+	* updated for seal 1.7.1, pool 2.1.2, cool 1.2.2 and pi 1.3.5
+	* tagged LCG_36_1
+
+2005-07-17 Andreas Pfeiffer	
+	* updated mysql and dependent packages (mysqlpp, myodbc) to 4.0.24
+	* as required by pool
+	* retagged LCG_36
+
+2005-07-16 Andreas Pfeiffer
+	* updated to latest root bugfix version: 4.04.02f
+	* retagged as LCG_36
+
+2005-07-14 Pere Mato
+	* Fix for taking new libraries in boost requirements
+	* retagged LCG_36
+	
+2005-07-13 Andreas Pfeiffer	
+	* fixed bug in seal path declaration for windows ("\lib" -> "/lib")
+	* retagged LCG_36
+
+2005-07-13 Andreas Pfeiffer	
+	* updated Castor IF according to patch from Hubert Degaudenzi
+
+2005-07-13 Andreas Pfeiffer	
+	* reverted back to previous versions for cppunit, uuid, expat,
+	* updated to root version 4.04.02e
+	* retagged as LCG_36
+
+2005-07-10 Pere Mato
+	* fixes in the Castor configuration
+	
+2005-07-08 Andreas Pfeiffer	
+	* updated for LCG_36: version changes for boost, clhep, root, cppunit,
+	* edg-rls, expat, qt and uuid, and the lcg aa projects, of course
+	* tagged as LCG_36	
+
+2005-05-24 Andreas Pfeiffer
+	* updated POOL for release 2.1.0
+	* updated COOL for release 1.2.0
+	* tagged as LCG_35_1
+	
+2005-05-24 Andreas Pfeiffer
+	* updated COOL file according to instructions from Marco (Clemencic)
+	* retagged as LCG_35
+	
+2005-05-24 Andreas Pfeiffer	
+	* changed COOL version to 1.1.0 on request of Marco (Mattaneo)
+	* retagged as LCG_35
+
+2005-05-24 Andreas Pfeiffer
+	* changed COOL version back to 1.0.2 on request of Pere
+	* according to Andrea Valassi this version is compatible with POOL 2.0.7
+	* retagged as LCG_35
+
+2005-05-18 Andreas Pfeiffer
+	* changes to COOL macros as requested by RD Schaffer
+	* go to use individual libs for CLHEP on linux following Florences list (+Evaluator)
+	* retagged as LCG_35
+
+2005-05-17 Andreas Pfeiffer
+	* updated for LCG_35: root 4.04.02, seal 1.6.3, pool 2.0.7, pi 1.3.3
+	* updated libs for CLHEP on windows according to Peres suggestion
+	* tagged as LCG_35
+
+2005-05-11 Andreas Pfeiffer
+	* fixed missing path in COOL, reported by Marco.Clemencic@cern.ch
+	* retagged as LCG_34_1
+
+2005-05-11 Andreas Pfeiffer
+	* added COOL version 1.0.2 
+	* tagged as LCG_34_1
+
+2005-04-13 Andreas Pfeiffer
+	* changed root version to 4.03.04a
+	* retagged as LCG_34
+
+2005-04-10 Andreas Pfeiffer
+	* updates for LCG_34
+
+2005-04-05 Andreas Pfeiffer
+	* fixed typo in macro for clhep
+	* retagged as LCG_33_1c
+
+2005-04-01 Andreas Pfeiffer
+	* fixed regression in macro for CLHEP (was working in lcg_31)
+	* changed use of version number to explicitely 1.9.2.1 in names
+	  of libraried (i.e. without _spi1)
+	* retagged as LCG_33_1c
+	
+2005-03-30 Andreas Pfeiffer
+        * updated SEAL to version 1.6.1
+	* updated MySQL++ to version 1.7.31_mysql_4_0_18
+	* tagged as LCG_33_1c (for consistency with scram toolbox)
+	
+2005-02-25 Pere Mato
+        * Added Qt interface package (suggested by Guy Barrand)
+
+2005-02-21 Pere Mato
+        * Changed version of CERNLIB to 2004
+        * Changed version of PI to 1.3.0
+        * Re-tagged as LCG_33
+
+2005-02-18 Christian Arnault
+        * LCG_Interfaces/GSL/cmt/requirements: fix export_paths
+	* LCG_Interfaces/PI/cmt/requirements: fix export_paths
+        * LCG_Interfaces/ROOT/cmt/requirements: fix export_paths
+	* LCG_Settings/cmt/requirements: fix tag decoding
+
+2005-02-15  Pere Mato 
+	* Chnaged version of ROOT, CLHEP
+	* Tagged as LCG_33
+
+2005-01-20  Pere Mato 
+	* LCG_Interfaces/POOL: changed version to POOL_2_0_0-iota
+	* Tagged as LCG_32_3  (LCG_32_2 is already in use by ATLAS)
+
+2005-01-19  Atlas Librarian  <Atlas.Librarian@cern.ch>
+
+	* LCG_Interfaces/unixodbc/cmt/requirements: added etc dir to
+	export, setting ODBCSYSINI to this path.  RDS
+
+2005-01-19 Christian Arnault
+
+	* LCG_Interfaces: Adding packages myodbc mysql unixodbc
+	* LCG_Interfaces: renaming MySQL++ to mysqlpp
+	* LCG_Interfaces/POOL/cmt/requirements: keep dependencies to new packages commented out for the time being
+	* LCG_Releases/cmt/requirements: add uses to new packages
+	
+2005-01-18  Pere Mato
+        * LCG_Settings: changed tag slc3_gcc323 by slc3_ia32_gcc323 (David Quarrie)
+
+2005-01-14  Pere Mato
+        * Updated pre-release versions for SEAL, POOL, PI 
+        * Tagged as LCG_32_1 
+        
+2005-01-10  Eric Poinsignon
+	* root 4.02.00
+	* gsl 1.5
+
+2004-12-14  Pere Mato
+	* LCG_Settings/cmt/requirements: Changes to cope with CMTSITE=LOCAL for Linux and
+	  updated tag definitions
+
+2004-12-01  Pere Mato
+	* LCG_Policy/cmt/requirements: Small changes needed for MacOSX (Guy Barrand)
+	* LCG_Policy/cmt/fragments: added library fragment to overcome CMT problem
+	                            install_python_header corrected missing ")"
+
+2004-11-12  Christian Arnault  <arnault@lal.in2p3.fr>
+
+	* LCG_Release/cmt/requirements: Add action to create pacman kits.
+
+	* LCG_Interfaces/AIDA/cmt/requirements: Fix export_paths macro
+	* LCG_Interfaces/MySQL++: Add requirements
+	* LCG_Interfaces/EDG-RLS: add requirements
+
+2004-11-11  Christian Arnault  <arnault@lal.in2p3.fr>
+
+	* Merging add ons from Atlas. Mainly export_paths and fixes
+	Backward compatible.
+
+	* LCG_Settings/cmt/requirements: Improve tag settings for slc3 and osx
+
+	* LCG_Release/cmt/requirements: Add use to MySQL++ and EDG_RLS
+
+	* LCG_Interfaces/cernlib/cmt/requirements: Add export_paths macro
+
+	* LCG_Interfaces/SEAL/cmt/requirements: Fix export_paths macro
+	Add support for CppUnit for handling tests
+
+	* LCG_Interfaces/QMtest/cmt/requirements: Add export_paths macro
+
+	* LCG_Interfaces/Python/cmt/requirements: Fix export_paths macro
+	Parameterize the suffix for library encoding the version of python. 
+
+	* LCG_Interfaces/POOL/cmt/requirements: Add lib set organisation for linkopts
+	Default implementation is to set all libraries
+	Add dependency to MySQL++ and EDG_RLS
+	Add export_paths macro
+
+	* LCG_Interfaces/PI/cmt/requirements: Reformat PI_home using PI_base
+	Fix export_paths macro
+
+	* LCG_Interfaces/GSL/cmt/requirements: Adding export_paths macro
+	Adding bin directory to PATH
+
+	* LCG_Interfaces/GCCXML/cmt/requirements: Adding export_paths macro
+
+	* LCG_Interfaces/Expat/cmt/requirements: Adding export_paths macro
+
+	* LCG_Interfaces/CppUnit/cmt/requirements: Adding export_paths macro
+
+	* LCG_Interfaces/Boost/cmt/requirements: Adding export_paths macro
+	Fill in default linkopts macro.
+
+	* LCG_Interfaces/AIDA/cmt/requirements: Adding export_paths macro
+
+2004-11-05 Pere Mato
+	* added HippoDraw package (and tagged as 26_2d, 30, 30b)
+	* Chanhed version of PI (tagged 30b)
+
+2004-10-14 Eric Poinsignon <eric.poinsignon@cern.ch>
+	* ROOT 4.01.02 for LCG_30
+
+2004-10-14 Eric Poinsignon <eric.poinsignon@cern.ch>
+	* CLHEP 1.9.1.1
+	* ROOT 3.10.02 for LCG_30b
+
+2004-10-05  Pere Mato <pere.mato@cern.ch>
+        * Preparing LCG_30 and LCG_30b
+        * Changed version of QmTest to 2.2.1
+        
+2004-09-22  Pere Mato <pere.mato@cern.ch>
+        * LCG_Interfaces/SEAL: Avoided to use /../ in include_path. It seems that lastest version of
+                               CMT does not like it. 
+        * LCG_Interfaces/POOL: Avoided to use /../ in include_path. It seems that lastest version of
+                               CMT does not like it. 
+        * LCG_Interfaces/PI: Avoided to use /../ in include_path. It seems that lastest version of
+                               CMT does not like it. 
+
+2004-09-10  Pere Mato <pere.mato@cern.ch>
+        * LCG_Policy: Removed /D_DEBUG from cppdebugflags_s (Windows). This was causing problems when linking with 
+                      Boost libraries. In principle _DEBUG macro is defined automatically by the compiler when 
+                      using the debug C-runtime libraries (with /MTd or /Mdd options)
+        * LCG_Interfaces/Boost: added /DBOOST_REGEX_DYN_LINK in cppflags (Windows)
+
+2004-08-30  Pere Mato <pere.mato@cern.ch>
+        * LCG_Settings: Removed typo in redhat tag name. (re-tagged as LCG_26_2b)
+        * LCG_Interfaces/SEAL: Added <package>_linkopts in lcg_dictionary pattern
+        * LCG_Interfces/cern: Changed order of mathlib and packlib libraries
+
+2004-08-05  Pere Mato <pere.mato@cern.ch>
+        * LCG_Settings: Removed spaces between tag and "&". CMT does not like it.
+
+2004-07-28  Pere Mato <pere.mato@cern.ch>
+        * POOL: Changed the version to POOL_1_7_0
+
+2004-07-26  Pere Mato <pere.mato@cern.ch>
+        * POOL: Changed the version to POOL_1_7_0-epsilon
+
+2004-07-16  Pere Mato <pere.mato@cern.ch>
+        * LCG_Settings: Corrected to do the correct work for rh7_gcc323
+        * LCG_Settings: Added new macro LCG_platform for much the available binaries for LCG projects( SEAL, POOL, PI)
+        * Changed PI/POOL/SEAL to use LCG_platform
+  
+2004-07-15  Pere Mato <pwere.mato@cern.ch>
+        * Changed version of ROOT to 4.00.08
+        * Changed cernlib to use lcg/externals for windows
+
+2004-07-13  Pere Mato <pere.mato@cern.ch>
+        * Corrected small error in SEAL module fragment (both versions)
+        * Fixed PATH for XercesC package
+
+2004-07-06  Pere Mato <pere.mato@cern.ch>
+        * Changed version gccxml from 0.6.0 to 0.6.0_patch1
+
+2004-07-05  Pere Mato <pere.mato@cern.ch>
+        * Added cernlib
+        * Added PI
+        * ROOT: removed library libMatrix and replaced by libTree
+        * XercesC: version 2.3.0
+        * LCG_policy: added patch given by Christian
+        * GSL: cppflags changed for Windows
+
+2004-06-10  Pere Mato <pere.mato@cern.ch>
+	* GSL. Corrected for Windows.
+	* Fixed fragment nmake/library to copy the .pdb file to install area incase of building debug library
+	  Should be removed when native CMT incorporates it.
+
+2004-06-10  Pere Mato <pere.mato@cern.ch>
+	* LCG_Policy. Added the installation of Python modules (new fragments and global pattern) 
+
+2004-06-10  Pere Mato <pere.mato@cern.ch>
+	* Moved LCG_Setting from LCG_Interfaces to top level. Adapted requirement files
+        * Renamed LCG_policy to LCG_policy (deleted and added again)
+	* Renamed ToolBox to LCG_Release (deleted and added again)
+	* Changed version of Python to 2.3.4
+        * Tagged as LCG_26
+	
+2004-05-27  Christian Arnault  <arnault@lal.in2p3.fr>
+
+	* Toolbox/cmt/requirements: Adapt to the new naming conventions.
+
+2004-05-26  Christian Arnault  <arnault@lal.in2p3.fr>
+
+	* LCG_Interfaces: Start the restructuring of the LCGCMT environment:
+
+	o All interface packages are located below LCG_Interfaces
+	The global settings for LCG packages are in LCG_Settings
+
+	o Some of the external packages are renamed:
+
+	AIDA
+	Boost
+	CppUnit
+	GSL
+	Python
+	bz2lib
+	CLHEP [old:clhep]
+	Cygwin [old:cygwin]
+	Expat [old:expat]
+	GCCXML [old:gccxml]
+	PCRE [old:pcre]
+	ROOT [old:root]
+	uuid
+	zlib
+	XercesC [new]
+
+	o The package rx has been discarded.
+
+	o XercesC has been added.
+
+	o The SEAL and POOL interface packages are now located below LCG_Interfaces
+
+	o LCG_policy is kept at the top level. The principle of this
+	package is that it should not be used from interfaces packages,
+	but only from internal LCG developments.
+
+	
+
+2004-02-25  Pere Mato
+        * SEAL/cmt/requirements: Added the registration of dictionary libraries as a SEAL modules
+        
+2003-12-15  Pere Mato <pere.mato@cern.ch>
+	* New set of CMT interface packages (from internal SEAL)
+
+

@@ -1,0 +1,55 @@
+package LCG_Release
+
+# uses for this package
+use LCG_Settings v*
+use pyCMT v*
+
+# list of LCG projects
+use COOL       v* LCG_Interfaces
+use CORAL      v* LCG_Interfaces
+use RELAX      v* LCG_Interfaces
+use ROOT       v* LCG_Interfaces
+
+# list of external packages
+use AIDA       v* LCG_Interfaces
+use Boost      v* LCG_Interfaces
+use bz2lib     v* LCG_Interfaces
+use CASTOR     v* LCG_Interfaces
+use cernlib    v* LCG_Interfaces
+use cgsigsoap  v* LCG_Interfaces
+use CLHEP      v* LCG_Interfaces
+use CppUnit    v* LCG_Interfaces
+use dcache_client v* LCG_Interfaces
+use dpm        v* LCG_Interfaces
+use Expat      v* LCG_Interfaces
+use Frontier_Client v* LCG_Interfaces
+use GCCXML     v* LCG_Interfaces
+use gfal       v* LCG_Interfaces
+use globus     v* LCG_Interfaces
+use GSL        v* LCG_Interfaces
+use HepMC      v* LCG_Interfaces
+use HepPDT     v* LCG_Interfaces
+use lfc        v* LCG_Interfaces
+use MathLib    v* LCG_Interfaces
+use mysql      v* LCG_Interfaces
+use oracle     v* LCG_Interfaces
+use pyanalysis v* LCG_Interfaces
+use pygraphics v* LCG_Interfaces
+use pytools    v* LCG_Interfaces
+use Python     v* LCG_Interfaces
+use QMtest     v* LCG_Interfaces
+use Qt         v* LCG_Interfaces
+use Reflex     v* LCG_Interfaces
+use sqlite     v* LCG_Interfaces
+use uuid       v* LCG_Interfaces
+use XercesC    v* LCG_Interfaces
+
+
+include_path none
+
+action python-build "python $(LCG_Settings_root)/python/lcg_InstallArea.py"
+action gen_setup_scripts "" \
+       LCGCMT_with_installarea "sh $(LCG_RELEASEROOT)/scripts/gen_setup_scripts.sh $(CMTINSTALLAREA)/$(tag)/bin $(LCG_home) $(cmt_config_version) $(LCG_Release_cmtpath)"
+
+macro all_dependencies  "python-build"
+

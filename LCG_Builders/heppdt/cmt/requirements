@@ -1,0 +1,11 @@
+package heppdt
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro heppdt_build_config_version "$(HepPDT_config_version)"
+macro heppdt_build_native_version "$(heppdt_build_config_version)"
+set LCG_tarfilename "HepPDT-$(heppdt_build_config_version).tar.gz"
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/HepPDT/$(LCG_package_config_version)
+set LCG_pkgdest_pkgname HepPDT

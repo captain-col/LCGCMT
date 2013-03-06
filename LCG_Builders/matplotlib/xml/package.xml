@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Juan Palacios juan.palacios@cern.ch</contact>
+    <description>a python 2D plotting library</description>
+    <homepage>http://matplotlib.sourceforge.net/</homepage>
+    <license>MATPLOTLIB</license>
+  </package>
+</lcg>

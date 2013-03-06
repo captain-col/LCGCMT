@@ -1,0 +1,23 @@
+package mysql
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro mysql_native_version "$(mysql_config_version)"
+
+macro mysql_home "$(LCG_external)/mysql/$(mysql_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs "$(mysql_home)/include" "$(mysql_home)/include/mysql"
+
+macro mysql_linkopts "-L$(mysql_home)/lib -lmysqlclient_r " \
+      target-win     "/LIBPATH:$(mysql_home)/lib libmysql.lib "
+
+path_append PATH "" \
+      target-win     "$(mysql_home)/lib"
+
+apply_pattern set_ext_bin_and_lib_path unixdir="lib"
+apply_pattern set_man_path
+
+macro mysql_export_paths " $(mysql_home)/include $(mysql_home)/lib "
+

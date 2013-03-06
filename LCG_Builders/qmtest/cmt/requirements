@@ -1,0 +1,14 @@
+package qmtest
+
+use LCG_BuildPolicy v* LCG_Builders
+use Python v* LCG_Interfaces
+
+macro qmtest_build_config_version "$(QMtest_config_version)"
+set LCG_tarfilename "qmtest-$(QMtest_config_version).tar.gz"
+
+set LCG_python_config_version_twodigit "$(Python_config_version_twodigit)"
+set LCG_python_home "$(Python_home)"
+set_append LCG_qmtest_compile_options ""\
+	   target-mac106&target-i386 "export CFLAGS=-m32 export CXXFLAGS=-m32"
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/QMtest/$(LCG_package_config_version)_python$(LCG_python_config_version_twodigit)

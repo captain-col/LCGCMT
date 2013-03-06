@@ -1,0 +1,17 @@
+package fastjet
+
+use  LCG_Configuration v* 
+use  LCG_Settings      v*
+
+macro fastjet_native_version "$(fastjet_config_version)"
+macro fastjet_home $(LCG_external)/fastjet/$(fastjet_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(fastjet_home)/include
+
+macro fastjet_linkopts "-L$(fastjet_home)/lib -lfastjet " \
+      target-win       " /LIBPATH:$(fastjet_home)\lib fastjet.lib "
+
+apply_pattern set_lib_path
+
+macro fastjet_export_paths "$(fastjet_home)/include $(fastjet_home)/lib"

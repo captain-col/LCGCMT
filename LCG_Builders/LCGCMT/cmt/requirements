@@ -1,0 +1,15 @@
+package LCGCMT
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro LCG_get "none"
+macro LCGCMT_build_config_version "LCGCMT_$(LCG_config_version)" \
+      NIGHTLIES                   "$(LCGCMT_config_version)"
+macro LCGCMT_build_native_version "$(LCGCMT_build_config_version)"
+
+set LCG_tarfilename "$(LCGCMT_build_config_version).tar.gz"
+
+set LCGCMT_post_make_step "" 
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_project_local destdir=${LCG_reldir}/LCGCMT/${LCG_package_config_version}

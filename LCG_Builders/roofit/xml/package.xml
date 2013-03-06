@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Math">
+    <contact>Wouter Verkerke verkerke@nikhef.nl</contact>
+    <description>a toolkit for modeling the expected distribution of events in a physics analysis</description>
+    <homepage>http://roofit.sourceforge.net/</homepage>
+    <license>LGPL</license>
+  </package>
+</lcg>

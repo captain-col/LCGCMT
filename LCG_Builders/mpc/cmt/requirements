@@ -1,0 +1,19 @@
+package mpc
+
+use LCG_BuildPolicy v* LCG_Builders
+use mpfr            v* LCG_Interfaces
+use gmp             v* LCG_Interfaces
+
+macro mpc_build_config_version "$(mpc_config_version)"
+macro mpc_build_native_version "$(mpc_build_config_version)"
+
+set LCG_tarfilename "mpc-$(mpc_build_config_version).tar.gz"
+
+set LCG_mpfr_home "" \
+   target-gcc "$(mpfr_home)"
+
+set LCG_gmp_home "" \
+   target-gcc "$(gmp_home)"
+
+apply_pattern buildscripts_local
+

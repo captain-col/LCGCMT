@@ -1,0 +1,10 @@
+package libtool
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro libtool_build_config_version "$(libtool_config_version)"
+macro libtool_build_native_version "$(libtool_build_config_version)"
+
+set LCG_tarfilename "libtool-$(libtool_build_config_version).tar.gz"
+
+apply_pattern buildscripts_local

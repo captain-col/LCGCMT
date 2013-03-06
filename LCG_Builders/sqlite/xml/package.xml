@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Database" project="false">
+    <contact>Zhen Xie Zhen.Xie@cern.ch</contact>
+    <description>a C library that implements a SQL database engine</description>
+    <homepage>http://www.sqlite.org/</homepage>
+    <license>SQLITE</license>
+  </package>
+</lcg>

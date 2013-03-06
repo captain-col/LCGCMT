@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Perl" category="Tool">
+    <contact>Benedikt Hegner benedikt.hegner@cern.ch</contact>
+    <description>a graphical frontend for gcc's gcov coverage testing</description>
+    <homepage>http://ltp.sourceforge.net/coverage/lcov.php</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

@@ -1,0 +1,15 @@
+package globus
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro globus_native_version "$(globus_config_version)"
+
+macro globus_home "$(LCG_external)/Grid/globus/$(globus_native_version)/$(LCG_system)/globus"
+
+apply_pattern set_man_path
+
+include_path none
+include_dirs $(globus_home)/include
+
+apply_pattern set_bin_and_lib_path

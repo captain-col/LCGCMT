@@ -1,0 +1,15 @@
+package coverage
+
+use LCG_BuildPolicy v* LCG_Builders
+use Python          v* LCG_Interfaces
+use pytools         v* LCG_Interfaces
+
+macro coverage_build_config_version "$(coverage_config_version)"
+macro coverage_build_native_version "$(coverage_build_config_version)_python$(Python_config_version_twodigit)"
+
+set LCG_tarfilename "coverage-$(coverage_build_config_version).tar.gz"
+set LCG_Python_config_version_twodigit "$(Python_config_version_twodigit)"
+
+apply_pattern buildscripts_local 
+set LCG_pkgdest_pkgname "pytools"
+set LCG_pkgdest_vername "$(pytools_config_version)_python${LCG_Python_config_version_twodigit}"

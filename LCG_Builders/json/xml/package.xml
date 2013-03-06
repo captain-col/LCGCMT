@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Juan Palacios juan.palacios@cern.ch</contact>
+    <description>Extensible JSON encoder/decoder for Python</description>
+    <homepage>http://pypi.python.org/pypi/simplejson/</homepage>
+    <license>MIT</license>
+  </package>
+</lcg>

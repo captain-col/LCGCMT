@@ -1,0 +1,13 @@
+package dawn
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro dawn_build_config_version "$(dawn_config_version)"
+macro dawn_build_native_version "$(dawn_build_config_version)"
+set LCG_tarfilename "dawn_$(dawn_build_config_version).taz"
+
+set LCG_dawn_make_opts         "" \
+    target-linux&target-x86_64 "XLIB_LIB=-L/usr/X11R6/lib64 OPENGL_LIB=-L/usr/X11R6/lib64"
+
+apply_pattern buildscripts_local
+

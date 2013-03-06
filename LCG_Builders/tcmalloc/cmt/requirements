@@ -1,0 +1,26 @@
+package tcmalloc
+
+use LCG_BuildPolicy v* LCG_Builders
+use libunwind    v* LCG_Interfaces
+
+macro tcmalloc_build_config_version "$(tcmalloc_config_version)"
+macro tcmalloc_build_native_version "$(tcmalloc_build_config_version)"
+
+set LCG_tarfilename "google-perftools-$(tcmalloc_build_config_version).tar.gz"
+
+set LCG_tcmalloc_config_opts "" \
+	target-x86_64 "--enable-frame-pointers"
+
+set libunwind_libraries "-lunwind "\
+	target-i686 "-lunwind-x86"\
+	target-x86_64 "-lunwind-x86_64"
+		
+set LIBUNWIND_LIB_DIR ${libunwind_home}/lib
+set LIBUNWIND_INCL_DIR ${libunwind_home}/include
+set_append CPPFLAGS " -I ${LIBUNWIND_INCL_DIR} "
+set_append LDFLAGS " -L${LIBUNWIND_LIB_DIR} ${libunwind_libraries} "
+
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/tcmalloc/$(LCG_package_config_version)
+

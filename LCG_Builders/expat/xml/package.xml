@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="XML">
+    <contact>Dirk Duellmann dirk.duellmann@cern.ch</contact>
+    <description>a stream oriented XML parser</description>
+    <homepage>http://www.libexpat.org/</homepage>
+    <license>MIT</license>
+  </package>
+</lcg>

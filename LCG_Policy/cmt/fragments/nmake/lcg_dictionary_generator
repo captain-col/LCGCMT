@@ -1,0 +1,6 @@
+${CONSTITUENT} :: lcgdict_dir ..\$(tag)\dict\${dictionary}\${NAME}_dict.cpp 
+
+..\$(tag)\dict\${dictionary}\${NAME}_dict.cpp :: ${FULLNAME} $(lcgdict_selection_file)
+	echo $@ ${NAME}${FILESUFFIX} 
+	$(lcgdict_cmd) ${FULLNAME} -o ../$(tag)/dict/${dictionary} $(lcgdict_options) $(${dictionary}_lcgdict_options) $(${NAME}_lcgdict_options) $(includes) $(use_pp_cppflags)
+

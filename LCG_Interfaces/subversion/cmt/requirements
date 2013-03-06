@@ -1,0 +1,23 @@
+package subversion
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use apr               v* LCG_Interfaces
+use apr-util          v* LCG_Interfaces
+use neon              v* LCG_Interfaces
+
+macro subversion_native_version "$(subversion_config_version)"
+
+macro subversion_home "$(LCG_external)/subversion/$(subversion_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(sqlite_home)/include
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_ext_man_path mandir="share/man"
+
+macro subversion_export_paths " $(subversion_home)/include $(subversion_home)/lib $(subversion_home)/bin "
+
+macro subversion_linkopts "-L$(subversion_home)/lib -lsubversion3" \
+      target-win      "/LIBPATH:$(subversion_home)/lib  subversion3.lib "
+

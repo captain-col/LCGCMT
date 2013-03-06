@@ -1,0 +1,23 @@
+package qt
+
+use LCG_BuildPolicy v* LCG_Builders
+use mysql v* LCG_Interfaces
+
+macro qt_plat       "x11" \
+      target-darwin "mac" \
+      target-win    "win"
+macro qt_build_config_version "$(qt_config_version)"
+macro qt_build_native_version "$(qt_build_config_version)"
+set LCG_tardiffname "qt-mac-patch.tar.gz"
+set LCG_qt_pkgname "qt-everywhere-opensource-src-$(qt_build_config_version)"
+set LCG_tarfilename "$(LCG_qt_pkgname).tar.gz"
+set_append LCG_qt_extra_config_opts "" \
+ target-slc&target-i686 "-no-phonon-backend -no-multimedia -platform linux-g++ -arch i386" \
+ target-slc "-no-phonon-backend -no-multimedia" \
+ target-darwin&target-x86_64 "-no-framework -D MSG=MSGqtmac -arch x86_64" \
+ target-darwin&target-i386 "-no-framework -D MSG=MSGqtmac -arch i386"
+
+set LCG_qt_pre_config_step "" target-darwin "sed  -i.shipped 's# MSG;# MSGqtmac;#'  ./src/gui/kernel/qwindowdefs.h"
+set  MACOSX_DEPLOYMENT_TARGET=10.6
+apply_pattern buildscripts_local
+

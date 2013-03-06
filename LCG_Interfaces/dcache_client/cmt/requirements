@@ -1,0 +1,37 @@
+package dcache_client
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro dcache_client_native_version "$(dcache_client_config_version)"
+
+macro dcache_client_home "$(LCG_external)/dcache_client/$(dcache_client_native_version)/$(LCG_system)" \
+      target-win         ""
+
+# compile and link options
+
+include_path none
+include_dirs "$(dcache_client_home)/dcap/include"
+
+macro dcache_client_linkopts "-L$(dcache_client_home)/dcap/lib -ldcap " \
+      target-x86_64           "-L$(dcache_client_home)/dcap/lib64 -ldcap " \
+      target-win             ""
+
+# runtime environment
+
+macro dcache_client_name "dcache_client"
+
+path_prepend PATH         "$(dcache_client_home)/dcap/bin" \
+             target-win   ""
+path_prepend PATH         "$(dcache_client_home)/srm/bin" \
+             target-win   ""
+
+path_remove  LD_LIBRARY_PATH "/dcap/"
+path_prepend LD_LIBRARY_PATH "$(dcache_client_home)/dcap/lib" \
+             target-x86_64   "$(dcache_client_home)/dcap/lib64" \ 
+             target-win      ""
+
+set SRM_PATH "$(dcache_client_home)/srm"
+
+macro dcache_client_export_paths "$(dcache_client_home)/dcap/include $(dcache_client_home)/dcap/lib" \
+      target-x86_64              "$(dcache_client_home)/dcap/include $(dcache_client_home)/dcap/lib64" 

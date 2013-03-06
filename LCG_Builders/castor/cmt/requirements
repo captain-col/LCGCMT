@@ -1,0 +1,5 @@
+package castor
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro castor_build_config_version "$(CASTOR_config_version)"

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Simulation">
+    <contact>Stefan Roiser stefan.roiser@cern.ch</contact>
+    <description>Contains the fixed data about each particle type</description>
+    <homepage>http://cepa.fnal.gov/psm/heppdt/</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Lorenzo Moneta Lorenzo.Moneta@cern.ch</contact>
+    <description>Minuit numerical function minimization in Python</description>
+    <homepage>http://code.google.com/p/pyminuit/</homepage>
+    <license>UNKNOW</license>
+  </package>
+</lcg>

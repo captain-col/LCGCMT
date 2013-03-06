@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Juan Palacios juan.palacios@cern.ch</contact>
+    <description>a tool to mimic interfaces to classes</description>
+    <homepage>http://python-mock.sourceforge.net/</homepage>
+    <license>BSD</license>
+  </package>
+</lcg>

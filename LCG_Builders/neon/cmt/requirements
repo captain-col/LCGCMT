@@ -1,0 +1,11 @@
+package neon
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro neon_build_config_version "$(neon_config_version)"
+macro neon_build_native_version "$(neon_build_config_version)"
+set LCG_tarfilename "neon-$(neon_build_config_version).tar.gz"
+set_append LCG_neon_compile_options ""\
+	target-mac106&target-i386 "export CFLAGS=-m32 export CXXFLAGS=-m32"
+apply_pattern buildscripts_local
+

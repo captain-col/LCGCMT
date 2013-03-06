@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="Tool" project="false">
+    <contact>Benedikt Hegner benedikt.hegner@cern.ch</contact>
+    <description>parallelism in C++ for optimal multi-core performance</description>
+    <homepage>http://threadingbuildingblocks.org/</homepage>
+    <license>GPL</license>
+  </package>
+</lcg>

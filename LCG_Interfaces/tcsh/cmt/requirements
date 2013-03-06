@@ -1,0 +1,10 @@
+package tcsh
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro tcsh_native_version "$(tcsh_config_version)"
+
+macro tcsh_home "$(LCG_external)/tcsh/$(tcsh_native_version)/$(LCG_system)"
+
+apply_pattern set_bin_path

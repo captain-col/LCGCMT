@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Database">
+    <contact>Peter Waller peter.waller@gmail.com</contact>
+    <description>Python toolkit for generation of output for the web</description>
+    <homepage>http://genshi.edgewall.org/</homepage>
+    <license>Copyright © 2006-2007 Edgewall Software</license>
+  </package>
+</lcg>

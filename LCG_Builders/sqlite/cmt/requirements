@@ -1,0 +1,10 @@
+package sqlite
+
+use LCG_BuildPolicy v* LCG_Builders
+use Python v* LCG_Interfaces -no_auto_imports
+macro sqlite_build_config_version "$(sqlite_config_version)"
+macro sqlite_build_native_version "$(sqlite_build_config_version)"
+set LCG_tarfilename "sqlite-autoconf-$(sqlite_build_config_version).tar.gz"
+set_append LCG_sqlite_compile_options ""\
+	   target-darwin&target-mac106&target-i386 "export CPPFLAGS=-m32 export CFLAGS=-m32"
+apply_pattern buildscripts_local

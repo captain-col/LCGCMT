@@ -1,0 +1,18 @@
+package photos++
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro photos++_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/photos++/$(photos++_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(photos++_home)/include
+
+macro photos++_linkopts "-L$(photos++_home)/lib \
+                        -lPhotosFortran \
+                        -lPhotosCxxInterface "
+
+macro photos++_name "photos++"
+apply_pattern set_lib_path
+
+macro photos++_export_paths "$(photos++_home)/include $(photos++_home)/lib"

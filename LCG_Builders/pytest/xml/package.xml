@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Holger Krekel holger@merlinux.eu</contact>
+    <description>cross-project testing tool for Python</description>
+    <homepage>http://pytest.org</homepage>
+    <license>MIT</license>
+  </package>
+</lcg>

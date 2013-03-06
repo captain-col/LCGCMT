@@ -1,0 +1,13 @@
+package cmt
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro cmt_itself_build_config_version "$(cmt_config_version)"
+macro cmt_itself_build_native_version "$(cmt_itself_build_config_version)"
+
+set LCG_tarfilename "CMT-$(cmt_itself_build_native_version).tar.gz"
+
+apply_pattern buildscripts_local
+
+set LCG_package "CMT"
+set LCG_pkgdest_pkgname "CMT"

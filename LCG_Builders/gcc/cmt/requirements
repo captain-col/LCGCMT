@@ -1,0 +1,53 @@
+package gcc
+
+use LCG_BuildPolicy v* LCG_Builders
+use mpfr            v* LCG_Interfaces
+use gmp             v* LCG_Interfaces
+use mpc             v* LCG_Interfaces
+use libelf          v* LCG_Interfaces
+use ppl             v* LCG_Interfaces
+use cloog-ppl       v* LCG_Interfaces
+
+macro gcc_build_config_version "$(gcc_config_version)"
+macro gcc_build_native_version "$(gcc_build_config_version)"
+
+set LCG_tarfilename "gcc-$(gcc_build_config_version).tar.gz"
+
+set LCG_gcc_config_post_opts "" \
+   target-gcc "--with-mpfr=$(mpfr_home) --with-gmp=$(gmp_home) --with-mpc=$(mpc_home) --enable-libstdcxx-time "
+
+set_append LCG_gcc_config_post_opts "" \
+   target-gcc "--enable-lto --with-libelf=$(libelf_home) --with-ppl=$(ppl_home) --with-cloog=$(cloog-ppl_home)"
+
+set_append LCG_gcc_config_post_opts " --enable-languages=c,c++,fortran,go"
+
+set_append LCG_gcc_config_post_opts "" \
+   target-i686                      " --build=i686-unknown-linux-gnu"
+
+set LCG_mpfr_home "" \
+   target-gcc "$(mpfr_home)"
+
+set LCG_gmp_home "" \
+   target-gcc "$(gmp_home)"
+
+set LCG_mpc_home "" \
+   target-gcc "$(mpc_home)"
+
+set LCG_libelf_home "" \
+   target-gcc "$(libelf_home)"
+
+set LCG_ppl_home "" \
+   target-gcc "$(ppl_home)"
+
+set LCG_cloog_home "" \
+   target-gcc "$(cloog-ppl_home)"
+
+set LCG_libdirname "$(unixdirname)"
+
+set LCG_sed_chg_cmtconfig     "" \
+   target-x86_64&target-slc4  "sed s%/slc4_amd64%/slc4_ia32%" \
+   target-x86_64&target-slc5  "sed s%/x86_64-slc5-%/i686-slc5-%" \
+   target-x86_64&target-slc6  "sed s%/x86_64-slc6-%/i686-slc6-%" 
+
+apply_pattern buildscripts_local 
+

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Math">
+    <contact>Witold Pokorsky Witold.Pokorski@cern.ch</contact>
+    <description>Python library for symbolic mathematics</description>
+    <homepage>http://code.google.com/p/sympy/ </homepage>
+    <license>BSD</license>
+  </package>
+</lcg>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool">
+    <contact>Benedikt Hegner benedikt.hegner@cern.ch</contact>
+    <description>provides a number of abstractions on top of APR.</description>
+    <homepage>http://apr.apache.org/</homepage>
+    <license>APACHE</license>
+  </package>
+</lcg>

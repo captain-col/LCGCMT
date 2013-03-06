@@ -1,0 +1,25 @@
+package pyanalysis
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use Python            v* LCG_Interfaces
+use blas              v* LCG_Interfaces
+use lapack            v* LCG_Interfaces
+
+macro pyanalysis_native_version "$(pyanalysis_config_version)_python$(Python_config_version_twodigit)"
+
+macro pyanalysis_home "$(LCG_external)/pyanalysis/$(pyanalysis_native_version)/$(LCG_system)"
+
+apply_pattern composite_package parts="matplotlib numpy scipy"
+
+include_path none
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_man_path
+
+path_remove  PYTHONPATH   "/pyanalysis/" \
+             target-win   "\pyanalysis\"
+path_prepend PYTHONPATH   "$(pyanalysis_home)/lib/python$(Python_config_version_twodigit)/site-packages" 
+
+macro pyanalysis_export_paths "$(pyanalysis_home)"
+

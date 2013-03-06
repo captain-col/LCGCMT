@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool">
+    <contact>Axel Naumann axel.naumann@cern.ch</contact>
+    <description>a compiler infrastructure for c/c++</description>
+    <homepage>http://llvm.org</homepage>
+    <license>LLVM</license>
+  </package>
+</lcg>

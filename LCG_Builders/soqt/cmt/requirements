@@ -1,0 +1,23 @@
+package soqt
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use coin3d v* LCG_Interfaces
+use Qt     v* LCG_Interfaces
+
+macro soqt_build_config_version "$(soqt_config_version)"
+macro soqt_build_native_version "$(soqt_build_config_version)_qt$(qt_config_version)_coin3d$(coin3d_config_version)"
+
+set LCG_tarfilename "SoQt-$(soqt_config_version).tar.gz"
+
+macro soqt_platformflags "" \
+      target-darwin        "--without-framework"
+
+set LCG_soqt_config_opts "--enable-debug=no --enable-symbols=no $(soqt_platformflags)"
+set CONFIG_QTLIBS "-lQt3Support -lQtCore"
+
+set LCG_soqt_compile_opts "" \
+ target-darwin&target-i386 "export CXXFLAGS=-m32 export CFLAGS=-m32"
+
+apply_pattern buildscripts_local
+

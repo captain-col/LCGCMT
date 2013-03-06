@@ -1,0 +1,31 @@
+package cernlib
+
+use LCG_BuildPolicy v* LCG_Builders
+use blas            v* LCG_Interfaces
+use lapack          v* LCG_Interfaces
+
+macro cernlib_build_config_version "$(cernlib_config_version)"
+macro cernlib_build_native_version "$(cernlib_build_config_version)"
+
+set LCG_CERN_LEVEL   "`echo $(cernlib_build_config_version) | cut -c 1-4`"
+set LCG_tarfilename "cernlib-$(LCG_CERN_LEVEL)-src.tar.gz"
+macro LCG_sourcefiles "$(LCG_tarfilename);cernlib-$(LCG_CERN_LEVEL)-patches.tar.gz"
+
+set LCG_FOR $(for)
+set LCG_BLAS_HOME "$(blas_home)"
+set LCG_LAPACK_HOME "$(lapack_home)"
+set LCG_LINUXCF_PATCH "" \
+    target-linux&target-i686   "linux.cf.patch" \ 
+    target-linux&target-x86_64 "linux-lp64.cf.patch"
+set LCG_PLAT_PATCH   "" \
+    host-slc5&target-x86_64&target-gcc34 "cernlib-x86_64-slc5-gcc34.patch" \
+    host-slc5&target-i686&target-gcc34   "cernlib-i686-slc5-gcc34.patch" \
+    target-x86_64&target-gcc43           "cernlib-x86_64-gcc43.patch" \
+    target-i686                          "cernlib-i686-gcc43.patch"
+
+set LCG_PATCH_BIN_CERNLIB "" target-x86_64 "YES"
+set LCG_WITHSHIFT_PATCH "" \
+    CERNLIB_WITH_SHIFT&target-i686   "linux.cf" \
+    CERNLIB_WITH_SHIFT&target-x86_64 "linux-lp64.cf"
+ 
+apply_pattern buildscripts_local

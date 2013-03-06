@@ -1,0 +1,45 @@
+package LCG_BuildRelease
+
+# List of LCG Packages
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use pyLCG             v* 
+
+use COOL            v* LCG_Builders
+use CORAL           v* LCG_Builders
+use ROOT            v* LCG_Builders
+use RELAX           v* LCG_Builders
+
+use aida            v* LCG_Builders
+use boost           v* LCG_Builders
+use bz2lib          v* LCG_Builders
+use castor          v* LCG_Builders
+use cernlib         v* LCG_Builders
+use cgsigsoap       v* LCG_Builders
+use clhep           v* LCG_Builders
+use cppunit         v* LCG_Builders
+use dcache_client   v* LCG_Builders
+use edgrls          v* LCG_Builders
+use expat           v* LCG_Builders
+use frontier_client v* LCG_Builders
+use gccxml          v* LCG_Builders
+use gsl             v* LCG_Builders
+use hepmc           v* LCG_Builders
+use heppdt          v* LCG_Builders
+use lfc             v* LCG_Builders
+use mysql           v* LCG_Builders
+use mysqlpp         v* LCG_Builders
+use oracle          v* LCG_Builders
+use pcre            v* LCG_Builders         
+use python          v* LCG_Builders
+use qt              v* LCG_Builders
+use rx              v* LCG_Builders
+use sqlite          v* LCG_Builders
+use uuid            v* LCG_Builders
+use vdt             v* LCG_Builders
+use xercesc         v* LCG_Builders
+
+
+include_path none
+

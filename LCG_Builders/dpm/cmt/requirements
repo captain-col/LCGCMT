@@ -1,0 +1,5 @@
+package dpm
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro dpm_build_config_version "$(dpm_config_version)"

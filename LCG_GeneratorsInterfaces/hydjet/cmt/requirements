@@ -1,0 +1,17 @@
+package hydjet
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro hydjet_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/hydjet/$(hydjet_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(hydjet_home)/include
+
+macro hydjet_linkopts "-L$(hydjet_home)/lib \
+                        -lhydjet -ljetset73hydjet"
+
+macro hydjet_name "hydjet"
+apply_pattern set_lib_path
+
+macro hydjet_export_paths "$(hydjet_home)/include $(hydjet_home)/lib"

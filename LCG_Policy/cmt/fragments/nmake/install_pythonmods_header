@@ -1,0 +1,20 @@
+#
+#  We want to install all pyhton that follow the standard convention
+#
+#    ../python
+#
+
+python_install_dir = $(CMTINSTALLAREA)\$(tag)\python
+
+${CONSTITUENT} :: ${CONSTITUENT}install
+
+install :: ${CONSTITUENT}install
+
+${CONSTITUENT}install :: $(python_install_dir)
+	@if NOT "$(CMTINSTALLAREA)"=="" ( if exist ..\python echo "installation done" )
+
+$(python_install_dir) ::
+	@if NOT "$(CMTINSTALLAREA)"=="" ( if not exist "$(python_install_dir)"  mkdir "$(python_install_dir)" )
+	@if NOT "$(CMTINSTALLAREA)"=="" ( if exist ..\python xcopy /S/Y/Q/EXCLUDE:$(cmt_installdir_excludes) ..\python $(python_install_dir) )
+
+  

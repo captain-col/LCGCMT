@@ -1,0 +1,7 @@
+#--- uic fragment begin
+$(CONSTITUENT): $(FILEPATH)ui_$(NAME).h
+$(FILEPATH)ui_$(NAME).h: $(FULLNAME)
+	uic -o $@ $^
+$(CONSTITUENT)clean::
+	$(RM) $(FILEPATH)ui_$(NAME).h
+#--- uic fragment end

@@ -1,0 +1,20 @@
+package GAUDIATLAS
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro GAUDIATLAS_build_config_version "$(GAUDIATLAS_config_version)" 
+macro GAUDIATLAS_build_native_version "$(GAUDIATLAS_build_config_version)"
+
+macro LCG_get "svn_gaudi"
+set LCG_SVNROOT "http://svnweb.cern.ch/guest/gaudi"
+set LCG_svnpath "/Gaudi/branches/GAUDI/"
+set LCG_svntag "$(GAUDIATLAS_build_config_version)"
+
+set LCG_CVSROOT ":pserver:anonymous@isscvs.cern.ch:/local/reps/Gaudi"
+set LCG_cvsproj "all"
+set LCG_cvstag ${LCG_GAUDIATLAS_config_version}
+macro LCG_cvsdir ${LCG_GAUDIATLAS_config_version}
+
+apply_tag IS_LCG_PROJECT
+apply_pattern buildscripts_project_local
+

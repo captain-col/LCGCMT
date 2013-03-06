@@ -1,0 +1,25 @@
+package pyqt
+
+use LCG_BuildPolicy v* LCG_Builders
+use Python          v* LCG_Interfaces
+use pygraphics             v* LCG_Interfaces
+use Qt              v* LCG_Interfaces
+
+apply_pattern buildscripts_local 
+macro pyqt_build_config_version "$(pyqt_config_version)"
+macro pyqt_build_native_version "$(pyqt_build_config_version)_python$(Python_config_version_twodigit)"
+set LCG_pyqt_plat_name          "" \
+    target-linux                "x11" \
+    target-darwin               "mac"
+set LCG_tarfilename             "PyQt-$(LCG_pyqt_plat_name)-gpl-$(pyqt_build_config_version).tar.gz"
+set LCG_qt_home                 "$(Qt_home)"
+set LCG_python_home             "$(Python_home)"
+set LCG_python_version          "${Python_config_version}" 
+set LCG_python_version_twodigit "$(Python_config_version_twodigit)"
+set LCG_pkgdest_pkgname "pygraphics"
+set LCG_pkgdest_vername "$(pygraphics_config_version)_python${LCG_python_version_twodigit}"
+
+tag target-darwin python_framework
+
+set QMAKESPEC      "" \
+    target-i686    "linux-g++-32"

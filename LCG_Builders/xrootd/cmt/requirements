@@ -1,0 +1,10 @@
+package xrootd
+
+use LCG_BuildPolicy v* LCG_Builders
+use cmake v* LCG_Interfaces
+
+macro xrootd_build_config_version "$(xrootd_config_version)"
+macro xrootd_build_native_version "$(xrootd_build_config_version)"
+set LCG_tarfilename "xrootd-$(xrootd_build_config_version).tar.gz"
+
+apply_pattern buildscripts_local

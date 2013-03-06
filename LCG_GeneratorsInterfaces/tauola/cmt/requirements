@@ -1,0 +1,17 @@
+package tauola
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro tauola_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/tauola/$(tauola_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(tauola_home)/include
+
+macro tauola_linkopts "-L$(tauola_home)/lib \
+                        -ltauola "
+
+macro tauola_name "tauola"
+apply_pattern set_lib_path
+
+macro tauola_export_paths "$(tauola_home)/include $(tauola_home)/lib"

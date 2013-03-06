@@ -1,0 +1,12 @@
+package lcov
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro lcov_build_config_version "$(lcov_config_version)"
+macro lcov_build_native_version "$(lcov_build_config_version)"
+
+set LCG_tarfilename "lcov-$(lcov_build_config_version).tar.gz"
+set LCG_tardiffname "lcov-$(lcov_build_config_version).diff.tar.gz"
+set LCG_difffiledir "$(LCG_external)"/tarFiles/"$(LCG_tardiffname)"
+apply_pattern buildscripts_local 
+

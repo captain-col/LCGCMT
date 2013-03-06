@@ -1,0 +1,9 @@
+package mpfr
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro mpfr_native_version "$(mpfr_config_version)"
+macro mpfr_home "$(LCG_external)/mpfr/$(mpfr_native_version)/$(LCG_system)"
+
+apply_pattern set_lib_path

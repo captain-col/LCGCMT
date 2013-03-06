@@ -1,0 +1,14 @@
+package frontier_client
+
+use LCG_BuildPolicy v* LCG_Builders
+use Expat           v* LCG_Interfaces
+
+macro frontier_client_build_config_version "$(Frontier_Client_config_version)"
+macro frontier_client_build_native_version "$(frontier_client_build_config_version)"
+set LCG_tarfilename "frontier_client__$(frontier_client_build_config_version)__src.tar.gz"
+set LCG_expat_dir "$(Expat_home)"
+
+apply_pattern buildscripts_local
+
+set LCG_frontier_compile_options "" \
+    target-darwin&target-mac106&target-i386 "export CXXFLAGS=-m32 CFLAGS=-m32"

@@ -1,0 +1,12 @@
+package vomsapi_noglobus
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro vomsapi_noglobus_native_version "$(vomsapi_noglobus_config_version)"
+
+macro vomsapi_noglobus_home "$(LCG_external)/Grid/voms-api-noglobus/$(vomsapi_noglobus_native_version)/$(LCG_system)"
+
+include_path none
+
+apply_pattern set_ext_lib_path unixdir=$(unixdirname)

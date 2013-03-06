@@ -1,0 +1,49 @@
+package pygraphics
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use Python            v* LCG_Interfaces
+
+macro pygraphics_native_version "$(pygraphics_config_version)_python$(Python_config_version_twodigit)"
+
+macro pygraphics_home "$(LCG_external)/pygraphics/$(pygraphics_native_version)/$(LCG_system)"
+
+apply_pattern composite_package parts="pydot pyparsing pyqt sip"
+
+include_path none
+
+# Fragments and patterns to compile .qrc file in python modules
+# Usage:
+#   apply_pattern PyQtResource qrc_files=../qt_resources/*.qrc outputdir=../python
+macro pyqt_resource_command "pyrcc4"
+make_fragment pyqt_resource_header
+make_fragment pyqt_resource_trailer
+make_fragment pyqt_resource -header=pyqt_resource_header -trailer=pyqt_resource_trailer
+pattern PyQtResource \
+   private ; \
+     macro PyQtResource<name><group>_output "<outputdir>/" ; \
+   end_private ; \
+   document pyqt_resource PyQtResource<name><group> <qrc_files> -group=<group>
+
+# Fragments and patterns to compile .ui file in python modules
+# Usage:
+#   apply_pattern PyQtUIC ui_files=../qt_resources/*.ui outputdir=../python
+macro pyqt_uic_command "python -m PyQt4.uic.pyuic"
+make_fragment pyqt_uic_header
+make_fragment pyqt_uic_trailer
+make_fragment pyqt_uic -header=pyqt_uic_header -trailer=pyqt_uic_trailer
+pattern PyQtUIC  \
+   private ; \
+     macro PyQtUIC<name><group>_output "<outputdir>/" ; \
+   end_private ; \
+   document pyqt_uic PyQtUIC<name><group> <ui_files> -group=<group>
+
+apply_pattern set_bin_and_lib_path
+apply_pattern set_man_path
+
+path_remove  PYTHONPATH   "/pygraphics/" \
+             target-win   "\pygraphics\"
+path_prepend PYTHONPATH   "$(pygraphics_home)/lib/python$(Python_config_version_twodigit)/site-packages" 
+
+macro pygraphics_export_paths "$(pygraphics_home)"
+

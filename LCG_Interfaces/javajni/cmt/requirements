@@ -1,0 +1,33 @@
+package javajni
+
+author Julius Hrivnac <Julius.Hrivnac@cern.ch@cern.ch>
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use javasdk           v* LCG_Interfaces
+
+public
+
+macro javajni_native_version "$(javajni_config_version)"
+macro javajni_home "$(javasdk_home)"
+
+macro JDK_BINDIR "$(JDK_ARCH)"
+
+path_remove LD_LIBRARY_PATH "/jre"
+path_append LD_LIBRARY_PATH "$(javajni_home)/jre/lib/$(JDK_BINDIR)"
+path_append LD_LIBRARY_PATH "$(javajni_home)/jre/lib/$(JDK_BINDIR)/server"
+path_append LD_LIBRARY_PATH "$(javajni_home)/jre/lib/$(JDK_BINDIR)/native_threads"
+path_append LD_LIBRARY_PATH "$(javajni_home)/jre/lib/$(JDK_BINDIR)/xawt"
+
+include_dirs "$(javajni_home)/include" 
+include_dirs "$(javajni_home)/include/linux"
+
+macro javajni_linkopts "-L$(javajni_home)/jre/lib/ \
+                        -L$(javajni_home)/jre/lib/$(JDK_BINDIR)/server \
+                        -L$(javajni_home)/jre/lib/$(JDK_BINDIR)/native_threads \
+                        -L$(javajni_home)/jre/lib/$(JDK_BINDIR)/xawt \
+                        -lmawt -ljava -ljvm -lhpi"
+
+
+
+

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Jason Briggs jasonrbriggs@gmail.com</contact>
+    <description>Python client library for accessing messaging servers using the STOMP protocol</description>
+    <homepage>http://code.google.com/p/stomppy/</homepage>
+    <license>APACHE</license>
+  </package>
+</lcg>

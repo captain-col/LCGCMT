@@ -1,0 +1,19 @@
+package tbb
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro tbb_native_version "$(tbb_config_version)"
+
+macro tbb_home "$(LCG_external)/tbb/$(tbb_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(tbb_home)/include
+
+macro tbb_linkopts "-L$(tbb_home)/bin -ltbb" \
+
+macro tbb_cppflags "-I $(tbb_home)/include"
+
+apply_pattern set_ext_bin_and_lib_path unixdir=bin
+
+macro tbb_export_paths " $(tbb_home)/include $(tbb_home)/bin "

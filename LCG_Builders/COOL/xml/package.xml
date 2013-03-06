@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Cpp" category="IO" project="true">
+    <contact>Andrea Valassi andrea.valassi@cern.ch</contact>
+    <contact>Marco Clemencic marco.clemencic@cern.ch</contact>
+    <description>The conditions database project of LCG AA</description>
+    <homepage>http://lcgapp.cern.ch/project/CondDB</homepage>
+    <license>LCGAA</license>
+  </package>
+</lcg>

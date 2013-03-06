@@ -1,0 +1,16 @@
+package qwt
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use Qt     v* LCG_Interfaces
+
+macro qwt_build_config_version "$(qwt_config_version)"
+macro qwt_build_native_version "$(qwt_build_config_version)_qt$(qt_config_version)"
+
+set LCG_tarfilename "qwt-$(qwt_config_version).tar.bz2"
+set LCG_qwt_designerplugfile "libqwt_designer_plugin.$(shlibsuffix)"
+
+set QMAKE_SPEC  "" \
+    target-i686 "-spec linux-g++-32"
+
+apply_pattern buildscripts_local

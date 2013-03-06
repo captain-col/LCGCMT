@@ -1,0 +1,19 @@
+package llvm_gcc
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro llvm_gcc_build_config_version "$(llvm_gcc_config_version)"
+macro llvm_gcc_build_native_version "$(llvm_gcc_build_config_version)"
+
+set LCG_tarfilename "llvm-gcc-$(llvm_gcc_build_config_version)-$(llvm_config_version).source.tar.gz"
+
+set        LCG_llvm_gcc_config_opts "--enable-llvm=${LCG_external}/llvm/$(llvm_config_version)/$(LCG_system) --program-prefix=llvm- --enable-languages=c,c++,fortran --with-tune=generic "
+# This set was commented for the 2.6 build - still necessary?
+set_append LCG_llvm_gcc_config_opts "" \
+           target-linux&target-i686    "--target=i686-pc-linux-gnu --with-arch=pentium4 " \
+           target-linux&target-x86_64  "--target=x86_64-pc-linux-gnu "
+set LCG_llvm_config_version "$(llvm_config_version)"
+
+apply_pattern buildscripts_local 
+set LCG_pkgdest_pkgname "llvm"
+set LCG_pkgdest_vername "$(llvm_config_version)"

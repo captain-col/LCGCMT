@@ -1,0 +1,5 @@
+package vomsapic
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro vomsapic_build_config_version "$(vomsapic_config_version)"

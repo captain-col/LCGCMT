@@ -1,0 +1,17 @@
+package jimmy
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro jimmy_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/jimmy/$(jimmy_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(jimmy_home)/include
+
+macro jimmy_linkopts "-L$(jimmy_home)/lib \
+                        -ljimmy "
+
+macro jimmy_name "jimmy"
+apply_pattern set_lib_path
+
+macro jimmy_export_paths "$(jimmy_home)/include $(jimmy_home)/lib"

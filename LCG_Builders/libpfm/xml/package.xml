@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="C" category="Tool">
+    <contact>Daniele Kruse Daniele.Francesco.Kruse@cern.ch</contact>
+    <description>a hardware based performance monitoring tool for linux</description>
+    <homepage>http://perfmon2.sourceforge.net/</homepage>
+    <license>UNKNOWN</license>
+  </package>
+</lcg>

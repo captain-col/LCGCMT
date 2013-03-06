@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="Tool">
+    <contact>Benedikt Hegner benedikt.hegner@cern.ch</contact>
+    <description>Python toolkit for package handling</description>
+    <homepage>http://pypi.python.org/pypi/setuptools/</homepage>
+    <license>PYTHON</license>
+  </package>
+</lcg>

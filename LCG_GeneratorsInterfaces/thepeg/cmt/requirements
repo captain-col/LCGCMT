@@ -1,0 +1,17 @@
+package thepeg
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro thepeg_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/thepeg/$(thepeg_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(thepeg_home)/include/ThePEG
+
+macro thepeg_linkopts "-L$(thepeg_home)/lib/ThePEG \
+                        -lThePEG "
+
+macro thepeg_name "thepeg"
+apply_pattern set_lib_path
+
+macro thepeg_export_paths "$(thepeg_home)/include/ThePEG $(ThePEG_home)/lib/ThePEG"

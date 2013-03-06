@@ -1,0 +1,21 @@
+package llvm
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro llvm_build_config_version "$(llvm_config_version)"
+macro llvm_build_native_version "$(llvm_build_config_version)"
+
+set LCG_tarfilename "llvm-$(llvm_build_config_version).tar.gz"
+macro LCG_sourcefiles "$(LCG_tarfilename);clang-$(llvm_build_config_version).tar.gz;llvm-$(llvm_build_config_version).patch"
+
+set LCG_cxx_root "$(gcc_home)/include/c++/$(gcc_native_version)"
+
+path_append LCG_llvm_includes "$(gcc_home)/lib/gcc/x86_64-unknown-linux-gnu/$(gcc_native_version)/include"
+path_append LCG_llvm_includes "$(gcc_home)/lib/gcc/x86_64-unknown-linux-gnu/$(gcc_native_version)/include-fixed"
+path_append LCG_llvm_includes "/usr/local/include"
+path_append LCG_llvm_includes "$(gcc_home)/include"
+path_append LCG_llvm_includes "/usr/include"
+
+set COMPILER_PATH "$(gcc_home)/lib/gcc/x86_64-unknown-linux-gnu/$(gcc_native_version)"
+
+apply_pattern buildscripts_local 

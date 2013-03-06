@@ -1,0 +1,20 @@
+package gridftp_ifce
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use lcgdmcommon       v* LCG_Interfaces
+#use epel              v* LCG_Interfaces
+use Python            v* LCG_Interfaces -no_autoimports
+
+macro gridftp_ifce_native_version "$(gridftp_ifce_config_version)"
+
+macro gridftp_ifce_home "$(LCG_external)/Grid/gridftp-ifce/$(gridftp_ifce_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(gridftp_ifce_home)/include/gridftp-ifce
+
+apply_pattern set_ext_bin_and_lib_path windir=lib unixdir=$(unixdirname)
+
+macro gridftp_ifce_linkopts "-L$(gridftp_ifce_home)/$(unixdirname) -lgridftp-ifce " \
+      target-win   ""
+

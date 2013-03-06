@@ -1,0 +1,12 @@
+package valgrind
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro valgrind_build_config_version "$(valgrind_config_version)"
+macro valgrind_build_native_version "$(valgrind_build_config_version)"
+set LCG_tarfilename "valgrind-$(valgrind_build_config_version).tar.bz2"
+macro LCG_sourcefiles "$(LCG_tarfilename);valgrind_$(valgrind_build_config_version)_patches.tar.gz"
+
+set_append LCG_valgrind_compile_opts ""\
+    target-i686 "--enable-only32bit CXXFLAGS=-m32 LDFLAGS=-m32 CFLAGS=-m32 CPPFLAGS=-m32 CCASFLAGS=-m32"
+apply_pattern buildscripts_local

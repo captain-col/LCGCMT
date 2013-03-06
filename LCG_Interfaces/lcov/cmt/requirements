@@ -1,0 +1,14 @@
+package lcov
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro lcov_native_version "$(lcov_config_version)"
+
+macro lcov_home "$(LCG_external)/lcov/$(lcov_native_version)/$(LCG_system)"
+
+include_path none
+
+apply_pattern set_bin_path
+apply_pattern set_man_path
+

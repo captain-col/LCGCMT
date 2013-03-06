@@ -1,0 +1,15 @@
+package neurobayes_expert
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro neurobayes_expert_native_version "$(neurobayes_expert_config_version)"
+
+macro neurobayes_expert_home "$(LCG_external)/neurobayes_expert/$(neurobayes_expert_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(neurobayes_expert_home)/include
+
+macro neurobayes_expert_linkopts "-L$(neurobayes_expert_home)/lib -lNeuroBayesExpertCPP "
+      
+apply_pattern set_lib_path

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE lcg SYSTEM "package.dtd">
+
+<lcg>
+  <package language="Python" category="XML">
+    <contact>Thomas Doherty t.doherty@physics.gla.ac.uk</contact>
+    <description>a library of integrated tools for XML and RDF processing.</description>
+    <homepage>http://4suite.org/index.xhtml</homepage>
+    <license>4SUITE</license>
+  </package>
+</lcg>

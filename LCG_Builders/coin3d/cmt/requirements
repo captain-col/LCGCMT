@@ -1,0 +1,16 @@
+package coin3d
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro coin3d_build_config_version "$(coin3d_config_version)"
+macro coin3d_build_native_version "$(coin3d_config_version)"
+
+set LCG_tarfilename "Coin-$(coin3d_build_config_version).tar.gz"
+
+macro coin3d_platformflags "" \
+      target-darwin        "--without-framework"
+
+set LCG_coin3d_config_opts "--enable-debug=no --enable-symbols=no $(coin3d_platformflags)"
+set_append LCG_coin3d_compile_opts ""\
+	   target-darwin&target-mac106&target-i386 "export CXXFLAGS=-m32 export  LDFLAGS=-m32 export CFLAGS=-m32 export CPPFLAGS=-m32"
+apply_pattern buildscripts_local

@@ -1,0 +1,17 @@
+package xercesc
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro xercesc_build_config_version "$(XercesC_config_version)"
+macro xercesc_build_native_version "$(xercesc_build_config_version)"
+set LCG_tarfilename "xerces-c-$(xercesc_build_config_version).tar.gz"
+set LCG_xercesc_compile_options ""\
+    target-darwin&target-i386 "export CFLAGS=-m32 export CXXFLAGS=-m32"
+
+# temporary option to fix https://savannah.cern.ch/bugs/?70641 
+set LCG_xercesc_config_options " --disable-network " \
+    target-i686&target-slc     " --disable-network --build=i686-pc-linux-gnu"
+
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/XercesC/$(xercesc_build_config_version)
+set LCG_pkgdest_pkgname XercesC

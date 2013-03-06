@@ -1,0 +1,9 @@
+package rx
+
+use LCG_BuildPolicy v* LCG_Builders
+
+macro rx_build_config_version "$(rx_config_version)"
+macro rx_build_native_version "$(rx_build_config_version)"
+set LCG_tarfilename "rx-$(rx_build_config_version).tar.gz"
+
+apply_pattern buildscripts_local

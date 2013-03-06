@@ -1,0 +1,17 @@
+package stagen
+
+use LCG_Configuration v*
+use LCG_Settings v*
+
+macro stagen_home $(LCG_external)/MCGenerators_hepmc$(HepMC_config_version)/stagen/$(stagen_native_version)/$(LCG_system)
+
+include_path none
+include_dirs $(stagen_home)/include
+
+macro stagen_linkopts "-L$(stagen_home)/lib \
+                        -lstagen "
+
+macro stagen_name "stagen"
+apply_pattern set_lib_path
+
+macro stagen_export_paths "$(stagen_home)/include $(stagen_home)/lib"

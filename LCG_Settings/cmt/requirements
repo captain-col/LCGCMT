@@ -4,10 +4,12 @@ package LCG_Settings
 include_path none
 
 macro LCG_releases    "$(LCG_Settings_root)/../../.." \
+      CAPTAIN	      "$(LCG_Settings_root)/../../.." \
       ATLAS&NIGHTLIES "/afs/cern.ch/sw/lcg/app/nightlies/$(LCG_NGT_SLT_NAME)/$(LCG_NGT_DAY_NAME)" \
       ATLAS           "${SITEROOT}/sw/lcg/app/releases"
 
 macro LCG_external  "$(LCG_Settings_root)/../../../../../external" \
+      CAPTAIN	    "$(LCG_Settings_root)/../../../EXTERNAL" \
       ATLAS         "${SITEROOT}/sw/lcg/external"
 
 

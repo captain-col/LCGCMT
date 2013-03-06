@@ -1,0 +1,11 @@
+.svn
+CVS
+Linux-*
+*~
+setup.sh
+cleanup.sh
+setup.csh
+cleanup.csh
+*.make
+*.makesav
+.gdb*

@@ -10,3 +10,372 @@ capt-import-tar-file --dry-run --tag=LCGCMT_64d --strip-components=2 \
 The imported version was then tagged "upstream-LCGCMT_64d" on the upstream
 branch.  The imported version can then be merged with the master branch
 
+-----------------------------------
+LCG Builders Documentation
+
+* Introduction
+
+The =LCG_Builders= packages provide a CMT packages, each to install a
+3rd party external package.
+
+* Build script environment
+
+Each builder relies on =LCG_BuildPolicy= to define a number of
+environment variables named like =LCG_*=.
+
+Source files (tar/zip and patches) are taken from an area specified by
+the environment variable =LCG_tardir=.  If the =LCG_get= macro is
+defined as http, this area will be automatically populated from a
+web cache specified by =LCG_tarurl=.
+
+Triggered by the =pkg_get= make target, source files are copied from
+the =LCG_tardir= to the =LCG_builddir= and three build stages are run in
+succession.  For each stage the builder package should define a
+specific script under
+
+#+BEGIN_EXAMPLE
+  Package/scripts/
+#+END_EXAMPLE
+
+to handle each build step.  They are named like:
+
+#+BEGIN_EXAMPLE
+  Package_config.sh
+  Package_make.sh
+  Package_install.sh
+#+END_EXAMPLE
+
+For Windows support, .bat equivalent scripts are needed.  Details on
+these scripts are given below.
+
+Additional environment variables are defined and should be used by the
+scripts to make them independent of version strings, directory layouts
+and configuration options.  The builder package's requirements file
+may override these settings or provide additional ones.
+
+ * =LCG_package= : builder package name
+ * =LCG_<package>_config_version= : source version string
+ * =LCG_package_config_version= : same as above
+ * =LCG_<package>_native_version= : installed version string (often same as above)
+ * =LCG_package_native_version= : same as above
+ * =LCG_package_root= : builder package directory
+ * =LCG_pkgdest_vername= : destination version (often same as native)
+ * =LCG_pkgdest_pkgname= : installed package name (often same as builder package name)
+ * =LCG_basedir= : base directory for installation of all packages
+ * =LCG_destdir= : base directory for installation of this package
+ * =LCG_destbindir= : as above but including subdir based on CMTCONFIG
+
+** Optional environment
+
+The build scripts can be written in any manner to get the job done but
+there are some conventions that can be followed to make the scripts
+simple.  To support this, the following additional variables are set
+to some default values:
+
+ * =LCG_srcdir= : directory where the source is to be unpacked
+ * =LCG_config_target= : a file that is produced after a successful config step
+ * =LCG_make_target= : a file that is produced after a successful make step
+
+They will typically need to be redefined inside the builder package's
+requirements file.
+
+* Builder requirements file
+
+This section walks through a typical requirements file of "Package".
+It should start with:
+
+#+BEGIN_EXAMPLE
+package Package
+use LCG_BuildPolicy v* LCG_Builders
+#+END_EXAMPLE
+
+** Version macros.
+
+The config and native versions are typically taken to be the same as
+the version set in the =LCG_Configuration= package and are available
+from the script environment as described above.
+
+ - =Package_build_config_version= version string appearing in source area
+ - =Package_build_native_version= version string appearing in install area
+
+It is typical to have both of these set to the
+=Package_config_version= defined in =LCG_Configuration=.
+
+** Setting the source files.
+
+The source files are typically a tar or zip file and can be set with
+the =LCG_tarfilename= using CMT's =set= command.  The files are taken
+locally from =external/tarFiles/= area.  If not found there, they will
+try to be downloaded from the location specified in =LCG_tarurl=
+defined in =LCG_Builders/LCG_BuildPolicy/cmt/requirements=.
+
+The tar file name is typically parametrized by the package version, eg:
+
+#+BEGIN_EXAMPLE
+set LCG_tarfilename "package-${Package_config_version}.tar.gz"
+#+END_EXAMPLE
+
+This variable is also used by the =common.sh= shell helper functions
+(see below) to automate the unpacking.
+
+If additional files are needed, such as patch files, then they can be
+listed in a semicolon (";") delimited list called =LCG_sourcefiles=
+which is a CMT macro.  These files should be placed in the same
+=external/tarFiles= and/or =LCG_tarurl= areas.  An example:
+
+#+BEGIN_EXAMPLE
+macro LCG_sourcefiles "package-${Package_config_version}.tar.gz;package.patch"
+#+END_EXAMPLE
+
+** Optional macros
+
+To make use of the simplifying shell functions from =common.sh= (see
+below) these macros must be defined
+
+ - =Package_srcdir= name of directory produced after unpacking source file
+ - =Package_config_target= path relative to =srcdir= of a file produced after a successful config
+ - =Package_make_target= path relative to =srcdir= of a file produced after a successful make
+
+** Finishing up
+
+Finally, the requirements file needs a line like:
+
+#+BEGIN_EXAMPLE
+apply_pattern buildscripts_local
+#+END_EXAMPLE
+
+This brings all of the above, and more, into play.  It takes an
+optional argument, =destdir=, which provides an absolute path into
+which the final install should go.
+
+* Builder scripts
+
+This section describes how to make use of the aforementioned =common.sh=
+shell helper functions to write concise build scripts for packages
+that are built in popular ways.  If a particular package is built in
+an esoteric manner then one must simply capture that build into the
+build scripts by any means.  The =common.sh= functions and the following
+documentation can be used as a source of guidance.
+
+The scripts must be strict Bourne shell and rely on any bashisms.  If
+making use of the =common.sh= helper functions the script should start
+with
+
+#+BEGIN_EXAMPLE
+. ${LCG_BUILDPOLICYROOT_DIR}/scripts/common.sh
+#+END_EXAMPLE
+
+When using =common.sh= functions, each command that is run will have its
+return code checked for error and the script will abort if any is
+found.
+
+** Config script
+
+The =Package_config.sh= script must unpack the source files, perform any
+pre-compilation configuration and apply any required patches.
+
+Using =common.sh= this may be as simple as:
+
+#+BEGIN_EXAMPLE
+untar
+do_configure
+#+END_EXAMPLE
+
+This will go to the srcdir, un-tar the source file, enter the
+resulting directory and run configure with the prefix option set to
+the destbindir.  
+
+*** Patching the source
+
+Patch files can be stored in two locations.  They can either be placed
+in the same areas as the tar files (see above) or they can be placed
+under a =patches/= subdirectory of the builder package.
+
+In the first case, make sure the patch file is listed in the
+=LCG_sourcefiles= and apply it like:
+
+#+BEGIN_EXAMPLE
+goto $LCG_srcdir
+apply_patch ../patchfile.diff
+#+END_EXAMPLE
+
+In the second case, if the patch file is stored under the =patches/=
+directory one needs:
+
+#+BEGIN_EXAMPLE
+goto $LCG_srcdir
+apply_patch patchfile.diff
+#+END_EXAMPLE
+
+** Make script
+
+The =Package_make.sh= script is responsible for compiling the package.
+In the case of a package that simply needs the "make" command called
+this script will simply need:
+
+#+BEGIN_EXAMPLE
+do_make
+#+END_EXAMPLE
+
+** Install script
+
+The =Package_install.sh= script is responsible for moving the results
+of the build into the final destination directory (=LCG_destbindir=).
+For packages that accomplish this with a simple "make install" command 
+this script simply needs:
+
+#+BEGIN_EXAMPLE
+do_make_install
+#+END_EXAMPLE
+
+
+** Command Reference
+
+*** Logging
+
+Instead of using =echo= for messages one should use =info=, =error= or
+=fatal= functions.  The last one will cause the script to exit with an
+error value.  Use them just like you would =echo=.
+
+*** Directory traversal
+
+Instead of using =cd= to go to directories, use =goto=.  It is just
+like =cd= but will abort on error.
+
+*** Running commands
+
+Never run a command that might fail directly.  Instead use =cmd= to
+run it.  Simply place it in front of the normal command to be run.  It
+will abort if the command returns an error.
+
+#+BEGIN_EXAMPLE
+cmd mycommand -arg1 -arg2 ...
+#+END_EXAMPLE
+
+If, for some reason, it is not possible to use =cmd= you can call the
+=check= command just after your command:
+
+#+BEGIN_EXAMPLE
+mycommand -arg1 -arg2 ...
+check
+#+END_EXAMPLE
+
+*** The =untar= command
+
+This command untars the given file.  If =LCG_srcdir= is defined and
+points to an existing directory the file will not be untared.  If the
+filename ends in a "z" it is assumed to be gzip'ped.  If
+=LCG_builddir= is defined we "cd" there first and "cd" back to
+starting point before exiting.
+
+*** The =do_configure= command
+
+This command runs configure with the given arguments, if any.  If
+=LCG_srcdir= is defined we "cd" there first and "cd" back before
+returning.  Otherwise it is assumed that we are in the same directory
+as configure.  If variable =LCG_config_target= is set it will check
+for the file it points to and return if it already exists.
+=LCG_configure_options= can be set to add additional options to the
+configure script.
+
+*** The =apply_patch= command
+
+Apply given patch with optional strip level (default is 0).  If the
+patchfile is not found it is looked for as a path relative to
+=Package/patches/= assuming the running script is in =Package/scripts/=.
+After a successful patch, a dot file is made and checked on subsequent 
+running to avoid the patch being applied twice.  Before calling, "cd"
+to the appropriate directory (ie, =LCG_srcdir=).
+
+*** The =do_make= command
+
+Run make with the given arguments.  If the variable =LCG_make_target=
+is defined and points to an existing file, make will not be run.  If
+=LCG_srcdir= exists, we "cd" to it before and back to cwd after,
+otherwise we assume to already be in the source directory.
+
+*** The =do_make_install= command
+
+Run "make [options] install".  The variable =LCG_destbindir= should be
+defined.  If the directory it points to already exists, the install
+will not take place.  If =LCG_srcdir= is defined and points to a
+directory we "cd" to it and back to starting point when done otherwise
+it is assumed we already are in the correct directory.
+
+* Operating a builder
+
+The builders have four, ordered stages.
+
+ - get :: Get the file from the tar directory, possibly first going to a web cache
+ - config :: Run the =Package_config.sh= script
+ - make :: Run the =Package_make.sh= script
+ - install :: Run the =Package_install.sh= script
+
+Each stage can be run individually from the builder's =cmt/= directory via:
+
+#+BEGIN_EXAMPLE
+cmt pkg_<STAGE>
+#+END_EXAMPLE
+
+In addition, each stage is dependent on the previous one and will
+force it to be run when invoked like:
+
+#+BEGIN_EXAMPLE
+make pkg_<STAGE>
+#+END_EXAMPLE
+
+
+
+
+* Experimental Features
+
+The following features are experimental.  Their usage may change or
+simply not work as advertised.
+
+** Optional Dependencies
+
+This is not strictly related to the builders but can be used here.
+There is one note below that is relevant to the builders.
+
+*** Declaring Optional Packages
+
+Many packages can depend on others optionally.  There is support in
+=LCG_Settings= to select optional packages through the general
+=use_optional= pattern or more specific =use_optional_interface=.
+These patterns can be applied as in this example:
+
+#+BEGIN_EXAMPLE
+# may result in "use OptionalPkg v* SomeHat"
+apply_pattern use_optional pkg=OptionalPkg useopts="v* SomeHat"
+
+# may result in "use Geant4 v* LCG_Interfaces -no_auto_imports"
+apply_pattern use_optional_interface pkg=Geant4
+#+END_EXAMPLE
+
+As a side effect of =use_optional_interface= a =build_optional_<pkg>=
+tag will be applied if the optional package is selected (see next).
+This can be used by build systems to automatically build the required
+package.
+
+*** Selecting Optional Packages
+
+The optional package will be used if one of the following tags are set:
+
+ - =<package>_use_<pkg>= :: explicitly tell the =<package>= to use =<pkg>=
+ - =<package>_use_all= :: tell the =<package>= to use all optional packages
+ - =use_<pkg>= :: use the optional =<pkg>= regardless of the =<package>= asking for it
+ - =USE_ALL_OPT_PKGS= :: use all optional packages regardless of any =<package>=s asking for them
+
+#+BEGIN_EXAMPLE
+cmt -tag_add=SomePackage_use_OtherPackage ...
+#+END_EXAMPLE
+
+Or, to make them default for a given environment, they can be set in
+=$CMTUSERCONTEXT/requirements= like
+
+#+BEGIN_EXAMPLE
+apply_tag SomePackage_use_OtherPackage
+apply_tag use_YetAnotherPackage
+#+END_EXAMPLE
+
+-----

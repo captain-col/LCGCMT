@@ -9,3 +9,7 @@ cleanup.csh
 *.make
 *.makesav
 .gdb*
+*.pyc
+native_version.cmt
+Makefile
+logs/

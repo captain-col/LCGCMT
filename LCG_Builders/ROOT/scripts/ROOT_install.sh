@@ -11,7 +11,3 @@ find . -name '*.[od]' | xargs rm
 cd ..
 tar -cf -   root | (cd  ${afsdir}/ROOT/${LCG_package_native_version}/${LCG_CMTCONFIG}; tar -xf - )
 
-cd ${afsdir}/COOL/${LCG_package_native_version}
-ln -sf $LCG_CMTCONFIG $ATLAS_TAGS_MAP
-
-#make install --prefix=${afsdir}/ROOT/${LCG_package_native_version}/${LCG_CMTCONFIG}

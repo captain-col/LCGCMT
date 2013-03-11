@@ -35,7 +35,8 @@ macro ROOT_build_native_version "$(ROOT_build_config_version)"
 set LCG_tarfilename "root_v$(ROOT_build_config_version).source.tar.gz"
 
 set LCG_CheckoutDir "$(ROOT_build_config_version)/$(LCG_platform)"
-macro LCG_get "root"
+set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/
+macro LCG_get "http"
 
 
 apply_tag LOCAL_DESTDIR

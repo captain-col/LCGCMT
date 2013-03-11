@@ -1,8 +1,14 @@
 #!/bin/sh
 date
+if [ ! -d ${LCG_builddir}/ROOT/${LCG_CheckoutDir} ]; then
+    echo "Create build directory: ${LCG_builddir}/ROOT/${LCG_CheckoutDir}"
+    mkdir -p ${LCG_builddir}/ROOT/${LCG_CheckoutDir}
+fi
+
 cd ${LCG_builddir}/ROOT/${LCG_CheckoutDir}
-if [ -d root -a -f  ./${LCG_tarfilename} ]; then 
-	tar xvfz ${LCG_tarfilename}
+
+if [ ! -d root -a -f  ${LCG_tardir}/${LCG_tarfilename} ]; then 
+	tar xvfz ${LCG_tardir}/${LCG_tarfilename}
 fi
 
 COVLD=""

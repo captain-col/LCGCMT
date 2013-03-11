@@ -157,7 +157,7 @@ an esoteric manner then one must simply capture that build into the
 build scripts by any means.  The =common.sh= functions and the following
 documentation can be used as a source of guidance.
 
-The scripts must be strict Bourne shell and rely on any bashisms.  If
+The scripts must be strict Bourne shell and not rely on any bashisms.  If
 making use of the =common.sh= helper functions the script should start
 with
 

@@ -46,8 +46,9 @@ class pkg_get :
             print self.argv0, ': WARNING: directory set for LCG_tardir ("%s") does not exist, setting it to %s' % (self.LCG_tardir, self.LCG_tardir_fallback)
             return self.LCG_tardir_fallback
         else :
-            print self.argv0, ': ERROR: No access to tar directory (cmt macro "LCG_tardir" set to "%s"), exiting' % self.LCG_tardir
-            sys.exit(1)
+            print self.argv0, ': WARNING: No access to tar directory (cmt macro "LCG_tardir" set to "%s"), try creating' % self.LCG_tardir
+            os.makedirs(self.LCG_tardir)
+            return self.LCG_tardir
         return ''
 
     def get_cp_one(self,src,dst):

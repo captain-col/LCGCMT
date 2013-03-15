@@ -361,7 +361,7 @@ macro gcc2clang "" target-clang3 "gcc46"
 macro gcc2max   "" target-gccmax "gcc46" 
 macro gcc2g11   "" target-g11max "gcc46"
 
-macro LCG_arch                      "$(cmt_hardware)" \
+macro LCG_arch                      "UnknownArch" \
       target-x86_64                 "x86_64" \
       target-i686                   "i686"   \
       target-i386                   "i386"   \
@@ -369,7 +369,7 @@ macro LCG_arch                      "$(cmt_hardware)" \
       target-slc4&target-i686       "ia32"   \
       target-mac105                 "ia32"
 
-macro LCG_os                        "$(cmt_system_version)" \
+macro LCG_os                        "UnknownOS" \
       target-slc6                   "slc6"   \
       target-slc5                   "slc5"   \
       target-slc4                   "slc4"   \
@@ -380,7 +380,7 @@ macro LCG_os                        "$(cmt_system_version)" \
       target-win7                   "win7"   \
       target-winxp                  "winxp"
 
-macro LCG_compiler                  "$(cmt_compiler_version)" \
+macro LCG_compiler                  "UnknownCompiler" \
       target-gcc34                  "gcc34"   \
       target-gcc40                  "gcc401"  \
       target-gcc41                  "gcc41"   \

@@ -6,8 +6,6 @@ afsdir=`echo ${LCG_reldir} | sed -e  's,build,afs/cern.ch/sw/lcg/app,' `
 
 mkdir -p ${afsdir}/ROOT/${LCG_package_native_version}/${LCG_CMTCONFIG}
 
-find . -name '*.[od]' | xargs rm
-
 cd ..
-tar -cf -   root | (cd  ${afsdir}/ROOT/${LCG_package_native_version}/${LCG_CMTCONFIG}; tar -xf - )
+tar -cf - --exclude='*.[od]' root | (cd  ${afsdir}/ROOT/${LCG_package_native_version}/${LCG_CMTCONFIG}; tar -xf - )
 

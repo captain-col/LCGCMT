@@ -18,4 +18,9 @@ if [[ ! -z "$GCOV_TOOL" ]];then
 fi
 
 cd root
+if [ -f config.status ]; then
+    echo "ROOT already configured.  Remove ${PWD}/config.status to reconfig."
+    exit 0
+fi
+
 eval "./configure ${LCG_ROOT_CONFIG_ARCH} ${LCG_ROOT_CONFIG_OPTIONS} ${COVLD}"  #--prefix=${LCG_extdir}/root/${LCG_package_config_version}/${LCG_CMTCONFIG}

@@ -25,11 +25,11 @@ if [ $# == 1 ]; then
 else
     #if code coverage is "turned on" compile with special OPT parameters
     if [[ ! -z "$GCOV_TOOL" ]];then
-        make -k -l ${LCG_MAX_LOAD} -j4 OPT="-fprofile-arcs -ftest-coverage"
+        make -k -l ${LCG_MAX_LOAD} -j OPT="-fprofile-arcs -ftest-coverage"
     else
-        make -k -l ${LCG_MAX_LOAD} -j4
+        make -k -l ${LCG_MAX_LOAD} -j
     fi
     cd test
-    make -k -l ${LCG_MAX_LOAD} -j3
+    make -k -l ${LCG_MAX_LOAD} -j
     date
 fi

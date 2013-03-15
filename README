@@ -18,6 +18,30 @@ LCG Builders Documentation
 The =LCG_Builders= packages provide a CMT packages, each to install a
 3rd party external package.
 
+* Operating a builder
+
+The builders have four, ordered stages.
+
+ - get :: Get the file from the tar directory, possibly first going to a
+           web cache 
+ - config :: Run the =Package_config.sh= script
+ - make :: Run the =Package_make.sh= script
+ - install :: Run the =Package_install.sh= script
+
+Each stage can be run individually from the builder's =cmt/= directory via:
+
+#+BEGIN_EXAMPLE
+cmt pkg_<STAGE>
+#+END_EXAMPLE
+
+In addition, each stage is dependent on the previous one and will
+force it to be run when invoked like:
+
+#+BEGIN_EXAMPLE
+make pkg_<STAGE>
+#+END_EXAMPLE
+
+
 * Build script environment
 
 Each builder relies on =LCG_BuildPolicy= to define a number of
@@ -301,29 +325,6 @@ defined.  If the directory it points to already exists, the install
 will not take place.  If =LCG_srcdir= is defined and points to a
 directory we "cd" to it and back to starting point when done otherwise
 it is assumed we already are in the correct directory.
-
-* Operating a builder
-
-The builders have four, ordered stages.
-
- - get :: Get the file from the tar directory, possibly first going to a web cache
- - config :: Run the =Package_config.sh= script
- - make :: Run the =Package_make.sh= script
- - install :: Run the =Package_install.sh= script
-
-Each stage can be run individually from the builder's =cmt/= directory via:
-
-#+BEGIN_EXAMPLE
-cmt pkg_<STAGE>
-#+END_EXAMPLE
-
-In addition, each stage is dependent on the previous one and will
-force it to be run when invoked like:
-
-#+BEGIN_EXAMPLE
-make pkg_<STAGE>
-#+END_EXAMPLE
-
 
 
 

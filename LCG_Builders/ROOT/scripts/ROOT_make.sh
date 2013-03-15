@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Set the maximum load during the job.  This can be overridden in the
+# environment.
+if [ "x$LCG_MAX_LOAD" = "x" ]; then
+    LCG_MAX_LOAD=2.5
+fi
+echo Limit load to ${LCG_MAX_LOAD}
+
 which sysctl
 echo $PATH
 date
@@ -8,24 +15,21 @@ svn info
 if [ $# == 1 ]; then
     #if code coverage is "turned on" compile with special OPT parameters
     if [[ ! -z "$GCOV_TOOL" ]];then
-        make -k -j$1 OPT="-fprofile-arcs -ftest-coverage"
+        make -k -l ${LCG_MAX_LOAD} -j$1 OPT="-fprofile-arcs -ftest-coverage"
     else
-        make -k -j$1
+        make -k -l ${LCG_MAX_LOAD} -j$1
     fi
     cd test
-    make -k -j$1
-    
+    make -k -l ${LCG_MAX_LOAD} -j$1
     date
-
-
 else
     #if code coverage is "turned on" compile with special OPT parameters
     if [[ ! -z "$GCOV_TOOL" ]];then
-        make -k -j4 OPT="-fprofile-arcs -ftest-coverage"
+        make -k -l ${LCG_MAX_LOAD} -j4 OPT="-fprofile-arcs -ftest-coverage"
     else
-        make -k -j4
+        make -k -l ${LCG_MAX_LOAD} -j4
     fi
     cd test
-    make -k -j3
+    make -k -l ${LCG_MAX_LOAD} -j3
     date
 fi

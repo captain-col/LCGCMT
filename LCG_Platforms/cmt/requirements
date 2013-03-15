@@ -83,7 +83,28 @@ tag host-gcc46  host-gcc4
 # gcc 4.7 series
 tag gcc470      host-gcc47
 tag gcc471      host-gcc47
+tag gcc472      host-gcc47
+tag gcc473      host-gcc47
+tag gcc474      host-gcc47
+tag gcc475      host-gcc47
+tag gcc476      host-gcc47
+tag gcc477      host-gcc47
+tag gcc478      host-gcc47
+tag gcc479      host-gcc47
 tag host-gcc47  host-gcc4
+
+# gcc 4.8 series
+tag gcc480      host-gcc48
+tag gcc481      host-gcc48
+tag gcc482      host-gcc48
+tag gcc483      host-gcc48
+tag gcc484      host-gcc48
+tag gcc485      host-gcc48
+tag gcc486      host-gcc48
+tag gcc487      host-gcc48
+tag gcc488      host-gcc48
+tag gcc489      host-gcc48
+tag host-gcc48  host-gcc4
 
 # Windows Visual Studio cl compiler
 tag VisualC     host-visualc

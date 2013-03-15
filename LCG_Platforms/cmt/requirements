@@ -310,6 +310,7 @@ tag osx105_ia32_gcc401_dbg   target-i386   target-mac105 target-gcc40  target-db
 tag win32_vc71               target-i686   target-winxp  target-vc71   target-opt
 tag win32_vc71_dbg           target-i686   target-winxp  target-vc71   target-dbg
 
+
 # further abstractions
 tag target-slc4   target-slc
 tag target-slc5   target-slc
@@ -361,7 +362,7 @@ macro gcc2clang "" target-clang3 "gcc46"
 macro gcc2max   "" target-gccmax "gcc46" 
 macro gcc2g11   "" target-g11max "gcc46"
 
-macro LCG_arch                      "UnknownArch" \
+macro LCG_arch                      "$(host_arch)" \
       target-x86_64                 "x86_64" \
       target-i686                   "i686"   \
       target-i386                   "i386"   \
@@ -369,10 +370,11 @@ macro LCG_arch                      "UnknownArch" \
       target-slc4&target-i686       "ia32"   \
       target-mac105                 "ia32"
 
-macro LCG_os                        "UnknownOS" \
+macro LCG_os                        "$(host_os)" \
       target-slc6                   "slc6"   \
       target-slc5                   "slc5"   \
       target-slc4                   "slc4"   \
+      target-linux		    "linux"  \
       target-mac108                 "mac108" \
       target-mac107                 "mac107" \
       target-mac106                 "mac106" \
@@ -380,7 +382,7 @@ macro LCG_os                        "UnknownOS" \
       target-win7                   "win7"   \
       target-winxp                  "winxp"
 
-macro LCG_compiler                  "UnknownCompiler" \
+macro LCG_compiler                  "$(host_compiler)" \
       target-gcc34                  "gcc34"   \
       target-gcc40                  "gcc401"  \
       target-gcc41                  "gcc41"   \

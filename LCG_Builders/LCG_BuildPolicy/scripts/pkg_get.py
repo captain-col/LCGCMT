@@ -94,6 +94,7 @@ class pkg_get :
                 else:
                     urllib.urlretrieve(url,target)
                 pass
+            self.get_cp_one(target,self.LCG_builddir)
             continue
         return
 

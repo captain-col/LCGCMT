@@ -9,7 +9,7 @@ use pyCMT             v*
 macro LCG_get                        'cp'
 macro LCG_cvsdir                     "$(<package>_build_config_version)"
 
-set LCG_CMTCONFIG                    "${CMTCONFIG}"
+set LCG_CMTCONFIG                    "${LCG_system}"
 set LCG_BUILDPOLICYROOT_DIR          "$(LCG_BUILDPOLICYROOT)"
 
 

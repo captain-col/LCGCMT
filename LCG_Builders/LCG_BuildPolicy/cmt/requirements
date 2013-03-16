@@ -6,7 +6,7 @@ use pyCMT             v*
 
 # how to retrieve s/w from LCG, options are
 # 'cp', 'scp', 'http'
-macro LCG_get                        'cp'
+macro LCG_get                        'http'
 macro LCG_cvsdir                     "$(<package>_build_config_version)"
 
 set LCG_CMTCONFIG                    "${LCG_system}"

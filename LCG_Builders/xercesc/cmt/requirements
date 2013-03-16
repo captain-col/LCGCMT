@@ -2,9 +2,26 @@ package xercesc
 
 use LCG_BuildPolicy v* LCG_Builders
 
+# Set the versions.  The XercesC_config_version is set in the
+# LCG_Configuration package requirements and is the "distributed" version of
+# the package.  This package has the same config and native version (most
+# probably should). 
 macro xercesc_build_config_version "$(XercesC_config_version)"
-macro xercesc_build_native_version "$(xercesc_build_config_version)"
+macro xercesc_build_native_version "$(XercesC_config_version)"
+
+# Set where to get the source file.  If there is more than one file, then
+# both LCG_tarfilename and LCG_sourcefiles can be set.  LCG_sourcefiles is
+# a ";" separated list of files to download.  The LCG_tarfilename value
+# needs to be set because that tells the package config script what file to
+# unpack.  
 set LCG_tarfilename "xerces-c-$(xercesc_build_config_version).tar.gz"
+set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
+macro LCG_get "http"
+
+# This is the directory that the tar file unpacks the source into.  
+set LCG_srcdir "xerces-c-$(xercesc_build_config_version)"
+
+# Set target specific compilation variables.
 set LCG_xercesc_compile_options ""\
     target-darwin&target-i386 "export CFLAGS=-m32 export CXXFLAGS=-m32"
 
@@ -12,6 +29,10 @@ set LCG_xercesc_compile_options ""\
 set LCG_xercesc_config_options " --disable-network " \
     target-i686&target-slc     " --disable-network --build=i686-pc-linux-gnu"
 
-apply_tag LOCAL_DESTDIR
-apply_pattern buildscripts_local destdir=$(LCG_extdir)/XercesC/$(xercesc_build_config_version)
+# Trigger the pkg_config, pkg_make and pkg_install targets.
+apply_pattern buildscripts_local
+
+# Override the destination package name since the LCG_Interfaces package has a
+# different name (XercesC)
 set LCG_pkgdest_pkgname XercesC
+

@@ -5,7 +5,7 @@ use LCG_Settings      v*
 
 macro XercesC_native_version "$(XercesC_config_version)"
 
-macro XercesC_home "$(LCG_external)/XercesC/$(XercesC_native_version)/$(LCG_system)"
+macro XercesC_home "$(LCG_external)/XercesC/$(XercesC_native_version)/$(tag)"
 
 include_path none
 include_dirs $(XercesC_home)/include

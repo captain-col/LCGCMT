@@ -1,3 +1,3 @@
 #!/bin/sh
-cd ${LCG_builddir}/xerces-c-${LCG_package_config_version}
+cd ${LCG_destbindir}/${LCG_srcdir}
 make install

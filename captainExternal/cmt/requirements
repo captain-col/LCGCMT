@@ -1,0 +1,51 @@
+package captainExternal
+
+# Define a pattern to build an external package.
+pattern external \
+   action <build> "(cd ../../<offset><build>/cmt; \
+       cmt broadcast cmt config > /dev/null 2>&1; \
+       . ./setup.sh; \
+       echo Do \'make pkg_install\' in <offset><build>; \
+       make pkg_install; \
+       echo Done in <offset><build>)" ;\
+   macro_append constituents " <build>"
+
+# Define a pattern to build an external package that depends on another
+# package being built first.
+pattern external_depends \
+   apply_pattern external offset=<offset> build=<build> ;\
+   macro <build>_dependencies <depends>
+
+#########################################################################
+# Everything below here only gets included when actually in the
+# captainExternal package.
+#
+# The list of LCGCMT packages to be built is at the bottom of this file.
+#########################################################################
+
+private
+
+# Define a pattern to build one of the LCGCMT packages.  This only works
+# for captainExternal
+pattern lcgcmt apply_pattern external offset=LCG_Builders/ build=<build>
+
+# Define a pattern to build one of the LCGCMT packages that depends on
+# another package being built first.
+pattern lcgcmt_depends \
+   apply_pattern external_depends offset=LCG_Builders/ build=<build> depends=<depends>
+
+#########################################################################
+# List of all the packages to build.  These will be built by the "make all"
+# target.
+
+lcgcmt build=cppunit
+lcgcmt build=gsl
+lcgcmt build=fftw
+
+# Root needs to be built after it's pre-requisites to make sure they are
+# enabled during configuration.
+lcgcmt_depends build=ROOT depends="cppunit gsl fftw"
+
+lcgcmt build=dawn
+lcgcmt build=xercesc
+

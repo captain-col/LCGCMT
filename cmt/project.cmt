@@ -10,3 +10,5 @@ build_strategy $(lcgcmt_installarea)
 setup_strategy no_root no_config
 
 structure_strategy without_version_directory
+
+container captainExternal

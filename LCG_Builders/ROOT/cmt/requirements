@@ -33,16 +33,10 @@ macro ROOT_build_config_version "$(ROOT_config_version)"
 macro ROOT_build_native_version "$(ROOT_build_config_version)"
 
 set LCG_tarfilename "root_v$(ROOT_build_config_version).source.tar.gz"
-
-set LCG_CheckoutDir "$(ROOT_build_config_version)/$(LCG_platform)"
 set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/
-macro LCG_get "http"
+set LCG_srcdir "root"
 
-
-apply_tag LOCAL_DESTDIR
-apply_pattern buildscripts_project_local destdir="$(LCG_reldir)/$(package)/$(LCG_package_config_version)"
-
-set LCG_PKG_SRC_DIR "${LCG_builddir}/${LCG_package}/${LCG_package_config_version}/${LCG_CMTCONFIG}/root"
+apply_pattern buildscripts_project_local
 
 # ARCHITECTURE 
 # ============

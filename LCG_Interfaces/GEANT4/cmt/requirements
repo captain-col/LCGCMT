@@ -1,0 +1,23 @@
+package GEANT4
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use XercesC	      v* LCG_Interfaces
+use ROOT	      v* LCG_Interfaces
+
+macro GEANT4_native_version "$(GEANT4_config_version)"
+
+macro GEANT4_base "$(LCG_releases)/geant4/$(GEANT4_native_version)" 
+macro GEANT4_home "$(GEANT4_base)/$(LCG_platform)"
+
+include_path none
+include_dirs $(GEANT4_home)/include
+
+macro GEANT4_linkopts "`$(GEANT4_home)/bin/geant4-config --libs`" \
+      G4_without_gui  "`$(GEANT4_home)/bin/geant4-config --libs-without-gui`"
+
+macro GEANT4_cppflags "`$(GEANT4_home)/bin/geant4-config --cflags`" \
+      G4_without_gui  "`$(GEANT4_home)/bin/geant4-config --cflags-without-gui`"
+
+apply_pattern set_bin_and_lib_path
+

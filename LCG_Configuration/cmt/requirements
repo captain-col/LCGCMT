@@ -57,7 +57,7 @@ macro Frontier_Client_config_version     "2.8.5p1"
 macro fastjet_config_version             "3.0.3"
 macro GCCXML_config_version              "0.9.0_20110825" \
       target-gccmax                      "0.9.0_20120309"
-macro geant4_config_version		 "4.9.6.p01"
+macro GEANT4_config_version		 "4.9.6.p01"
 macro genshi_config_version              "0.6"
 macro gfal_config_version                "1.13.0-0" \
       target-i686                        "1.11.8-2"

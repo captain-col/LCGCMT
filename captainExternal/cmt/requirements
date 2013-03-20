@@ -49,3 +49,4 @@ lcgcmt_depends build=ROOT depends="cppunit gsl fftw"
 lcgcmt build=dawn
 lcgcmt build=xercesc
 
+lcgcmt_depends build=geant4 depends="xercesc ROOT"

@@ -1,4 +1,4 @@
-package captainExternal
+package captainLCGCMT
 
 # Define a pattern to build an external package.
 pattern external \
@@ -18,7 +18,7 @@ pattern external_depends \
 
 #########################################################################
 # Everything below here only gets included when actually in the
-# captainExternal package.
+# captainLCGCMT package.
 #
 # The list of LCGCMT packages to be built is at the bottom of this file.
 #########################################################################
@@ -26,7 +26,7 @@ pattern external_depends \
 private
 
 # Define a pattern to build one of the LCGCMT packages.  This only works
-# for captainExternal
+# for captainLCGCMT
 pattern lcgcmt apply_pattern external offset=LCG_Builders/ build=<build>
 
 # Define a pattern to build one of the LCGCMT packages that depends on

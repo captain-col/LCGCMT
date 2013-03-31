@@ -38,7 +38,6 @@ pattern lcgcmt_depends \
 # List of all the packages to build.  These will be built by the "make all"
 # target.
 
-lcgcmt build=cppunit
 lcgcmt build=gsl
 lcgcmt build=fftw
 

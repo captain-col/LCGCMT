@@ -12,4 +12,16 @@ The very first freeze of the external packages.  This builds:
 ROOT, fftw (for mathmore), gsl (for mathmore), 
 GEANT, xercesc (for gdml), dawn (for G4 geometry visualization)
  
+
+\section cmt_standalone_v0r0p1_history Version 0.0.1
+
+Freeze information:
+   - Freeze Date: Sun Mar 31 20:29:08 2013
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.physics.sunysb.edu
+
+Bug fix:
+
+* Update the .gitignore file to match the standard one in CAPTAIN/inputs. 
+
 */

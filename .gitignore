@@ -15,3 +15,9 @@ native_version.cmt
 Makefile
 logs/
 EXTERNALS/
+*\#*
+v*r*p*_history.txt
+*_version.cxx
+*_version.hxx
+*_version_LinkDef.h
+*_version.h

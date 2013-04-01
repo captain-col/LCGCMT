@@ -3,10 +3,12 @@ package captainLCGCMT
 # Define a pattern to build an external package.
 pattern external \
    action <build> "(cd ../../<offset><build>/cmt; \
+       cmt config > /dev/null 2>&1; \
+       . ./setup.sh; \
        cmt broadcast cmt config > /dev/null 2>&1; \
        . ./setup.sh; \
        echo Do \'make pkg_install\' in <offset><build>; \
-       make pkg_install; \
+       make -j1 pkg_install; \
        echo Done in <offset><build>)" ;\
    macro_append constituents " <build>"
 

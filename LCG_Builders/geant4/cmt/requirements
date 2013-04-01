@@ -16,7 +16,7 @@ macro geant4_build_native_version "$(geant4_build_config_version)"
 # a ";" separated list of files to download.  The LCG_tarfilename value
 # needs to be set because that tells the package config script what file to
 # unpack.  
-set LCG_tarfilename "geant$(geant4_config_version).tar.gz"
+set LCG_tarfilename "geant$(geant4_build_config_version).tar.gz"
 set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
 macro LCG_get "http" 
 

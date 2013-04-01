@@ -43,7 +43,7 @@ lcgcmt build=fftw
 
 # Root needs to be built after it's pre-requisites to make sure they are
 # enabled during configuration.
-lcgcmt_depends build=ROOT depends="cppunit gsl fftw"
+lcgcmt_depends build=ROOT depends="gsl fftw"
 
 lcgcmt build=dawn
 lcgcmt build=xercesc

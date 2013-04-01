@@ -1,2 +1,32 @@
 /*! \page LCGCMTHistory History for the LCGCMT Project 
+
+\section LCGCMT_v0r1p0_history Version 0.1.0
+
+Freeze information:
+   - Freeze Date: Mon Apr  1 12:02:14 2013
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.physics.sunysb.edu
+
+Bug Fixes:
+
+* Fixes so that this will work with CMT v1r26.  The previous captainLCGCMT
+failed because of the parallel makes.
+
+* Refreeze to incorporate fixes in capt-freeze into the way the history
+files are handled.
+
+Back patch of old history:
+
+\section cmt_standalone_v0r0p0_history Version 0.0.0
+
+Freeze information:
+   - Freeze Date: Sun Mar 31 11:45:22 2013
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.physics.sunysb.edu
+
+The very first freeze of the external packages.  This builds:
+
+ROOT, fftw (for mathmore), gsl (for mathmore), 
+GEANT, xercesc (for gdml), dawn (for G4 geometry visualization).
+
 */

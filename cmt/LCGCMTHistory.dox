@@ -29,4 +29,16 @@ The very first freeze of the external packages.  This builds:
 ROOT, fftw (for mathmore), gsl (for mathmore), 
 GEANT, xercesc (for gdml), dawn (for G4 geometry visualization).
 
+
+\section LCGCMT_v0r1p1_history Version 0.1.1
+
+Freeze information:
+   - Freeze Date: Mon Apr  1 17:31:12 2013
+   - Freeze User: mcgrew
+   - Freeze Host: nngroup.physics.sunysb.edu 
+
+
+GEANT4 build: Modify so that the available graphics systems are looked for
+explicitly by a setup script.
+
 */

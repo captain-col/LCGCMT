@@ -9,6 +9,7 @@ macro GEANT4_native_version "$(GEANT4_config_version)"
 
 macro GEANT4_base "$(LCG_releases)/geant4/$(GEANT4_native_version)" 
 macro GEANT4_home "$(GEANT4_base)/$(LCG_platform)"
+macro GEANT4_share "$(LCG_releases)/geant4/share" 
 
 include_path none
 include_dirs $(GEANT4_home)/include
@@ -21,3 +22,11 @@ macro GEANT4_cppflags "`$(GEANT4_home)/bin/geant4-config --cflags`" \
 
 apply_pattern set_bin_and_lib_path
 
+set G4LEDATA $(GEANT4_share)/G4EMLOW6.32
+set G4LEVELGAMMADATA $(GEANT4_share)/PhotonEvaporation2.3
+set G4NEUTRONHPDATA $(GEANT4_share)/G4NDL4.2
+set G4NEUTRONXSDATA $(GEANT4_share)/G4NEUTRONXS1.2
+set G4PIIDATA $(GEANT4_share)/G4PII1.3
+set G4RADIOACTIVEDATA $(GEANT4_share)/RadioactiveDecay3.6
+set G4REALSURFACEDATA $(GEANT4_share)/RealSurface1.0
+set G4SAIDXSDATA $(GEANT4_share)/G4SAIDDATA1.1

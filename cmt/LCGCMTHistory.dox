@@ -41,4 +41,18 @@ Freeze information:
 GEANT4 build: Modify so that the available graphics systems are looked for
 explicitly by a setup script.
 
+
+\section LCGCMT_v0r1p2_history Version 0.1.2
+
+Freeze information:
+   - Freeze Date: Fri Apr  5 16:54:51 2013
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.local 
+
+
+Bug Fix:
+
+The GEANT environment variables for the data files were not being set in
+GEANT4 LCG_Interfaces.
+
 */

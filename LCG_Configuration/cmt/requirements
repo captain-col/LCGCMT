@@ -25,9 +25,7 @@ macro AIDA_config_version                "3.2.1"
 macro 4suite_config_version              "1.0.2p1"
 macro bjam_config_version                "3.1.13"
 macro blas_config_version                "20110419"
-macro Boost_config_version               "1.48.0" \
-      target-gccmax                      "1.48.0p1" \
-      target-slc6                        "1.48.0p1"
+macro Boost_config_version               "1.53.0"
 macro Boost_file_version                 "1_48" 
 macro bz2lib_config_version              "1.0.2"
 macro CASTOR_config_version              "2.1.13-6" \

@@ -4,11 +4,10 @@ use LCG_Configuration v*
 use LCG_Settings      v*
 use Python            v* LCG_Interfaces -no_auto_imports
 
-macro Boost_native_version "$(Boost_config_version)_python$(Python_config_version_twodigit)"
-# 'sed' is not available on windows, I've moved this macro to the LCG_Configuration
-# macro Boost_file_version   "`echo $(Boost_native_version) | sed 's/\./_/g'`"
+macro Boost_native_version "$(Boost_config_version)
 
 macro Boost_home $(LCG_external)/Boost/$(Boost_native_version)/$(LCG_system)
+set LCG_boost_file_version "`echo $(Boost_config_version) | sed s/\\./_/g`"
 
 include_path none
 include_dirs $(Boost_home)/include/boost-$(Boost_file_version) 
@@ -25,9 +24,12 @@ macro Boost_compiler_version     "$(LCG_compiler)"    \
 macro Boost_linkopts "-L$(Boost_home)/lib " \
       target-win     "/LIBPATH:$(Boost_home)/lib "
 
-macro Boost_linkopts_python     " -lboost_python-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
-      target-win                "   boost_python-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
 
+##################################################################
+# Define a macro for each boos library that can be added to a package
+# requirements file to link.  For example, to use the graph library, add
+# $(Boost_linkopts_graph) to the requirements linkopts.
+##################################################################
 macro Boost_linkopts_system     " -lboost_system-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
       target-win                "   boost_system-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
 
@@ -64,22 +66,5 @@ macro Boost_header_file_stamp  $(Boost_home)/include/boost-$(Boost_file_version)
 
 apply_pattern set_lib_path
 
-macro_append cppflags  ""  target-win  " /DBOOST_ALL_DYN_LINK /wd4275 /wd4251 "
-
-# Special tag for using date_time with nano sec resolution
-macro_append cppflags       "" USE_BOOST_TIME_WITH_NSEC_RESOLUTION " -DBOOST_DATE_TIME_POSIX_TIME_STD_CONFIG "
-macro_append Boost_linkopts "" USE_BOOST_TIME_WITH_NSEC_RESOLUTION " $(Boost_linkopts_date_time) "
-
-make_fragment pythonmodulebuilder
-
-pattern lcg_python_module \
-  library <name> -import=Python -import=Boost <files> ;\
-  macro <name>_shlibflags  "$(libraryshr_linkopts) $(use_linkopts)" ;\
-  document pythonmodulebuilder pymodule $(bin)<name>.so ;\
-  macro_remove constituents "" target-win "pymodule" ;\
-  macro_append <name>_cppflags " -ftemplate-depth-64" target-win "" ;\
-  path_remove PYTHONPATH "/<package>/" target-win "\<package>\" ;\
-  path_append PYTHONPATH $(<PACKAGE>ROOT)/$(tag)
-  
 macro Boost_export_paths "$(Boost_home)"
 

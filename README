@@ -170,7 +170,9 @@ apply_pattern buildscripts_local
 
 This brings all of the above, and more, into play.  It takes an
 optional argument, =destdir=, which provides an absolute path into
-which the final install should go.
+which the final install should go.  If the destdir parameter is set, then
+you need to set the LOCAL_DESTDIR tag before using the buildscripts_local
+pattern. 
 
 * Builder scripts
 

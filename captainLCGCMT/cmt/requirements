@@ -28,11 +28,15 @@ pattern external_depends \
 private
 
 # Define a pattern to build one of the LCGCMT packages.  This only works
-# for captainLCGCMT
+# for captainLCGCMT.  This takes a single argument called "build" which
+# specifies the name of the LCG_Builder package to compile.
 pattern lcgcmt apply_pattern external offset=LCG_Builders/ build=<build>
 
 # Define a pattern to build one of the LCGCMT packages that depends on
-# another package being built first.
+# another package being built first.  This takes two arguments.  The
+# "build" argument gives the name of the LCG_Builder package that will be
+# build.  The "depends" argument gives the name of the packages that need
+# to be build before the new package.
 pattern lcgcmt_depends \
    apply_pattern external_depends offset=LCG_Builders/ build=<build> depends=<depends>
 
@@ -40,14 +44,12 @@ pattern lcgcmt_depends \
 # List of all the packages to build.  These will be built by the "make all"
 # target.
 
+lcgcmt build=boost
+lcgcmt build=dawn
 lcgcmt build=gsl
 lcgcmt build=fftw
-
-# Root needs to be built after it's pre-requisites to make sure they are
-# enabled during configuration.
-lcgcmt_depends build=ROOT depends="gsl fftw"
-
-lcgcmt build=dawn
 lcgcmt build=xercesc
 
+# Packages with dependencies.
+lcgcmt_depends build=ROOT depends="gsl fftw"
 lcgcmt_depends build=geant4 depends="xercesc ROOT"

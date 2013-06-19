@@ -12,7 +12,7 @@ macro boost_build_native_version    "$(boost_build_config_version)_python$(Pytho
 
 # This is a special override since the tar file name has "_" in place of
 # the "." in the version.
-set LCG_boost_file_version "`echo $(Boost_config_version) | sed s/\\./_/g`"
+set LCG_file_config_version "`echo $(Boost_config_version) | sed s/\\./_/g`"
 
 # Set where to get the source file.  If there is more than one file, then
 # both LCG_tarfilename and LCG_sourcefiles can be set.  LCG_sourcefiles is
@@ -20,7 +20,7 @@ set LCG_boost_file_version "`echo $(Boost_config_version) | sed s/\\./_/g`"
 # needs to be set because that tells the package config script what file to
 # unpack.  
 set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
-set LCG_tarfilename      "boost_$(LCG_boost_file_version).tar.gz"
+set LCG_tarfilename      "boost_$(LCG_file_config_version).tar.gz"
 macro LCG_get "http" 
 
 # Specify which libraries should be built.  

@@ -101,6 +101,7 @@ macro nose_config_version                "1.1.2"
 macro numpy_config_version               "1.6.1"
 macro oracle_config_version              "10.2.0.4" \
       target-slc                         "11.2.0.3.0"
+macro orocos_bfl_config_version          "0.8.0"
 macro processing_config_version          "0.52"
 macro py_config_version                  "1.4.8"
 macro py2neo_config_version              "1.4.6"

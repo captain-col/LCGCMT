@@ -1,5 +1,12 @@
 package orocos-bfl
 
+# The orocos-bfl (The orocos.org Bayesian Filtering Library) provides a
+# number of bayesian filters.  For the linear case, it provides a generic
+# interface to Kalman filtering, but it also provides more "sophisticated"
+# filters like an Extended Kalman Filter and Particle Filters for the
+# nonlinear case.  The library also provides generic interaces for
+# smoothing (e.g. Forward-Backward filtering).
+
 use LCG_Configuration v*
 use LCG_Settings      v*
 

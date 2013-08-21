@@ -1,6 +1,7 @@
 package orocos_bfl
 
 use LCG_BuildPolicy v* LCG_Builders
+use Boost           v* LCG_Interfaces
 
 # Set the versions.  The orocos_bfl_config_version is set in the
 # LCG_Configuration package requirements and is the "distributed" version of
@@ -28,6 +29,6 @@ apply_pattern buildscripts_local
 # Define the orocos_bfl configuration options.  These are in the form of cmake
 # config definitions.
 macro orocos_bfl_build_options " "
+macro_append orocos_bfl_build_options " -DCMAKE_INCLUDE_PATH=$(Boost_include) "
 
-macro_append orocos_bfl_build_options "-DCMAKE_INCLUDE_PATH=$(Boost_include) "
 set LCG_build_options "$(orocos_bfl_build_options)"

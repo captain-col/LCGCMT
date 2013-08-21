@@ -51,5 +51,6 @@ lcgcmt build=fftw
 lcgcmt build=xercesc
 
 # Packages with dependencies.
+lcgcmt_depends build=orocos_bfl depends="boost"
 lcgcmt_depends build=ROOT depends="gsl fftw"
 lcgcmt_depends build=geant4 depends="xercesc ROOT"

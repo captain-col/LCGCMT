@@ -1,0 +1,33 @@
+package orocos_bfl
+
+use LCG_BuildPolicy v* LCG_Builders
+
+# Set the versions.  The orocos_bfl_config_version is set in the
+# LCG_Configuration package requirements and is the "distributed" version of
+# the package.  This package has the same config and native version (most
+# probably should). 
+macro orocos_bfl_build_config_version "$(orocos_bfl_config_version)"
+macro orocos_bfl_build_native_version "$(orocos_bfl_build_config_version)"
+
+# Set where to get the source file.  If there is more than one file, then
+# both LCG_tarfilename and LCG_sourcefiles can be set.  LCG_sourcefiles is
+# a ";" separated list of files to download.  The LCG_tarfilename value
+# needs to be set because that tells the package config script what file to
+# unpack.  
+set LCG_tarfilename "orocos-bfl-$(orocos_bfl_build_config_version)-src.tar.gz"
+set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
+macro LCG_get "http" 
+
+# This is the directory that the tar file unpacks the source into.  
+set LCG_srcdir "orocos-bfl-$(orocos_bfl_build_config_version)"
+
+# Trigger the pkg_config, pkg_make and pkg_install targets.
+apply_pattern buildscripts_local
+
+###################################################################
+# Define the orocos_bfl configuration options.  These are in the form of cmake
+# config definitions.
+macro orocos_bfl_build_options " "
+
+macro_append orocos_bfl_build_options "-DCMAKE_INCLUDE_PATH=$(Boost_include) "
+set LCG_build_options "$(orocos_bfl_build_options)"

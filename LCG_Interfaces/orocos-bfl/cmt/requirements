@@ -9,6 +9,7 @@ package orocos-bfl
 
 use LCG_Configuration v*
 use LCG_Settings      v*
+use Boost             v* LCG_Interfaces
 
 macro orocos-bfl_config_version "$(orocos_bfl_config_version)"
 macro orocos-bfl_native_version "$(orocos_bfl_config_version)"
@@ -18,7 +19,7 @@ macro orocos-bfl_home "$(LCG_external)/orocos_bfl/$(orocos-bfl_native_version)/$
 include_path none
 include_dirs $(orocos-bfl_home)/include
 
-macro orocos-bfl_linkopts "-L$(orocos-bfl_home) -lorocos-bfl " \
+macro orocos-bfl_linkopts "-L$(orocos-bfl_home)/lib -lorocos-bfl " \
       target-win          "/LIBPATH:$(orocos-bfl_home)\lib orocos-bfl.lib "
       
 macro_append cppflags " -DUSE_OROCOS_BFL " \

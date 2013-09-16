@@ -1,0 +1,22 @@
+package log4cpp
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro log4cpp_native_version "$(log4cpp_config_version)"
+
+macro log4cpp_home "$(LCG_external)/log4cpp/$(log4cpp_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(log4cpp_home)/include
+
+macro log4cpp_linkopts "`$(log4cpp_home)/bin/log4cpp-config --libs`"
+
+macro log4cpp_cppflags "`$(log4cpp_home)/bin/log4cpp-config --cflags`"
+
+apply_pattern set_bin_and_lib_path
+
+apply_pattern set_ext_man_path mandir="share/man"
+
+macro log4cpp_export_paths "$(log4cpp_home)/lib $(log4cpp_home)/include" 
+

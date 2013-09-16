@@ -86,6 +86,7 @@ macro libsvm_config_version              "2.86"
 macro libtool_config_version             "1.5.26" \
       target-slc6                        "2.4.2"
 macro libunwind_config_version           "5c2cade"
+macro log4cpp_config_version		 "1.1"
 macro lxml_config_version                "2.3"
 macro matplotlib_config_version          "1.1.0"
 macro minuit_config_version              "5.27.02"

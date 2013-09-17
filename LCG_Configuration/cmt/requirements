@@ -115,6 +115,7 @@ macro pylint_config_version              "0.26.0"
 macro pyminuit_config_version            "0.0.1"
 macro pytest_config_version              "2.2.4"
 macro pytools_config_version             "1.8"
+macro pythia6_config_version		 "v6_424"
 macro Python_config_version              "2.6.5p2" \
       target-mac                         "2.6.5"
 macro Python_config_version_twodigit     "2.6"

@@ -17,6 +17,7 @@ use cmake           v* LCG_Interfaces
 use CppUnit         v* LCG_Interfaces
 use xrootd          v* LCG_Interfaces
 use doxygen         v* LCG_Interfaces
+use pythia6         v* LCG_GeneratorsInterfaces
 use pythia8         v* LCG_GeneratorsInterfaces
 
 #use Cygwin          v* LCG_Interfaces
@@ -165,6 +166,8 @@ set_append LCG_ROOT_CONFIG_OPTIONS              "" \
 set_append LCG_ROOT_CONFIG_OPTIONS              "" \
            lcg_root_enable_pythia8&target-winxp '--with-pythia8-libdir="$(pythia8_home)" ' \
            lcg_root_enable_pythia8              "--with-pythia8-libdir=$(pythia8_home) " 
+
+set_append LCG_ROOT_CONFIG_OPTIONS		" --enable-pythia6 --with-pythia6-libdir=$(pythia6_home)/lib "
 
 # REFLEX / CINTEX / GCCXML
 set_append LCG_ROOT_CONFIG_OPTIONS             "--disable-reflex "                   \

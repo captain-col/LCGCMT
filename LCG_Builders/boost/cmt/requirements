@@ -23,12 +23,6 @@ set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
 set LCG_tarfilename      "boost_$(LCG_file_config_version).tar.gz"
 macro LCG_get "http" 
 
-# Specify which libraries should be built.  
-macro with_libraries "graph"
-macro_prepend with_libraries "program_options,"
-macro_prepend with_libraries "serialization,"
-set LCG_boost_with_libraries $(with_libraries)
-
 # Specify the tool set.
 set LCG_boost_toolset   "gcc" \
     target-darwin 	"darwin" \

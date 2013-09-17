@@ -13,5 +13,7 @@ fi
 tar xvfz ${LCG_tarfilename}
 cd ${package_directory}
 
-./bootstrap.sh --prefix=${LCG_destdir} \
-    --with-libraries=${LCG_boost_with_libraries}
+#./bootstrap.sh --prefix=${LCG_destdir} \
+#    --without-libraries=${LCG_boost_with_libraries}
+
+./bootstrap.sh  --prefix=${LCG_destdir}

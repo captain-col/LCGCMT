@@ -151,3 +151,4 @@ macro XercesC_config_version             "3.1.1"
 macro xqilla_config_version              "2.2.4" \
       target-gcc46                       "2.2.4p1"
 macro xrootd_config_version              "3.2.4"
+macro yamlcpp_config_version		 "0.3.0"

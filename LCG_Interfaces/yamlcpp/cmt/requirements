@@ -1,0 +1,22 @@
+package yamlcpp
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro yamlcpp_native_version "$(yamlcpp_config_version)"
+
+macro yamlcpp_home "$(LCG_external)/yamlcpp/$(yamlcpp_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(yamlcpp_home)/include
+
+macro yamlcpp_linkopts " -L${yamlcpp_home} -lyaml-cpp "
+
+macro yamlcpp_cppflags " -DUSE_YAMLCPP "
+
+apply_pattern set_lib_path
+
+apply_pattern set_ext_man_path mandir="share/man"
+
+macro yamlcpp_export_paths "$(yamlcpp_home)/lib $(yamlcpp_home)/include" 
+

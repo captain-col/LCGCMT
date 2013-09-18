@@ -82,6 +82,7 @@ macro lcgutils_config_version            "1.13.0-0" \
 macro lcov_config_version                "1.9"
 macro lfc_config_version                 "1.8.5-1" \
       target-i686                        "1.7.4-7sec"
+macro lhapdf_config_version		 "6.0.2"
 macro libsvm_config_version              "2.86"
 macro libtool_config_version             "1.5.26" \
       target-slc6                        "2.4.2"

@@ -1,0 +1,22 @@
+package lhapdf
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+
+macro lhapdf_native_version "$(lhapdf_config_version)"
+
+macro lhapdf_home "$(LCG_external)/lhapdf/$(lhapdf_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(lhapdf_home)/include
+
+macro lhapdf_linkopts " `$(lhapdf_home)/bin/lhapdf-config --ldflags` "
+
+macro lhapdf_cppflags " `$(lhapdf_home)/bin/lhapdf-config --cppflags` "
+
+apply_pattern set_bin_and_lib_path
+
+apply_pattern set_ext_man_path mandir="share/man"
+
+macro lhapdf_export_paths "$(lhapdf_home)/lib $(lhapdf_home)/include" 
+

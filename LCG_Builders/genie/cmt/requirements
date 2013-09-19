@@ -21,6 +21,7 @@ macro genie_build_native_version "$(genie_build_config_version)"
 # unpack.  
 set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
 set LCG_tarfilename "Genie-$(genie_build_config_version).tar.gz"
+macro LCG_sourcefiles "Genie-$(genie_build_config_version).tar.gz;gxspl-t2k-v$(genie_build_config_version).xml.gz"
 macro LCG_get "http" 
 
 macro genie_home "$(LCG_extdir)/genie/$(LCG_package_config_version)/Genie-$(genie_config_version)"

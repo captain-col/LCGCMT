@@ -22,4 +22,8 @@ fi
 tar xvfz ${LCG_builddir}/${LCG_tarfilename}
 cd ${package_directory}
 
+mkdir data/cross-section
+zcat ${LCG_builddir}/gxspl-t2k-v${LCG_package_config_version}.xml.gz \
+    > data/cross-section/gxspl-t2k-v${LCG_package_config_version}.xml
+
 GENIE=${PWD} ./configure --prefix=${LCG_extdir}/${install_directory} ${LCG_genie_config_opts}

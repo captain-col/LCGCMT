@@ -51,7 +51,7 @@ set_append LCG_genie_config_opts " --enable-t2k "
 set_append LCG_genie_config_opts " --enable-numi "
 set_append LCG_genie_config_opts " --disable-atmo "
 set_append LCG_genie_config_opts " --enable-nucleon-decay "
-set_append LCG_genie_config_opts " --disable-rwght "
+set_append LCG_genie_config_opts " --enable-rwght "
 set_append LCG_genie_config_opts " --disable-masterclass "
 
 set LCG_cppflags " $(use_cppflags)

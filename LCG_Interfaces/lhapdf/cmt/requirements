@@ -17,7 +17,7 @@ path_prepend PATH "$(lhapdf_home)/bin"
 macro lhapdf_linkopts " `$(lhapdf_home)/bin/lhapdf-config --ldflags` "
 macro lhapdf_cppflags " `$(lhapdf_home)/bin/lhapdf-config --cppflags` "
 
-set LHAPATH "$(lhapdf_home)/PDFSets"
+set LHAPATH "$(lhapdf_home)/share/lhapdf"
 
 apply_pattern set_bin_and_lib_path
 

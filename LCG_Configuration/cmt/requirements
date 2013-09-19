@@ -56,6 +56,7 @@ macro fastjet_config_version             "3.0.3"
 macro GCCXML_config_version              "0.9.0_20110825" \
       target-gccmax                      "0.9.0_20120309"
 macro GEANT4_config_version		 "4.9.6.p01"
+macro genie_config_version		 "2.8.0"
 macro genshi_config_version              "0.6"
 macro gfal_config_version                "1.13.0-0" \
       target-i686                        "1.11.8-2"
@@ -82,7 +83,7 @@ macro lcgutils_config_version            "1.13.0-0" \
 macro lcov_config_version                "1.9"
 macro lfc_config_version                 "1.8.5-1" \
       target-i686                        "1.7.4-7sec"
-macro lhapdf_config_version		 "6.0.2"
+macro lhapdf_config_version		 "5.9.0"
 macro libsvm_config_version              "2.86"
 macro libtool_config_version             "1.5.26" \
       target-slc6                        "2.4.2"

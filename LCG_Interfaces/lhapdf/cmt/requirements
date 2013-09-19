@@ -10,9 +10,14 @@ macro lhapdf_home "$(LCG_external)/lhapdf/$(lhapdf_native_version)/$(LCG_system)
 include_path none
 include_dirs $(lhapdf_home)/include
 
-macro lhapdf_linkopts " `$(lhapdf_home)/bin/lhapdf-config --ldflags` "
+path_remove PATH "lhapdf"
+path_prepend PATH "$(lhapdf_home)/bin"
 
+
+macro lhapdf_linkopts " `$(lhapdf_home)/bin/lhapdf-config --ldflags` "
 macro lhapdf_cppflags " `$(lhapdf_home)/bin/lhapdf-config --cppflags` "
+
+set LHAPATH "$(lhapdf_home)/PDFSets"
 
 apply_pattern set_bin_and_lib_path
 

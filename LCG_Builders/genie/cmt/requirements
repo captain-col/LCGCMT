@@ -1,0 +1,61 @@
+package genie
+
+use LCG_BuildPolicy v* LCG_Builders
+
+use ROOT            v* LCG_Interfaces
+use log4cpp         v* LCG_Interfaces
+use pythia6         v* LCG_GeneratorsInterfaces
+use lhapdf	    v* LCG_Interfaces
+
+# Set the versions.  The <>_config_version is set in the
+# LCG_Configuration package requirements and is the "distributed" version of
+# the package.  This package has the same config and native version (most
+# probably should). 
+macro genie_build_config_version "$(genie_config_version)"
+macro genie_build_native_version "$(genie_build_config_version)"
+
+# Set where to get the source file.  If there is more than one file, then
+# both LCG_tarfilename and LCG_sourcefiles can be set.  LCG_sourcefiles is
+# a ";" separated list of files to download.  The LCG_tarfilename value
+# needs to be set because that tells the package config script what file to
+# unpack.  
+set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
+set LCG_tarfilename "Genie-$(genie_build_config_version).tar.gz"
+macro LCG_get "http" 
+
+macro genie_home "$(LCG_extdir)/genie/$(LCG_package_config_version)/Genie-$(genie_config_version)"
+
+set LCG_genie_config_opts "" 
+
+# Set where to find all of the libraries
+set_append LCG_genie_config_opts " --with-lhapdf-lib=$(lhapdf_home)/lib "
+set_append LCG_genie_config_opts " --with-lhapdf-inc=$(lhapdf_home)/include "
+set_append LCG_genie_config_opts " --with-log4cpp-lib=$(log4cpp_home)/lib "
+set_append LCG_genie_config_opts " --with-log4cpp-inc=$(log4cpp_home)/include "
+set_append LCG_genie_config_opts " --with-libxml2-lib=/usr/lib "
+set_append LCG_genie_config_opts " --with-libxml2-inc=/usr/include/libxml2 "
+set_append LCG_genie_config_opts " --with-pythia6-lib=$(pythia6_home)/lib "
+
+# Set the build options.
+set_append LCG_genie_config_opts " --enable-flux-drivers "
+set_append LCG_genie_config_opts " --enable-geom-drivers "
+set_append LCG_genie_config_opts " --disable-mueloss "
+set_append LCG_genie_config_opts " --disable-vle-extension "
+set_append LCG_genie_config_opts " --disable-vhe-extension "
+set_append LCG_genie_config_opts " --disable-validation-tools "
+set_append LCG_genie_config_opts " --disable-test "
+set_append LCG_genie_config_opts " --disable-gsl "
+set_append LCG_genie_config_opts " --disable-event-server "
+set_append LCG_genie_config_opts " --enable-t2k "
+set_append LCG_genie_config_opts " --enable-numi "
+set_append LCG_genie_config_opts " --disable-atmo "
+set_append LCG_genie_config_opts " --enable-nucleon-decay "
+set_append LCG_genie_config_opts " --disable-rwght "
+set_append LCG_genie_config_opts " --disable-masterclass "
+
+set LCG_cppflags " $(use_cppflags)
+
+# Trigger the pkg_config, pkg_make and pkg_install targets.  The
+# LOCAL_DESTDIR is set so that this uses the "destdir" parameter.
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/genie/$(LCG_package_config_version)

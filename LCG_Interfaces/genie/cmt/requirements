@@ -1,0 +1,22 @@
+package genie
+
+use LCG_Configuration v*
+use LCG_Settings      v*
+use lhapdf	      v* LCG_Interfaces
+
+macro genie_native_version "$(genie_config_version)"
+
+macro genie_home "$(LCG_external)/genie/$(genie_native_version)/$(LCG_system)/Genie-$(genie_native_version)"
+
+include_path none
+include_dirs $(genie_home)/include
+
+macro genie_linkopts "`$(genie_home)/bin/genie-config --libs`"
+macro genie_cppflags "`$(genie_home)/bin/genie-config --cflags`"
+
+set GENIE "$(genie_home)"
+
+apply_pattern set_bin_and_lib_path
+
+macro genie_export_paths "$(genie_home)/lib $(genie_home)/include" 
+

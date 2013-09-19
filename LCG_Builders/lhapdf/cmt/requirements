@@ -4,8 +4,8 @@ package lhapdf
 # ****************************************************************
 # IMPORTANT INFORMATION ABOUT PDF SETS
 # 
-# LHAPDF no longer bundles PDF set data in the package tarball.
-# The sets are instead all stored online at
+# After 5.7.0, LHAPDF no longer bundles PDF set data in the package
+# tarball.  The sets are instead all stored online at
 #   http://www.hepforge.org/archive/lhapdf/pdfsets/
 # and you should install those that you wish to use into
 #   .../EXTERNALS/lhapdf/6.0.2/i686-linux-gcc47-opt/share/LHAPDF
@@ -18,7 +18,7 @@ package lhapdf
 #    http://www.hepforge.org/archive/lhapdf/pdfsets/6.0/CT10nlo.tar.gz -O- | \
 #    tar xz -C .../EXTERNALS/lhapdf/6.0.2/i686-linux-gcc47-opt/share/LHAPDF 
 # 
-****************************************************************
+# ****************************************************************
 
 use LCG_BuildPolicy v* LCG_Builders
 use Boost           v* LCG_Interfaces
@@ -37,7 +37,7 @@ macro lhapdf_build_native_version "$(lhapdf_build_config_version)"
 # needs to be set because that tells the package config script what file to
 # unpack.  
 set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
-set LCG_tarfilename "LHAPDF-$(lhapdf_build_config_version).tar.gz"
+set LCG_tarfilename "lhapdf-$(lhapdf_build_config_version).tar.gz"
 macro LCG_get "http" 
 
 set LCG_lhapdf_config_opts " --with-boost=$(Boost_home) "

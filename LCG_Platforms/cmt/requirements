@@ -1,6 +1,8 @@
 package LCG_Platforms
 
 # =====  Host Tags  =====
+### Translate the CMT tag names into an expanded LCGCMT name. This is long
+# winded since CMT doesn't provide anyway to manipulate the tag names.
 
 ## Architectures ##
 tag x86_64      host-x86_64
@@ -106,12 +108,43 @@ tag gcc488      host-gcc48
 tag gcc489      host-gcc48
 tag host-gcc48  host-gcc4
 
+# gcc 4.9 series
+tag gcc490      host-gcc49
+tag gcc491      host-gcc49
+tag gcc492      host-gcc49
+tag gcc493      host-gcc49
+tag gcc494      host-gcc49
+tag gcc495      host-gcc49
+tag gcc496      host-gcc49
+tag gcc497      host-gcc49
+tag gcc498      host-gcc49
+tag gcc499      host-gcc49
+tag host-gcc49  host-gcc4
+
+# gcc 5.0 series
+tag gcc500      host-gcc50
+tag gcc501      host-gcc50
+tag gcc502      host-gcc50
+tag gcc503      host-gcc50
+tag gcc504      host-gcc50
+tag gcc505      host-gcc50
+tag gcc506      host-gcc50
+tag gcc507      host-gcc50
+tag gcc508      host-gcc50
+tag gcc509      host-gcc50
+tag host-gcc50  host-gcc5
+
 # Windows Visual Studio cl compiler
 tag VisualC     host-visualc
 tag cl          host-cl
 # further abstractions
 tag host-gcc3   host-gcc
 tag host-gcc4   host-gcc
+tag host-gcc5   host-gcc
+tag host-gcc6   host-gcc
+tag host-gcc7   host-gcc
+tag host-gcc8   host-gcc
+tag host-gcc9   host-gcc
 
 ## Operating systems ##
 tag Linux       host-linux
@@ -162,6 +195,11 @@ tag slc62       host-slc6
 tag slc63       host-slc6
 tag slc64       host-slc6
 tag slc65       host-slc6
+tag slc66       host-slc6
+tag slc67       host-slc6
+tag slc68       host-slc6
+tag slc69       host-slc6
+
 # rhel series
 tag rhel60      host-rhel6
 # further abstractions
@@ -459,14 +497,19 @@ macro host_compiler                     "UnknownCompiler" \
       host-gcc45                        "gcc45" \
       host-gcc46                        "gcc46" \
       host-gcc47                        "gcc47" \
-      host-gcc                          "unknownGcc"  \
+      host-gcc48                        "gcc48" \
+      host-gcc49                        "gcc49" \
+      host-gcc4                        	"gcc4"  \
+      host-gcc5                        	"gcc5"  \
+      host-gcc6                        	"gcc6"  \
+      host-gcc                         	"GCC"  \
       host-clang30                      "clang30" \
       host-clang31                      "clang31" \
       host-clang                        "unknownClang" \
       host-icc11                        "icc11" \
       host-icc                          "unknownIcc" 
 
-macro host_arch                         "UnknownArch" \
+macro host_arch                         "Arch" \
       host-darwin&host-i386&host-gcc40  "ia32" \
       host-slc4&host-x86_64             "amd64" \
       host-slc4&host-i686               "ia32" \
@@ -475,14 +518,14 @@ macro host_arch                         "UnknownArch" \
       host-i386                         "i386" \
       host-ppc                          "ppc" 
 
-macro host_os                           "UnknownOS" \
+macro host_os                           "OS" \
       host-slc4                         "slc4" \
       host-slc5                         "slc5" \
       host-slc6                         "slc6" \
-      host-debian                       "debian" \
       host-linux                        "linux" \
       host-darwin&host-gcc40            "osx104" \
-      host-darwin                       "darwin"
+      host-darwin                       "darwin" \
+      host-unix                         "unix"
 
 set   host_cmtconfig                    "$(host_arch)-$(host_os)-$(host_compiler)-opt" \
       host-slc4                         "$(host_os)_$(host_arch)_$(host_compiler)" \

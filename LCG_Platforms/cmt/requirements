@@ -502,12 +502,12 @@ macro host_compiler                     "UnknownCompiler" \
       host-gcc4                        	"gcc4"  \
       host-gcc5                        	"gcc5"  \
       host-gcc6                        	"gcc6"  \
-      host-gcc                         	"GCC"  \
+      host-gcc                         	"gcc"  \
       host-clang30                      "clang30" \
       host-clang31                      "clang31" \
-      host-clang                        "unknownClang" \
+      host-clang                        "clang" \
       host-icc11                        "icc11" \
-      host-icc                          "unknownIcc" 
+      host-icc                          "icc" 
 
 macro host_arch                         "Arch" \
       host-darwin&host-i386&host-gcc40  "ia32" \

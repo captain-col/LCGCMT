@@ -13,9 +13,9 @@ macro genie_native_version "$(genie_config_version)"
 macro genie_home "$(LCG_external)/genie/$(genie_native_version)/$(LCG_system)/Genie-$(genie_native_version)"
 
 include_path none
-include_dirs $(genie_home)/include
+include_dirs $(genie_home)/src
 
-macro genie_linkopts "`$(genie_home)/bin/genie-config --libs`"
+macro genie_linkopts "`$(genie_home)/bin/genie-config --libs` -lxml2 -lEGPythia6 "
 macro genie_cppflags "`$(genie_home)/bin/genie-config --cflags`"
 
 set GENIE "$(genie_home)"

@@ -56,6 +56,10 @@ set_append LCG_genie_config_opts " --disable-masterclass "
 
 set LCG_cppflags " $(use_cppflags)
 
+# Set the PDFs needed by GENIE.  This is a space separated list of strings.
+# Any PDF containing one of the strings will be downloaded.
+set LCG_genie_lhapdf_pdfs "GRV98"
+
 # Trigger the pkg_config, pkg_make and pkg_install targets.  The
 # LOCAL_DESTDIR is set so that this uses the "destdir" parameter.
 apply_tag LOCAL_DESTDIR

@@ -27,3 +27,5 @@ zcat ${LCG_builddir}/gxspl-t2k-v${LCG_package_config_version}.xml.gz \
     > data/cross-section/gxspl-t2k-v${LCG_package_config_version}.xml
 
 GENIE=${PWD} ./configure --prefix=${LCG_extdir}/${install_directory} ${LCG_genie_config_opts}
+
+lhapdf-getdata ${LCG_genie_lhapdf_pdfs}

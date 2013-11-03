@@ -44,10 +44,6 @@ macro LCG_get "http"
 set LCG_lhapdf_config_opts " --with-boost=$(Boost_home) "
 set_append LCG_lhapdf_config_opts " --with-yaml-cpp=$(yamlcpp_home) "
 
-# Set the PDFs to get.  This is a space separated list of strings.  Any PDF
-# containing one of the strings will be downloaded.
-set LCG_lhapdf_pdfs "GRV"
-
 # Trigger the pkg_config, pkg_make and pkg_install targets.  The
 # LOCAL_DESTDIR is set so that this uses the "destdir" parameter.
 apply_tag LOCAL_DESTDIR

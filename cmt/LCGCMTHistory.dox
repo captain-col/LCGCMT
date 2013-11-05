@@ -40,4 +40,24 @@ Freeze information:
 
 Add the boost library with a reduced set of the libraries compiled.  
 
+
+\section LCGCMT_v1r0p0_history Version 1.0.0
+
+Freeze information:
+   - Freeze Date: Tue Nov  5 10:47:04 2013
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.physics.sunysb.edu boxer.local 
+
+
+This is the major version of LCGCMT intended for producing the CAPTAIN
+proposals.  It includes the major infrastructure packages (e.g. ROOT,
+GEANT4) as well as their support packages (fftw, gsl, &c).  It also
+includes the GENIE neutrino interaction simulation.  There are also several
+other utility packages that we will need, or want to use (boost [general
+utilities] , dawn [for drawing geometries], orocos [for Bayesian
+filtering], &c).
+
+The packages to compile as defined in the captainLCGCMT package, and the
+versions are defined in the LCG_Configuration package.
+
 */

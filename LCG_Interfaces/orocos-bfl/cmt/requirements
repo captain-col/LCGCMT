@@ -25,5 +25,12 @@ macro orocos-bfl_linkopts "-L$(orocos-bfl_home)/lib -lorocos-bfl " \
 macro_append cppflags " -DUSE_OROCOS_BFL " \
       target-win      " -Dorocos_bfl_DLL "
 
+# The BOOST include files define a lot of typedefs that are not used and
+# this produces a lot of warnings.  This make the compile a lot quieter by
+# telling the compiler that BOOST is a "system" library.
+
+macro orocos-bfl_cppflags "" \
+      host-gcc " -isystem $(orocos-bfl_home)/include "
+
 apply_pattern set_lib_path
 

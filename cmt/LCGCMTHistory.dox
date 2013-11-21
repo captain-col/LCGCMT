@@ -60,4 +60,18 @@ filtering], &c).
 The packages to compile as defined in the captainLCGCMT package, and the
 versions are defined in the LCG_Configuration package.
 
+
+\section LCGCMT_v1r0p1_history Version 1.0.1
+
+Freeze information:
+   - Freeze Date: Sat Nov  9 09:25:24 2013
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.local 
+
+
+BUG FIX:
+
+    The LHAPDFs are not being pulled correctly.  This changes to the
+    LHAPATH directory when the GENIE builder tries to get it's pdfs.
+
 */

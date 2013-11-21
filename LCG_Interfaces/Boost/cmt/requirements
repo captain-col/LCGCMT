@@ -28,6 +28,13 @@ macro Boost_data $(Boost_home)/data_files
 include_path none
 include_dirs $(Boost_include)
 
+# The BOOST include files define a lot of typedefs that are not used and
+# this produces a lot of warnings.  This make the compile a lot quieter by
+# telling the compiler that BOOST is a "system" library.
+
+macro Boost_cppflags "" \
+      host-gcc " -isystem $(Boost_home)/include/boost-$(Boost_file_version) "
+
 macro Boost_compiler_version     "$(LCG_compiler)"    \
       target-icc                 "$(gcc2icc)"  \
       target-clang               "$(gcc2clang)" \
@@ -39,7 +46,6 @@ macro Boost_compiler_version     "$(LCG_compiler)"    \
 
 macro Boost_linkopts "-L$(Boost_lib) " \
       target-win     "/LIBPATH:$(Boost_lib) "
-
 
 ##################################################################
 # Define a macro for each boost library that can be added to a package

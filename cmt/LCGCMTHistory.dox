@@ -74,4 +74,20 @@ BUG FIX:
     The LHAPDFs are not being pulled correctly.  This changes to the
     LHAPATH directory when the GENIE builder tries to get it's pdfs.
 
+
+\section LCGCMT_v1r0p2_history Version 1.0.2
+
+Freeze information:
+   - Freeze Date: Mon Nov 25 10:10:25 2013
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.physics.sunysb.edu boxer.local 
+
+
+BUG FIX:
+
+** Any compilation using Boost or orocos was having a lot of warning
+   messages due to unused typedef statements in the included templates.
+   This freeze adds compiler options to gcc to mark these include files as
+   "system includes" so that warnings are turned off.
+
 */

@@ -52,8 +52,11 @@ lcgcmt build=xercesc
 lcgcmt build=log4cpp
 lcgcmt build=pythia6
 lcgcmt build=yamlcpp
+lcgcmt build=gmp
 
 # Packages with dependencies.
+lcgcmt_depends build=mpfr depends="gmp"
+lcgcmt_depends build=CGAL depends="mpfr gmp boost"
 lcgcmt_depends build=orocos_bfl depends="boost"
 lcgcmt_depends build=ROOT depends="gsl fftw"
 lcgcmt_depends build=lhapdf depends="boost yamlcpp"

@@ -90,4 +90,20 @@ BUG FIX:
    This freeze adds compiler options to gcc to mark these include files as
    "system includes" so that warnings are turned off.
 
+
+\section LCGCMT_v1r1p0_history Version 1.1.0
+
+Freeze information:
+   - Freeze Date: Mon Dec  2 15:31:34 2013
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.physics.sunysb.edu boxer.local 
+
+
+NEW FEATURES:
+
+** Add the CGAL library (Computational Geometry Algorithm Library) which
+   provides about what it's name says.  The algorithms that are (probably)
+   most interesting are the fast triangulation in 3D (i.e. tessallation),
+   and 3D nearest neighbor finding.
+
 */

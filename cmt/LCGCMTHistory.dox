@@ -106,4 +106,18 @@ NEW FEATURES:
    most interesting are the fast triangulation in 3D (i.e. tessallation),
    and 3D nearest neighbor finding.
 
+
+\section LCGCMT_v1r1p1_history Version 1.1.1
+
+Freeze information:
+   - Freeze Date: Wed Dec  4 14:43:16 2013
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.physics.sunysb.edu boxer.local 
+
+
+BUG FIX:
+
+    Fix the linkopts and use statements in CGAL, gmp and mpfr so that it's
+    easier to link user code.  
+
 */

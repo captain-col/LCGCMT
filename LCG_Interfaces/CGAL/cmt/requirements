@@ -13,12 +13,13 @@ macro CGAL_home "$(LCG_external)/CGAL/$(CGAL_native_version)/$(LCG_system)"
 include_path none
 include_dirs $(CGAL_home)/include
 
-include_path none
-include_dirs $(CGAL_home)/include
-
 macro CGAL_linkopts " -L$(CGAL_home)/lib -lCGAL -lCGAL_Core "
+macro_append CGAL_linkopts " $(Boost_linkopts_system) "
+macro_append CGAL_linkopts " $(Boost_linkopts_thread) "
       
-macro_append cppflags " -DUSE_CGAL " 
+macro CGAL_cppflags " -DUSE_CGAL " \
+    host-gcc " -DUSE_CGAL -isystem $(CGAL_home)/include "
+
 
 apply_pattern set_lib_path
 

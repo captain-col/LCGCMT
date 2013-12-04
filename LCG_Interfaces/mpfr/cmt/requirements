@@ -2,8 +2,16 @@ package mpfr
 
 use LCG_Configuration v*
 use LCG_Settings      v*
+use gmp               v* LCG_Interfaces
 
 macro mpfr_native_version "$(mpfr_config_version)"
 macro mpfr_home "$(LCG_external)/MPFR/$(mpfr_native_version)/$(LCG_system)"
+
+include_path none
+include_dirs $(mpfr_home)/include
+
+macro mpfr_linkopts " -L$(mpfr_home)/lib -lmpfr " 
+      
+macro_append cppflags " -DUSE_MPFR "
 
 apply_pattern set_lib_path

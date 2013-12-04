@@ -6,4 +6,11 @@ use LCG_Settings      v*
 macro gmp_native_version "$(gmp_config_version)"
 macro gmp_home "$(LCG_external)/GMP/$(gmp_native_version)/$(LCG_system)"
 
+include_path none
+include_dirs $(gmp_home)/include
+
+macro gmp_linkopts " -L$(gmp_home)/lib -lgmp " 
+      
+macro_append cppflags " -DUSE_GMP "
+
 apply_pattern set_lib_path

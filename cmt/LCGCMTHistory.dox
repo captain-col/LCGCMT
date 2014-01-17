@@ -119,4 +119,18 @@ BUG FIX:
     Fix the linkopts and use statements in CGAL, gmp and mpfr so that it's
     easier to link user code.  
 
+
+\section LCGCMT_v1r1p2_history Version 1.1.2
+
+Freeze information:
+   - Freeze Date: Fri Jan 17 10:16:03 2014
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.physics.sunysb.edu 
+
+
+BUG FIX
+
+** Fix the mpfr builder which needs gmp but didn't have the correct use
+   statement in the requirements file.
+
 */

@@ -133,4 +133,18 @@ BUG FIX
 ** Fix the mpfr builder which needs gmp but didn't have the correct use
    statement in the requirements file.
 
+
+\section LCGCMT_v1r1p3_history Version 1.1.3
+
+Freeze information:
+   - Freeze Date: Fri Jan 17 15:06:26 2014
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.physics.sunysb.edu 
+
+
+BUG FIX
+
+Make sure that boost builds even when it appears to have already been
+unpacked. 
+
 */

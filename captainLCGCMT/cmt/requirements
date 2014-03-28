@@ -1,7 +1,14 @@
 package captainLCGCMT
 
+# Define tags for the packages to skip.  These tags are of the form
+# "skip_<package>".  Example: "skip_genie"
+
+# tag Linux skip_nothing
+# tag Darwin skip_nothing
+
 # Define a pattern to build an external package.
 pattern external \
+   tag skip_<build> ;\
    action <build> "(cd ../../<offset><build>/cmt; \
        cmt config > /dev/null 2>&1; \
        . ./setup.sh; \
@@ -9,7 +16,8 @@ pattern external \
        . ./setup.sh; \
        echo Do \'make pkg_install\' in <offset><build>; \
        make -j1 pkg_install; \
-       echo Done in <offset><build>)" ;\
+       echo Done in <offset><build>)" \
+       skip_<build> "(echo skipping <build>)" ;\
    macro_append constituents " <build>"
 
 # Define a pattern to build an external package that depends on another

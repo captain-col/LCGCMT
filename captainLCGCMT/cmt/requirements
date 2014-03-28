@@ -4,7 +4,7 @@ package captainLCGCMT
 # "skip_<package>".  Example: "skip_genie"
 
 # tag Linux skip_nothing
-# tag Darwin skip_nothing
+tag Darwin skip_genie skip_lhapdf skip_log4cpp skip_yamlcpp
 
 # Define a pattern to build an external package.
 pattern external \
@@ -67,7 +67,7 @@ lcgcmt_depends build=mpfr depends="gmp"
 lcgcmt_depends build=CGAL depends="mpfr gmp boost"
 lcgcmt_depends build=orocos_bfl depends="boost"
 lcgcmt_depends build=ROOT depends="gsl fftw"
-lcgcmt_depends build=lhapdf depends="boost yamlcpp"
-lcgcmt_depends build=geant4 depends="xercesc pythia6 ROOT"
-lcgcmt_depends build=genie depends="pythia6 log4cpp lhapdf boost yamlcpp ROOT"
+lcgcmt_depends build=geant4 depends="ROOT pythia6 xercesc"
+lcgcmt_depends build=lhapdf depends="yamlcpp boost"
+lcgcmt_depends build=genie depends="lhapdf ROOT pythia6 log4cpp yamlcpp boost"
 

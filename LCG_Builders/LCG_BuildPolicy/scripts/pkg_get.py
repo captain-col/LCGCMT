@@ -47,7 +47,10 @@ class pkg_get :
             return self.LCG_tardir_fallback
         else :
             print self.argv0, ': WARNING: No access to tar directory (cmt macro "LCG_tardir" set to "%s"), try creating' % self.LCG_tardir
-            os.makedirs(self.LCG_tardir)
+            try:
+                os.makedirs(self.LCG_tardir)
+            except Exception,e:
+                print self.argv0, ': WARNING: Can not create %s' % self.LCG_tardir
             return self.LCG_tardir
         return ''
 

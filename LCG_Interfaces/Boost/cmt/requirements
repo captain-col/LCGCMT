@@ -52,34 +52,34 @@ macro Boost_linkopts "-L$(Boost_lib) " \
 # requirements file linkopts.  For example, to use the graph library, add
 # $(Boost_linkopts_graph) to the requirements linkopts.
 ##################################################################
-macro Boost_linkopts_system     " -lboost_system-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
+macro Boost_linkopts_system     " -L$(Boost_lib) -lboost_system-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
       target-win                "   boost_system-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
 
-macro Boost_linkopts_filesystem " -lboost_filesystem-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
+macro Boost_linkopts_filesystem " -L$(Boost_lib) -lboost_filesystem-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
       target-win                "   boost_filesystem-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
 
-macro Boost_linkopts_filesystem_mt " -lboost_filesystem-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
+macro Boost_linkopts_filesystem_mt " -L$(Boost_lib) -lboost_filesystem-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
       target-win                   "   boost_filesystem-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
 
-macro Boost_linkopts_iostreams  " -lboost_iostreams-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
+macro Boost_linkopts_iostreams  " -L$(Boost_lib) -lboost_iostreams-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
       target-win                " boost_iostreams-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
 
-macro Boost_linkopts_regex      " -lboost_regex-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
+macro Boost_linkopts_regex      " -L$(Boost_lib) -lboost_regex-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
       target-win                "   boost_regex-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
 
-macro Boost_linkopts_thread     " -lboost_thread-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
+macro Boost_linkopts_thread     " -L$(Boost_lib) -lboost_thread-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
       target-win                "  boost_thread-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
 
-macro Boost_linkopts_program_options " -lboost_program_options-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
+macro Boost_linkopts_program_options " -L$(Boost_lib) -lboost_program_options-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
       target-win                     "  boost_program_options-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
 
-macro Boost_linkopts_serialization   " -lboost_serialization-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
+macro Boost_linkopts_serialization   " -L$(Boost_lib) -lboost_serialization-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
       target-win                     "  boost_serialization-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
 
-macro Boost_linkopts_date_time  " -lboost_date_time-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
+macro Boost_linkopts_date_time  " -L$(Boost_lib) -lboost_date_time-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
       target-win                " boost_date_time-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
 
-macro Boost_linkopts_graph      " -lboost_graph-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
+macro Boost_linkopts_graph      " -L$(Boost_lib) -lboost_graph-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
       target-win                " boost_graph-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
 
 # Setup CMT dependency optimization macros

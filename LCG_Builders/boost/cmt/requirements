@@ -30,7 +30,7 @@ set LCG_boost_toolset   "gcc" \
 
 # Set the overall bjam options.
 set LCG_bjam_bin ./b2
-set LCG_boost_jam_opts "--variant=release --layout=versioned "
+set LCG_boost_jam_opts "--variant=release --layout=system "
 
 # Trigger the pkg_config, pkg_make and pkg_install targets.  The
 # LOCAL_DESTDIR is set so that this uses the "destdir" parameter.  This

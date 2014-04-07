@@ -7,8 +7,39 @@ use Python            v* LCG_Interfaces -no_auto_imports
 macro Boost_native_version "$(Boost_config_version)
 
 # Define a macro for the location of the Boost installation
+
 macro Boost_home $(LCG_external)/Boost/$(Boost_native_version)/$(LCG_system)
+
+# Set the version of the files that are installed.
+
 set LCG_boost_file_version "`echo $(Boost_config_version) | sed s/\\./_/g`"
+
+# Define a macro for the compiler type.  
+
+macro Boost_compiler_version     "$(LCG_compiler)"    \
+      target-icc                 "$(gcc2icc)"  \
+      target-clang               "$(gcc2clang)" \
+      target-gccmax              "$(gcc2max)"  \
+      target-g11max              "$(gcc2g11)"  \
+      target-gcc42&target-darwin "xgcc42" \
+      target-gcc40&target-darwin "xgcc40" \
+      target-vc9                 "vc90"  
+
+# Define the suffix for the BOOST libraries.  This depends on how the
+# libraries were compiled.  This is controlled by the bjam --layout
+# option.  The options are 
+#
+#     versioned -- In a sub-directory w/ compiler, threading variant, version
+#     tagged    -- Includes the variant and threading.
+#     system    -- Just the basic library name.
+#
+# Uncomment for system
+
+macro Boost_library_suffix ""
+
+# Uncomment for versioned
+
+# macro Boost_library_suffix "-$(Boost_compiler_version)-mt-$(Boost_file_version)"
 
 #############################################################
 # Define a macros for the location of the Boost include files, libraries,
@@ -21,9 +52,11 @@ set LCG_boost_file_version "`echo $(Boost_config_version) | sed s/\\./_/g`"
 # Look at the macro definitions below for more "documentation".
 #############################################################
 
-macro Boost_include $(Boost_home)/include/boost-$(Boost_file_version)
+macro Boost_include $(Boost_home)/include
 macro Boost_lib $(Boost_home)/lib
 macro Boost_data $(Boost_home)/data_files
+
+# Set the include path.
 
 include_path none
 include_dirs $(Boost_include)
@@ -33,18 +66,11 @@ include_dirs $(Boost_include)
 # telling the compiler that BOOST is a "system" library.
 
 macro Boost_cppflags "" \
-      host-gcc " -isystem $(Boost_home)/include/boost-$(Boost_file_version) "
+      host-gcc " -isystem $(Boost_include)
 
-macro Boost_compiler_version     "$(LCG_compiler)"    \
-      target-icc                 "$(gcc2icc)"  \
-      target-clang               "$(gcc2clang)" \
-      target-gccmax              "$(gcc2max)"  \
-      target-g11max              "$(gcc2g11)"  \
-      target-gcc42&target-darwin "xgcc42" \
-      target-gcc40&target-darwin "xgcc40" \
-      target-vc9                 "vc90"  
+# Set the link options.
 
-macro Boost_linkopts "-L$(Boost_lib) " \
+macro Boost_linkopts " -L$(Boost_lib) " \
       target-win     "/LIBPATH:$(Boost_lib) "
 
 ##################################################################
@@ -52,35 +78,35 @@ macro Boost_linkopts "-L$(Boost_lib) " \
 # requirements file linkopts.  For example, to use the graph library, add
 # $(Boost_linkopts_graph) to the requirements linkopts.
 ##################################################################
-macro Boost_linkopts_system     " -L$(Boost_lib) -lboost_system-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
-      target-win                "   boost_system-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
+macro Boost_linkopts_system     " -L$(Boost_lib) -lboost_system$(Boost_library_suffix) " \
+      target-win                "   boost_system$(Boost_library_suffix).lib "
 
-macro Boost_linkopts_filesystem " -L$(Boost_lib) -lboost_filesystem-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
-      target-win                "   boost_filesystem-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
+macro Boost_linkopts_filesystem " -L$(Boost_lib) -lboost_filesystem$(Boost_library_suffix) " \
+      target-win                "   boost_filesystem$(Boost_library_suffix).lib "
 
-macro Boost_linkopts_filesystem_mt " -L$(Boost_lib) -lboost_filesystem-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
-      target-win                   "   boost_filesystem-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
+macro Boost_linkopts_filesystem_mt " -L$(Boost_lib) -lboost_filesystem$(Boost_library_suffix) " \
+      target-win                   "   boost_filesystem$(Boost_library_suffix).lib "
 
-macro Boost_linkopts_iostreams  " -L$(Boost_lib) -lboost_iostreams-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
-      target-win                " boost_iostreams-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
+macro Boost_linkopts_iostreams  " -L$(Boost_lib) -lboost_iostreams$(Boost_library_suffix) " \
+      target-win                " boost_iostreams$(Boost_library_suffix).lib "
 
-macro Boost_linkopts_regex      " -L$(Boost_lib) -lboost_regex-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
-      target-win                "   boost_regex-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
+macro Boost_linkopts_regex      " -L$(Boost_lib) -lboost_regex$(Boost_library_suffix) " \
+      target-win                "   boost_regex$(Boost_library_suffix).lib "
 
-macro Boost_linkopts_thread     " -L$(Boost_lib) -lboost_thread-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
-      target-win                "  boost_thread-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
+macro Boost_linkopts_thread     " -L$(Boost_lib) -lboost_thread$(Boost_library_suffix) " \
+      target-win                "  boost_thread$(Boost_library_suffix).lib "
 
-macro Boost_linkopts_program_options " -L$(Boost_lib) -lboost_program_options-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
-      target-win                     "  boost_program_options-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
+macro Boost_linkopts_program_options " -L$(Boost_lib) -lboost_program_options$(Boost_library_suffix) " \
+      target-win                     "  boost_program_options$(Boost_library_suffix).lib "
 
-macro Boost_linkopts_serialization   " -L$(Boost_lib) -lboost_serialization-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
-      target-win                     "  boost_serialization-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
+macro Boost_linkopts_serialization   " -L$(Boost_lib) -lboost_serialization$(Boost_library_suffix) " \
+      target-win                     "  boost_serialization$(Boost_library_suffix).lib "
 
-macro Boost_linkopts_date_time  " -L$(Boost_lib) -lboost_date_time-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
-      target-win                " boost_date_time-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
+macro Boost_linkopts_date_time  " -L$(Boost_lib) -lboost_date_time$(Boost_library_suffix) " \
+      target-win                " boost_date_time$(Boost_library_suffix).lib "
 
-macro Boost_linkopts_graph      " -L$(Boost_lib) -lboost_graph-$(Boost_compiler_version)-mt-$(Boost_file_version) " \
-      target-win                " boost_graph-$(Boost_compiler_version)-mt-$(Boost_file_version).lib "
+macro Boost_linkopts_graph      " -L$(Boost_lib) -lboost_graph$(Boost_library_suffix) " \
+      target-win                " boost_graph$(Boost_library_suffix).lib "
 
 # Setup CMT dependency optimization macros
 macro Boost_header_file_filter $(Boost_include)

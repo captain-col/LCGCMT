@@ -147,5 +147,33 @@ BUG FIX
 Make sure that boost builds even when it appears to have already been
 unpacked. 
 
-*/
 
+\section LCGCMT_v1r1p4_history Version 1.1.4
+
+Freeze information:
+   - Freeze Date: Mon Apr  7 16:12:16 2014
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.physics.sunysb.edu boxer.local 
+
+
+BUG FIXES
+
+* Fix boost compilation so that the compiler and variant is not in the
+  library name.  This fixes a problem where BOOST infers a different
+  compiler name than LCGCMT.  
+
+* Make sure that the BOOST library path is before the boost library
+  linking.
+
+* Fix the pkg_get.py script to catch makedirs exceptions.  This fixes a
+  problem on macs.
+
+NEW FEATURES
+
+* Upgrade the ROOT version 5.34.18.
+
+* Add cmt macros to control skipping the installation of LCGCMT packages.
+  This lets us avoid trying to compile packages that will not work on
+  mac maverick. 
+
+*/

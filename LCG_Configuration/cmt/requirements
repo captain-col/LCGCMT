@@ -49,7 +49,7 @@ macro doxygen_config_version             "1.7.6"
 macro dpm_config_version                 "1.8.5-1" \
       target-i686                        "1.7.4-7sec"
 macro epel_config_version                "20120618"
-macro Expat_config_version               "2.0.1"
+macro Expat_config_version               "2.1.0"
 macro fftw_config_version                "3.1.2" \
       target-mac                         "3.2.2"
 macro Frontier_Client_config_version     "2.8.5p1"

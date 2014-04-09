@@ -339,7 +339,7 @@ elif [ $mt -eq 410 ] ; then
 else
 # new location, .f file is gzipped
   basef=pythia-${major}.${minor}.${tiny}.f
-  location=http://www.hepforge.org/archive/pythia6
+  location=${LCG_pythia_source}
   gzipped=".gz"
 fi
 # if we don't already have it, fetch the .f file
@@ -362,8 +362,8 @@ fi
 # fetch the ROOT interface code
 #
 if [ ! -f pythia6.tar.gz -o ${refetch} -ne 0 ] ; then
-  echo "${fetchit} ftp://root.cern.ch/root/pythia6.tar.gz"
-  ${fetchit} ftp://root.cern.ch/root/pythia6.tar.gz
+  echo "${fetchit} ${LCG_pythia_source}/pythia6.tar.gz"
+  ${fetchit} ${LCG_pythia_source}/pythia6.tar.gz
 fi
 
 ############################################################################

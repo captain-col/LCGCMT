@@ -9,6 +9,8 @@ use LCG_BuildPolicy v* LCG_Builders
 macro pythia6_build_config_version "$(pythia6_config_version)"
 macro pythia6_build_native_version "$(pythia6_build_config_version)"
 
+set LCG_pythia_source "http://captain@nngroup.physics.sunysb.edu/~captain/tar"
+
 # This builder is a very special case since the pythia6 code has a very
 # "interesting" distribution scheme.  There isn't any source code to
 # download.  The builder script is committed with this package

@@ -31,6 +31,17 @@ if [ ! -d ${LOCAL_src} -a -f  ${LCG_tardir}/${LCG_tarfilename} ]; then
     tar xvfz ${LCG_tardir}/${LCG_tarfilename}
 fi
 
+# Unpack the geant4 data files
+cd ${LCG_destdir}/..
+if [ ! -d share ]; then
+    mkdir share
+fi
+cd share
+
+for data in $(echo ${LCG_datafiles} | sed 's/;/ /g') ; do
+    tar xvzf ${LCG_tardir}/${data}
+done 
+
 cd ${LOCAL_build}
 cmake -DCMAKE_INSTALL_PREFIX=${LOCAL_install} ${LCG_build_options} ${LOCAL_src}
 

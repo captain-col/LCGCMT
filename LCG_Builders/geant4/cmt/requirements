@@ -11,14 +11,31 @@ use ROOT	    v* LCG_Interfaces
 macro geant4_build_config_version "$(GEANT4_config_version)"
 macro geant4_build_native_version "$(geant4_build_config_version)"
 
-# Set where to get the source file.  If there is more than one file, then
-# both LCG_tarfilename and LCG_sourcefiles can be set.  LCG_sourcefiles is
-# a ";" separated list of files to download.  The LCG_tarfilename value
-# needs to be set because that tells the package config script what file to
-# unpack.  
-set LCG_tarfilename "geant$(geant4_build_config_version).tar.gz"
+# Set where to get the source file.  This is location of the tar files, and
+# how to get them.
 set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
 macro LCG_get "http" 
+
+# If there is more than one file, then both LCG_tarfilename and
+# LCG_sourcefiles can be set.  If there is only one file, the only
+# LCG_tarfilename needs to be set.  LCG_sourcefiles is a ";" separated list of
+# files to download.  Even if LCG_sourcefiles is set, LCG_tarfilename value
+# needs to be set because that tells the package config script what file to
+# unpack.
+
+macro geant4_datafiles "G4NDL.4.2.tar.gz"
+macro_append geant4_datafiles ";G4EMLOW.6.32.tar.gz"
+macro_append geant4_datafiles ";G4PhotonEvaporation.2.3.tar.gz"
+macro_append geant4_datafiles ";G4RadioactiveDecay.3.6.tar.gz"
+macro_append geant4_datafiles ";G4NEUTRONXS.1.2.tar.gz"
+macro_append geant4_datafiles ";G4PII.1.3.tar.gz"
+macro_append geant4_datafiles ";G4RealSurface.1.0.tar.gz"
+macro_append geant4_datafiles ";G4SAIDDATA.1.1.tar.gz"
+set LCG_datafiles "$(geant4_datafiles)"
+
+# Set the name of the file to unpack and build.
+macro LCG_sourcefiles "geant$(geant4_build_config_version).tar.gz;$(LCG_datafiles)"
+set LCG_tarfilename "geant$(geant4_build_config_version).tar.gz"
 
 # This is the directory that the tar file unpacks the source into.  
 set LCG_srcdir "geant$(geant4_build_config_version)"

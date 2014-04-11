@@ -13,4 +13,4 @@ fi
 tar xvfz ${LCG_tarfilename}
 cd ${package_directory}
 
-CFLAGS="${GSL_extra_cflags}" ./configure --prefix=${LCG_extdir}/GSL/${LCG_package_config_version}/${LCG_CMTCONFIG} ${LCG_gsl_config_opts}
+CFLAGS="${LCG_extra_cflags}" ./configure --prefix=${LCG_extdir}/GSL/${LCG_package_config_version}/${LCG_CMTCONFIG} ${LCG_gsl_config_opts}

@@ -47,10 +47,6 @@ apply_pattern buildscripts_local
 # environment variable.
 setup_script geant4_setup
 
-# Check if any control tags have been defined and set subsidiary tags.
-tag GEANT_NO_X11 GEANT_NO_GL GEANT_NO_QT
-tag GEANT_NO_GL GEANT_NO_QT
-
 ###################################################################
 # Define the geant4 configuration options.  These are in the form of cmake
 # config definitions.
@@ -69,17 +65,17 @@ macro_append geant4_build_options " -DGEANT4_USE_SYSTEM_EXPAT=OFF "
 
 # Uncomment to include the raytracer visualization.  This will fail
 # gracefully if the X11 libraries are not found.
-macro_append geant4_build_options " -DGEANT4_USE_RAYTRACER_X11=ON" \
-    GEANT_NO_X11 ""
+macro_append geant4_build_options " -DGEANT4_USE_RAYTRACER_X11=OFF " \
+    GEANT_USE_X11 " -DGEANT4_USE_RAYTRACER_X11=ON " 
 
 # Uncomment to include the opengl visualization.  This will fail
 # "gracefully" if the opengl libraries are not found.
-macro_append geant4_build_options " -DGEANT4_USE_OPENGL_X11=ON" \
-    GEANT_NO_GL  ""
+macro_append geant4_build_options " -DGEANT4_USE_OPENGL_X11=OFF " \
+     GEANT_USE_GL  " -DGEANT4_USE_OPENGL_X11=ON "
 
 # Uncomment to include the qt + opengl visualization.  This will fail
 # gracefully if the qt and opengl libraries are not found. 
-macro_append geant4_build_options " -DGEANT4_USE_QT=ON" \
-    GEANT_NO_QT  ""
+macro_append geant4_build_options " -DGEANT4_USE_QT=OFF " \
+     GEANT_USE_QT " -DGEANT4_USE_QT=ON "
 
 set LCG_build_options "$(geant4_build_options)"

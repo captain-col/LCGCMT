@@ -29,7 +29,7 @@ macro_append geant4_datafiles ";G4PhotonEvaporation.2.3.tar.gz"
 macro_append geant4_datafiles ";G4RadioactiveDecay.3.6.tar.gz"
 macro_append geant4_datafiles ";G4NEUTRONXS.1.2.tar.gz"
 macro_append geant4_datafiles ";G4PII.1.3.tar.gz"
-macro_append geant4_datafiles ";G4RealSurface.1.0.tar.gz"
+macro_append geant4_datafiles ";RealSurface.1.0.tar.gz"
 macro_append geant4_datafiles ";G4SAIDDATA.1.1.tar.gz"
 set LCG_datafiles "$(geant4_datafiles)"
 

@@ -7,3 +7,11 @@
 # match LOCAL_build in the config script.
 cd ${LCG_destbindir}/build
 make install
+
+# Make sure that the lib64 that GEANT4 sometimes installs into is also in lib.
+cd ${LCG_destbindir}
+if [ ! -d lib ]; then
+    if [ -d lib64 ]; then
+	ln -s lib64 lib
+    fi
+fi

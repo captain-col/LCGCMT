@@ -176,4 +176,18 @@ NEW FEATURES
   This lets us avoid trying to compile packages that will not work on
   mac maverick. 
 
+
+\section LCGCMT_v1r1p5_history Version 1.1.5
+
+Freeze information:
+   - Freeze Date: Mon Apr 14 17:03:35 2014
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.local 
+
+
+BUG FIX:
+
+** Adapt to SL5: This has been debugged on the PDSF.NERSC.GOV cluster, but
+   should work on any SL5 cluster.  
+
 */

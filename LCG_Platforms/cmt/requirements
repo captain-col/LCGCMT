@@ -56,6 +56,9 @@ tag gcc433      host-gcc43
 tag gcc434      host-gcc43
 tag gcc435      host-gcc43
 tag gcc436      host-gcc43
+tag gcc437      host-gcc43
+tag gcc438      host-gcc43
+tag gcc439      host-gcc43
 tag host-gcc43  host-gcc4
 
 # gcc 4.4 series
@@ -66,6 +69,9 @@ tag gcc443      host-gcc44
 tag gcc444      host-gcc44
 tag gcc445      host-gcc44
 tag gcc446      host-gcc44
+tag gcc447      host-gcc44
+tag gcc448      host-gcc44
+tag gcc449      host-gcc44
 tag host-gcc44  host-gcc4
 
 # gcc 4.5 series
@@ -74,12 +80,24 @@ tag gcc451      host-gcc45
 tag gcc452      host-gcc45
 tag gcc453      host-gcc45
 tag gcc454      host-gcc45
+tag gcc455      host-gcc45
+tag gcc456      host-gcc45
+tag gcc457      host-gcc45
+tag gcc458      host-gcc45
+tag gcc459      host-gcc45
 tag host-gcc45  host-gcc4
 
 # gcc 4.6 series
 tag gcc460      host-gcc46
 tag gcc461      host-gcc46
 tag gcc462      host-gcc46
+tag gcc463      host-gcc46
+tag gcc464      host-gcc46
+tag gcc465      host-gcc46
+tag gcc466      host-gcc46
+tag gcc467      host-gcc46
+tag gcc468      host-gcc46
+tag gcc469      host-gcc46
 tag host-gcc46  host-gcc4
 
 # gcc 4.7 series
@@ -133,6 +151,123 @@ tag gcc507      host-gcc50
 tag gcc508      host-gcc50
 tag gcc509      host-gcc50
 tag host-gcc50  host-gcc5
+
+# gcc 5.1 series
+tag gcc510      host-gcc51
+tag gcc511      host-gcc51
+tag gcc512      host-gcc51
+tag gcc513      host-gcc51
+tag gcc514      host-gcc51
+tag gcc515      host-gcc51
+tag gcc516      host-gcc51
+tag gcc517      host-gcc51
+tag gcc518      host-gcc51
+tag gcc519      host-gcc51
+tag host-gcc51  host-gcc5
+
+# gcc 5.2 series
+tag gcc520      host-gcc52
+tag gcc521      host-gcc52
+tag gcc522      host-gcc52
+tag gcc523      host-gcc52
+tag gcc524      host-gcc52
+tag gcc525      host-gcc52
+tag gcc526      host-gcc52
+tag gcc527      host-gcc52
+tag gcc528      host-gcc52
+tag gcc529      host-gcc52
+tag host-gcc52  host-gcc5
+
+# gcc 5.3 series
+tag gcc530      host-gcc53
+tag gcc531      host-gcc53
+tag gcc532      host-gcc53
+tag gcc533      host-gcc53
+tag gcc534      host-gcc53
+tag gcc535      host-gcc53
+tag gcc536      host-gcc53
+tag gcc537      host-gcc53
+tag gcc538      host-gcc53
+tag gcc539      host-gcc53
+tag host-gcc53  host-gcc5
+
+# gcc 5.4 series
+tag gcc540      host-gcc54
+tag gcc541      host-gcc54
+tag gcc542      host-gcc54
+tag gcc543      host-gcc54
+tag gcc544      host-gcc54
+tag gcc545      host-gcc54
+tag gcc546      host-gcc54
+tag gcc547      host-gcc54
+tag gcc548      host-gcc54
+tag gcc549      host-gcc54
+tag host-gcc54  host-gcc5
+
+# gcc 5.5 series
+tag gcc550      host-gcc55
+tag gcc551      host-gcc55
+tag gcc552      host-gcc55
+tag gcc553      host-gcc55
+tag gcc554      host-gcc55
+tag gcc555      host-gcc55
+tag gcc556      host-gcc55
+tag gcc557      host-gcc55
+tag gcc558      host-gcc55
+tag gcc559      host-gcc55
+tag host-gcc55  host-gcc5
+
+# gcc 5.6 series
+tag gcc560      host-gcc56
+tag gcc561      host-gcc56
+tag gcc562      host-gcc56
+tag gcc563      host-gcc56
+tag gcc564      host-gcc56
+tag gcc565      host-gcc56
+tag gcc566      host-gcc56
+tag gcc567      host-gcc56
+tag gcc568      host-gcc56
+tag gcc569      host-gcc56
+tag host-gcc56  host-gcc5
+
+# gcc 5.7 series
+tag gcc570      host-gcc57
+tag gcc571      host-gcc57
+tag gcc572      host-gcc57
+tag gcc573      host-gcc57
+tag gcc574      host-gcc57
+tag gcc575      host-gcc57
+tag gcc576      host-gcc57
+tag gcc577      host-gcc57
+tag gcc578      host-gcc57
+tag gcc579      host-gcc57
+tag host-gcc57  host-gcc5
+
+# gcc 5.8 series
+tag gcc580      host-gcc58
+tag gcc581      host-gcc58
+tag gcc582      host-gcc58
+tag gcc583      host-gcc58
+tag gcc584      host-gcc58
+tag gcc585      host-gcc58
+tag gcc586      host-gcc58
+tag gcc587      host-gcc58
+tag gcc588      host-gcc58
+tag gcc589      host-gcc58
+tag host-gcc58  host-gcc5
+
+# gcc 5.9 series
+tag gcc590      host-gcc59
+tag gcc591      host-gcc59
+tag gcc592      host-gcc59
+tag gcc593      host-gcc59
+tag gcc594      host-gcc59
+tag gcc595      host-gcc59
+tag gcc596      host-gcc59
+tag gcc597      host-gcc59
+tag gcc598      host-gcc59
+tag gcc599      host-gcc59
+tag host-gcc59  host-gcc5
 
 # Windows Visual Studio cl compiler
 tag VisualC     host-visualc

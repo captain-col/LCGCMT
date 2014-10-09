@@ -1,10 +1,30 @@
 package sqlite
 
 use LCG_BuildPolicy v* LCG_Builders
-use Python v* LCG_Interfaces -no_auto_imports
+
+# Set the versions.  The <>_config_version is set in the
+# LCG_Configuration package requirements and is the "distributed" version of
+# the package.  This package has the same config and native version (most
+# probably should). 
 macro sqlite_build_config_version "$(sqlite_config_version)"
 macro sqlite_build_native_version "$(sqlite_build_config_version)"
+
+# Set where to get the source file.  If there is more than one file, then
+# both LCG_tarfilename and LCG_sourcefiles can be set.  LCG_sourcefiles is
+# a ";" separated list of files to download.  The LCG_tarfilename value
+# needs to be set because that tells the package config script what file to
+# unpack.  
+set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
 set LCG_tarfilename "sqlite-autoconf-$(sqlite_build_config_version).tar.gz"
-set_append LCG_sqlite_compile_options ""\
-	   target-darwin&target-mac106&target-i386 "export CPPFLAGS=-m32 export CFLAGS=-m32"
-apply_pattern buildscripts_local
+macro LCG_get "http" 
+
+set LCG_sqlite_config_opts "" \
+        target-x86_64       " -with-pic " \
+	target-slc          " -with-pic "
+
+set LCG_extra_cflags " -O2 -fPIC "
+
+# Trigger the pkg_config, pkg_make and pkg_install targets.  The
+# LOCAL_DESTDIR is set so that this uses the "destdir" parameter.
+apply_tag LOCAL_DESTDIR
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/sqlite/$(LCG_package_config_version)

@@ -12,6 +12,7 @@ use CASTOR          v* LCG_Interfaces
 use dcache_client   v* LCG_Interfaces
 use oracle          v* LCG_Interfaces
 use mysql           v* LCG_Interfaces
+use sqlite	    v* LCG_Interfaces
 use Qt              v* LCG_Interfaces
 use cmake           v* LCG_Interfaces
 use CppUnit         v* LCG_Interfaces
@@ -238,6 +239,10 @@ set_append LCG_ROOT_CONFIG_OPTIONS                 "--disable-builtin-freetype "
            lcg_root_enable_builtin_freetype        "--enable-builtin-freetype "
 
 # DATABASE
+set_append LCG_ROOT_CONFIG_OPTIONS  "--enable-sqlite "
+set_append LCG_ROOT_CONFIG_OPTIONS  '--with-sqlite-incdir="$(sqlite_home)/include" '
+set_append LCG_ROOT_CONFIG_OPTIONS  '--with-sqlite-libdir="$(sqlite_home)/lib" '
+
 set_append LCG_ROOT_CONFIG_OPTIONS             "--disable-oracle "                              \
            lcg_root_enable_oracle              "--enable-oracle "
 set_append LCG_ROOT_CONFIG_OPTIONS             ""                                               \
@@ -271,7 +276,6 @@ set_append LCG_ROOT_CONFIG_OPTIONS          ""                        \
            lcg_root_increase_cint_values    "--with-cint-maxstruct=36000 --with-cint-maxtypedef=36000 --with-cint-longline=4096 "
 
 set_append LCG_ROOT_CONFIG_OPTIONS           "--enable-gdml"
-
 
 macro ROOT_native_version "$(ROOT_config_version)"
 macro ROOT_base "$(LCG_releases)/ROOT/$(ROOT_native_version)" 

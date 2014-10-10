@@ -190,4 +190,25 @@ BUG FIX:
 ** Adapt to SL5: This has been debugged on the PDSF.NERSC.GOV cluster, but
    should work on any SL5 cluster.  
 
+
+\section LCGCMT_v1r2p0_history Version 1.2.0
+
+Freeze information:
+   - Freeze Date: Fri Oct 10 17:34:40 2014
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.local boxer.local 
+
+
+New Feature:
+
+The sqlite data base has been added as an option to be compiled with ROOT.
+I think we are going to have very minimal database needs, and will not need
+a full mysql server.
+
+Bug Fix:
+
+Packages are more uniformly unpacked into the binary destination
+directory.  This means that different configurations will have completely
+different files and the configuration status should not be contaminated.
+
 */

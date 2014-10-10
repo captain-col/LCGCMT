@@ -2,9 +2,10 @@
 
 package_directory=boost_${LCG_file_config_version}
 
-cd ${LCG_builddir}
+mkdir -p ${LCG_destbindir}
+cd ${LCG_destbindir}
 
-tar xvfz ${LCG_tarfilename}
+tar xvfz ${LCG_tardir}/${LCG_tarfilename}
 cd ${package_directory}
 
 #./bootstrap.sh --prefix=${LCG_destdir} \

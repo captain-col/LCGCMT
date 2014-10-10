@@ -1,5 +1,5 @@
 #!/bin/sh
 
-cd ${LCG_builddir}/gsl-${LCG_package_config_version}
+cd ${LCG_destbindir}/gsl-${LCG_package_config_version}
 make
 

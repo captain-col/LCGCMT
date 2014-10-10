@@ -1,5 +1,8 @@
 #!/bin/sh
 
-cd ${LCG_builddir}/mpfr-${LCG_package_config_version}
+package_directory=mpfr-${LCG_package_config_version}
+cd ${LCG_destbindir}/${package_directory}
+
 make
+
 

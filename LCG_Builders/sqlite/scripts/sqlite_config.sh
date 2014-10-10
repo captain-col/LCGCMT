@@ -2,7 +2,8 @@
 
 package_directory=sqlite-autoconf-${LCG_package_config_version}
 
-cd ${LCG_builddir}
+mkdir -p ${LCG_destbindir}
+cd ${LCG_destbindir}
 if [ -d ${package_directory} ]; then
     echo XXXX ${LCG_builddir}/${package_directory} already exists. 
     echo XXXX Not unpacking and reconfiguring.  
@@ -10,8 +11,8 @@ if [ -d ${package_directory} ]; then
     exit 0
 fi
 
-tar xvfz ${LCG_tarfilename}
+tar xvfz ${LCG_tardir}/${LCG_tarfilename}
 cd ${package_directory}
 
-CFLAGS="${LCG_extra_cflags}" ./configure --prefix=${LCG_extdir}/sqlite/${LCG_package_config_version}/${LCG_CMTCONFIG} ${LCG_sqlite_config_opts}
+CFLAGS="${LCG_extra_cflags}" ./configure --prefix=${LCG_destbindir} ${LCG_sqlite_config_opts}
 

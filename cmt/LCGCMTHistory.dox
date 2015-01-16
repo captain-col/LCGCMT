@@ -211,4 +211,23 @@ Packages are more uniformly unpacked into the binary destination
 directory.  This means that different configurations will have completely
 different files and the configuration status should not be contaminated.
 
+
+\section LCGCMT_v1r2p1_history Version 1.2.1
+
+Freeze information:
+   - Freeze Date: Thu Jan 15 17:50:16 2015
+   - Freeze User: mcgrew
+   - Freeze Host: boxer 
+
+
+This patch is compatible with 1.2.0
+
+New minor features:
+
+* Add build tags in captainLCGCMT to allow LCGCMT to be built with out the
+  support for MC generation.
+
+* Prevent unpacking boost source if the boost source already exists in the
+  build directory.
+
 */

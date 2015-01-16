@@ -3,8 +3,19 @@ package captainLCGCMT
 # Define tags for the packages to skip.  These tags are of the form
 # "skip_<package>".  Example: "skip_genie"
 
+# The semiOffline tag can be added to the CMTEXTRATAGS environment variable to
+# only build the LCGCMT packages needed to process data.  This is mostly
+# used when installing the CAPTAIN software on the daq machines to do
+# almost online processing (like checking calibration constants).
+tag semiOffline skip_montecarlo 
+
 # tag Linux skip_nothing
-tag Darwin skip_genie skip_lhapdf skip_log4cpp skip_yamlcpp
+tag Darwin skip_GENIE
+
+# Conglomerate tags.
+tag skip_montecarlo skip_GEANT skip_GENIE
+tag skip_GEANT skip_geant4 skip_pythia6 skip_xercesc skip_expat
+tag skip_GENIE skip_genie skip_lhapdf skip_log4cpp skip_yamlcpp
 
 # Define a pattern to build an external package.
 pattern external \

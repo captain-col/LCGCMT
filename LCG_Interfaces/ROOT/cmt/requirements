@@ -13,7 +13,7 @@ apply_pattern use_optional pkg=gfal
 macro ROOT_native_version "$(ROOT_config_version)"
 
 macro ROOT_base "$(LCG_releases)/ROOT/$(ROOT_native_version)" 
-macro ROOT_home "$(ROOT_base)/$(LCG_platform)/root"
+macro ROOT_home "$(ROOT_base)/$(LCG_platform)"
 
 macro ROOT_name "root"
 

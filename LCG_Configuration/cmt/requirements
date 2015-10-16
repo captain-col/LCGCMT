@@ -14,10 +14,12 @@ macro LCG_config_version   "64d"
 macro COOL_config_version  "COOL_2_8_16"
 macro CORAL_config_version "CORAL_2_3_25"
 macro RELAX_config_version "RELAX_1_3_0j"
-macro ROOT_config_version  "5.34.18"
+macro ROOT_config_version  "6.04.06"
 
+# Provide tag information about the ROOT information (needed for requirements)
 apply_tag ROOT_GE_5_15  
 apply_tag ROOT_GE_5_19  
+apply_tag ROOT_GE_6
 
 # externals:
 

@@ -43,6 +43,7 @@ macro LCG_get "http"
 # Set the configuration options passed to the package configure script.
 set LCG_lhapdf_config_opts " --with-boost=$(Boost_home) "
 set_append LCG_lhapdf_config_opts " --with-yaml-cpp=$(yamlcpp_home) "
+set_append LCG_lhapdf_config_opts " --disable-pyext "
 
 # Trigger the pkg_config, pkg_make and pkg_install targets.  The
 # LOCAL_DESTDIR is set so that this uses the "destdir" parameter.

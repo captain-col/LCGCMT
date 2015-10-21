@@ -1,21 +1,28 @@
 #!/bin/sh
-
-date
+#
+# Script to handle a cmake configured package.  This has been
+# customized for ROOT.
 
 # Set the maximum load during the job.  This can be overridden in the
 # environment.
 if [ "x$LCG_MAX_LOAD" = "x" ]; then
-    LCG_MAX_LOAD=1.0
+    LCG_MAX_LOAD=2.5
 fi
 echo Limit load to ${LCG_MAX_LOAD}
 
-cd ${LCG_destbindir}/${LCG_srcdir}
+# This has to be set to the directory that the tar file will unpack
+# into when tar is run from the ${LCG_destdir} directory.  If upstream
+# changes the top-level tar directory, this will need to be changed.
+LOCAL_src=${LCG_destdir}/${LCG_srcdir}
 
-# Build the main root package
-make -k -l ${LCG_MAX_LOAD} -j 1
+# This needs to be set to where the package will be built
+LOCAL_build=${LOCAL_src}-build
 
-# Now build the tests.
-# cd test
-# make -k -l ${LCG_MAX_LOAD} -j
-
-date
+# Make sure the ROOTSYS variable isn't set for the build.
+if [ ${#ROOTSYS} != 0 ]; then
+    unset ROOTSYS
+fi
+	   
+# Go to the build directory and run make.  The build directory must
+# match LOCAL_build in the config script.
+cmake --build ${LOCAL_build} -- -j -l ${LCG_MAX_LOAD}

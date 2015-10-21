@@ -14,10 +14,12 @@ macro LCG_config_version   "64d"
 macro COOL_config_version  "COOL_2_8_16"
 macro CORAL_config_version "CORAL_2_3_25"
 macro RELAX_config_version "RELAX_1_3_0j"
-macro ROOT_config_version  "5.34.18"
+macro ROOT_config_version  "6.04.06"
 
+# Provide tag information about the ROOT information (needed for requirements)
 apply_tag ROOT_GE_5_15  
 apply_tag ROOT_GE_5_19  
+apply_tag ROOT_GE_6
 
 # externals:
 
@@ -31,7 +33,7 @@ macro bz2lib_config_version              "1.0.2"
 macro CASTOR_config_version              "2.1.13-6" \
       target-mac                         "2.1.9-4"
 macro cernlib_config_version             "2006a"
-macro CGAL_config_version		 "4.3"
+macro CGAL_config_version		 "4.6.3"
 macro cgsigsoap_config_version           "1.3.3-1"
 macro CLHEP_config_version               "1.9.4.7"
 macro cmake_config_version               "2.8.6"
@@ -120,7 +122,7 @@ macro pylint_config_version              "0.26.0"
 macro pyminuit_config_version            "0.0.1"
 macro pytest_config_version              "2.2.4"
 macro pytools_config_version             "1.8"
-macro pythia6_config_version		 "v6_424"
+macro pythia6_config_version		 "6.4.24"
 macro Python_config_version              "2.6.5p2" \
       target-mac                         "2.6.5"
 macro Python_config_version_twodigit     "2.6"

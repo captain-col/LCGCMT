@@ -2,6 +2,24 @@ package pythia6
 
 use LCG_BuildPolicy v* LCG_Builders
 
+# Set where to get the source file.  This is location of the tar files, and
+# how to get them.
+set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
+macro LCG_get "http" 
+
+# If there is more than one file, then both LCG_tarfilename and
+# LCG_sourcefiles can be set.  If there is only one file, the only
+# LCG_tarfilename needs to be set.  LCG_sourcefiles is a ";" separated list of
+# files to download.  Even if LCG_sourcefiles is set, LCG_tarfilename value
+# needs to be set because that tells the package config script what file to
+# unpack.
+
+# Set the name of the file to unpack and build.
+macro LCG_sourcefiles "pythia6.tar.gz;pythia-$(pythia6_config_version).f.gz"
+
+# This is the ROOT interface.
+set LCG_tarfilename "pythia6.tar.gz"
+
 # Set the versions.  The <>_config_version is set in the
 # LCG_Configuration package requirements and is the "distributed" version of
 # the package.  This package has the same config and native version (most

@@ -63,6 +63,7 @@ set_append LCG_build_options " -Dsqlite=ON "
 set_append LCG_build_options " -DSQLITE_INCLUDE_DIR=$(sqlite_home)/include "
 set_append LCG_build_options " -DSQLITE_LIBRARIES=$(sqlite_home)/lib/libsqlite3.so "
 
+set_append LCG_build_options " -Dpythia6=ON "
 set_append LCG_build_options " -DPYTHIA6_LIBRARY=$(pythia6_home)/lib/libPythia6.so "
 
 

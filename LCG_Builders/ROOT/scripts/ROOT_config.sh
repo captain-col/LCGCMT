@@ -46,7 +46,6 @@ if [ -e CMakeCache.txt -a CMakeCache.txt \
     echo XXXX No need to rerun configuration
     exit 0
 fi
-exit 0
 
 cmake -DCMAKE_INSTALL_PREFIX=${LOCAL_install} ${LCG_build_options} ${LOCAL_src}
 

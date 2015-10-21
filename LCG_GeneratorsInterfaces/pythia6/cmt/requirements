@@ -5,7 +5,7 @@ use LCG_Settings v*
 
 macro pythia6_native_version "$(pythia6_config_version)"
 
-macro pythia6_home "$(LCG_external)/pythia6/$(LCG_system)/$(pythia6_native_version)"
+macro pythia6_home "$(LCG_external)/pythia6/$(pythia6_native_version)/$(LCG_system)"
 
 include_path none
 include_dirs $(pythia6_home)/inc

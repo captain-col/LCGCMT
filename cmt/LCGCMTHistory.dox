@@ -211,4 +211,25 @@ Packages are more uniformly unpacked into the binary destination
 directory.  This means that different configurations will have completely
 different files and the configuration status should not be contaminated.
 
+
+\section LCGCMT_v2r0p0_history Version 2.0.0
+
+Freeze information:
+   - Freeze Date: Thu Oct 22 14:24:22 2015
+   - Freeze User: mcgrew
+   - Freeze Host: boxer 
+
+
+This is a new major version to mark the introduction of ROOT 6 as the base
+version for the ROOT libraries.  This now builds all of the software using
+cling instead of cint.  It maintains backward I/O compatibility with our
+previous releases.  Users of root macros will notice small
+incompatibilities since ROOT now uses a just-in-time (JIT) compiler instead
+of CINT.  This means that macros and the root command line now accept
+(virtually) all of C++11, but it also means that some permissive command
+lines are no longer accepted.
+
+The external packages will now compile using GCC5.  This version also
+includes a new version of CGAL.
+
 */

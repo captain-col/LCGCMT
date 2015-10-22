@@ -15,6 +15,7 @@ native_version.cmt
 Makefile
 logs/
 EXTERNALS/
+DOWNLOADS/
 *\#*
 v*r*p*_history.txt
 *_version.cxx

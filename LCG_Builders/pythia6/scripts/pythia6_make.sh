@@ -122,8 +122,8 @@ make all
 echo "build ROOT accessable shared library"
 cd ${LCG_destbindir}/tpythia6_build
 
-tar xzvf ${toppath}/download/pythia6.tar.gz pythia6/tpythia6_called_from_cc.F
-tar xzvf ${toppath}/download/pythia6.tar.gz pythia6/pythia6_common_address.c
+tar xzvf ${pythia_tar} pythia6/tpythia6_called_from_cc.F
+tar xzvf ${pythia_tar} pythia6/pythia6_common_address.c
 mv pythia6/* .
 rmdir pythia6
 echo 'void MAIN__() {}' > main.c

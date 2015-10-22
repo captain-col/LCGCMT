@@ -15,7 +15,7 @@ set LCG_BUILDPOLICYROOT_DIR          "$(LCG_BUILDPOLICYROOT)"
 
 set LCG_reldir                       "${LCG_releases}"
 set LCG_extdir                       "${LCG_external}"
-set LCG_tardir                       "${LCG_extdir}/tarFiles"
+set LCG_tardir                       "${LCG_extdir}/../DOWNLOADS"
 set LCG_distdir                      "${LCG_extdir}/distribution"
 set LCG_tarurl                       "http://service-spi.web.cern.ch/service-spi/external/tarFiles"
 

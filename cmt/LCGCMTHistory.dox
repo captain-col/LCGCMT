@@ -232,4 +232,19 @@ lines are no longer accepted.
 The external packages will now compile using GCC5.  This version also
 includes a new version of CGAL.
 
+
+\section LCGCMT_v2r0p1_history Version 2.0.1
+
+Freeze information:
+   - Freeze Date: Wed Nov  4 13:52:10 2015
+   - Freeze User: mcgrew
+   - Freeze Host: boxer boxer 
+
+
+New Feature:
+
+Incorporate CMAKE into the CAPTAIN externals build.  This became necessary
+since most of the external packages require a version of cmake later than
+2.8.  The supported version of cmake for SL6 is 2.6.
+
 */

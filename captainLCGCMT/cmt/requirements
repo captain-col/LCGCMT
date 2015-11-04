@@ -63,6 +63,7 @@ pattern lcgcmt_depends \
 # List of all the packages to build.  These will be built by the "make all"
 # target.
 
+lcgcmt build=cmake
 lcgcmt build=boost
 lcgcmt build=dawn
 lcgcmt build=gsl
@@ -71,16 +72,16 @@ lcgcmt build=fftw
 lcgcmt build=xercesc
 lcgcmt build=log4cpp
 lcgcmt build=pythia6
-lcgcmt build=yamlcpp
 lcgcmt build=gmp
 lcgcmt build=sqlite
 
 # Packages with dependencies.
 lcgcmt_depends build=mpfr depends="gmp"
-lcgcmt_depends build=CGAL depends="mpfr gmp boost"
-lcgcmt_depends build=orocos_bfl depends="boost"
-lcgcmt_depends build=ROOT depends="gsl fftw sqlite"
-lcgcmt_depends build=geant4 depends="ROOT pythia6 xercesc expat"
+lcgcmt_depends build=yamlcpp depends="cmake"
+lcgcmt_depends build=CGAL depends="mpfr gmp boost cmake"
+lcgcmt_depends build=orocos_bfl depends="boost cmake"
+lcgcmt_depends build=ROOT depends="gsl fftw sqlite cmake"
+lcgcmt_depends build=geant4 depends="ROOT pythia6 xercesc expat cmake"
 lcgcmt_depends build=lhapdf depends="yamlcpp boost"
 lcgcmt_depends build=genie depends="lhapdf ROOT pythia6 log4cpp yamlcpp boost"
 

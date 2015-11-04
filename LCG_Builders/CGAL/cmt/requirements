@@ -4,6 +4,7 @@ use LCG_BuildPolicy v* LCG_Builders
 use Boost       v*      LCG_Interfaces
 use gmp		v*	LCG_Interfaces
 use mpfr	v* 	LCG_Interfaces
+use cmake	v* 	LCG_Interfaces
 
 # Set the versions.  The CGAL_config_version is set in the
 # LCG_Configuration package requirements and is the "distributed" version of

@@ -2,14 +2,21 @@ package cmake
 
 use LCG_BuildPolicy v* LCG_Builders
 
+# Set the versions.  The <>_config_version is set in the
+# LCG_Configuration package requirements and is the "distributed" version of
+# the package.  This package uses a different config and native version
+# since the native version depends on the local python.
 macro cmake_build_config_version "$(cmake_config_version)"
 macro cmake_build_native_version "$(cmake_build_config_version)"
+
+# Set where to get the source file.  If there is more than one file, then
+# both LCG_tarfilename and LCG_sourcefiles can be set.  LCG_sourcefiles is
+# a ";" separated list of files to download.  The LCG_tarfilename value
+# needs to be set because that tells the package config script what file to
+# unpack.  
+set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
 set LCG_tarfilename "cmake-$(cmake_build_config_version).tar.gz"
+macro LCG_get "http" 
 
 apply_pattern buildscripts_local 
 
-set LCG_cmake_compile_options "" \
-    host-darwin&target-i386 "export CFLAGS="-m32" ; export CXXFLAGS="-m32"  " \
-    host-x86_64&target-i686 "export CFLAGS="-m32" ; export CXXFLAGS="-m32"  "
-
-set LCG_pkgdest_pkgname "CMake"

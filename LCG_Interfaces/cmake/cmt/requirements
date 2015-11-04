@@ -4,7 +4,8 @@ use LCG_Configuration v*
 use LCG_Settings      v*
 
 macro cmake_native_version "$(cmake_config_version)"
-macro cmake_home "${LCG_external}/CMake/$(cmake_native_version)/$(LCG_system)
+
+macro cmake_home "${LCG_external}/cmake/$(cmake_native_version)/$(LCG_system)
 
 apply_pattern set_bin_path
 apply_pattern set_man_path

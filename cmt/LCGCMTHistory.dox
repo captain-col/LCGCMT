@@ -247,4 +247,20 @@ Incorporate CMAKE into the CAPTAIN externals build.  This became necessary
 since most of the external packages require a version of cmake later than
 2.8.  The supported version of cmake for SL6 is 2.6.
 
+
+\section LCGCMT_v2r0p2_history Version 2.0.2
+
+Freeze information:
+   - Freeze Date: Wed Nov  4 20:00:39 2015
+   - Freeze User: mcgrew
+   - Freeze Host: boxer 
+
+
+BUG FIX:
+
+** Revert to ROOT 5.34.34 so that LCGCMT can compile on gcc 4.4.
+
+** Add the MathMore to the default library list.  This is needed to compile
+   GENIE.
+
 */

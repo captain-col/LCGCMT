@@ -37,4 +37,6 @@ LOCAL_build=${LOCAL_src}
 mkdir -p ${LOCAL_build}
 
 cd ${LOCAL_build}
-./bootstrap --prefix=${LOCAL_install}
+if [ ! -f Makefile ]; then
+    ./bootstrap --prefix=${LOCAL_install}
+fi

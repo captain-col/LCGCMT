@@ -17,5 +17,5 @@ fi
 	   
 # Go to the build directory and run make install.
 cd ${LOCAL_build}
-cmake --build ${LOCAL_build} -- install
+cmake --build ${LOCAL_build} -- -k install
 

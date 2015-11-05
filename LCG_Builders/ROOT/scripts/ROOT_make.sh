@@ -25,4 +25,4 @@ fi
 	   
 # Go to the build directory and run make.  The build directory must
 # match LOCAL_build in the config script.
-cmake --build ${LOCAL_build} -- -j -l ${LCG_MAX_LOAD}
+cmake --build ${LOCAL_build} -- -k -j -l ${LCG_MAX_LOAD}

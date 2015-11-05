@@ -19,7 +19,7 @@ macro ROOT_name "root"
 
 include_path none
 include_dirs "`root-config --incdir`"
-macro ROOT_linkopts "`root-config --evelibs --glibs --libs`"
+macro ROOT_linkopts "`root-config --evelibs --glibs --libs --auxlibs` -lMathMore "
 macro ROOT_cppflags "`root-config --cflags`"
 
 set ROOTSYS $(ROOT_home)

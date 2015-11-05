@@ -10,6 +10,11 @@ mkdir -p ${LCG_destdir}
 LOCAL_install=${LCG_destbindir}
 mkdir -p ${LOCAL_install}
 
+# For boost, make sure the cmt config has been run.
+if [ "x$LCG_file_config_version" = "x" ]; then
+    exit 1;
+fi
+
 # This has to be set to the directory that the tar file will unpack
 # into when tar is run.  Tar is usually run from ${LCG_destdir}
 # directory, but if the compilation modifies the source directory,
@@ -37,4 +42,6 @@ LOCAL_build=${LOCAL_src}
 mkdir -p ${LOCAL_build}
 
 cd ${LOCAL_build}
-./bootstrap.sh  --prefix=${LOCAL_install}
+if [ ! -x b2 -o ! -x bjam ]; then
+    ./bootstrap.sh  --prefix=${LOCAL_install}
+fi

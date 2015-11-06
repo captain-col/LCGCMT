@@ -263,4 +263,16 @@ BUG FIX:
 ** Add the MathMore to the default library list.  This is needed to compile
    GENIE.
 
+
+\section LCGCMT_v2r0p3_history Version 2.0.3
+
+Freeze information:
+   - Freeze Date: Thu Nov  5 19:48:38 2015
+   - Freeze User: mcgrew
+   - Freeze Host: boxer 
+
+
+BUG FIX: Add ldap=OFF to the ROOT compilation.  We don't use ldap for
+captain software and it has problems compiling under some older systems.
+
 */

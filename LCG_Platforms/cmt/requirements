@@ -10,7 +10,6 @@ tag i686        host-i686
 tag i386        host-i386
 
 ## Compilers ##
-# gcc 3.4 series (latest release 3.4.6)
 tag gcc340      host-gcc34
 tag gcc341      host-gcc34
 tag gcc342      host-gcc34
@@ -22,7 +21,6 @@ tag gcc347      host-gcc34
 tag gcc348      host-gcc34
 tag host-gcc34  host-gcc3
 
-# gcc 4.0 series (latest release 4.0.4)
 tag gcc400      host-gcc40
 tag gcc401      host-gcc40
 tag gcc402      host-gcc40
@@ -32,7 +30,6 @@ tag gcc405      host-gcc40
 tag gcc406      host-gcc40
 tag host-gcc40  host-gcc4
 
-# gcc 4.1 series (latest release 4.1.2)
 tag gcc410      host-gcc41
 tag gcc411      host-gcc41
 tag gcc412      host-gcc41
@@ -40,7 +37,6 @@ tag gcc413      host-gcc41
 tag gcc414      host-gcc41
 tag host-gcc41  host-gcc4
 
-# gcc 4.2 series (mainly for mac 10.6s gcc 4.2.1)
 tag gcc420      host-gcc42
 tag gcc421      host-gcc42
 tag gcc422      host-gcc42
@@ -48,7 +44,6 @@ tag gcc423      host-gcc42
 tag gcc424      host-gcc42
 tag host-gcc42  host-gcc4
 
-# gcc 4.3 series (latest release 4.3.2)
 tag gcc430      host-gcc43
 tag gcc431      host-gcc43
 tag gcc432      host-gcc43
@@ -61,7 +56,6 @@ tag gcc438      host-gcc43
 tag gcc439      host-gcc43
 tag host-gcc43  host-gcc4
 
-# gcc 4.4 series
 tag gcc440      host-gcc44
 tag gcc441      host-gcc44
 tag gcc442      host-gcc44
@@ -74,7 +68,6 @@ tag gcc448      host-gcc44
 tag gcc449      host-gcc44
 tag host-gcc44  host-gcc4
 
-# gcc 4.5 series
 tag gcc450      host-gcc45
 tag gcc451      host-gcc45
 tag gcc452      host-gcc45
@@ -87,7 +80,6 @@ tag gcc458      host-gcc45
 tag gcc459      host-gcc45
 tag host-gcc45  host-gcc4
 
-# gcc 4.6 series
 tag gcc460      host-gcc46
 tag gcc461      host-gcc46
 tag gcc462      host-gcc46
@@ -100,7 +92,6 @@ tag gcc468      host-gcc46
 tag gcc469      host-gcc46
 tag host-gcc46  host-gcc4
 
-# gcc 4.7 series
 tag gcc470      host-gcc47
 tag gcc471      host-gcc47
 tag gcc472      host-gcc47
@@ -113,7 +104,6 @@ tag gcc478      host-gcc47
 tag gcc479      host-gcc47
 tag host-gcc47  host-gcc4
 
-# gcc 4.8 series
 tag gcc480      host-gcc48
 tag gcc481      host-gcc48
 tag gcc482      host-gcc48
@@ -126,7 +116,6 @@ tag gcc488      host-gcc48
 tag gcc489      host-gcc48
 tag host-gcc48  host-gcc4
 
-# gcc 4.9 series
 tag gcc490      host-gcc49
 tag gcc491      host-gcc49
 tag gcc492      host-gcc49
@@ -139,7 +128,6 @@ tag gcc498      host-gcc49
 tag gcc499      host-gcc49
 tag host-gcc49  host-gcc4
 
-# gcc 5.0 series
 tag gcc500      host-gcc50
 tag gcc501      host-gcc50
 tag gcc502      host-gcc50
@@ -152,7 +140,6 @@ tag gcc508      host-gcc50
 tag gcc509      host-gcc50
 tag host-gcc50  host-gcc5
 
-# gcc 5.1 series
 tag gcc510      host-gcc51
 tag gcc511      host-gcc51
 tag gcc512      host-gcc51
@@ -165,7 +152,6 @@ tag gcc518      host-gcc51
 tag gcc519      host-gcc51
 tag host-gcc51  host-gcc5
 
-# gcc 5.2 series
 tag gcc520      host-gcc52
 tag gcc521      host-gcc52
 tag gcc522      host-gcc52
@@ -178,7 +164,6 @@ tag gcc528      host-gcc52
 tag gcc529      host-gcc52
 tag host-gcc52  host-gcc5
 
-# gcc 5.3 series
 tag gcc530      host-gcc53
 tag gcc531      host-gcc53
 tag gcc532      host-gcc53
@@ -191,7 +176,6 @@ tag gcc538      host-gcc53
 tag gcc539      host-gcc53
 tag host-gcc53  host-gcc5
 
-# gcc 5.4 series
 tag gcc540      host-gcc54
 tag gcc541      host-gcc54
 tag gcc542      host-gcc54
@@ -204,7 +188,6 @@ tag gcc548      host-gcc54
 tag gcc549      host-gcc54
 tag host-gcc54  host-gcc5
 
-# gcc 5.5 series
 tag gcc550      host-gcc55
 tag gcc551      host-gcc55
 tag gcc552      host-gcc55
@@ -217,7 +200,6 @@ tag gcc558      host-gcc55
 tag gcc559      host-gcc55
 tag host-gcc55  host-gcc5
 
-# gcc 5.6 series
 tag gcc560      host-gcc56
 tag gcc561      host-gcc56
 tag gcc562      host-gcc56
@@ -230,7 +212,6 @@ tag gcc568      host-gcc56
 tag gcc569      host-gcc56
 tag host-gcc56  host-gcc5
 
-# gcc 5.7 series
 tag gcc570      host-gcc57
 tag gcc571      host-gcc57
 tag gcc572      host-gcc57
@@ -243,7 +224,6 @@ tag gcc578      host-gcc57
 tag gcc579      host-gcc57
 tag host-gcc57  host-gcc5
 
-# gcc 5.8 series
 tag gcc580      host-gcc58
 tag gcc581      host-gcc58
 tag gcc582      host-gcc58
@@ -256,7 +236,6 @@ tag gcc588      host-gcc58
 tag gcc589      host-gcc58
 tag host-gcc58  host-gcc5
 
-# gcc 5.9 series
 tag gcc590      host-gcc59
 tag gcc591      host-gcc59
 tag gcc592      host-gcc59
@@ -268,6 +247,486 @@ tag gcc597      host-gcc59
 tag gcc598      host-gcc59
 tag gcc599      host-gcc59
 tag host-gcc59  host-gcc5
+
+tag gcc600      host-gcc60
+tag gcc601      host-gcc60
+tag gcc602      host-gcc60
+tag gcc603      host-gcc60
+tag gcc604      host-gcc60
+tag gcc605      host-gcc60
+tag gcc606      host-gcc60
+tag gcc607      host-gcc60
+tag gcc608      host-gcc60
+tag gcc609      host-gcc60
+tag host-gcc60  host-gcc6
+
+tag gcc610      host-gcc61
+tag gcc611      host-gcc61
+tag gcc612      host-gcc61
+tag gcc613      host-gcc61
+tag gcc614      host-gcc61
+tag gcc615      host-gcc61
+tag gcc616      host-gcc61
+tag gcc617      host-gcc61
+tag gcc618      host-gcc61
+tag gcc619      host-gcc61
+tag host-gcc61  host-gcc6
+
+tag gcc620      host-gcc62
+tag gcc621      host-gcc62
+tag gcc622      host-gcc62
+tag gcc623      host-gcc62
+tag gcc624      host-gcc62
+tag gcc625      host-gcc62
+tag gcc626      host-gcc62
+tag gcc627      host-gcc62
+tag gcc628      host-gcc62
+tag gcc629      host-gcc62
+tag host-gcc62  host-gcc6
+
+tag gcc630      host-gcc63
+tag gcc631      host-gcc63
+tag gcc632      host-gcc63
+tag gcc633      host-gcc63
+tag gcc634      host-gcc63
+tag gcc635      host-gcc63
+tag gcc636      host-gcc63
+tag gcc637      host-gcc63
+tag gcc638      host-gcc63
+tag gcc639      host-gcc63
+tag host-gcc63  host-gcc6
+
+tag gcc640      host-gcc64
+tag gcc641      host-gcc64
+tag gcc642      host-gcc64
+tag gcc643      host-gcc64
+tag gcc644      host-gcc64
+tag gcc645      host-gcc64
+tag gcc646      host-gcc64
+tag gcc647      host-gcc64
+tag gcc648      host-gcc64
+tag gcc649      host-gcc64
+tag host-gcc64  host-gcc6
+
+tag gcc650      host-gcc65
+tag gcc651      host-gcc65
+tag gcc652      host-gcc65
+tag gcc653      host-gcc65
+tag gcc654      host-gcc65
+tag gcc655      host-gcc65
+tag gcc656      host-gcc65
+tag gcc657      host-gcc65
+tag gcc658      host-gcc65
+tag gcc659      host-gcc65
+tag host-gcc65  host-gcc6
+
+tag gcc660      host-gcc66
+tag gcc661      host-gcc66
+tag gcc662      host-gcc66
+tag gcc663      host-gcc66
+tag gcc664      host-gcc66
+tag gcc665      host-gcc66
+tag gcc666      host-gcc66
+tag gcc667      host-gcc66
+tag gcc668      host-gcc66
+tag gcc669      host-gcc66
+tag host-gcc66  host-gcc6
+
+tag gcc670      host-gcc67
+tag gcc671      host-gcc67
+tag gcc672      host-gcc67
+tag gcc673      host-gcc67
+tag gcc674      host-gcc67
+tag gcc675      host-gcc67
+tag gcc676      host-gcc67
+tag gcc677      host-gcc67
+tag gcc678      host-gcc67
+tag gcc679      host-gcc67
+tag host-gcc67  host-gcc6
+
+tag gcc680      host-gcc68
+tag gcc681      host-gcc68
+tag gcc682      host-gcc68
+tag gcc683      host-gcc68
+tag gcc684      host-gcc68
+tag gcc685      host-gcc68
+tag gcc686      host-gcc68
+tag gcc687      host-gcc68
+tag gcc688      host-gcc68
+tag gcc689      host-gcc68
+tag host-gcc68  host-gcc6
+
+tag gcc690      host-gcc69
+tag gcc691      host-gcc69
+tag gcc692      host-gcc69
+tag gcc693      host-gcc69
+tag gcc694      host-gcc69
+tag gcc695      host-gcc69
+tag gcc696      host-gcc69
+tag gcc697      host-gcc69
+tag gcc698      host-gcc69
+tag gcc699      host-gcc69
+tag host-gcc69  host-gcc6
+
+tag gcc700      host-gcc70
+tag gcc701      host-gcc70
+tag gcc702      host-gcc70
+tag gcc703      host-gcc70
+tag gcc704      host-gcc70
+tag gcc705      host-gcc70
+tag gcc706      host-gcc70
+tag gcc707      host-gcc70
+tag gcc708      host-gcc70
+tag gcc709      host-gcc70
+tag host-gcc70  host-gcc7
+
+tag gcc710      host-gcc71
+tag gcc711      host-gcc71
+tag gcc712      host-gcc71
+tag gcc713      host-gcc71
+tag gcc714      host-gcc71
+tag gcc715      host-gcc71
+tag gcc716      host-gcc71
+tag gcc717      host-gcc71
+tag gcc718      host-gcc71
+tag gcc719      host-gcc71
+tag host-gcc71  host-gcc7
+
+tag gcc720      host-gcc72
+tag gcc721      host-gcc72
+tag gcc722      host-gcc72
+tag gcc723      host-gcc72
+tag gcc724      host-gcc72
+tag gcc725      host-gcc72
+tag gcc726      host-gcc72
+tag gcc727      host-gcc72
+tag gcc728      host-gcc72
+tag gcc729      host-gcc72
+tag host-gcc72  host-gcc7
+
+tag gcc730      host-gcc73
+tag gcc731      host-gcc73
+tag gcc732      host-gcc73
+tag gcc733      host-gcc73
+tag gcc734      host-gcc73
+tag gcc735      host-gcc73
+tag gcc736      host-gcc73
+tag gcc737      host-gcc73
+tag gcc738      host-gcc73
+tag gcc739      host-gcc73
+tag host-gcc73  host-gcc7
+
+tag gcc740      host-gcc74
+tag gcc741      host-gcc74
+tag gcc742      host-gcc74
+tag gcc743      host-gcc74
+tag gcc744      host-gcc74
+tag gcc745      host-gcc74
+tag gcc746      host-gcc74
+tag gcc747      host-gcc74
+tag gcc748      host-gcc74
+tag gcc749      host-gcc74
+tag host-gcc74  host-gcc7
+
+tag gcc750      host-gcc75
+tag gcc751      host-gcc75
+tag gcc752      host-gcc75
+tag gcc753      host-gcc75
+tag gcc754      host-gcc75
+tag gcc755      host-gcc75
+tag gcc756      host-gcc75
+tag gcc757      host-gcc75
+tag gcc758      host-gcc75
+tag gcc759      host-gcc75
+tag host-gcc75  host-gcc7
+
+tag gcc760      host-gcc76
+tag gcc761      host-gcc76
+tag gcc762      host-gcc76
+tag gcc763      host-gcc76
+tag gcc764      host-gcc76
+tag gcc765      host-gcc76
+tag gcc766      host-gcc76
+tag gcc767      host-gcc76
+tag gcc768      host-gcc76
+tag gcc769      host-gcc76
+tag host-gcc76  host-gcc7
+
+tag gcc770      host-gcc77
+tag gcc771      host-gcc77
+tag gcc772      host-gcc77
+tag gcc773      host-gcc77
+tag gcc774      host-gcc77
+tag gcc775      host-gcc77
+tag gcc776      host-gcc77
+tag gcc777      host-gcc77
+tag gcc778      host-gcc77
+tag gcc779      host-gcc77
+tag host-gcc77  host-gcc7
+
+tag gcc780      host-gcc78
+tag gcc781      host-gcc78
+tag gcc782      host-gcc78
+tag gcc783      host-gcc78
+tag gcc784      host-gcc78
+tag gcc785      host-gcc78
+tag gcc786      host-gcc78
+tag gcc787      host-gcc78
+tag gcc788      host-gcc78
+tag gcc789      host-gcc78
+tag host-gcc78  host-gcc7
+
+tag gcc790      host-gcc79
+tag gcc791      host-gcc79
+tag gcc792      host-gcc79
+tag gcc793      host-gcc79
+tag gcc794      host-gcc79
+tag gcc795      host-gcc79
+tag gcc796      host-gcc79
+tag gcc797      host-gcc79
+tag gcc798      host-gcc79
+tag gcc799      host-gcc79
+tag host-gcc79  host-gcc7
+
+tag gcc800      host-gcc80
+tag gcc801      host-gcc80
+tag gcc802      host-gcc80
+tag gcc803      host-gcc80
+tag gcc804      host-gcc80
+tag gcc805      host-gcc80
+tag gcc806      host-gcc80
+tag gcc807      host-gcc80
+tag gcc808      host-gcc80
+tag gcc809      host-gcc80
+tag host-gcc80  host-gcc8
+
+tag gcc810      host-gcc81
+tag gcc811      host-gcc81
+tag gcc812      host-gcc81
+tag gcc813      host-gcc81
+tag gcc814      host-gcc81
+tag gcc815      host-gcc81
+tag gcc816      host-gcc81
+tag gcc817      host-gcc81
+tag gcc818      host-gcc81
+tag gcc819      host-gcc81
+tag host-gcc81  host-gcc8
+
+tag gcc820      host-gcc82
+tag gcc821      host-gcc82
+tag gcc822      host-gcc82
+tag gcc823      host-gcc82
+tag gcc824      host-gcc82
+tag gcc825      host-gcc82
+tag gcc826      host-gcc82
+tag gcc827      host-gcc82
+tag gcc828      host-gcc82
+tag gcc829      host-gcc82
+tag host-gcc82  host-gcc8
+
+tag gcc830      host-gcc83
+tag gcc831      host-gcc83
+tag gcc832      host-gcc83
+tag gcc833      host-gcc83
+tag gcc834      host-gcc83
+tag gcc835      host-gcc83
+tag gcc836      host-gcc83
+tag gcc837      host-gcc83
+tag gcc838      host-gcc83
+tag gcc839      host-gcc83
+tag host-gcc83  host-gcc8
+
+tag gcc840      host-gcc84
+tag gcc841      host-gcc84
+tag gcc842      host-gcc84
+tag gcc843      host-gcc84
+tag gcc844      host-gcc84
+tag gcc845      host-gcc84
+tag gcc846      host-gcc84
+tag gcc847      host-gcc84
+tag gcc848      host-gcc84
+tag gcc849      host-gcc84
+tag host-gcc84  host-gcc8
+
+tag gcc850      host-gcc85
+tag gcc851      host-gcc85
+tag gcc852      host-gcc85
+tag gcc853      host-gcc85
+tag gcc854      host-gcc85
+tag gcc855      host-gcc85
+tag gcc856      host-gcc85
+tag gcc857      host-gcc85
+tag gcc858      host-gcc85
+tag gcc859      host-gcc85
+tag host-gcc85  host-gcc8
+
+tag gcc860      host-gcc86
+tag gcc861      host-gcc86
+tag gcc862      host-gcc86
+tag gcc863      host-gcc86
+tag gcc864      host-gcc86
+tag gcc865      host-gcc86
+tag gcc866      host-gcc86
+tag gcc867      host-gcc86
+tag gcc868      host-gcc86
+tag gcc869      host-gcc86
+tag host-gcc86  host-gcc8
+
+tag gcc870      host-gcc87
+tag gcc871      host-gcc87
+tag gcc872      host-gcc87
+tag gcc873      host-gcc87
+tag gcc874      host-gcc87
+tag gcc875      host-gcc87
+tag gcc876      host-gcc87
+tag gcc877      host-gcc87
+tag gcc878      host-gcc87
+tag gcc879      host-gcc87
+tag host-gcc87  host-gcc8
+
+tag gcc880      host-gcc88
+tag gcc881      host-gcc88
+tag gcc882      host-gcc88
+tag gcc883      host-gcc88
+tag gcc884      host-gcc88
+tag gcc885      host-gcc88
+tag gcc886      host-gcc88
+tag gcc887      host-gcc88
+tag gcc888      host-gcc88
+tag gcc889      host-gcc88
+tag host-gcc88  host-gcc8
+
+tag gcc890      host-gcc89
+tag gcc891      host-gcc89
+tag gcc892      host-gcc89
+tag gcc893      host-gcc89
+tag gcc894      host-gcc89
+tag gcc895      host-gcc89
+tag gcc896      host-gcc89
+tag gcc897      host-gcc89
+tag gcc898      host-gcc89
+tag gcc899      host-gcc89
+tag host-gcc89  host-gcc8
+
+tag gcc900      host-gcc90
+tag gcc901      host-gcc90
+tag gcc902      host-gcc90
+tag gcc903      host-gcc90
+tag gcc904      host-gcc90
+tag gcc905      host-gcc90
+tag gcc906      host-gcc90
+tag gcc907      host-gcc90
+tag gcc908      host-gcc90
+tag gcc909      host-gcc90
+tag host-gcc90  host-gcc9
+
+tag gcc910      host-gcc91
+tag gcc911      host-gcc91
+tag gcc912      host-gcc91
+tag gcc913      host-gcc91
+tag gcc914      host-gcc91
+tag gcc915      host-gcc91
+tag gcc916      host-gcc91
+tag gcc917      host-gcc91
+tag gcc918      host-gcc91
+tag gcc919      host-gcc91
+tag host-gcc91  host-gcc9
+
+tag gcc920      host-gcc92
+tag gcc921      host-gcc92
+tag gcc922      host-gcc92
+tag gcc923      host-gcc92
+tag gcc924      host-gcc92
+tag gcc925      host-gcc92
+tag gcc926      host-gcc92
+tag gcc927      host-gcc92
+tag gcc928      host-gcc92
+tag gcc929      host-gcc92
+tag host-gcc92  host-gcc9
+
+tag gcc930      host-gcc93
+tag gcc931      host-gcc93
+tag gcc932      host-gcc93
+tag gcc933      host-gcc93
+tag gcc934      host-gcc93
+tag gcc935      host-gcc93
+tag gcc936      host-gcc93
+tag gcc937      host-gcc93
+tag gcc938      host-gcc93
+tag gcc939      host-gcc93
+tag host-gcc93  host-gcc9
+
+tag gcc940      host-gcc94
+tag gcc941      host-gcc94
+tag gcc942      host-gcc94
+tag gcc943      host-gcc94
+tag gcc944      host-gcc94
+tag gcc945      host-gcc94
+tag gcc946      host-gcc94
+tag gcc947      host-gcc94
+tag gcc948      host-gcc94
+tag gcc949      host-gcc94
+tag host-gcc94  host-gcc9
+
+tag gcc950      host-gcc95
+tag gcc951      host-gcc95
+tag gcc952      host-gcc95
+tag gcc953      host-gcc95
+tag gcc954      host-gcc95
+tag gcc955      host-gcc95
+tag gcc956      host-gcc95
+tag gcc957      host-gcc95
+tag gcc958      host-gcc95
+tag gcc959      host-gcc95
+tag host-gcc95  host-gcc9
+
+tag gcc960      host-gcc96
+tag gcc961      host-gcc96
+tag gcc962      host-gcc96
+tag gcc963      host-gcc96
+tag gcc964      host-gcc96
+tag gcc965      host-gcc96
+tag gcc966      host-gcc96
+tag gcc967      host-gcc96
+tag gcc968      host-gcc96
+tag gcc969      host-gcc96
+tag host-gcc96  host-gcc9
+
+tag gcc970      host-gcc97
+tag gcc971      host-gcc97
+tag gcc972      host-gcc97
+tag gcc973      host-gcc97
+tag gcc974      host-gcc97
+tag gcc975      host-gcc97
+tag gcc976      host-gcc97
+tag gcc977      host-gcc97
+tag gcc978      host-gcc97
+tag gcc979      host-gcc97
+tag host-gcc97  host-gcc9
+
+tag gcc980      host-gcc98
+tag gcc981      host-gcc98
+tag gcc982      host-gcc98
+tag gcc983      host-gcc98
+tag gcc984      host-gcc98
+tag gcc985      host-gcc98
+tag gcc986      host-gcc98
+tag gcc987      host-gcc98
+tag gcc988      host-gcc98
+tag gcc989      host-gcc98
+tag host-gcc98  host-gcc9
+
+tag gcc990      host-gcc99
+tag gcc991      host-gcc99
+tag gcc992      host-gcc99
+tag gcc993      host-gcc99
+tag gcc994      host-gcc99
+tag gcc995      host-gcc99
+tag gcc996      host-gcc99
+tag gcc997      host-gcc99
+tag gcc998      host-gcc99
+tag gcc999      host-gcc99
+tag host-gcc99  host-gcc9
 
 # Windows Visual Studio cl compiler
 tag VisualC     host-visualc
@@ -288,6 +747,7 @@ tag Unix        host-unix
 tag WIN32       host-win7
 tag XP          host-winxp
 tag_exclude     host-winxp host-win7
+
 # slc4 series (latest release 4.7)
 tag slc40       host-slc4
 tag slc41       host-slc4
@@ -334,6 +794,17 @@ tag slc66       host-slc6
 tag slc67       host-slc6
 tag slc68       host-slc6
 tag slc69       host-slc6
+# sl6 series
+tag sl60       host-slc6
+tag sl61       host-slc6
+tag sl62       host-slc6
+tag sl63       host-slc6
+tag sl64       host-slc6
+tag sl65       host-slc6
+tag sl66       host-slc6
+tag sl67       host-slc6
+tag sl68       host-slc6
+tag sl69       host-slc6
 
 # rhel series
 tag rhel60      host-rhel6

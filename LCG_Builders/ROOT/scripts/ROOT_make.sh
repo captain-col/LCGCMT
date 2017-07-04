@@ -22,7 +22,16 @@ LOCAL_build=${LOCAL_src}-build
 if [ ${#ROOTSYS} != 0 ]; then
     unset ROOTSYS
 fi
-	   
+
+# Make doubly sure the ~/.rootrc file is not read.  This is also set
+# in the requirements to make the build consistent, but it ABSOLUTELY
+# can not be set here, so be pedandic.
+export ROOTENV_NO_HOME
+ROOTENV_NO_HOME=1
+
 # Go to the build directory and run make.  The build directory must
 # match LOCAL_build in the config script.
-cmake --build ${LOCAL_build} -- -k -j -l ${LCG_MAX_LOAD}
+if ! cmake --build ${LOCAL_build} -- -k -j -l ${LCG_MAX_LOAD}; then
+    echo Error building ROOT.
+    exit 1
+fi

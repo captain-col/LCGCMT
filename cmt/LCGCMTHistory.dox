@@ -298,4 +298,17 @@ Freeze information:
 A patch freeze for the Summer 2017 LANSCE neutron run.  This uses
 ROOT version to 6.10.0 and upgrades to cmake 3.8.2.
 
+
+\section LCGCMT_v2r0p6_history Version 2.0.6
+
+Freeze information:
+   - Freeze Date: Wed Jul  5 18:33:21 2017
+   - Freeze User: mcgrew
+   - Freeze Host: boxer.physics.sunysb.edu boxer.local 
+
+
+Revert to ROOT 5.34.34 for the miniCAPTAIN run.  There is a problem in the
+ROOT 6 build that interferes with using TEveManager in the event display
+(there may be other problems too.)
+
 */

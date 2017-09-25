@@ -3,6 +3,10 @@ package captainLCGCMT
 # Define tags for the packages to skip.  These tags are of the form
 # "skip_<package>".  Example: "skip_genie"
 
+# Disable GENIE for now.  We aren't using it, and the packaged release won't
+# build on new compilers.
+apply_tag skip_GENIE
+
 # The onlyCore tag can be added to the CMTEXTRATAGS environment variable to
 # only build the LCGCMT packages needed to process data.  This is mostly
 # used when installing the CAPTAIN software on the daq machines to do
@@ -10,7 +14,6 @@ package captainLCGCMT
 tag onlyCore skip_montecarlo skip_support
 
 # tag Linux skip_nothing
-tag Darwin skip_GENIE
 
 # Tags to skip classes of libraries.
 tag skip_support skip_orocos_bfl skip_CGAL skip_mpfr skip_gmp

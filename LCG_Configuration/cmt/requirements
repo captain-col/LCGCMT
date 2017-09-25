@@ -14,12 +14,12 @@ macro LCG_config_version   "64d"
 macro COOL_config_version  "COOL_2_8_16"
 macro CORAL_config_version "CORAL_2_3_25"
 macro RELAX_config_version "RELAX_1_3_0j"
-macro ROOT_config_version  "5.34.34"
+macro ROOT_config_version  "6.10.02"
 
 # Provide tag information about the ROOT information (needed for requirements)
 # apply_tag ROOT_GE_5_15  
-apply_tag ROOT_GE_5_19  
-# apply_tag ROOT_GE_6
+# apply_tag ROOT_GE_5_19  
+apply_tag ROOT_GE_6
 
 # externals:
 
@@ -58,7 +58,7 @@ macro Frontier_Client_config_version     "2.8.5p1"
 macro fastjet_config_version             "3.0.3"
 macro GCCXML_config_version              "0.9.0_20110825" \
       target-gccmax                      "0.9.0_20120309"
-macro GEANT4_config_version		 "4.9.6.p01"
+macro GEANT4_config_version		 "4.10.03.p02"
 macro genie_config_version		 "2.8.0"
 macro genshi_config_version              "0.6"
 macro gfal_config_version                "1.13.0-0" \

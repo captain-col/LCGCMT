@@ -4,15 +4,16 @@
 # customized for geant4.
 #
 
-# Set the maximum load during the job.  This can be overridden in the
-# environment.
-if [ "x$LCG_MAX_LOAD" = "x" ]; then
-    LCG_MAX_LOAD=1.0
-fi
-echo Limit load to ${LCG_MAX_LOAD}
+# This has to be set to the directory that the tar file will unpack
+# into when tar is run from the ${LCG_destdir} directory.  If upstream
+# changes the top-level tar directory, this will need to be changed.
+LOCAL_src=${LCG_destdir}/${LCG_srcdir}
+
+# This needs to be set to where the package will be built
+LOCAL_build=${LOCAL_src}-build
 
 # Go to the build directory and run make.  The build directory must
 # match LOCAL_build in the config script.
-cd ${LCG_destbindir}/build
-make -l ${LCG_MAX_LOAD} -j
+cd ${LOCAL_build}
+make -j
 

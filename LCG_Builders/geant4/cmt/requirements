@@ -24,14 +24,31 @@ macro LCG_get "http"
 # needs to be set because that tells the package config script what file to
 # unpack.
 
-macro geant4_datafiles "G4NDL.4.2.tar.gz"
-macro_append geant4_datafiles ";G4EMLOW.6.32.tar.gz"
-macro_append geant4_datafiles ";G4PhotonEvaporation.2.3.tar.gz"
-macro_append geant4_datafiles ";G4RadioactiveDecay.3.6.tar.gz"
-macro_append geant4_datafiles ";G4NEUTRONXS.1.2.tar.gz"
+# DATA FILES FOR 4.9.6.p01
+# macro geant4_datafiles "G4NDL.4.2.tar.gz"
+# macro_append geant4_datafiles ";G4EMLOW.6.32.tar.gz"
+# macro_append geant4_datafiles ";G4PhotonEvaporation.2.3.tar.gz"
+# macro_append geant4_datafiles ";G4RadioactiveDecay.3.6.tar.gz"
+# macro_append geant4_datafiles ";G4NEUTRONXS.1.2.tar.gz"
+# macro_append geant4_datafiles ";G4PII.1.3.tar.gz"
+# macro_append geant4_datafiles ";RealSurface.1.0.tar.gz"
+# macro_append geant4_datafiles ";G4SAIDDATA.1.1.tar.gz"
+# END OF DATA FILES FOR 4.9.6.p01
+
+# DATA FILES FOR 4.10.03.p02
+macro geant4_datafiles "G4ABLA.3.0.tar.gz"
+macro_append geant4_datafiles ";G4EMLOW.6.50.tar.gz"
+macro_append geant4_datafiles ";G4ENSDFSTATE.2.1.tar.gz"
+macro_append geant4_datafiles ";G4NDL.4.5.tar.gz"
+macro_append geant4_datafiles ";G4NEUTRONXS.1.4.tar.gz"
 macro_append geant4_datafiles ";G4PII.1.3.tar.gz"
-macro_append geant4_datafiles ";RealSurface.1.0.tar.gz"
+macro_append geant4_datafiles ";G4PhotonEvaporation.4.3.2.tar.gz"
+macro_append geant4_datafiles ";G4RadioactiveDecay.5.1.1.tar.gz"
 macro_append geant4_datafiles ";G4SAIDDATA.1.1.tar.gz"
+macro_append geant4_datafiles ";G4TENDL.1.3.tar.gz"
+macro_append geant4_datafiles ";RealSurface.1.0.tar.gz"
+# END OF DATA FILES FOR 4.10.03.p02
+
 set LCG_datafiles "$(geant4_datafiles)"
 
 # Set the name of the file to unpack and build.
@@ -54,7 +71,7 @@ setup_script geant4_setup
 macro geant4_build_options " "
 
 # Uncomment to install the data from the G4 web site.
-macro_append geant4_build_options " -DGEANT4_INSTALL_DATADIR=$(LCG_basedir)/$(LCG_package)/share"
+macro_append geant4_build_options " -DGEANT4_INSTALL_DATADIR=$(LCG_destdir)/share"
 macro_append geant4_build_options " -DGEANT4_INSTALL_DATA=OFF"
 
 # Uncomment to include gdml.

@@ -31,7 +31,7 @@ ROOTENV_NO_HOME=1
 
 # Go to the build directory and run make.  The build directory must
 # match LOCAL_build in the config script.
-if ! cmake --build ${LOCAL_build} -- -k -j -l ${LCG_MAX_LOAD}; then
+if ! cmake --build ${LOCAL_build} -- -k -j4; then
     echo Error building ROOT.
     exit 1
 fi

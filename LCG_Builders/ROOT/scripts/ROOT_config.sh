@@ -46,12 +46,6 @@ fi
 # Go to the build area.
 cd ${LOCAL_build}
 
-if [ -e CMakeCache.txt -a CMakeCache.txt \
-	-nt ${LCG_package_root}/cmt/requirements ]; then
-    echo XXXX No need to rerun configuration
-    exit 0
-fi
-
 cmake -DCMAKE_INSTALL_PREFIX=${LOCAL_install} ${LCG_build_options} ${LOCAL_src}
 
 

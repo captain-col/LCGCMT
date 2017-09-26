@@ -35,25 +35,26 @@ echo "using $FORT as fortran compiler"
 # Setup the directories
 cd ${LCG_destbindir}
 for subdir in inc lib src tpythia6_build ; do
-    rm -rf ${subdir}
-    mkdir ${subdir}
+    mkdir -p ${subdir}
 done
 
 #########################################################################
 # Build the fsplit utility
 cd ${LCG_destbindir}/src
-gcc -ansi -o fsplit ${fsplit_src}
 
-########################################################################
-# Build the split fortran source
-zcat ${pythia_src} | ./fsplit
-rm zzz*.f
+if [ ! -x ./fsplit ]; then
+    gcc -ansi -o fsplit ${fsplit_src}
+
+    ########################################################################
+    # Build the split fortran source
+    zcat ${pythia_src} | ./fsplit
+    rm zzz*.f
+fi
 
 ############################################################################
 #
 # create a Makefile for the pythia6 source code and then use it to compile.
 #
-cd ${toppath}/src
 cat > Makefile <<EOF
 #
 # simple pythia6 makefile

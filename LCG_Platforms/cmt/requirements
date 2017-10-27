@@ -1026,7 +1026,7 @@ macro LCG_os                        "$(host_os)" \
       target-win7                   "win7"   \
       target-winxp                  "winxp"
 
-macro LCG_compiler                  "$(host_compiler)" \
+macro LCG_compiler                  "$(cmt_compiler_version)" \
       target-gcc34                  "gcc34"   \
       target-gcc40                  "gcc401"  \
       target-gcc41                  "gcc41"   \
@@ -1036,6 +1036,7 @@ macro LCG_compiler                  "$(host_compiler)" \
       target-gcc45                  "gcc45"   \
       target-gcc46                  "gcc46"   \
       target-gcc47                  "gcc47"   \
+      target-gcc48                  "gcc48"   \
       target-gccmax                 "gccmax"  \
       target-g11max                 "g11max"  \
       target-icc11                  "icc11"   \

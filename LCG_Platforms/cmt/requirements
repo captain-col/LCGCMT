@@ -1037,14 +1037,12 @@ macro LCG_compiler                  "$(cmt_compiler_version)" \
       target-gcc46                  "gcc46"   \
       target-gcc47                  "gcc47"   \
       target-gcc48                  "gcc48"   \
-      target-gccmax                 "gccmax"  \
-      target-g11max                 "g11max"  \
-      target-icc11                  "icc11"   \
-      target-icc12                  "icc12"   \
-      target-clang30                "clang30" \
-      target-clang31                "clang31" \
-      target-vc71                   "vc71"    \
-      target-vc9                    "vc9"
+      target-gcc49                  "gcc49"   \
+      target-gcc5                   "gcc5"   \
+      target-gcc6                   "gcc6"   \
+      target-gcc7                   "gcc7"   \
+      target-gcc8                   "gcc8"
+
 
 macro LCG_mode                      "opt" \
       target-dbg                    "dbg" \

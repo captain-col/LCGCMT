@@ -22,9 +22,7 @@ LOCAL_src=${LOCAL_dest}/gsl-${LCG_package_config_version}
 # packages that modify the source directory, this might be the same as
 # the source directory, but it's usually "parallel" to the source with
 # a suffix "-build".
-#
-# GSL Builds in the src directory.
-LOCAL_build=${LOCAL_src}
+LOCAL_build=${LOCAL_src}-build
 
 mkdir -p ${LOCAL_dest}
 mkdir -p ${LOCAL_install}
@@ -43,4 +41,4 @@ else
 fi
 
 cd ${LOCAL_build}
-CFLAGS="${LCG_extra_cflags}" ./configure --prefix=${LCG_destbindir} ${LCG_gsl_config_opts}
+CFLAGS="${LCG_extra_cflags}" ${LOCAL_src}/configure --srcdir=${LOCAL_src} --prefix=${LOCAL_install} ${LCG_gsl_config_opts}

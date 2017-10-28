@@ -42,4 +42,5 @@ fi
 
 cd ${LOCAL_build}
 
-${LOCAL_src}/bootstrap --prefix=${LOCAL_install}
+# BUILD WITH THE MOST GENERIC POSSIBLE C++ COMPILER
+CXX=/usr/bin/c++ ${LOCAL_src}/bootstrap --prefix=${LOCAL_install}

@@ -2,35 +2,34 @@
 # This config script is aimed at a cmake package.  It should be
 # customized for the package being built.
 
-# This should be customized to here the package should be built.  The
-# default is to install in the LCG_destbindir so that the build
-# directory is near the installation directory.  It needs to be the
-# LCG_destbindir since many autoconf and related packages compile in
-# the source directories.  Make sure the destination exists, and then
-# go there.
-mkdir -p ${LCG_destdir}
-cd ${LCG_destdir}
+# This should be customized to the base directory for the package
+# installation. All of the version specific files will be rooted from
+# here.
+LOCAL_dest=${LCG_destdir}
 
-# This needs to be set to the installation prefix
+# The location of the machine specific installation directory.  This
+# is usually set to LCG_destbindir, and must exist.
 LOCAL_install=${LCG_destbindir}
-mkdir -p ${LOCAL_install}
-
-# This needs to be set to where the package will be built
-LOCAL_build=${LCG_destbindir}/build
-mkdir -p ${LOCAL_build}
 
 # This has to be set to the directory that the tar file will unpack
 # into when tar is run from the ${LCG_destdir} directory.  If upstream
 # changes the top-level tar directory, this will need to be changed.
-LOCAL_src=${LCG_destdir}/${LCG_srcdir}
+LOCAL_src=${LOCAL_dest}/${LCG_srcdir}
+
+# This needs to be set to where the package will be built
+LOCAL_build=${LOCAL_src}-build
+
+mkdir -p ${LOCAL_dest}
+mkdir -p ${LOCAL_install}
+mkdir -p ${LOCAL_build}
 
 # If the source hasn't been unpacked, then unpack it.  This check
 # helps make sure that redoing "make pkg_config" doesn't force a
 # rebuilt.
+cd ${LOCAL_dest}
 if [ ! -d ${LOCAL_src} -a -f  ${LCG_tardir}/${LCG_tarfilename} ]; then 
     tar xvfz ${LCG_tardir}/${LCG_tarfilename}
 fi
 
 cd ${LOCAL_build}
 cmake -DCMAKE_INSTALL_PREFIX=${LOCAL_install} ${LCG_build_options} ${LOCAL_src}
-

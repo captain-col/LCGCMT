@@ -6,6 +6,8 @@ macro fftw_build_config_version "$(fftw_config_version)"
 macro fftw_build_native_version "$(fftw_build_config_version)"
 set LCG_tarfilename "fftw-$(fftw_build_config_version).tar.gz"
 
+set LGC_fftw_config_opts " --enabled-shared --with-pic " 
+
 apply_tag LOCAL_DESTDIR
 apply_pattern buildscripts_local destdir=$(LCG_extdir)/fftw3/$(LCG_package_config_version)
 set LCG_pkgdest_pkgname fftw3

@@ -45,8 +45,6 @@ apply_pattern buildscripts_project_local
 # config definitions.
 set LCG_build_options " "
 
-set_append LCG_build_options " -Dminuit2=ON "
-
 # Make sure we use the local build of FFTW since it's used by other packages.
 set_append LCG_build_options " -Dfftw3=ON "
 set_append LCG_build_options " -Dbuiltin_fftw3=OFF "
@@ -66,6 +64,12 @@ set_append LCG_build_options " -DSQLITE_LIBRARIES=$(sqlite_home)/lib/libsqlite3.
 # We need pythia for GENIE (even though GENIE is out of date).
 set_append LCG_build_options " -Dpythia6=ON "
 set_append LCG_build_options " -DPYTHIA6_LIBRARY=$(pythia6_home)/lib/libPythia6.so "
+
+# We want minuit2
+set_append LCG_build_options " -Dminuit2=ON "
+
+# We don't use fortran, and don't need the backward interface.
+set_append LCG_build_options " -Dfortran=OFF "
 
 # set_append LCG_build_options " -Dafdsmgrd=OFF "
 # set_append LCG_build_options " -Dafs=OFF "

@@ -68,9 +68,6 @@ set_append LCG_build_options " -DPYTHIA6_LIBRARY=$(pythia6_home)/lib/libPythia6.
 # We want minuit2
 set_append LCG_build_options " -Dminuit2=ON "
 
-# We don't use fortran, and don't need the backward interface.
-set_append LCG_build_options " -Dfortran=OFF "
-
 # set_append LCG_build_options " -Dafdsmgrd=OFF "
 # set_append LCG_build_options " -Dafs=OFF "
 # set_append LCG_build_options " -Dalien=OFF "
@@ -94,6 +91,7 @@ set_append LCG_build_options " -Dbuiltin_pcre=ON "
 # set_append LCG_build_options " -Ddcache=OFF "
 # set_append LCG_build_options " -Dexceptions=ON "
 # set_append LCG_build_options " -Dfitsio=OFF "
+set_append LCG_build_options " -Dfortran=OFF "
 set_append LCG_build_options " -Dgdml=ON "
 # set_append LCG_build_options " -Dgeocad=ON "
 # set_append LCG_build_options " -Dgenvector=OFF "
@@ -107,7 +105,7 @@ set_append LCG_build_options " -Dgdml=ON "
 # set_append LCG_build_options " -Dimt=OFF "
 # set_append LCG_build_options " -Djemalloc=OFF "
 # set_append LCG_build_options " -Dkrb5=OFF "
-# set_append LCG_build_options " -Dldap=OFF "
+set_append LCG_build_options " -Dldap=OFF "
 # set_append LCG_build_options " -Dmathmore=ON "
 # set_append LCG_build_options " -Dminimal=OFF "
 # set_append LCG_build_options " -Dmonalisa=OFF "

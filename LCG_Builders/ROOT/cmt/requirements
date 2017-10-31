@@ -62,8 +62,8 @@ set_append LCG_build_options " -DSQLITE_INCLUDE_DIR=$(sqlite_home)/include "
 set_append LCG_build_options " -DSQLITE_LIBRARIES=$(sqlite_home)/lib/libsqlite3.so "
 
 # We need pythia for GENIE (even though GENIE is out of date).
-set_append LCG_build_options " -Dpythia6=ON "
-set_append LCG_build_options " -DPYTHIA6_LIBRARY=$(pythia6_home)/lib/libPythia6.so "
+set_append LCG_build_options " -Dpythia6=${PYTHIA6_AVAIL} "
+set_append LCG_build_options " -DPYTHIA6_LIBRARY=$(pythia6_library) "
 
 # We want minuit2
 set_append LCG_build_options " -Dminuit2=ON "

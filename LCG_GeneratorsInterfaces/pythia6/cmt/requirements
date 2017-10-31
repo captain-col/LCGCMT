@@ -10,9 +10,13 @@ macro pythia6_home "$(LCG_external)/pythia6/$(pythia6_native_version)/$(LCG_syst
 include_path none
 include_dirs $(pythia6_home)/inc
 
+macro pythia6_library "$(pythia6_home)/lib/libPythia6.so"
 macro pythia6_linkopts " -L$(pythia6_home)/lib -lPythia6 "
 
 macro pythia6_name "pythia6"
 apply_pattern set_lib_path
 
 macro pythia6_export_paths "$(pythia6_home)/inc $(pythia6_home)/lib"
+
+set PYTHIA6_AVAIL "`if [ -f $(pythia6_library) ]; \
+    		  then echo YES; else echo NO; fi`"

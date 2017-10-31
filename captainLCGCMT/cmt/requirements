@@ -18,8 +18,8 @@ tag onlyCore skip_montecarlo skip_support
 # Tags to skip classes of libraries.
 tag skip_support skip_orocos_bfl skip_CGAL skip_mpfr skip_gmp
 tag skip_montecarlo skip_GEANT skip_GENIE
-tag skip_GEANT skip_geant4 skip_pythia6 skip_xercesc skip_expat
-tag skip_GENIE skip_genie skip_lhapdf skip_log4cpp skip_yamlcpp
+tag skip_GEANT skip_geant4 skip_xercesc skip_expat
+tag skip_GENIE skip_genie skip_pythia6 skip_lhapdf skip_log4cpp skip_yamlcpp
 
 # Define a pattern to build an external package.
 pattern external \

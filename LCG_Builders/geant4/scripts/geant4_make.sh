@@ -15,5 +15,5 @@ LOCAL_build=${LOCAL_src}-build
 # Go to the build directory and run make.  The build directory must
 # match LOCAL_build in the config script.
 cd ${LOCAL_build}
-make -j
+make -j2
 

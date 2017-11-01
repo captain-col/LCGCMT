@@ -3,13 +3,6 @@
 # Script to handle a cmake configured package.  This has been
 # customized for ROOT.
 
-# Set the maximum load during the job.  This can be overridden in the
-# environment.
-if [ "x$LCG_MAX_LOAD" = "x" ]; then
-    LCG_MAX_LOAD=2.5
-fi
-echo Limit load to ${LCG_MAX_LOAD}
-
 # This has to be set to the directory that the tar file will unpack
 # into when tar is run from the ${LCG_destdir} directory.  If upstream
 # changes the top-level tar directory, this will need to be changed.

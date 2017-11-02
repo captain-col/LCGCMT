@@ -41,4 +41,4 @@ else
 fi
 
 cd ${LOCAL_build}
-CFLAGS="${LCG_extra_cflags}" ${LOCAL_src}/configure --srcdir=${LOCAL_src} --prefix=${LOCAL_install} ${LCG_xercesc_config_opts}
+CFLAGS="${LCG_extra_cflags}" ${LOCAL_src}/configure --srcdir=${LOCAL_src} --prefix=${LOCAL_install} ${LCG_xercesc_config_options}

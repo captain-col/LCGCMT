@@ -4,17 +4,11 @@ use LCG_Configuration v*
 use LCG_Settings      v*
 use GCCXML            v* LCG_Interfaces -no_auto_imports
 use Python            v* LCG_Interfaces -no_auto_imports
-use xrootd            v* LCG_Interfaces
-
-# Option to use mathmore.
-tag ROOT_use_MathMore ROOT_use_GSL
-macro mathmore_linkopts "" \
-      ROOT_use_MathMore " -lMathMore "
+use gsl		      v* LCG_Interfaces
 
 apply_pattern use_optional pkg=Qt
 apply_pattern use_optional pkg=dcache_client
 apply_pattern use_optional pkg=gfal
-apply_pattern use_optional pkg=GSL
 
 macro ROOT_native_version "$(ROOT_config_version)"
 macro ROOT_base "$(LCG_releases)/ROOT/$(ROOT_native_version)" 
@@ -23,7 +17,7 @@ macro ROOT_name "root"
 
 include_path none
 include_dirs "`root-config --incdir`"
-macro ROOT_linkopts "`root-config --evelibs --glibs --libs --auxlibs` $(use_MathMore) "
+macro ROOT_linkopts "`root-config --evelibs --glibs --libs --auxlibs` -lMathMore "
 macro ROOT_cppflags "`root-config --cflags`"
 
 set ROOTSYS $(ROOT_home)

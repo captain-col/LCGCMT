@@ -4,7 +4,7 @@ use LCG_Configuration v*
 use LCG_Settings      v*
 
 macro gmp_native_version "$(gmp_config_version)"
-macro gmp_home "$(LCG_external)/GMP/$(gmp_native_version)/$(LCG_system)"
+macro gmp_home "$(LCG_external)/gmp/$(gmp_native_version)/$(LCG_system)"
 
 include_path none
 include_dirs $(gmp_home)/include

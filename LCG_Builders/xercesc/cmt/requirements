@@ -2,12 +2,12 @@ package xercesc
 
 use LCG_BuildPolicy v* LCG_Builders
 
-# Set the versions.  The XercesC_config_version is set in the
+# Set the versions.  The xercesc_config_version is set in the
 # LCG_Configuration package requirements and is the "distributed" version of
 # the package.  This package has the same config and native version (most
 # probably should). 
-macro xercesc_build_config_version "$(XercesC_config_version)"
-macro xercesc_build_native_version "$(XercesC_config_version)"
+macro xercesc_build_config_version "$(xercesc_config_version)"
+macro xercesc_build_native_version "$(xercesc_config_version)"
 
 # Set where to get the source file.  If there is more than one file, then
 # both LCG_tarfilename and LCG_sourcefiles can be set.  LCG_sourcefiles is
@@ -33,6 +33,6 @@ set LCG_xercesc_config_options " --disable-network " \
 apply_pattern buildscripts_local
 
 # Override the destination package name since the LCG_Interfaces package has a
-# different name (XercesC)
-set LCG_pkgdest_pkgname XercesC
+# different name (xercesc)
+set LCG_pkgdest_pkgname xercesc
 

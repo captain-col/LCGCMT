@@ -25,4 +25,4 @@ set LCG_gmp_config_opts "" \
 # Trigger the pkg_config, pkg_make and pkg_install targets.  The
 # LOCAL_DESTDIR is set so that this uses the "destdir" parameter.
 apply_tag LOCAL_DESTDIR
-apply_pattern buildscripts_local destdir=$(LCG_extdir)/GMP/$(LCG_package_config_version)
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/gmp/$(LCG_package_config_version)

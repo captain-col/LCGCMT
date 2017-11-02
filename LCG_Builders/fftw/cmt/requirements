@@ -9,5 +9,5 @@ set LCG_tarfilename "fftw-$(fftw_build_config_version).tar.gz"
 set LCG_fftw_config_opts " --enable-shared --with-pic " 
 
 apply_tag LOCAL_DESTDIR
-apply_pattern buildscripts_local destdir=$(LCG_extdir)/fftw3/$(LCG_package_config_version)
-set LCG_pkgdest_pkgname fftw3
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/fftw/$(LCG_package_config_version)
+set LCG_pkgdest_pkgname fftw

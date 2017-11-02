@@ -3,7 +3,7 @@ package ROOT
 use LCG_BuildPolicy v* LCG_Builders
 
 use Python          v* LCG_Interfaces
-use GSL             v* LCG_Interfaces
+use gsl             v* LCG_Interfaces
 use fftw            v* LCG_Interfaces
 use GCCXML          v* LCG_Interfaces
 use globus          v* LCG_Interfaces
@@ -54,7 +54,7 @@ set_append LCG_build_options " -DFFTW_LIBRARY=$(fftw_home)/lib/libfftw3.so "
 # Make sure we use the local build of GSL since it's used by other packages.
 set_append LCG_build_options " -Dgsl=ON "
 set_append LCG_build_options " -Dbuiltin_gsl=OFF "
-set_append LCG_build_options " -DGSL_CONFIG_EXECUTABLE=$(GSL_home)/bin/gsl-config "
+set_append LCG_build_options " -DGSL_CONFIG_EXECUTABLE=$(gsl_home)/bin/gsl-config "
 
 # Make sure we use the local build of SQLITE since it's used by other packages.
 set_append LCG_build_options " -Dsqlite=ON "
@@ -106,7 +106,7 @@ set_append LCG_build_options " -Dgdml=ON "
 # set_append LCG_build_options " -Djemalloc=OFF "
 # set_append LCG_build_options " -Dkrb5=OFF "
 set_append LCG_build_options " -Dldap=OFF "
-# set_append LCG_build_options " -Dmathmore=ON "
+set_append LCG_build_options " -Dmathmore=ON "
 # set_append LCG_build_options " -Dminimal=OFF "
 # set_append LCG_build_options " -Dmonalisa=OFF "
 # set_append LCG_build_options " -Dmt=OFF "

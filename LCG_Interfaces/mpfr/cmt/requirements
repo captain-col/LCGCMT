@@ -5,7 +5,7 @@ use LCG_Settings      v*
 use gmp               v* LCG_Interfaces
 
 macro mpfr_native_version "$(mpfr_config_version)"
-macro mpfr_home "$(LCG_external)/MPFR/$(mpfr_native_version)/$(LCG_system)"
+macro mpfr_home "$(LCG_external)/mpfr/$(mpfr_native_version)/$(LCG_system)"
 
 include_path none
 include_dirs $(mpfr_home)/include

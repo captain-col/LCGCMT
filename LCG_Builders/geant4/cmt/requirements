@@ -1,8 +1,7 @@
 package geant4
 
 use LCG_BuildPolicy v* LCG_Builders
-use XercesC         v* LCG_Interfaces
-use ROOT	    v* LCG_Interfaces
+use xercesc         v* LCG_Interfaces
 use cmake	    v* LCG_Interfaces
 
 # Set the versions.  The GEANT4_config_version is set in the

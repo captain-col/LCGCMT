@@ -6,7 +6,7 @@ use LCG_BuildPolicy v* LCG_Builders
 # LCG_Configuration package requirements and is the "distributed" version of
 # the package.  This package has the same config and native version (most
 # probably should). 
-macro gsl_build_config_version "$(GSL_config_version)"
+macro gsl_build_config_version "$(gsl_config_version)"
 macro gsl_build_native_version "$(gsl_build_config_version)"
 
 # Set where to get the source file.  If there is more than one file, then
@@ -27,4 +27,4 @@ set LCG_extra_cflags " -O2 -fPIC "
 # Trigger the pkg_config, pkg_make and pkg_install targets.  The
 # LOCAL_DESTDIR is set so that this uses the "destdir" parameter.
 apply_tag LOCAL_DESTDIR
-apply_pattern buildscripts_local destdir=$(LCG_extdir)/GSL/$(LCG_package_config_version)
+apply_pattern buildscripts_local destdir=$(LCG_extdir)/gsl/$(LCG_package_config_version)

@@ -7,7 +7,7 @@ use LCG_Platforms
 
 # Disable GENIE for older compilers.  The new version of GENIE requires at
 # least gcc 4.9
-tag host-gcc4 skip_GENIE
+tag host-gcc48 skip_GENIE
 
 # The onlyCore tag can be added to the CMTEXTRATAGS environment variable to
 # only build the LCGCMT packages needed to process data.  This is mostly

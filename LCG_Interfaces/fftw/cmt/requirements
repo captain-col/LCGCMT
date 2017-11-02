@@ -5,7 +5,7 @@ use LCG_Settings      v*
  
 macro fftw_native_version "$(fftw_config_version)"
 
-macro fftw_home "$(LCG_external)/fftw3/$(fftw_native_version)/$(LCG_system)"
+macro fftw_home "$(LCG_external)/fftw/$(fftw_native_version)/$(LCG_system)"
 
 include_path none
 include_dirs $(fftw_home)/include

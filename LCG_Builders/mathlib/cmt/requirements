@@ -2,7 +2,7 @@
 package mathlib
 
 use LCG_BuildPolicy v* LCG_Builders
-use GSL             v* LCG_Interfaces
+use gsl             v* LCG_Interfaces
 
 macro mathlib_build_config_version "$(mathlib_config_version)"
 macro mathlib_build_native_version "$(mathlib_build_config_version)_root$(ROOT_config_version)"

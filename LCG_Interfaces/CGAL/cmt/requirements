@@ -4,8 +4,6 @@ package CGAL
 use LCG_Configuration v*
 use LCG_Settings      v*
 use Boost             v* LCG_Interfaces
-use mpfr	      v* LCG_Interfaces
-use gmp		      v* LCG_Interfaces
 
 macro CGAL_native_version "$(CGAL_config_version)"
 macro CGAL_home "$(LCG_external)/CGAL/$(CGAL_native_version)/$(LCG_system)"

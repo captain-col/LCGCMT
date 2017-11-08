@@ -16,7 +16,7 @@ tag host-gcc48 skip_GENIE
 tag onlyCore skip_montecarlo skip_support
 
 # Tags to skip classes of libraries.
-tag skip_support skip_orocos_bfl skip_CGAL skip_mpfr skip_gmp
+tag skip_support skip_orocos_bfl skip_CGAL 
 tag skip_montecarlo skip_GEANT skip_GENIE
 tag skip_GEANT skip_geant4 skip_xercesc skip_expat
 tag skip_GENIE skip_genie skip_pythia6 skip_lhapdf skip_log4cpp skip_yamlcpp
@@ -76,13 +76,11 @@ lcgcmt build=fftw
 lcgcmt build=xercesc
 lcgcmt build=log4cpp
 lcgcmt build=pythia6
-lcgcmt build=gmp
 lcgcmt build=sqlite
 
 # Packages with dependencies.
-lcgcmt_depends build=mpfr depends="gmp"
 lcgcmt_depends build=yamlcpp depends="cmake"
-lcgcmt_depends build=CGAL depends="mpfr gmp boost cmake"
+lcgcmt_depends build=CGAL depends="boost cmake"
 lcgcmt_depends build=orocos_bfl depends="boost cmake"
 lcgcmt_depends build=ROOT depends="gsl fftw sqlite cmake"
 lcgcmt_depends build=geant4 depends="ROOT pythia6 xercesc expat cmake"

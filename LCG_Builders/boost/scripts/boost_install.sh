@@ -39,3 +39,9 @@ ${LCG_bjam_bin} ${LCG_boost_jam_opts} ${LCG_boost_compile_options} \
 
 mkdir -p ${LCG_destbindir}/data_files/
 find ./ -name "*.csv" -exec cp {} ${LCG_destbindir}/data_files/ \;
+
+# Clean up the build area which is huge!!!!  Change true to false to debug.
+if true; then
+    cd ${LCG_destdir}
+    rm -rf ${LOCAL_build}
+fi

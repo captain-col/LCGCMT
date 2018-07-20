@@ -19,3 +19,8 @@ fi
 cd ${LOCAL_build}
 cmake --build ${LOCAL_build} -- -k install
 
+# Clean up the build area which is huge!!!!  Change true to false to debug.
+if true; then
+    cd ${LCG_destdir}
+    rm -rf ${LOCAL_build}
+fi

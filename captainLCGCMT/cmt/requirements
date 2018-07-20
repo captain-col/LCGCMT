@@ -3,7 +3,11 @@ package captainLCGCMT
 use LCG_Platforms
 
 # Define tags for the packages to skip.  These tags are of the form
-# "skip_<package>".  Example: "skip_genie"
+# "skip_<package>".  Example: "skip_genie". 
+#
+# EXAMPLE:
+# export CMTEXTRATAGS="skip_GENIE,onlyCore"
+#
 
 # Disable GENIE for older compilers.  The new version of GENIE requires at
 # least gcc 4.9

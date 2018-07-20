@@ -18,7 +18,7 @@ fi
 
 # Make doubly sure the ~/.rootrc file is not read.  This is also set
 # in the requirements to make the build consistent, but it ABSOLUTELY
-# can not be set here, so be pedandic.
+# can not be set here, so be pedantic.
 export ROOTENV_NO_HOME
 ROOTENV_NO_HOME=1
 

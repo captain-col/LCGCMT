@@ -69,7 +69,7 @@ pattern lcgcmt_depends \
 
 lcgcmt build=cmake
 lcgcmt build=boost
-lcgcmt build=dawn
+# lcgcmt build=dawn
 lcgcmt build=gsl
 lcgcmt build=expat
 lcgcmt build=fftw

@@ -75,7 +75,7 @@ macro_append geant4_build_options " -DGEANT4_INSTALL_DATA=OFF"
 
 # Uncomment to include gdml.
 macro_append geant4_build_options " -DGEANT4_USE_GDML=ON"
-macro_append geant4_build_options " -DXERCESC_ROOT_DIR=${XercesC_home}"
+macro_append geant4_build_options " -DXERCESC_ROOT_DIR=${xercesc_home}"
 
 # Don't use the system version of EXPAT
 macro_append geant4_build_options " -DGEANT4_USE_SYSTEM_EXPAT=OFF "

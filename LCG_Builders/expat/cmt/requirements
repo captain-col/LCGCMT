@@ -22,6 +22,8 @@ set LCG_expat_config_opts "" \
         target-x86_64       " -with-pic " \
 	target-slc          " -with-pic "
 
+set LCG_extra_cflags " -O2 -fPIC "
+
 # Trigger the pkg_config, pkg_make and pkg_install targets.  The
 # LOCAL_DESTDIR is set so that this uses the "destdir" parameter.
 apply_tag LOCAL_DESTDIR

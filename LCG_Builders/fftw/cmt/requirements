@@ -4,6 +4,7 @@ use LCG_BuildPolicy v* LCG_Builders
 
 macro fftw_build_config_version "$(fftw_config_version)"
 macro fftw_build_native_version "$(fftw_build_config_version)"
+set LCG_tarurl "http://captain@nngroup.physics.sunysb.edu/~captain/tar/"
 set LCG_tarfilename "fftw-$(fftw_build_config_version).tar.gz"
 
 set LCG_fftw_config_opts " --enable-shared --with-pic " 
